@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="en" class="!overflow-x-hidden no-fouc"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="/lighthouse.png"><meta name="generator" content="Astro v5.12.8"><link rel="sitemap" href="/sitemap-index.xml"><!-- DNS prefetch for external domains --><link rel="dns-prefetch" href="//fonts.googleapis.com"><!-- Resource hints for better performance --><link rel="preconnect" href="https://proggsu.vercel.app"><!-- Font preloads with higher priority and fallback --><link rel="preload" href="/fonts/VCRosdNEUE.ttf" as="font" type="font/ttf" crossorigin="anonymous"><!-- Critical CSS inlined for immediate render --><style>/* Critical CSS - Inlined for fast initial render */
+
+@font-face {
+  font-family: "VCR";
+  src: url("/fonts/VCRosdNEUE.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Essential Tailwind base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "VCR", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
+}
+
+/* Essential base styles */
+body {
+  font-family: "VCR", monospace !important;
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  line-height: inherit;
+}
+
+/* Essential layout styles */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* Basic flexbox and grid support */
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Essential spacing utilities */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+/* Basic layout styles for header and main content */
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9999;
+}
+
+main {
+  padding-top: 8rem;
+}
+
+@media (min-width: 640px) {
+  main {
+    padding-top: 7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-top: 5rem;
+  }
+}
+
+/* Essential scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Basic selection styles */
+::-moz-selection {
+  background: #fff;
+  color: #000;
+}
+::selection {
+  background: #fff;
+  color: #000;
+}
+
+::-moz-selection {
+  background: #fff;
+  color: #000;
+}
+
+/* Prevent layout shift for images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Essential grid and flexbox utilities for events page */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Essential responsive grid for events */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+} </style><!-- Prevent FOUC with CSS that hides content until fonts are loaded --><!-- Font loading optimization script --><script type="module">if ("fonts" in document) {
+  document.fonts.ready.then(() => {
+    document.documentElement.classList.add("font-loaded");
+  });
+} else {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.documentElement.classList.add("font-loaded");
+    }, 100);
+  });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.classList.remove("no-fouc");
+  });
+} else {
+  document.documentElement.classList.remove("no-fouc");
+}</script><!-- Non-critical styles are loaded via DeferredStyles component --><!-- Canonical URL --><link rel="canonical" href="https://proggsu.vercel.app/thank-you/"><!-- Primary Meta Tags --><title>Thank You - progsu</title><meta name="title" content="Thank You - progsu"><meta name="description" content="Thank you for your application"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://proggsu.vercel.app/thank-you/"><meta property="og:title" content="Thank You - progsu"><meta property="og:description" content="Thank you for your application"><meta property="og:image" content="https://proggsu.vercel.app/embed_preview.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="progsu - GSU Programming Club"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://proggsu.vercel.app/thank-you/"><meta property="twitter:title" content="Thank You - progsu"><meta property="twitter:description" content="Thank you for your application"><meta property="twitter:image" content="https://proggsu.vercel.app/embed_preview.png"><!-- Discord specific --><meta property="og:image:alt" content="progsu - Georgia State University Programming Club"><!-- View Transitions  --><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BicXr3oo.js"></script><!-- Performance hints --><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><!-- Prefetch important pages --><link rel="prefetch" href="/events"><link rel="prefetch" href="/resources"><link rel="stylesheet" href="/_astro/forms.BSs4YNnf.css">
+<style>.btn-primary[data-astro-cid-reykoxrt]{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 50%,#c084fc 100%);border:none;border-radius:0.75rem;color:white;padding:1rem 2rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-size:1.1rem}.btn-primary[data-astro-cid-reykoxrt]:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(147,51,234,0.4)}.btn-secondary[data-astro-cid-reykoxrt]{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:0.75rem;color:white;padding:1rem 2rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;font-size:1.1rem}.btn-secondary[data-astro-cid-reykoxrt]:hover{background:rgba(255,255,255,0.15);transform:translateY(-2px)}.discord-icon[data-astro-cid-reykoxrt]{display:flex;justify-content:center;align-items:center;margin:0 auto;width:64px;height:64px;filter:drop-shadow(0 0 20px rgba(99,102,241,0.5));animation:discordFloat 3s ease-in-out infinite}.discord-icon[data-astro-cid-reykoxrt] svg[data-astro-cid-reykoxrt]{display:block;margin:0 auto}@keyframes discordFloat{0%,100%{transform:translateY(0px)}50%{transform:translateY(-10px)}}.discord-btn[data-astro-cid-reykoxrt]{position:relative;background:linear-gradient(135deg,#5865f2 0%,#7289da 50%,#5865f2 100%);border:none;border-radius:1rem;color:white;padding:1.25rem 2.5rem;font-weight:700;font-size:1.2rem;cursor:pointer;overflow:hidden;transition:all 0.3s ease;transform:translateZ(0);box-shadow:0 8px 32px rgba(88,101,242,0.4);display:flex;align-items:center;gap:0.75rem;margin:0 auto}.discord-btn[data-astro-cid-reykoxrt]:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 15px 40px rgba(88,101,242,0.6)}.discord-btn[data-astro-cid-reykoxrt]:active{transform:translateY(-1px) scale(1.01)}.discord-btn[data-astro-cid-reykoxrt] .btn-text[data-astro-cid-reykoxrt]{position:relative;z-index:2;font-weight:700}.discord-btn[data-astro-cid-reykoxrt] .btn-icon[data-astro-cid-reykoxrt]{position:relative;z-index:2;font-size:1.4rem;font-weight:700;transition:transform 0.3s ease}.discord-btn[data-astro-cid-reykoxrt]:hover .btn-icon[data-astro-cid-reykoxrt]{transform:translateX(5px)}.discord-btn[data-astro-cid-reykoxrt] .btn-glow[data-astro-cid-reykoxrt]{position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.6s ease;z-index:1}.discord-btn[data-astro-cid-reykoxrt]:hover .btn-glow[data-astro-cid-reykoxrt]{left:100%}.discord-btn[data-astro-cid-reykoxrt]{animation:discordPulse 2s infinite}@keyframes discordPulse{0%,100%{box-shadow:0 8px 32px rgba(88,101,242,0.4)}50%{box-shadow:0 8px 32px rgba(88,101,242,0.6),0 0 20px rgba(88,101,242,0.3)}}</style><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+		var script = document.createElement('script');
+		script.defer = true;
+		script.src = '/_vercel/insights/script.js';
+		var head = document.querySelector('head');
+		head.appendChild(script);
+	</script></head> <body class="bg-black text-white tracking-wide !overflow-x-hidden"> <header class="fixed top-0 w-screen z-[9999]"><nav class="w-full !z-[9999] py-5 px-4 bg-black/50 backdrop-blur-sm relative" data-astro-cid-5blmo7yk> <div class="w-full flex justify-between items-center" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/" data-astro-cid-5blmo7yk> <div id="logo" class="pt-2 pb-1 !grid !place-items-center select-none leading-none hover:bg-black bg-white scale-110 hover:text-white text-black px-4 transition-all ease-in-out" data-astro-cid-5blmo7yk> progsu </div> </a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center gap-4" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/events" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> Events </div> </a> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/resources" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> Resources </div> </a> <div data-astro-cid-5blmo7yk>/</div>  <div class="relative group" data-astro-cid-5blmo7yk> <button class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit flex items-center gap-1" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk>About</div> <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-5blmo7yk></path> </svg> </button> <div class="absolute top-full left-0 mt-1 bg-black/95 backdrop-blur-md border border-white/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50" data-astro-cid-5blmo7yk> <a class="block hover:bg-white hover:text-black transition-all ease-in-out px-3 py-2 text-sm whitespace-nowrap" href="/members" data-astro-cid-5blmo7yk> Members </a><a class="block hover:bg-white hover:text-black transition-all ease-in-out px-3 py-2 text-sm whitespace-nowrap" href="/history" data-astro-cid-5blmo7yk> History </a> </div> </div> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/interest" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk><span aria-label="love" role="img" data-astro-cid-5blmo7yk>❤️</span> Join</span> </div> </a> <div data-astro-cid-5blmo7yk>/</div>  </div> <!-- Mobile Hamburger Button --> <button id="hamburger-btn" class="md:hidden flex justify-center items-center w-8 h-8 text-white hover:bg-white/10 rounded transition-colors relative z-10" aria-label="Toggle mobile menu" aria-expanded="false" data-astro-cid-5blmo7yk> <div class="relative w-6 h-4 flex flex-col justify-center items-center" data-astro-cid-5blmo7yk> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 0;" data-astro-cid-5blmo7yk></span> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 50%; transform: translateY(-50%);" data-astro-cid-5blmo7yk></span> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="bottom: 0;" data-astro-cid-5blmo7yk></span> </div> </button> </div> <!-- Mobile Dropdown Menu --> <div id="mobile-menu" class="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md transform translate-y-0 scale-y-0 origin-top opacity-0 transition-all duration-300 ease-out pointer-events-none overflow-hidden" aria-hidden="true" data-astro-cid-5blmo7yk> <div class="px-4 py-6 space-y-3" data-astro-cid-5blmo7yk> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/events" tabindex="-1" data-astro-cid-5blmo7yk> Events </a><a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/resources" tabindex="-1" data-astro-cid-5blmo7yk> Resources </a> <button class="mobile-nav-link mobile-dropdown-btn w-full hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center flex items-center justify-center gap-2" tabindex="-1" data-dropdown-target="about" data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk>About</span> <svg class="w-4 h-4 transition-transform mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-5blmo7yk></path> </svg> </button> <div class="mobile-dropdown-content overflow-hidden transition-all duration-300 max-h-0" data-dropdown="about" data-astro-cid-5blmo7yk> <div class="py-2 space-y-1" data-astro-cid-5blmo7yk> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-8 py-2 rounded text-base mx-2" href="/members" tabindex="-1" data-astro-cid-5blmo7yk> Members </a><a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-8 py-2 rounded text-base mx-2" href="/history" tabindex="-1" data-astro-cid-5blmo7yk> History </a> </div> </div> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/interest" tabindex="-1" data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk><span aria-label="love" role="img" data-astro-cid-5blmo7yk>❤️</span> Join</span> </a> </div> </div> </nav>  <script type="module" src="/_astro/Navbar.astro_astro_type_script_index_0_lang.BQGKFb0e.js"></script></header> <main class="pt-32 sm:pt-28 md:pt-20">  <div class="max-w-7xl mx-auto px-4">  </div>  <div class="max-w-4xl mx-auto px-4 py-8" data-astro-cid-reykoxrt> <!-- Discord CTA Section --> <div class="text-center" data-astro-cid-reykoxrt> <!-- Discord CTA Section --> <div class="mt-8 p-8 rounded-2xl backdrop-blur-xl shadow-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/[0.08] via-purple-500/[0.05] to-blue-500/[0.02]" data-astro-cid-reykoxrt> <div class="text-center" data-astro-cid-reykoxrt> <div class="discord-icon mb-6" data-astro-cid-reykoxrt> <svg width="64" height="64" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg" data-astro-cid-reykoxrt> <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z" fill="#5865F2" data-astro-cid-reykoxrt></path> </svg> </div> <h2 class="text-4xl font-bold mb-4 text-indigo-300" data-astro-cid-reykoxrt>
+Do cool stuff. Build cool sh*t.
+</h2> <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto" data-astro-cid-reykoxrt>
+Join <strong data-astro-cid-reykoxrt>200+ developers</strong> who are already building amazing projects and learning together.
+</p> <button onclick="window.open('https://discord.gg/BgKg9gskM2', '_blank')" class="discord-btn" data-astro-cid-reykoxrt> <span class="btn-text" data-astro-cid-reykoxrt>Join Discord Community</span> <span class="btn-glow" data-astro-cid-reykoxrt></span> <span class="btn-icon" data-astro-cid-reykoxrt>→</span> </button> </div> </div> <!-- Action Buttons --> <div class="mt-12 space-x-4" data-astro-cid-reykoxrt> <button onclick="window.location.href='/'" class="btn-primary" data-astro-cid-reykoxrt>
+Return to Home
+</button> <button onclick="window.location.href='/interest'" class="btn-secondary" data-astro-cid-reykoxrt>
+Submit Another Application
+</button> </div> </div> </div>  </main> <footer class="w-screen bottom-0 overflow-x-hidden"><div class="h-28 overflow-hidden"> <div class="hero-bg">
+1000001100000000101001011011110000000101000011000100111110110100101101101101011000111110111010010000010010101100011001111110010110011010000011001110001100111010010010010011000001001100001111100010100101001010101000000011101000010000000000011101101001010100110111110100001100010100001100010100010110001110001011000001011110010100101011101100001010011100100010000001010000100011111011010110000001010010100000110011000010100001110111101010110010111100111100011001000011011001110000000000101110110001101111101110011011100010111011010001000100101101101100110111010011010110010000101010010000100100110101101110101011011001000111100111001011101000101101001001001011011000011111001001100101110100000111000100010010100001111101100001001110011011111001111101001110000000010000100101101101011011111000011100000010110111001110000110110100110100110011101100000101011101001010111001000000101000010111110101100110000110110001101000101100001110000110110011001010001011011000110100000101111101000011110110100010011110
+</div> </div> <section id="footer" class="w-full grid relative place-items-center text-center py-4 bg-white/[0.001]"> <div class="px-6 py-2 rounded-lg bg-white/5 text-white/60 text-sm font-normal">
+&copy; 2025 progsu. All rights reserved.
+</div> </section></footer> <!-- Cursor glow element --> <div id="cursor-glow" class="cursor-glow"></div> <!-- Background glow effect --> <div id="bg-glow" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-300"></div> <!-- Load non-critical styles after page render --> <!-- This component handles loading of non-critical CSS after DOM is ready --><script type="module">const loadNonCriticalStyles = () => {
+  document.body.classList.add("animations-ready");
+  document.documentElement.style.scrollBehavior = "smooth";
+};
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", loadNonCriticalStyles);
+} else {
+  loadNonCriticalStyles();
+}</script>  <!-- Vercel Speed Insights --> <vercel-speed-insights data-props="{}" data-params="{}" data-pathname="/thank-you/"></vercel-speed-insights> <script type="module">var name = "@vercel/speed-insights";
+var version = "1.2.0";
+var initQueue = () => {
+  if (window.si) return;
+  window.si = function a(...params) {
+    (window.siq = window.siq || []).push(params);
+  };
+};
+function isBrowser() {
+  return typeof window !== "undefined";
+}
+function detectEnvironment() {
+  try {
+    const env = "production";
+    if (env === "development" || env === "test") ;
+  } catch (e) {
+  }
+  return "production";
+}
+function isDevelopment() {
+  return detectEnvironment() === "development";
+}
+function computeRoute(pathname, pathParams) {
+  if (!pathname || !pathParams) {
+    return pathname;
+  }
+  let result = pathname;
+  try {
+    const entries = Object.entries(pathParams);
+    for (const [key, value] of entries) {
+      if (!Array.isArray(value)) {
+        const matcher = turnValueToRegExp(value);
+        if (matcher.test(result)) {
+          result = result.replace(matcher, `/[${key}]`);
+        }
+      }
+    }
+    for (const [key, value] of entries) {
+      if (Array.isArray(value)) {
+        const matcher = turnValueToRegExp(value.join("/"));
+        if (matcher.test(result)) {
+          result = result.replace(matcher, `/[...${key}]`);
+        }
+      }
+    }
+    return result;
+  } catch (e) {
+    return pathname;
+  }
+}
+function turnValueToRegExp(value) {
+  return new RegExp(`/${escapeRegExp(value)}(?=[/?#]|$)`);
+}
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function getScriptSrc(props) {
+  if (props.scriptSrc) {
+    return props.scriptSrc;
+  }
+  if (isDevelopment()) {
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.debug.js";
+  }
+  if (props.dsn) {
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.js";
+  }
+  if (props.basePath) {
+    return `${props.basePath}/speed-insights/script.js`;
+  }
+  return "/_vercel/speed-insights/script.js";
+}
+function injectSpeedInsights(props = {}) {
+  var _a;
+  if (!isBrowser() || props.route === null) return null;
+  initQueue();
+  const src = getScriptSrc(props);
+  if (document.head.querySelector(`script[src*="${src}"]`)) return null;
+  if (props.beforeSend) {
+    (_a = window.si) == null ? void 0 : _a.call(window, "beforeSend", props.beforeSend);
+  }
+  const script = document.createElement("script");
+  script.src = src;
+  script.defer = true;
+  script.dataset.sdkn = name + (props.framework ? `/${props.framework}` : "");
+  script.dataset.sdkv = version;
+  if (props.sampleRate) {
+    script.dataset.sampleRate = props.sampleRate.toString();
+  }
+  if (props.route) {
+    script.dataset.route = props.route;
+  }
+  if (props.endpoint) {
+    script.dataset.endpoint = props.endpoint;
+  } else if (props.basePath) {
+    script.dataset.endpoint = `${props.basePath}/speed-insights/vitals`;
+  }
+  if (props.dsn) {
+    script.dataset.dsn = props.dsn;
+  }
+  if (isDevelopment() && props.debug === false) {
+    script.dataset.debug = "false";
+  }
+  script.onerror = () => {
+    console.log(
+      `[Vercel Speed Insights] Failed to load script from ${src}. Please check if any content blockers are enabled and try again.`
+    );
+  };
+  document.head.appendChild(script);
+  return {
+    setRoute: (route) => {
+      script.dataset.route = route ?? void 0;
+    }
+  };
+}
+
+function getBasePath() {
+  try {
+    return undefined                                                    ;
+  } catch {
+  }
+}
+customElements.define(
+  "vercel-speed-insights",
+  class VercelSpeedInsights extends HTMLElement {
+    constructor() {
+      super();
+      try {
+        const props = JSON.parse(this.dataset.props ?? "{}");
+        const params = JSON.parse(this.dataset.params ?? "{}");
+        const route = computeRoute(this.dataset.pathname ?? "", params);
+        injectSpeedInsights({
+          route,
+          ...props,
+          framework: "astro",
+          basePath: getBasePath(),
+          beforeSend: window.speedInsightsBeforeSend
+        });
+      } catch (err) {
+        throw new Error(`Failed to parse SpeedInsights properties: ${err}`);
+      }
+    }
+  }
+);</script> <!-- Vercel Analytics --> <vercel-analytics data-props="{}" data-params="{}" data-pathname="/thank-you/"></vercel-analytics> <script type="module" src="/_astro/index.astro_astro_type_script_index_0_lang.OMazZCgV.js"></script> <script type="module">let cursorEffectsInitialized = false;
+let cursorGlow, bgGlow;
+let mouseX = 0, mouseY = 0;
+function initCursorEffects() {
+  if (cursorEffectsInitialized) return;
+  cursorGlow = document.getElementById("cursor-glow");
+  bgGlow = document.getElementById("bg-glow");
+  if (!cursorGlow || !bgGlow) {
+    setTimeout(initCursorEffects, 100);
+    return;
+  }
+  function updateCursorPosition(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (cursorGlow) {
+      cursorGlow.style.left = mouseX + "px";
+      cursorGlow.style.top = mouseY + "px";
+      cursorGlow.style.opacity = "1";
+    }
+    if (bgGlow) {
+      const rect = document.body.getBoundingClientRect();
+      const x = mouseX / rect.width * 100;
+      const y = mouseY / rect.height * 100;
+      bgGlow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(147, 51, 234, 0.12) 0%, rgba(147, 51, 234, 0.06) 40%, transparent 70%)`;
+      bgGlow.style.opacity = "1";
+    }
+    if (Math.random() > 0.85) {
+      createBinaryTrail(e.clientX, e.clientY);
+    }
+  }
+  function createBinaryTrail(x, y) {
+    const trail = document.createElement("div");
+    trail.className = "binary-trail";
+    trail.textContent = Math.random() > 0.5 ? "1" : "0";
+    trail.style.left = x + "px";
+    trail.style.top = y + "px";
+    document.body.appendChild(trail);
+    setTimeout(() => {
+      if (trail.parentNode) {
+        trail.parentNode.removeChild(trail);
+      }
+    }, 1600);
+  }
+  function hideCursorEffects() {
+    if (cursorGlow) {
+      cursorGlow.style.opacity = "0";
+    }
+    if (bgGlow) {
+      bgGlow.style.opacity = "0";
+    }
+  }
+  function showCursorEffects() {
+    if (cursorGlow) {
+      cursorGlow.style.opacity = "1";
+    }
+    if (bgGlow) {
+      bgGlow.style.opacity = "1";
+    }
+  }
+  document.addEventListener("mousemove", updateCursorPosition);
+  document.addEventListener("mouseleave", hideCursorEffects);
+  document.addEventListener("mouseenter", showCursorEffects);
+  cursorEffectsInitialized = true;
+  if (document.hasFocus()) {
+    showCursorEffects();
+  }
+}
+function resetCursorEffects() {
+  cursorEffectsInitialized = false;
+  cursorGlow = null;
+  bgGlow = null;
+  mouseX = 0;
+  mouseY = 0;
+  const existingTrails = document.querySelectorAll(".binary-trail");
+  existingTrails.forEach((trail) => {
+    if (trail.parentNode) {
+      trail.parentNode.removeChild(trail);
+    }
+  });
+  setTimeout(initCursorEffects, 50);
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initCursorEffects);
+} else {
+  initCursorEffects();
+}
+document.addEventListener("astro:page-load", resetCursorEffects);
+document.addEventListener("astro:after-swap", resetCursorEffects);
+document.addEventListener("astro:effects-reset", resetCursorEffects);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    setTimeout(resetCursorEffects, 100);
+  }
+});
+window.addEventListener("popstate", () => {
+  setTimeout(resetCursorEffects, 100);
+});</script></body></html> 

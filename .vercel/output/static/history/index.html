@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="en" class="!overflow-x-hidden no-fouc"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="/lighthouse.png"><meta name="generator" content="Astro v5.12.8"><link rel="sitemap" href="/sitemap-index.xml"><!-- DNS prefetch for external domains --><link rel="dns-prefetch" href="//fonts.googleapis.com"><!-- Resource hints for better performance --><link rel="preconnect" href="https://proggsu.vercel.app"><!-- Font preloads with higher priority and fallback --><link rel="preload" href="/fonts/VCRosdNEUE.ttf" as="font" type="font/ttf" crossorigin="anonymous"><!-- Critical CSS inlined for immediate render --><style>/* Critical CSS - Inlined for fast initial render */
+
+@font-face {
+  font-family: "VCR";
+  src: url("/fonts/VCRosdNEUE.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Essential Tailwind base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "VCR", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
+}
+
+/* Essential base styles */
+body {
+  font-family: "VCR", monospace !important;
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  line-height: inherit;
+}
+
+/* Essential layout styles */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* Basic flexbox and grid support */
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Essential spacing utilities */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+/* Basic layout styles for header and main content */
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9999;
+}
+
+main {
+  padding-top: 8rem;
+}
+
+@media (min-width: 640px) {
+  main {
+    padding-top: 7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-top: 5rem;
+  }
+}
+
+/* Essential scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Basic selection styles */
+::-moz-selection {
+  background: #fff;
+  color: #000;
+}
+::selection {
+  background: #fff;
+  color: #000;
+}
+
+::-moz-selection {
+  background: #fff;
+  color: #000;
+}
+
+/* Prevent layout shift for images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Essential grid and flexbox utilities for events page */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Essential responsive grid for events */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+} </style><!-- Prevent FOUC with CSS that hides content until fonts are loaded --><!-- Font loading optimization script --><script type="module">if ("fonts" in document) {
+  document.fonts.ready.then(() => {
+    document.documentElement.classList.add("font-loaded");
+  });
+} else {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.documentElement.classList.add("font-loaded");
+    }, 100);
+  });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.classList.remove("no-fouc");
+  });
+} else {
+  document.documentElement.classList.remove("no-fouc");
+}</script><!-- Non-critical styles are loaded via DeferredStyles component --><!-- Canonical URL --><link rel="canonical" href="https://proggsu.vercel.app/history/"><!-- Primary Meta Tags --><title>History - progsu</title><meta name="title" content="History - progsu"><meta name="description" content="Discover the journey of progsu from its founding to today. Explore our milestones, achievements, and the growth of GSU's programming community."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://proggsu.vercel.app/history/"><meta property="og:title" content="History - progsu"><meta property="og:description" content="Discover the journey of progsu from its founding to today. Explore our milestones, achievements, and the growth of GSU's programming community."><meta property="og:image" content="https://proggsu.vercel.app/embed_preview.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="progsu - GSU Programming Club"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://proggsu.vercel.app/history/"><meta property="twitter:title" content="History - progsu"><meta property="twitter:description" content="Discover the journey of progsu from its founding to today. Explore our milestones, achievements, and the growth of GSU's programming community."><meta property="twitter:image" content="https://proggsu.vercel.app/embed_preview.png"><!-- Discord specific --><meta property="og:image:alt" content="progsu - Georgia State University Programming Club"><!-- View Transitions  --><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BicXr3oo.js"></script><!-- Performance hints --><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><!-- Prefetch important pages --><link rel="prefetch" href="/events"><link rel="prefetch" href="/resources"><link rel="stylesheet" href="/_astro/forms.BSs4YNnf.css">
+<style>.glow-pulse-title[data-astro-cid-tal57otx]{animation:titlePulse 2.5s infinite}.timeline-entrance[data-astro-cid-tal57otx]{opacity:0;transform:translateY(20px);animation:fadeInUp 0.6s ease forwards}@keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}@keyframes titlePulse{0%,100%{text-shadow:0 0 6px rgba(59,130,246,0.18),0 0 12px rgba(255,255,255,0.10),0 0 24px rgba(59,130,246,0.08);color:#fff}50%{text-shadow:0 0 12px rgba(59,130,246,0.22),0 0 24px rgba(255,255,255,0.13),0 0 36px rgba(59,130,246,0.10);color:#f4faff}}.timeline-entrance[data-astro-cid-tal57otx]:nth-child(1){animation-delay:0.1s}.timeline-entrance[data-astro-cid-tal57otx]:nth-child(2){animation-delay:0.2s}.timeline-entrance[data-astro-cid-tal57otx]:nth-child(3){animation-delay:0.3s}.timeline-entrance[data-astro-cid-tal57otx]:nth-child(4){animation-delay:0.4s}.timeline-entrance[data-astro-cid-tal57otx]:nth-child(5){animation-delay:0.5s}.timeline-entrance[data-astro-cid-tal57otx]:nth-child(6){animation-delay:0.6s}.timeline-entrance[data-astro-cid-tal57otx]:nth-child(7){animation-delay:0.7s}.glass-card[data-astro-cid-tal57otx]{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}.timeline-card[data-astro-cid-tal57otx]:hover{box-shadow:0 20px 40px rgba(0,0,0,0.3),0 0 0 1px rgba(255,255,255,0.1),0 0 20px rgba(255,255,255,0.05)}</style><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+		var script = document.createElement('script');
+		script.defer = true;
+		script.src = '/_vercel/insights/script.js';
+		var head = document.querySelector('head');
+		head.appendChild(script);
+	</script></head> <body class="bg-black text-white tracking-wide !overflow-x-hidden"> <header class="fixed top-0 w-screen z-[9999]"><nav class="w-full !z-[9999] py-5 px-4 bg-black/50 backdrop-blur-sm relative" data-astro-cid-5blmo7yk> <div class="w-full flex justify-between items-center" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/" data-astro-cid-5blmo7yk> <div id="logo" class="pt-2 pb-1 !grid !place-items-center select-none leading-none hover:bg-black bg-white scale-110 hover:text-white text-black px-4 transition-all ease-in-out" data-astro-cid-5blmo7yk> progsu </div> </a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center gap-4" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/events" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> Events </div> </a> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/resources" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> Resources </div> </a> <div data-astro-cid-5blmo7yk>/</div>  <div class="relative group" data-astro-cid-5blmo7yk> <button class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit flex items-center gap-1" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk>About</div> <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-5blmo7yk></path> </svg> </button> <div class="absolute top-full left-0 mt-1 bg-black/95 backdrop-blur-md border border-white/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50" data-astro-cid-5blmo7yk> <a class="block hover:bg-white hover:text-black transition-all ease-in-out px-3 py-2 text-sm whitespace-nowrap" href="/members" data-astro-cid-5blmo7yk> Members </a><a class="block hover:bg-white hover:text-black transition-all ease-in-out px-3 py-2 text-sm whitespace-nowrap" href="/history" data-astro-cid-5blmo7yk> History </a> </div> </div> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/interest" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk><span aria-label="love" role="img" data-astro-cid-5blmo7yk>❤️</span> Join</span> </div> </a> <div data-astro-cid-5blmo7yk>/</div>  </div> <!-- Mobile Hamburger Button --> <button id="hamburger-btn" class="md:hidden flex justify-center items-center w-8 h-8 text-white hover:bg-white/10 rounded transition-colors relative z-10" aria-label="Toggle mobile menu" aria-expanded="false" data-astro-cid-5blmo7yk> <div class="relative w-6 h-4 flex flex-col justify-center items-center" data-astro-cid-5blmo7yk> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 0;" data-astro-cid-5blmo7yk></span> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 50%; transform: translateY(-50%);" data-astro-cid-5blmo7yk></span> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="bottom: 0;" data-astro-cid-5blmo7yk></span> </div> </button> </div> <!-- Mobile Dropdown Menu --> <div id="mobile-menu" class="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md transform translate-y-0 scale-y-0 origin-top opacity-0 transition-all duration-300 ease-out pointer-events-none overflow-hidden" aria-hidden="true" data-astro-cid-5blmo7yk> <div class="px-4 py-6 space-y-3" data-astro-cid-5blmo7yk> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/events" tabindex="-1" data-astro-cid-5blmo7yk> Events </a><a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/resources" tabindex="-1" data-astro-cid-5blmo7yk> Resources </a> <button class="mobile-nav-link mobile-dropdown-btn w-full hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center flex items-center justify-center gap-2" tabindex="-1" data-dropdown-target="about" data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk>About</span> <svg class="w-4 h-4 transition-transform mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-5blmo7yk></path> </svg> </button> <div class="mobile-dropdown-content overflow-hidden transition-all duration-300 max-h-0" data-dropdown="about" data-astro-cid-5blmo7yk> <div class="py-2 space-y-1" data-astro-cid-5blmo7yk> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-8 py-2 rounded text-base mx-2" href="/members" tabindex="-1" data-astro-cid-5blmo7yk> Members </a><a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-8 py-2 rounded text-base mx-2" href="/history" tabindex="-1" data-astro-cid-5blmo7yk> History </a> </div> </div> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/interest" tabindex="-1" data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk><span aria-label="love" role="img" data-astro-cid-5blmo7yk>❤️</span> Join</span> </a> </div> </div> </nav>  <script type="module" src="/_astro/Navbar.astro_astro_type_script_index_0_lang.BQGKFb0e.js"></script></header> <main class="pt-32 sm:pt-28 md:pt-20">  <div class="max-w-7xl mx-auto px-4">  <div class="mb-6 mt-2" data-astro-cid-tal57otx> <nav class="flex items-center gap-2 text-white/80 text-sm" aria-label="Breadcrumb" data-astro-cid-tal57otx> <a href="/" class="hover:underline" data-astro-cid-tal57otx>Home</a> <span data-astro-cid-tal57otx>/</span> <div class="bg-white flex items-center justify-center leading-none pt-2 pb-1 text-center select-none rounded-2xl px-5 font-semibold text-black w-fit"> <span>History</span> </div> </nav> </div>  </div>   <section id="ourjourney" class=" px-4 py-10 w-screen !overflow-x-hidden pt-16"> <div class="w-full grid place-items-center"> <h2 class="text-4xl md:text-6xl text-center">&lt;Our Journey /&gt;</h2> </div> <div class="w-full mt-10 px-4">  <div class="max-w-7xl mx-auto" data-astro-cid-tal57otx> <div class="text-center mb-12" data-astro-cid-tal57otx> <p class="text-white/80 text-lg mt-6 max-w-3xl mx-auto leading-relaxed" data-astro-cid-tal57otx>
+From a visionary idea during the COVID-19 pandemic to a thriving community with proven programs, 
+          discover how progsu has evolved since March 2020 to become Georgia State University's premier programming organization.
+</p> </div> <!-- Stats Cards Section --> <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10" data-astro-cid-tal57otx> <div class="text-center p-4 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-xl glass-card" data-astro-cid-tal57otx> <div class="text-2xl font-bold text-white mb-1" data-astro-cid-tal57otx>5+</div> <div class="text-xs text-white/60" data-astro-cid-tal57otx>Years Strong</div> </div> <div class="text-center p-4 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-xl glass-card" data-astro-cid-tal57otx> <div class="text-2xl font-bold text-white mb-1" data-astro-cid-tal57otx>800+</div> <div class="text-xs text-white/60" data-astro-cid-tal57otx>Students Helped</div> </div> <div class="text-center p-4 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-xl glass-card" data-astro-cid-tal57otx> <div class="text-2xl font-bold text-white mb-1" data-astro-cid-tal57otx>4</div> <div class="text-xs text-white/60" data-astro-cid-tal57otx>Core Programs</div> </div> <div class="text-center p-4 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-xl glass-card" data-astro-cid-tal57otx> <div class="text-2xl font-bold text-white mb-1" data-astro-cid-tal57otx>25+</div> <div class="text-xs text-white/60" data-astro-cid-tal57otx>Major Milestones</div> </div> </div> <!-- Separator --> <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-10" data-astro-cid-tal57otx></div> <!-- Key Achievements | Did You Know Section --> <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16" data-astro-cid-tal57otx> <!-- Key Achievements --> <div class="rounded-2xl border border-white/15 bg-white/[0.04] backdrop-blur-2xl p-8 glass-card shadow-xl" data-astro-cid-tal57otx> <h3 class="text-2xl font-bold text-white mb-6 tracking-tight" data-astro-cid-tal57otx>Key Achievements</h3> <div class="space-y-5" data-astro-cid-tal57otx> <div class="flex items-start gap-4" data-astro-cid-tal57otx> <div class="w-3 h-3 rounded-full mt-2 bg-purple-400" data-astro-cid-tal57otx></div> <div data-astro-cid-tal57otx> <h4 class="text-white font-semibold text-lg leading-snug" data-astro-cid-tal57otx>5+ Years Strong</h4> <p class="text-white/70 text-base leading-relaxed" data-astro-cid-tal57otx>Continuous operation since March 2020</p> </div> </div><div class="flex items-start gap-4" data-astro-cid-tal57otx> <div class="w-3 h-3 rounded-full mt-2 bg-blue-400" data-astro-cid-tal57otx></div> <div data-astro-cid-tal57otx> <h4 class="text-white font-semibold text-lg leading-snug" data-astro-cid-tal57otx>100+ Students Helped</h4> <p class="text-white/70 text-base leading-relaxed" data-astro-cid-tal57otx>Through interview prep and programming guidance</p> </div> </div><div class="flex items-start gap-4" data-astro-cid-tal57otx> <div class="w-3 h-3 rounded-full mt-2 bg-green-400" data-astro-cid-tal57otx></div> <div data-astro-cid-tal57otx> <h4 class="text-white font-semibold text-lg leading-snug" data-astro-cid-tal57otx>6 Core Programs</h4> <p class="text-white/70 text-base leading-relaxed" data-astro-cid-tal57otx>DSA prep, mock interviews, competitive programming</p> </div> </div><div class="flex items-start gap-4" data-astro-cid-tal57otx> <div class="w-3 h-3 rounded-full mt-2 bg-amber-400" data-astro-cid-tal57otx></div> <div data-astro-cid-tal57otx> <h4 class="text-white font-semibold text-lg leading-snug" data-astro-cid-tal57otx>5 Presidents</h4> <p class="text-white/70 text-base leading-relaxed" data-astro-cid-tal57otx>Successful leadership transitions</p> </div> </div><div class="flex items-start gap-4" data-astro-cid-tal57otx> <div class="w-3 h-3 rounded-full mt-2 bg-red-400" data-astro-cid-tal57otx></div> <div data-astro-cid-tal57otx> <h4 class="text-white font-semibold text-lg leading-snug" data-astro-cid-tal57otx>Official Recognition</h4> <p class="text-white/70 text-base leading-relaxed" data-astro-cid-tal57otx>RSO status and SAFC funding secured</p> </div> </div><div class="flex items-start gap-4" data-astro-cid-tal57otx> <div class="w-3 h-3 rounded-full mt-2 bg-cyan-400" data-astro-cid-tal57otx></div> <div data-astro-cid-tal57otx> <h4 class="text-white font-semibold text-lg leading-snug" data-astro-cid-tal57otx>1100+ Discord Members</h4> <p class="text-white/70 text-base leading-relaxed" data-astro-cid-tal57otx>Active programming community built</p> </div> </div> </div> </div> <!-- Did You Know? --> <div class="rounded-2xl border border-white/15 bg-white/[0.04] backdrop-blur-2xl p-8 glass-card shadow-xl" data-astro-cid-tal57otx> <h3 class="text-2xl font-bold text-white mb-6 tracking-tight" data-astro-cid-tal57otx>Did You Know?</h3> <div class="space-y-5" data-astro-cid-tal57otx> <div class="p-5 rounded-xl bg-white/[0.07] border border-white/15" data-astro-cid-tal57otx> <p class="text-white/90 text-base leading-relaxed" data-astro-cid-tal57otx>PROGgsu was founded during the COVID-19 pandemic, proving that great communities can emerge from challenging times!</p> </div><div class="p-5 rounded-xl bg-white/[0.07] border border-white/15" data-astro-cid-tal57otx> <p class="text-white/90 text-base leading-relaxed" data-astro-cid-tal57otx>We had a unique co-presidency period where Prahbir and Ethan shared leadership duties - a first in club history!</p> </div><div class="p-5 rounded-xl bg-white/[0.07] border border-white/15" data-astro-cid-tal57otx> <p class="text-white/90 text-base leading-relaxed" data-astro-cid-tal57otx>Our &quot;Holy Trinity&quot; programs (DSA, Mocks, Competitive Programming) have helped dozens of students land internships at top tech companies.</p> </div><div class="p-5 rounded-xl bg-white/[0.07] border border-white/15" data-astro-cid-tal57otx> <p class="text-white/90 text-base leading-relaxed" data-astro-cid-tal57otx>Andrew Huang, a Facebook Engineer in Residence, was our founding academic advisor who helped establish our foundation.</p> </div><div class="p-5 rounded-xl bg-white/[0.07] border border-white/15" data-astro-cid-tal57otx> <p class="text-white/90 text-base leading-relaxed" data-astro-cid-tal57otx>We transformed from basic HackJams to comprehensive interview prep, revolutionizing how GSU students approach technical interviews.</p> </div> </div> </div> </div> <!-- Separator --> <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-16" data-astro-cid-tal57otx></div> <!-- Timeline Section --> <div class="mb-12" data-astro-cid-tal57otx> <h2 class="text-2xl font-bold text-white text-center mb-8 glow-pulse-title" data-astro-cid-tal57otx>Our Timeline</h2> <!-- Vertical Timeline Container --> <div class="relative px-4 md:px-0" data-astro-cid-tal57otx> <!-- Central Timeline Line - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-0.5 bg-gradient-to-b from-white/30 via-white/20 to-white/30 rounded-full" style="height: calc(100% - 2rem); top: 1rem;" data-astro-cid-tal57otx></div> <!-- Timeline Events --> <div class="relative flex items-center mb-12 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> March 2020 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Plot Twist: Pandemic Sparks Programming Paradise <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Jenny Liu founded PROGgsu during the global pandemic, creating GSU&#39;s premier programming community from the ground up. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Significant milestone in club development</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Community impact and growth achieved</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Foundation building activities completed</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center -mt-12 mb-8 timeline-entrance md:justify-end justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white/60 shadow-lg shadow-white/20 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:ml-auto md:pl-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Fall 2020 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> The Great Launch: CS Jeopardy and Friends  </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Launched inaugural programming events including CS Jeopardy, technical interview prep, and resume workshops with 25+ regular attendees. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Significant milestone in club development</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Community impact and growth achieved</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Foundation building activities completed</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:left-0 -translate-x-full md:w-12 md:bg-gradient-to-r md:from-transparent to-white/20" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mt-16 mb-6 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> October 2020 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Paperwork Adventures Begin <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Began official university recognition process with charter development and PIN registration. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Significant milestone in club development</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Community impact and growth achieved</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Foundation building activities completed</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center -mt-8 mb-10 timeline-entrance md:justify-end justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:ml-auto md:pl-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Spring 2021 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Victory Lap: Official Recognition Achieved <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Achieved official university recognition as a registered student organization with approved charter and officer structure. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Important development milestone achieved</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Community growth and engagement increased</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Programming focus strengthened</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:left-0 -translate-x-full md:w-12 md:bg-gradient-to-r md:from-transparent to-white/20" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mt-20 mb-4 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white/60 shadow-lg shadow-white/20 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Fall 2021 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> The Weekly Grind: Programming Challenges Era  </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Established consistent weekly programming activities including data structures practice and algorithm challenges. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Weekly programming challenges implemented</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Study groups for data structures and algorithms</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Peer learning and collaboration emphasized</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Technical skill development prioritized</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center -mt-16 mb-8 timeline-entrance md:justify-end justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white/60 shadow-lg shadow-white/20 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:ml-auto md:pl-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Spring 2022 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Community Building: The Discord Dynasty  </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Expanded community engagement through Discord server and regular programming discussions, building strong member connections. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Discord server established as central hub</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Regular member engagement activities</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Mentorship programs launched</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Inclusive community culture developed</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:left-0 -translate-x-full md:w-12 md:bg-gradient-to-r md:from-transparent to-white/20" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mt-6 mb-14 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Fall 2022 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> The Holy Trinity: DSA, Mocks &amp; Competitive Chaos <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Launched the three core programs that would define PROGgsu: Data Structures &amp; Algorithms prep, mock interviews, and competitive programming. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Data Structures &amp; Algorithms prep launched</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Mock technical interviews introduced</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Competitive programming events established</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Comprehensive technical skill development</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mb-12 timeline-entrance md:justify-end justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:ml-auto md:pl-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Spring 2023 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Level Up: SAFC Recognition &amp; Funding <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Secured Student Activity Fee Committee funding and full university partnership status, gaining access to resources and official support. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>SAFC (Student Activity Fee Committee) funding secured</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Official university partnership established</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Campus programming organization leadership</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Resources and support systems gained</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:left-0 -translate-x-full md:w-12 md:bg-gradient-to-r md:from-transparent to-white/20" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center -mt-12 mb-8 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> 2022-2023 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> The 400+ Club: Discord Community Explosion <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Discord community exploded to over 400 active members, establishing PROGgsu as the go-to programming community at GSU. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Discord community grew to 400+ active members</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Regular weekly programming activities</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Strong peer learning network established</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Campus programming community leadership</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mt-16 mb-6 timeline-entrance md:justify-end justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:ml-auto md:pl-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> 2021-2023 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Beethoven&#39;s Revolution: From HackJams to Interview Mastery <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Beethoven (2nd President) transformed PROGgsu from basic HackJams to comprehensive technical interview preparation, revolutionizing the club&#39;s impact. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>2nd President leadership transition</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Transformed club from HackJams to interview prep</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Expanded Discord to 400+ members</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Established competitive programming focus</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:left-0 -translate-x-full md:w-12 md:bg-gradient-to-r md:from-transparent to-white/20" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center -mt-8 mb-10 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Fall 2023 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> The Great Skateboard Plot Twist: Ethan&#39;s Brief but Memorable Reign <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Ethan Munji&#39;s 3rd Presidential tenure proved that sometimes life has other plans - showcasing that even presidents need to watch out for rogue skateboards and cars. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>3rd President during Fall 2023</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Proved that skateboarding is indeed a presidential specialty</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Demonstrated that even club leaders aren&#39;t immune to plot twists</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Left a memorable (if brief) mark on progsu history</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mt-20 mb-4 timeline-entrance md:justify-end justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:ml-auto md:pl-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> Fall 2023-2025 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Prahbir Steps Up: 4th President&#39;s Emergency Leadership <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Prahbir Virk stepped in as 4th President during Fall 2023 when circumstances required a leadership transition, demonstrating dedication and ensuring club continuity through to 2025. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>4th President who stepped in during Fall 2023</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Demonstrated leadership during challenging transition</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Ensured club continuity and stability</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Led club through to 2025 with dedication</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:left-0 -translate-x-full md:w-12 md:bg-gradient-to-r md:from-transparent to-white/20" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center -mt-16 mb-8 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> 2025-Present </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> Joey&#39;s Era: The Fifth Element of Leadership <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> Joey Zhang doesn&#39;t just lead—he rebrands, reboots, and re-energizes! As the 5th President, Joey launches a full-on club renaissance: new look, new vibe, and a tidal wave of student activity. If there&#39;s a spark of energy on campus, it&#39;s probably Joey lighting the fire. The most proactive president yet—PROGgsu&#39;s future is now running on pure caffeine and Joey&#39;s vision. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>5th President leading club into the future</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Building on legacy of 4 previous presidents</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Continued innovation and community building</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Leading progsu into its next chapter</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mt-6 mb-14 timeline-entrance md:justify-end justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:ml-auto md:pl-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> 2025 </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> The Rebirth: Ctrl+Alt+Refresh <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> PROGgsu gets a glow-up! New website, fresh branding, and a total event overhaul. It&#39;s not just a rebrand—it&#39;s a full system reboot. Members are still trying to figure out if they joined a club or accidentally walked into a tech startup. Welcome to the new era, where even the logo has more energy! </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Current era milestone achieved</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Leadership and community growth</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Continued programming excellence</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:left-0 -translate-x-full md:w-12 md:bg-gradient-to-r md:from-transparent to-white/20" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div><div class="relative flex items-center mb-12 timeline-entrance md:justify-start justify-start" data-astro-cid-tal57otx> <!-- Timeline Dot - responsive positioning --> <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-20 w-4 h-4 rounded-full border-2 border-black bg-white shadow-lg shadow-white/30 transition-all duration-300 hover:scale-125" data-astro-cid-tal57otx></div> <!-- Event Card - responsive width and positioning --> <div class="pl-16 md:pl-0 w-full md:w-5/12 group md:mr-auto md:pr-12" data-astro-cid-tal57otx> <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-white/20 timeline-card glass-card" data-astro-cid-tal57otx> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tal57otx></div> <!-- Card Header --> <div class="relative px-4 py-3 bg-gradient-to-r from-white/[0.08] to-white/[0.04] backdrop-blur-sm border-b border-white/10" data-astro-cid-tal57otx> <div class="flex items-center justify-between" data-astro-cid-tal57otx> <span class="text-sm font-bold text-white/90 uppercase tracking-wide" data-astro-cid-tal57otx> 2020-Present </span> <div class="w-2 h-2 rounded-full bg-white/40" data-astro-cid-tal57otx></div> </div> </div> <!-- Card Content --> <div class="relative p-4 z-10" data-astro-cid-tal57otx> <h3 class="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-300" data-astro-cid-tal57otx> The Five-President Legacy: Resilience Through Challenges <span class="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-white/10 border border-white/20 text-white/80" data-astro-cid-tal57otx>
+Milestone
+</span> </h3> <p class="text-white/70 text-sm mb-4 leading-relaxed" data-astro-cid-tal57otx> 5+ years demonstrating successful leadership transitions and resilient community building through various challenges: Jenny → Beethoven → Ethan → Prahbir → Joey. </p> <!-- Event Details --> <div class="space-y-2" data-astro-cid-tal57otx> <h4 class="text-xs text-white/60 uppercase tracking-wide font-medium" data-astro-cid-tal57otx>Highlights</h4> <ul class="space-y-1" data-astro-cid-tal57otx> <li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>5+ years of continuous operation</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Successful leadership transitions through challenges: Jenny → Beethoven → Ethan → Prahbir → Joey</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Proven resilience and adaptability</span> </li><li class="flex items-start gap-2 text-xs text-white/60" data-astro-cid-tal57otx> <span class="text-white/40 mt-0.5" data-astro-cid-tal57otx>•</span> <span data-astro-cid-tal57otx>Strong foundation for future growth</span> </li> </ul> </div> </div> <!-- Connection Line to Timeline - responsive --> <div class="absolute top-6 left-0 -translate-x-full w-8 h-px bg-gradient-to-l from-white/20 to-transparent md:right-0 translate-x-full md:w-12 md:bg-gradient-to-r md:from-white/20 to-transparent" data-astro-cid-tal57otx></div> <!-- Subtle tint effect --> <div class="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] via-transparent to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" data-astro-cid-tal57otx></div> </div> </div> </div> </div> </div> <!-- Separator --> <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-10" data-astro-cid-tal57otx></div> <!-- Future Vision --> <div class="text-center py-8 px-6 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl glass-card" data-astro-cid-tal57otx> <h3 class="text-2xl font-bold text-white mb-3 glow-pulse-title" data-astro-cid-tal57otx>
+The Future is Bright
+</h3> <p class="text-white/70 text-base mb-5 max-w-3xl mx-auto leading-relaxed" data-astro-cid-tal57otx>
+As we continue to grow, our mission remains the same: fostering an inclusive environment where every student 
+          can learn, create, and thrive in the world of programming. Join us as we write the next chapter of our story!
+</p> <div class="flex flex-col sm:flex-row gap-4 justify-center" data-astro-cid-tal57otx> <a href="/members" class="px-8 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/20 hover:border-white/30" data-astro-cid-tal57otx>
+Meet Our Team
+</a> <a href="/events" class="px-8 py-3 rounded-lg border border-white/20 text-white hover:bg-white/5 font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm" data-astro-cid-tal57otx>
+Upcoming Events
+</a> </div> </div> </div>  </div> </section>  </main> <footer class="w-screen bottom-0 overflow-x-hidden"><div class="h-28 overflow-hidden"> <div class="hero-bg">
+1000001100000000101001011011110000000101000011000100111110110100101101101101011000111110111010010000010010101100011001111110010110011010000011001110001100111010010010010011000001001100001111100010100101001010101000000011101000010000000000011101101001010100110111110100001100010100001100010100010110001110001011000001011110010100101011101100001010011100100010000001010000100011111011010110000001010010100000110011000010100001110111101010110010111100111100011001000011011001110000000000101110110001101111101110011011100010111011010001000100101101101100110111010011010110010000101010010000100100110101101110101011011001000111100111001011101000101101001001001011011000011111001001100101110100000111000100010010100001111101100001001110011011111001111101001110000000010000100101101101011011111000011100000010110111001110000110110100110100110011101100000101011101001010111001000000101000010111110101100110000110110001101000101100001110000110110011001010001011011000110100000101111101000011110110100010011110
+</div> </div> <section id="footer" class="w-full grid relative place-items-center text-center py-4 bg-white/[0.001]"> <div class="px-6 py-2 rounded-lg bg-white/5 text-white/60 text-sm font-normal">
+&copy; 2025 progsu. All rights reserved.
+</div> </section></footer> <!-- Cursor glow element --> <div id="cursor-glow" class="cursor-glow"></div> <!-- Background glow effect --> <div id="bg-glow" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-300"></div> <!-- Load non-critical styles after page render --> <!-- This component handles loading of non-critical CSS after DOM is ready --><script type="module">const loadNonCriticalStyles = () => {
+  document.body.classList.add("animations-ready");
+  document.documentElement.style.scrollBehavior = "smooth";
+};
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", loadNonCriticalStyles);
+} else {
+  loadNonCriticalStyles();
+}</script>  <!-- Vercel Speed Insights --> <vercel-speed-insights data-props="{}" data-params="{}" data-pathname="/history/"></vercel-speed-insights> <script type="module">var name = "@vercel/speed-insights";
+var version = "1.2.0";
+var initQueue = () => {
+  if (window.si) return;
+  window.si = function a(...params) {
+    (window.siq = window.siq || []).push(params);
+  };
+};
+function isBrowser() {
+  return typeof window !== "undefined";
+}
+function detectEnvironment() {
+  try {
+    const env = "production";
+    if (env === "development" || env === "test") ;
+  } catch (e) {
+  }
+  return "production";
+}
+function isDevelopment() {
+  return detectEnvironment() === "development";
+}
+function computeRoute(pathname, pathParams) {
+  if (!pathname || !pathParams) {
+    return pathname;
+  }
+  let result = pathname;
+  try {
+    const entries = Object.entries(pathParams);
+    for (const [key, value] of entries) {
+      if (!Array.isArray(value)) {
+        const matcher = turnValueToRegExp(value);
+        if (matcher.test(result)) {
+          result = result.replace(matcher, `/[${key}]`);
+        }
+      }
+    }
+    for (const [key, value] of entries) {
+      if (Array.isArray(value)) {
+        const matcher = turnValueToRegExp(value.join("/"));
+        if (matcher.test(result)) {
+          result = result.replace(matcher, `/[...${key}]`);
+        }
+      }
+    }
+    return result;
+  } catch (e) {
+    return pathname;
+  }
+}
+function turnValueToRegExp(value) {
+  return new RegExp(`/${escapeRegExp(value)}(?=[/?#]|$)`);
+}
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function getScriptSrc(props) {
+  if (props.scriptSrc) {
+    return props.scriptSrc;
+  }
+  if (isDevelopment()) {
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.debug.js";
+  }
+  if (props.dsn) {
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.js";
+  }
+  if (props.basePath) {
+    return `${props.basePath}/speed-insights/script.js`;
+  }
+  return "/_vercel/speed-insights/script.js";
+}
+function injectSpeedInsights(props = {}) {
+  var _a;
+  if (!isBrowser() || props.route === null) return null;
+  initQueue();
+  const src = getScriptSrc(props);
+  if (document.head.querySelector(`script[src*="${src}"]`)) return null;
+  if (props.beforeSend) {
+    (_a = window.si) == null ? void 0 : _a.call(window, "beforeSend", props.beforeSend);
+  }
+  const script = document.createElement("script");
+  script.src = src;
+  script.defer = true;
+  script.dataset.sdkn = name + (props.framework ? `/${props.framework}` : "");
+  script.dataset.sdkv = version;
+  if (props.sampleRate) {
+    script.dataset.sampleRate = props.sampleRate.toString();
+  }
+  if (props.route) {
+    script.dataset.route = props.route;
+  }
+  if (props.endpoint) {
+    script.dataset.endpoint = props.endpoint;
+  } else if (props.basePath) {
+    script.dataset.endpoint = `${props.basePath}/speed-insights/vitals`;
+  }
+  if (props.dsn) {
+    script.dataset.dsn = props.dsn;
+  }
+  if (isDevelopment() && props.debug === false) {
+    script.dataset.debug = "false";
+  }
+  script.onerror = () => {
+    console.log(
+      `[Vercel Speed Insights] Failed to load script from ${src}. Please check if any content blockers are enabled and try again.`
+    );
+  };
+  document.head.appendChild(script);
+  return {
+    setRoute: (route) => {
+      script.dataset.route = route ?? void 0;
+    }
+  };
+}
+
+function getBasePath() {
+  try {
+    return undefined                                                    ;
+  } catch {
+  }
+}
+customElements.define(
+  "vercel-speed-insights",
+  class VercelSpeedInsights extends HTMLElement {
+    constructor() {
+      super();
+      try {
+        const props = JSON.parse(this.dataset.props ?? "{}");
+        const params = JSON.parse(this.dataset.params ?? "{}");
+        const route = computeRoute(this.dataset.pathname ?? "", params);
+        injectSpeedInsights({
+          route,
+          ...props,
+          framework: "astro",
+          basePath: getBasePath(),
+          beforeSend: window.speedInsightsBeforeSend
+        });
+      } catch (err) {
+        throw new Error(`Failed to parse SpeedInsights properties: ${err}`);
+      }
+    }
+  }
+);</script> <!-- Vercel Analytics --> <vercel-analytics data-props="{}" data-params="{}" data-pathname="/history/"></vercel-analytics> <script type="module" src="/_astro/index.astro_astro_type_script_index_0_lang.OMazZCgV.js"></script> <script type="module">let cursorEffectsInitialized = false;
+let cursorGlow, bgGlow;
+let mouseX = 0, mouseY = 0;
+function initCursorEffects() {
+  if (cursorEffectsInitialized) return;
+  cursorGlow = document.getElementById("cursor-glow");
+  bgGlow = document.getElementById("bg-glow");
+  if (!cursorGlow || !bgGlow) {
+    setTimeout(initCursorEffects, 100);
+    return;
+  }
+  function updateCursorPosition(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (cursorGlow) {
+      cursorGlow.style.left = mouseX + "px";
+      cursorGlow.style.top = mouseY + "px";
+      cursorGlow.style.opacity = "1";
+    }
+    if (bgGlow) {
+      const rect = document.body.getBoundingClientRect();
+      const x = mouseX / rect.width * 100;
+      const y = mouseY / rect.height * 100;
+      bgGlow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(147, 51, 234, 0.12) 0%, rgba(147, 51, 234, 0.06) 40%, transparent 70%)`;
+      bgGlow.style.opacity = "1";
+    }
+    if (Math.random() > 0.85) {
+      createBinaryTrail(e.clientX, e.clientY);
+    }
+  }
+  function createBinaryTrail(x, y) {
+    const trail = document.createElement("div");
+    trail.className = "binary-trail";
+    trail.textContent = Math.random() > 0.5 ? "1" : "0";
+    trail.style.left = x + "px";
+    trail.style.top = y + "px";
+    document.body.appendChild(trail);
+    setTimeout(() => {
+      if (trail.parentNode) {
+        trail.parentNode.removeChild(trail);
+      }
+    }, 1600);
+  }
+  function hideCursorEffects() {
+    if (cursorGlow) {
+      cursorGlow.style.opacity = "0";
+    }
+    if (bgGlow) {
+      bgGlow.style.opacity = "0";
+    }
+  }
+  function showCursorEffects() {
+    if (cursorGlow) {
+      cursorGlow.style.opacity = "1";
+    }
+    if (bgGlow) {
+      bgGlow.style.opacity = "1";
+    }
+  }
+  document.addEventListener("mousemove", updateCursorPosition);
+  document.addEventListener("mouseleave", hideCursorEffects);
+  document.addEventListener("mouseenter", showCursorEffects);
+  cursorEffectsInitialized = true;
+  if (document.hasFocus()) {
+    showCursorEffects();
+  }
+}
+function resetCursorEffects() {
+  cursorEffectsInitialized = false;
+  cursorGlow = null;
+  bgGlow = null;
+  mouseX = 0;
+  mouseY = 0;
+  const existingTrails = document.querySelectorAll(".binary-trail");
+  existingTrails.forEach((trail) => {
+    if (trail.parentNode) {
+      trail.parentNode.removeChild(trail);
+    }
+  });
+  setTimeout(initCursorEffects, 50);
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initCursorEffects);
+} else {
+  initCursorEffects();
+}
+document.addEventListener("astro:page-load", resetCursorEffects);
+document.addEventListener("astro:after-swap", resetCursorEffects);
+document.addEventListener("astro:effects-reset", resetCursorEffects);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    setTimeout(resetCursorEffects, 100);
+  }
+});
+window.addEventListener("popstate", () => {
+  setTimeout(resetCursorEffects, 100);
+});</script></body></html> 

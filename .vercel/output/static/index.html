@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="en" class="!overflow-x-hidden no-fouc"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="/lighthouse.png"><meta name="generator" content="Astro v5.12.8"><link rel="sitemap" href="/sitemap-index.xml"><!-- DNS prefetch for external domains --><link rel="dns-prefetch" href="//fonts.googleapis.com"><!-- Resource hints for better performance --><link rel="preconnect" href="https://proggsu.vercel.app"><!-- Font preloads with higher priority and fallback --><link rel="preload" href="/fonts/VCRosdNEUE.ttf" as="font" type="font/ttf" crossorigin="anonymous"><!-- Critical CSS inlined for immediate render --><style>/* Critical CSS - Inlined for fast initial render */
+
+@font-face {
+  font-family: "VCR";
+  src: url("/fonts/VCRosdNEUE.ttf") format("truetype");
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Essential Tailwind base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "VCR", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
+}
+
+/* Essential base styles */
+body {
+  font-family: "VCR", monospace !important;
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  line-height: inherit;
+}
+
+/* Essential layout styles */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* Basic flexbox and grid support */
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Essential spacing utilities */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+/* Basic layout styles for header and main content */
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9999;
+}
+
+main {
+  padding-top: 8rem;
+}
+
+@media (min-width: 640px) {
+  main {
+    padding-top: 7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-top: 5rem;
+  }
+}
+
+/* Essential scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Basic selection styles */
+::-moz-selection {
+  background: #fff;
+  color: #000;
+}
+::selection {
+  background: #fff;
+  color: #000;
+}
+
+::-moz-selection {
+  background: #fff;
+  color: #000;
+}
+
+/* Prevent layout shift for images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Essential grid and flexbox utilities for events page */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Essential responsive grid for events */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+} </style><!-- Prevent FOUC with CSS that hides content until fonts are loaded --><!-- Font loading optimization script --><script type="module">if ("fonts" in document) {
+  document.fonts.ready.then(() => {
+    document.documentElement.classList.add("font-loaded");
+  });
+} else {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.documentElement.classList.add("font-loaded");
+    }, 100);
+  });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.classList.remove("no-fouc");
+  });
+} else {
+  document.documentElement.classList.remove("no-fouc");
+}</script><!-- Non-critical styles are loaded via DeferredStyles component --><!-- Canonical URL --><link rel="canonical" href="https://proggsu.vercel.app/"><!-- Primary Meta Tags --><title>progsu</title><meta name="title" content="progsu"><meta name="description" content="Georgia State University's Programming Club - Join us for coding, events, and community!"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://proggsu.vercel.app/"><meta property="og:title" content="progsu"><meta property="og:description" content="Georgia State University's Programming Club - Join us for coding, events, and community!"><meta property="og:image" content="https://proggsu.vercel.app/embed_preview.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="progsu - GSU Programming Club"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://proggsu.vercel.app/"><meta property="twitter:title" content="progsu"><meta property="twitter:description" content="Georgia State University's Programming Club - Join us for coding, events, and community!"><meta property="twitter:image" content="https://proggsu.vercel.app/embed_preview.png"><!-- Discord specific --><meta property="og:image:alt" content="progsu - Georgia State University Programming Club"><!-- View Transitions  --><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BicXr3oo.js"></script><!-- Performance hints --><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><!-- Prefetch important pages --><link rel="prefetch" href="/events"><link rel="prefetch" href="/resources"><link rel="stylesheet" href="/_astro/forms.BSs4YNnf.css">
+<style>@keyframes liquidFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(8px,-8px) scale(1.05)}66%{transform:translate(-4px,4px) scale(0.95)}}@keyframes morphGlow{0%,100%{border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;filter:blur(15px)}25%{border-radius:30% 60% 70% 40% / 50% 60% 30% 60%;filter:blur(20px)}50%{border-radius:50% 60% 30% 60% / 30% 60% 70% 40%;filter:blur(25px)}75%{border-radius:60% 40% 60% 30% / 70% 30% 60% 40%;filter:blur(18px)}}@keyframes goldenSparkle{0%,100%{opacity:0;transform:scale(0.5) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(180deg)}}@keyframes sparkleGlare{0%,100%{transform:scale(0.7) rotate(0deg);filter:brightness(1)}25%{transform:scale(1) rotate(45deg);filter:brightness(1.5)}50%{transform:scale(1.2) rotate(90deg);filter:brightness(2)}75%{transform:scale(1) rotate(135deg);filter:brightness(1.5)}}@keyframes sparkleGlare2{0%,100%{transform:scale(0.8) rotate(45deg);filter:brightness(1.2)}33%{transform:scale(1.1) rotate(135deg);filter:brightness(1.8)}66%{transform:scale(0.9) rotate(225deg);filter:brightness(1.4)}}@keyframes sparkleGlare3{0%,100%{transform:scale(0.6) rotate(90deg);filter:brightness(1)}40%{transform:scale(1.3) rotate(180deg);filter:brightness(2.2)}80%{transform:scale(0.8) rotate(270deg);filter:brightness(1.3)}}.pinned-event-glow[data-astro-cid-f45vxlzk]{position:relative}.pinned-event-glow[data-astro-cid-f45vxlzk]::before{content:"";position:absolute;inset:-2px;background:linear-gradient(45deg,#f59e0b,#eab308,#fbbf24,#f59e0b);border-radius:inherit;opacity:0;z-index:-1;transition:opacity 0.7s ease;animation:pinnedPulse 5s infinite ease-in-out}.pinned-event-glow[data-astro-cid-f45vxlzk]:hover::before{opacity:0.3}@keyframes pinnedPulse{0%,100%{opacity:0.05;transform:scale(1)}50%{opacity:0.12;transform:scale(1.003)}}.liquid-morph[data-astro-cid-f45vxlzk]{animation:morphGlow 6s ease-in-out infinite}.liquid-float[data-astro-cid-f45vxlzk]{animation:liquidFloat 5s ease-in-out infinite}.golden-sparkle[data-astro-cid-f45vxlzk]{animation:goldenSparkle 2s infinite}.sparkle-cross[data-astro-cid-f45vxlzk]{position:relative;display:block}.sparkle-cross[data-astro-cid-f45vxlzk]::before,.sparkle-cross[data-astro-cid-f45vxlzk]::after{content:"";position:absolute;top:50%;left:50%;background-color:inherit;transform:translate(-50%,-50%)}.sparkle-cross[data-astro-cid-f45vxlzk]::before{transform:translate(-50%,-50%) rotate(45deg)}.sparkle-cross[data-astro-cid-f45vxlzk]::after{transform:translate(-50%,-50%) rotate(-45deg)}.sparkle-xs[data-astro-cid-f45vxlzk]{width:8px;height:8px}.sparkle-xs[data-astro-cid-f45vxlzk]::before,.sparkle-xs[data-astro-cid-f45vxlzk]::after{width:8px;height:2px}.sparkle-sm[data-astro-cid-f45vxlzk]{width:12px;height:12px}.sparkle-sm[data-astro-cid-f45vxlzk]::before,.sparkle-sm[data-astro-cid-f45vxlzk]::after{width:12px;height:2px}.sparkle-md[data-astro-cid-f45vxlzk]{width:16px;height:16px}.sparkle-md[data-astro-cid-f45vxlzk]::before,.sparkle-md[data-astro-cid-f45vxlzk]::after{width:16px;height:3px}.sparkle-glare[data-astro-cid-f45vxlzk]{will-change:transform,filter}.sparkle-1[data-astro-cid-f45vxlzk],.sparkle-4[data-astro-cid-f45vxlzk],.sparkle-7[data-astro-cid-f45vxlzk]{animation:sparkleGlare 4s infinite ease-in-out}.sparkle-2[data-astro-cid-f45vxlzk],.sparkle-5[data-astro-cid-f45vxlzk],.sparkle-8[data-astro-cid-f45vxlzk]{animation:sparkleGlare2 3.5s infinite ease-in-out}.sparkle-3[data-astro-cid-f45vxlzk],.sparkle-6[data-astro-cid-f45vxlzk]{animation:sparkleGlare3 4.5s infinite ease-in-out}.liquid-glass[data-astro-cid-f45vxlzk]{backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%)}</style><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+		var script = document.createElement('script');
+		script.defer = true;
+		script.src = '/_vercel/insights/script.js';
+		var head = document.querySelector('head');
+		head.appendChild(script);
+	</script></head> <body class="bg-black text-white tracking-wide !overflow-x-hidden"> <header class="fixed top-0 w-screen z-[9999]"><nav class="w-full !z-[9999] py-5 px-4 bg-black/50 backdrop-blur-sm relative" data-astro-cid-5blmo7yk> <div class="w-full flex justify-between items-center" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/" data-astro-cid-5blmo7yk> <div id="logo" class="pt-2 pb-1 !grid !place-items-center select-none leading-none hover:bg-black bg-white scale-110 hover:text-white text-black px-4 transition-all ease-in-out" data-astro-cid-5blmo7yk> progsu </div> </a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center gap-4" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/events" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> Events </div> </a> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/resources" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> Resources </div> </a> <div data-astro-cid-5blmo7yk>/</div>  <div class="relative group" data-astro-cid-5blmo7yk> <button class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit flex items-center gap-1" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk>About</div> <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-5blmo7yk></path> </svg> </button> <div class="absolute top-full left-0 mt-1 bg-black/95 backdrop-blur-md border border-white/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50" data-astro-cid-5blmo7yk> <a class="block hover:bg-white hover:text-black transition-all ease-in-out px-3 py-2 text-sm whitespace-nowrap" href="/members" data-astro-cid-5blmo7yk> Members </a><a class="block hover:bg-white hover:text-black transition-all ease-in-out px-3 py-2 text-sm whitespace-nowrap" href="/history" data-astro-cid-5blmo7yk> History </a> </div> </div> <div data-astro-cid-5blmo7yk>/</div>  <a class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit" href="/interest" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk><span aria-label="love" role="img" data-astro-cid-5blmo7yk>❤️</span> Join</span> </div> </a> <div data-astro-cid-5blmo7yk>/</div>  </div> <!-- Mobile Hamburger Button --> <button id="hamburger-btn" class="md:hidden flex justify-center items-center w-8 h-8 text-white hover:bg-white/10 rounded transition-colors relative z-10" aria-label="Toggle mobile menu" aria-expanded="false" data-astro-cid-5blmo7yk> <div class="relative w-6 h-4 flex flex-col justify-center items-center" data-astro-cid-5blmo7yk> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 0;" data-astro-cid-5blmo7yk></span> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 50%; transform: translateY(-50%);" data-astro-cid-5blmo7yk></span> <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="bottom: 0;" data-astro-cid-5blmo7yk></span> </div> </button> </div> <!-- Mobile Dropdown Menu --> <div id="mobile-menu" class="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md transform translate-y-0 scale-y-0 origin-top opacity-0 transition-all duration-300 ease-out pointer-events-none overflow-hidden" aria-hidden="true" data-astro-cid-5blmo7yk> <div class="px-4 py-6 space-y-3" data-astro-cid-5blmo7yk> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/events" tabindex="-1" data-astro-cid-5blmo7yk> Events </a><a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/resources" tabindex="-1" data-astro-cid-5blmo7yk> Resources </a> <button class="mobile-nav-link mobile-dropdown-btn w-full hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center flex items-center justify-center gap-2" tabindex="-1" data-dropdown-target="about" data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk>About</span> <svg class="w-4 h-4 transition-transform mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-5blmo7yk></path> </svg> </button> <div class="mobile-dropdown-content overflow-hidden transition-all duration-300 max-h-0" data-dropdown="about" data-astro-cid-5blmo7yk> <div class="py-2 space-y-1" data-astro-cid-5blmo7yk> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-8 py-2 rounded text-base mx-2" href="/members" tabindex="-1" data-astro-cid-5blmo7yk> Members </a><a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-8 py-2 rounded text-base mx-2" href="/history" tabindex="-1" data-astro-cid-5blmo7yk> History </a> </div> </div> <a class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center" href="/interest" tabindex="-1" data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk><span aria-label="love" role="img" data-astro-cid-5blmo7yk>❤️</span> Join</span> </a> </div> </div> </nav>  <script type="module" src="/_astro/Navbar.astro_astro_type_script_index_0_lang.BQGKFb0e.js"></script></header> <main class="pt-32 sm:pt-28 md:pt-20">  <div class="max-w-7xl mx-auto px-4">  </div>  <div class="hero-bg hidden md:block h-screen hero-bg-animate absolute top-0"></div> <section class="h-screen !z-[20] relative w-full grid grid-cols-1 grid-rows-1 sm:grid-cols-2 md:grid-cols-2 gap-4 items-center" id="hero"> <div class="grid place-items-center"> <div class="text-center -mt-10"> <h1 class="font-bold text-7xl glitch-title" data-text="{`<${SITE_TITLE} />`}">&lt;progsu /&gt;</h1> <h2 class="text-2xl opacity-95 text-white">
+do cool stuff. build cool sh*t
+</h2> </div> </div> <div> <img src="/_astro/hero.BtK30mYS_1d27bH.webp" alt="Hero" loading="lazy" decoding="async" fetchpriority="auto" width="455" height="465" class="brightness-200 w-full scale-90 invert"> </div> </section> <script type="module">let heroAnimationInitialized = false;
+let heroInterval = null;
+let glitchIntervals = /* @__PURE__ */ new Map();
+function initHeroAnimation() {
+  if (heroAnimationInitialized) return;
+  const hero_bg = document.querySelector(".hero-bg-animate");
+  if (!hero_bg) {
+    setTimeout(initHeroAnimation, 100);
+    return;
+  }
+  if (heroInterval) {
+    clearInterval(heroInterval);
+  }
+  let binaryText = "";
+  for (let i = 0; i < 1500; i++) {
+    binaryText += Math.floor(Math.random() * 2).toString();
+  }
+  hero_bg.textContent = binaryText;
+  hero_bg.style.color = "rgba(255, 255, 255, 0.4)";
+  hero_bg.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.2)";
+  heroInterval = setInterval(() => {
+    let binaryText2 = "";
+    for (let i = 0; i < 1500; i++) {
+      binaryText2 += Math.floor(Math.random() * 2).toString();
+    }
+    hero_bg.textContent = binaryText2;
+  }, 250);
+  heroAnimationInitialized = true;
+}
+function initGlitchEffect() {
+  const title = document.querySelector(".glitch-title");
+  if (!title) {
+    setTimeout(initGlitchEffect, 100);
+    return;
+  }
+  const originalText = title.textContent;
+  const characters = originalText.split("");
+  title.innerHTML = "";
+  characters.forEach((char, index) => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    span.className = "glitch-char";
+    span.dataset.original = char;
+    span.dataset.index = index;
+    title.appendChild(span);
+  });
+  const charSpans = title.querySelectorAll(".glitch-char");
+  charSpans.forEach((span, index) => {
+    span.addEventListener("mouseenter", () => {
+      startGlitchEffect(span);
+    });
+    span.addEventListener("mouseleave", () => {
+      stopGlitchEffect(span);
+    });
+  });
+}
+function startGlitchEffect(span) {
+  const originalChar = span.dataset.original;
+  const symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "+", "[", "]", "{", "}", "|", "\\", ":", ";", '"', "'", "<", ">", ",", ".", "?", "/", "~", "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  if (glitchIntervals.has(span)) {
+    clearInterval(glitchIntervals.get(span));
+  }
+  span.classList.add("glitching");
+  const interval = setInterval(() => {
+    if (Math.random() > 0.3) {
+      span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    } else {
+      span.textContent = originalChar;
+    }
+  }, 50);
+  glitchIntervals.set(span, interval);
+}
+function stopGlitchEffect(span) {
+  if (glitchIntervals.has(span)) {
+    clearInterval(glitchIntervals.get(span));
+    glitchIntervals.delete(span);
+  }
+  span.classList.remove("glitching");
+  span.textContent = span.dataset.original;
+}
+function resetHeroAnimation() {
+  heroAnimationInitialized = false;
+  if (heroInterval) {
+    clearInterval(heroInterval);
+    heroInterval = null;
+  }
+  glitchIntervals.forEach((interval) => clearInterval(interval));
+  glitchIntervals.clear();
+  setTimeout(() => {
+    initHeroAnimation();
+    initGlitchEffect();
+  }, 50);
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    initHeroAnimation();
+    initGlitchEffect();
+  });
+} else {
+  initHeroAnimation();
+  initGlitchEffect();
+}
+document.addEventListener("astro:page-load", resetHeroAnimation);
+document.addEventListener("astro:after-swap", resetHeroAnimation);
+document.addEventListener("astro:effects-reset", resetHeroAnimation);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    setTimeout(resetHeroAnimation, 100);
+  }
+});
+window.addEventListener("popstate", () => {
+  setTimeout(resetHeroAnimation, 100);
+});</script> <section id="events" class=" px-4 py-10 w-screen !overflow-x-hidden bg-gradient-to-b from-black/70 from-[5%] to-black via-black"> <div class="w-full grid place-items-center"> <h2 class="text-4xl md:text-6xl text-center">&lt;Events /&gt;</h2> </div> <div class="w-full mt-10 px-4"> <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6"> <div class="w-full mx-auto relative pb-5 overflow-hidden transition-all duration-300 ease-out cursor-pointer group h-64 rounded-xl shadow-lg hover:shadow-xl bg-gradient-to-br from-amber-500/[0.15] via-yellow-400/[0.10] to-amber-400/[0.08] border-2 border-amber-400/40 hover:border-amber-300/60 hover:shadow-amber-400/25 pinned-event-glow" data-astro-cid-f45vxlzk> <!-- Liquid Glass Background Effects --> <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl bg-gradient-to-br from-amber-400/15 via-yellow-400/8 to-amber-300/12" data-astro-cid-f45vxlzk></div>   <div class="absolute top-3 right-4 w-16 h-16 bg-gradient-to-br from-amber-400/25 to-yellow-500/25 rounded-full opacity-30 liquid-float" data-astro-cid-f45vxlzk></div> <div class="absolute bottom-6 left-4 w-12 h-12 bg-gradient-to-br from-amber-400/20 to-yellow-400/20 rounded-full opacity-20 liquid-float" style="animation-delay: 1.5s;" data-astro-cid-f45vxlzk></div> <div class="absolute top-8 right-14 opacity-0 group-hover:opacity-80 transition-opacity duration-500 sparkle-glare sparkle-1" style="animation-delay: 0.3s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-sm bg-amber-200" data-astro-cid-f45vxlzk></div> </div> <div class="absolute top-14 left-12 opacity-0 group-hover:opacity-70 transition-opacity duration-500 sparkle-glare sparkle-2" style="animation-delay: 0.8s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-xs bg-yellow-200" data-astro-cid-f45vxlzk></div> </div> <div class="absolute bottom-14 right-6 opacity-0 group-hover:opacity-60 transition-opacity duration-500 sparkle-glare sparkle-3" style="animation-delay: 1.3s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-md bg-amber-300" data-astro-cid-f45vxlzk></div> </div> <div class="absolute top-20 right-8 opacity-0 group-hover:opacity-75 transition-opacity duration-500 sparkle-glare sparkle-4" style="animation-delay: 1.8s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-xs bg-yellow-300" data-astro-cid-f45vxlzk></div> </div> <div class="absolute bottom-20 left-8 opacity-0 group-hover:opacity-65 transition-opacity duration-500 sparkle-glare sparkle-5" style="animation-delay: 2.2s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-sm bg-amber-200" data-astro-cid-f45vxlzk></div> </div> <div class="absolute top-12 left-20 opacity-0 group-hover:opacity-55 transition-opacity duration-500 sparkle-glare sparkle-6" style="animation-delay: 2.7s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-xs bg-yellow-200" data-astro-cid-f45vxlzk></div> </div> <div class="absolute bottom-8 right-12 opacity-0 group-hover:opacity-70 transition-opacity duration-500 sparkle-glare sparkle-7" style="animation-delay: 3.1s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-sm bg-amber-300" data-astro-cid-f45vxlzk></div> </div> <div class="absolute top-16 right-20 opacity-0 group-hover:opacity-50 transition-opacity duration-500 sparkle-glare sparkle-8" style="animation-delay: 3.5s;" data-astro-cid-f45vxlzk> <div class="sparkle-cross sparkle-xs bg-yellow-300" data-astro-cid-f45vxlzk></div> </div>   <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-amber-300/[0.18] to-transparent transform translate-x-6 -translate-y-6 group-hover:scale-125 transition-transform duration-700 liquid-morph" data-astro-cid-f45vxlzk></div> <!-- Browser window header with glass effect --> <div class="relative flex items-center justify-start px-4 py-3 backdrop-blur-sm border-b bg-gradient-to-r from-amber-500/[0.20] to-yellow-500/[0.12] border-amber-400/30" data-astro-cid-f45vxlzk> <div class="flex space-x-2" data-astro-cid-f45vxlzk> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-red-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-yellow-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-green-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> </div> <!-- Browser tab indicator --> <div class="ml-4 h-1 w-16 rounded-full transition-all duration-300 bg-gradient-to-r from-amber-400/60 to-yellow-500/60 group-hover:from-amber-400 group-hover:to-yellow-500" data-astro-cid-f45vxlzk></div> </div> <!-- Content area with enhanced glass effect --> <div class="relative p-6 tracking-wider z-10" data-astro-cid-f45vxlzk> <a href="/events/fall-25-kick-off-meeting" class="block group" data-astro-cid-f45vxlzk> <!-- Title and Status Row --> <div class="flex items-start justify-between mb-3" data-astro-cid-f45vxlzk> <h2 class="text-xl font-medium text-white transition-colors duration-300 drop-shadow-sm flex-1 group-hover:text-amber-200" data-astro-cid-f45vxlzk> <span class="text-white/70 mr-2 transition-colors duration-300 group-hover:text-amber-300" data-astro-cid-f45vxlzk>❯</span> FW&#39;25 Kick off x Tournament </h2> <!-- Status and Pinned Badge Row --> <div class="flex items-center gap-2" data-astro-cid-f45vxlzk> <!-- Status Badge --> <div class="px-1.5 py-0.5 rounded text-xs font-bold uppercase tracking-wide bg-green-400/20 border-green-400/30 border text-green-400 backdrop-blur-sm" data-astro-cid-f45vxlzk> UPCOMING </div> <!-- Pinned Badge --> <div class="px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500/40 to-yellow-500/40 border border-amber-400/50 shadow-lg transition-shadow duration-300" data-astro-cid-f45vxlzk> <div class="flex items-center gap-1" data-astro-cid-f45vxlzk> <svg class="w-3 h-3 text-amber-200" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-f45vxlzk> <path d="M3 3.5A1.5 1.5 0 014.5 2h11A1.5 1.5 0 0117 3.5v11A1.5 1.5 0 0115.5 16h-5.379a1.5 1.5 0 01-1.06-.44L3 9.5v-6z" data-astro-cid-f45vxlzk></path> </svg> <span class="text-xs font-medium text-amber-200 uppercase tracking-wide" data-astro-cid-f45vxlzk>PINNED</span> </div> </div> </div> </div> <!-- Event Info Cards - Date, Time, Location --> <div class="flex gap-2 mb-4" data-astro-cid-f45vxlzk> <!-- Date Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm" data-astro-cid-f45vxlzk>TBD</span> </div> <!-- Time Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm" data-astro-cid-f45vxlzk>TBD</span> </div> <!-- Location Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a4 4 0 10-1.414 1.414l4.243 4.243a1 1 0 001.414-1.414z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm line-clamp-1" data-astro-cid-f45vxlzk>TBD</span> </div> </div> <p class="text-white/80 text-sm font-thin mb-4 line-clamp-3 leading-relaxed" data-astro-cid-f45vxlzk>Show you Rock Paper Scissors skills for a chance to win 100$ and eat sum za What to Expect: Meet the club leadership team and learn about our mission ...</p> <!-- Special Tags Row - Moved to bottom -->  </a> </div> <!-- Liquid Glass Bottom Glow --> <div class="absolute bottom-0 left-0 right-0 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-b-xl bg-gradient-to-t from-amber-400/15 via-yellow-400/8 to-transparent" data-astro-cid-f45vxlzk></div> <!-- Ambient Light Effect --> <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl bg-gradient-to-br from-amber-400/8 via-transparent to-amber-300/8" data-astro-cid-f45vxlzk></div> </div> <div class="w-full mx-auto relative pb-5 overflow-hidden transition-all duration-300 ease-out cursor-pointer group h-64 rounded-xl shadow-lg hover:shadow-xl border border-white/20 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] hover:border-white/40" data-astro-cid-f45vxlzk> <!-- Liquid Glass Background Effects --> <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl bg-gradient-to-br from-white/[0.1] via-transparent to-transparent" data-astro-cid-f45vxlzk></div>     <!-- Browser window header with glass effect --> <div class="relative flex items-center justify-start px-4 py-3 backdrop-blur-sm border-b bg-gradient-to-r from-white/[0.15] to-white/[0.08] border-white/20" data-astro-cid-f45vxlzk> <div class="flex space-x-2" data-astro-cid-f45vxlzk> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-red-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-yellow-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-green-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> </div> <!-- Browser tab indicator --> <div class="ml-4 h-1 w-16 rounded-full transition-all duration-300 bg-gradient-to-r from-blue-400/60 to-purple-400/60 group-hover:from-blue-400 group-hover:to-purple-400" data-astro-cid-f45vxlzk></div> </div> <!-- Content area with enhanced glass effect --> <div class="relative p-6 tracking-wider z-10" data-astro-cid-f45vxlzk> <a href="/events/microsoft-atl-tour" class="block group" data-astro-cid-f45vxlzk> <!-- Title and Status Row --> <div class="flex items-start justify-between mb-3" data-astro-cid-f45vxlzk> <h2 class="text-xl font-medium text-white transition-colors duration-300 drop-shadow-sm flex-1 group-hover:text-blue-300" data-astro-cid-f45vxlzk> <span class="text-white/70 mr-2 transition-colors duration-300 group-hover:text-blue-400" data-astro-cid-f45vxlzk>❯</span> Microsoft ATL Tour </h2> <!-- Status and Pinned Badge Row --> <div class="flex items-center gap-2" data-astro-cid-f45vxlzk> <!-- Status Badge --> <div class="px-1.5 py-0.5 rounded text-xs font-bold uppercase tracking-wide bg-green-400/20 border-green-400/30 border text-green-400 backdrop-blur-sm" data-astro-cid-f45vxlzk> UPCOMING </div> <!-- Pinned Badge -->  </div> </div> <!-- Event Info Cards - Date, Time, Location --> <div class="flex gap-2 mb-4" data-astro-cid-f45vxlzk> <!-- Date Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm" data-astro-cid-f45vxlzk>TBD</span> </div> <!-- Time Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm" data-astro-cid-f45vxlzk>TBD</span> </div> <!-- Location Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a4 4 0 10-1.414 1.414l4.243 4.243a1 1 0 001.414-1.414z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm line-clamp-1" data-astro-cid-f45vxlzk>Atlanta, GA</span> </div> </div> <p class="text-white/80 text-sm font-thin mb-4 line-clamp-3 leading-relaxed" data-astro-cid-f45vxlzk>We’re heading to Microsoft’s Atlanta Office for an exclusive in-person tour, and you’re invited! Thanks to our fearless founder Jenny, a Software Engi...</p> <!-- Special Tags Row - Moved to bottom --> <div class="flex flex-wrap gap-1 mt-auto" data-astro-cid-f45vxlzk> <span class="px-1.5 py-0.5 rounded text-xs font-medium bg-yellow-400/20 border-yellow-400/30 text-yellow-300 backdrop-blur-sm" data-astro-cid-f45vxlzk> featured </span> </div> </a> </div> <!-- Liquid Glass Bottom Glow --> <div class="absolute bottom-0 left-0 right-0 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-b-xl bg-gradient-to-t from-purple-500/10 via-blue-500/5 to-transparent" data-astro-cid-f45vxlzk></div> <!-- Ambient Light Effect --> <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl bg-gradient-to-br from-blue-400/5 via-transparent to-purple-400/5" data-astro-cid-f45vxlzk></div> </div> <div class="w-full mx-auto relative pb-5 overflow-hidden transition-all duration-300 ease-out cursor-pointer group h-64 rounded-xl shadow-lg hover:shadow-xl border border-white/20 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] hover:border-white/40" data-astro-cid-f45vxlzk> <!-- Liquid Glass Background Effects --> <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl bg-gradient-to-br from-white/[0.1] via-transparent to-transparent" data-astro-cid-f45vxlzk></div>     <!-- Browser window header with glass effect --> <div class="relative flex items-center justify-start px-4 py-3 backdrop-blur-sm border-b bg-gradient-to-r from-white/[0.15] to-white/[0.08] border-white/20" data-astro-cid-f45vxlzk> <div class="flex space-x-2" data-astro-cid-f45vxlzk> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-red-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-yellow-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> <div class="w-3 h-3 rounded-full bg-black/80 group-hover:bg-green-500 transition-all duration-300 shadow-sm" data-astro-cid-f45vxlzk></div> </div> <!-- Browser tab indicator --> <div class="ml-4 h-1 w-16 rounded-full transition-all duration-300 bg-gradient-to-r from-blue-400/60 to-purple-400/60 group-hover:from-blue-400 group-hover:to-purple-400" data-astro-cid-f45vxlzk></div> </div> <!-- Content area with enhanced glass effect --> <div class="relative p-6 tracking-wider z-10" data-astro-cid-f45vxlzk> <a href="/events/dsa-leetcode-workshop-1" class="block group" data-astro-cid-f45vxlzk> <!-- Title and Status Row --> <div class="flex items-start justify-between mb-3" data-astro-cid-f45vxlzk> <h2 class="text-xl font-medium text-white transition-colors duration-300 drop-shadow-sm flex-1 group-hover:text-blue-300" data-astro-cid-f45vxlzk> <span class="text-white/70 mr-2 transition-colors duration-300 group-hover:text-blue-400" data-astro-cid-f45vxlzk>❯</span> DSA + Leetcode Workshop 1 </h2> <!-- Status and Pinned Badge Row --> <div class="flex items-center gap-2" data-astro-cid-f45vxlzk> <!-- Status Badge --> <div class="px-1.5 py-0.5 rounded text-xs font-bold uppercase tracking-wide bg-green-400/20 border-green-400/30 border text-green-400 backdrop-blur-sm" data-astro-cid-f45vxlzk> UPCOMING </div> <!-- Pinned Badge -->  </div> </div> <!-- Event Info Cards - Date, Time, Location --> <div class="flex gap-2 mb-4" data-astro-cid-f45vxlzk> <!-- Date Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm" data-astro-cid-f45vxlzk>Aug 13</span> </div> <!-- Time Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm" data-astro-cid-f45vxlzk>5:00 PM</span> </div> <!-- Location Card --> <div class="flex items-center gap-1 px-2 py-1 rounded-md bg-white/[0.1] border border-white/20 backdrop-blur-sm" data-astro-cid-f45vxlzk> <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-f45vxlzk><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a4 4 0 10-1.414 1.414l4.243 4.243a1 1 0 001.414-1.414z" data-astro-cid-f45vxlzk></path></svg> <span class="text-xs font-medium text-white drop-shadow-sm line-clamp-1" data-astro-cid-f45vxlzk>Club Discord</span> </div> </div> <p class="text-white/80 text-sm font-thin mb-4 line-clamp-3 leading-relaxed" data-astro-cid-f45vxlzk>Come level up with us at our DSA + LeetCode Workshop. We hate leetcode as much as the next person, but what can you do... Whether you&#39;re just starting...</p> <!-- Special Tags Row - Moved to bottom --> <div class="flex flex-wrap gap-1 mt-auto" data-astro-cid-f45vxlzk> <span class="px-1.5 py-0.5 rounded text-xs font-medium bg-purple-400/20 border-purple-400/30 text-purple-300 backdrop-blur-sm" data-astro-cid-f45vxlzk> workshop </span><span class="px-1.5 py-0.5 rounded text-xs font-medium bg-orange-400/20 border-orange-400/30 text-orange-300 backdrop-blur-sm" data-astro-cid-f45vxlzk> technical </span> </div> </a> </div> <!-- Liquid Glass Bottom Glow --> <div class="absolute bottom-0 left-0 right-0 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-b-xl bg-gradient-to-t from-purple-500/10 via-blue-500/5 to-transparent" data-astro-cid-f45vxlzk></div> <!-- Ambient Light Effect --> <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-xl bg-gradient-to-br from-blue-400/5 via-transparent to-purple-400/5" data-astro-cid-f45vxlzk></div> </div>  </div><div class="w-full flex justify-center mt-8"> <a href="/events" class="relative inline-flex items-center px-8 py-4 text-white font-medium rounded-xl transition-all duration-500 ease-out hover:scale-105 group overflow-hidden backdrop-blur-md border border-white/20 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] shadow-lg hover:shadow-2xl hover:border-white/40"> <!-- Glass effect overlay --> <div class="absolute inset-0 bg-gradient-to-br from-white/[0.1] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> <!-- Subtle glow effect on hover --> <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 via-transparent to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div> <!-- Content --> <span class="relative z-10 mr-2 text-green-400 group-hover:text-green-300 transition-colors duration-300 drop-shadow-sm">❯</span> <span class="relative z-10 group-hover:text-green-100 transition-colors duration-300">See All Events</span> </a> </div>  </div> </section> <section id="about" class=" px-4 py-10 w-screen !overflow-x-hidden "> <div class="w-full grid place-items-center"> <h2 class="text-4xl md:text-6xl text-center">&lt;About /&gt;</h2> </div> <div class="w-full mt-10 px-4">  <div class="w-full grid place-items-center"> <div class="max-w-4xl text-xl md:text-lg opacity-90 text-center justify-evenly"> <p>progsu is a student-run organization at Georgia State University dedicated to coding, learning, and building a supportive tech community. We host workshops, hackathons, and social events for all skill levels!</p> </div> </div>  </div> </section>  </main> <footer class="w-screen bottom-0 overflow-x-hidden"><div class="h-28 overflow-hidden"> <div class="hero-bg">
+1000001100000000101001011011110000000101000011000100111110110100101101101101011000111110111010010000010010101100011001111110010110011010000011001110001100111010010010010011000001001100001111100010100101001010101000000011101000010000000000011101101001010100110111110100001100010100001100010100010110001110001011000001011110010100101011101100001010011100100010000001010000100011111011010110000001010010100000110011000010100001110111101010110010111100111100011001000011011001110000000000101110110001101111101110011011100010111011010001000100101101101100110111010011010110010000101010010000100100110101101110101011011001000111100111001011101000101101001001001011011000011111001001100101110100000111000100010010100001111101100001001110011011111001111101001110000000010000100101101101011011111000011100000010110111001110000110110100110100110011101100000101011101001010111001000000101000010111110101100110000110110001101000101100001110000110110011001010001011011000110100000101111101000011110110100010011110
+</div> </div> <section id="footer" class="w-full grid relative place-items-center text-center py-4 bg-white/[0.001]"> <div class="px-6 py-2 rounded-lg bg-white/5 text-white/60 text-sm font-normal">
+&copy; 2025 progsu. All rights reserved.
+</div> </section></footer> <!-- Cursor glow element --> <div id="cursor-glow" class="cursor-glow"></div> <!-- Background glow effect --> <div id="bg-glow" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-300"></div> <!-- Load non-critical styles after page render --> <!-- This component handles loading of non-critical CSS after DOM is ready --><script type="module">const loadNonCriticalStyles = () => {
+  document.body.classList.add("animations-ready");
+  document.documentElement.style.scrollBehavior = "smooth";
+};
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", loadNonCriticalStyles);
+} else {
+  loadNonCriticalStyles();
+}</script>  <!-- Vercel Speed Insights --> <vercel-speed-insights data-props="{}" data-params="{}" data-pathname="/"></vercel-speed-insights> <script type="module">var name = "@vercel/speed-insights";
+var version = "1.2.0";
+var initQueue = () => {
+  if (window.si) return;
+  window.si = function a(...params) {
+    (window.siq = window.siq || []).push(params);
+  };
+};
+function isBrowser() {
+  return typeof window !== "undefined";
+}
+function detectEnvironment() {
+  try {
+    const env = "production";
+    if (env === "development" || env === "test") ;
+  } catch (e) {
+  }
+  return "production";
+}
+function isDevelopment() {
+  return detectEnvironment() === "development";
+}
+function computeRoute(pathname, pathParams) {
+  if (!pathname || !pathParams) {
+    return pathname;
+  }
+  let result = pathname;
+  try {
+    const entries = Object.entries(pathParams);
+    for (const [key, value] of entries) {
+      if (!Array.isArray(value)) {
+        const matcher = turnValueToRegExp(value);
+        if (matcher.test(result)) {
+          result = result.replace(matcher, `/[${key}]`);
+        }
+      }
+    }
+    for (const [key, value] of entries) {
+      if (Array.isArray(value)) {
+        const matcher = turnValueToRegExp(value.join("/"));
+        if (matcher.test(result)) {
+          result = result.replace(matcher, `/[...${key}]`);
+        }
+      }
+    }
+    return result;
+  } catch (e) {
+    return pathname;
+  }
+}
+function turnValueToRegExp(value) {
+  return new RegExp(`/${escapeRegExp(value)}(?=[/?#]|$)`);
+}
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function getScriptSrc(props) {
+  if (props.scriptSrc) {
+    return props.scriptSrc;
+  }
+  if (isDevelopment()) {
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.debug.js";
+  }
+  if (props.dsn) {
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.js";
+  }
+  if (props.basePath) {
+    return `${props.basePath}/speed-insights/script.js`;
+  }
+  return "/_vercel/speed-insights/script.js";
+}
+function injectSpeedInsights(props = {}) {
+  var _a;
+  if (!isBrowser() || props.route === null) return null;
+  initQueue();
+  const src = getScriptSrc(props);
+  if (document.head.querySelector(`script[src*="${src}"]`)) return null;
+  if (props.beforeSend) {
+    (_a = window.si) == null ? void 0 : _a.call(window, "beforeSend", props.beforeSend);
+  }
+  const script = document.createElement("script");
+  script.src = src;
+  script.defer = true;
+  script.dataset.sdkn = name + (props.framework ? `/${props.framework}` : "");
+  script.dataset.sdkv = version;
+  if (props.sampleRate) {
+    script.dataset.sampleRate = props.sampleRate.toString();
+  }
+  if (props.route) {
+    script.dataset.route = props.route;
+  }
+  if (props.endpoint) {
+    script.dataset.endpoint = props.endpoint;
+  } else if (props.basePath) {
+    script.dataset.endpoint = `${props.basePath}/speed-insights/vitals`;
+  }
+  if (props.dsn) {
+    script.dataset.dsn = props.dsn;
+  }
+  if (isDevelopment() && props.debug === false) {
+    script.dataset.debug = "false";
+  }
+  script.onerror = () => {
+    console.log(
+      `[Vercel Speed Insights] Failed to load script from ${src}. Please check if any content blockers are enabled and try again.`
+    );
+  };
+  document.head.appendChild(script);
+  return {
+    setRoute: (route) => {
+      script.dataset.route = route ?? void 0;
+    }
+  };
+}
+
+function getBasePath() {
+  try {
+    return undefined                                                    ;
+  } catch {
+  }
+}
+customElements.define(
+  "vercel-speed-insights",
+  class VercelSpeedInsights extends HTMLElement {
+    constructor() {
+      super();
+      try {
+        const props = JSON.parse(this.dataset.props ?? "{}");
+        const params = JSON.parse(this.dataset.params ?? "{}");
+        const route = computeRoute(this.dataset.pathname ?? "", params);
+        injectSpeedInsights({
+          route,
+          ...props,
+          framework: "astro",
+          basePath: getBasePath(),
+          beforeSend: window.speedInsightsBeforeSend
+        });
+      } catch (err) {
+        throw new Error(`Failed to parse SpeedInsights properties: ${err}`);
+      }
+    }
+  }
+);</script> <!-- Vercel Analytics --> <vercel-analytics data-props="{}" data-params="{}" data-pathname="/"></vercel-analytics> <script type="module" src="/_astro/index.astro_astro_type_script_index_0_lang.OMazZCgV.js"></script> <script type="module">let cursorEffectsInitialized = false;
+let cursorGlow, bgGlow;
+let mouseX = 0, mouseY = 0;
+function initCursorEffects() {
+  if (cursorEffectsInitialized) return;
+  cursorGlow = document.getElementById("cursor-glow");
+  bgGlow = document.getElementById("bg-glow");
+  if (!cursorGlow || !bgGlow) {
+    setTimeout(initCursorEffects, 100);
+    return;
+  }
+  function updateCursorPosition(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (cursorGlow) {
+      cursorGlow.style.left = mouseX + "px";
+      cursorGlow.style.top = mouseY + "px";
+      cursorGlow.style.opacity = "1";
+    }
+    if (bgGlow) {
+      const rect = document.body.getBoundingClientRect();
+      const x = mouseX / rect.width * 100;
+      const y = mouseY / rect.height * 100;
+      bgGlow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(147, 51, 234, 0.12) 0%, rgba(147, 51, 234, 0.06) 40%, transparent 70%)`;
+      bgGlow.style.opacity = "1";
+    }
+    if (Math.random() > 0.85) {
+      createBinaryTrail(e.clientX, e.clientY);
+    }
+  }
+  function createBinaryTrail(x, y) {
+    const trail = document.createElement("div");
+    trail.className = "binary-trail";
+    trail.textContent = Math.random() > 0.5 ? "1" : "0";
+    trail.style.left = x + "px";
+    trail.style.top = y + "px";
+    document.body.appendChild(trail);
+    setTimeout(() => {
+      if (trail.parentNode) {
+        trail.parentNode.removeChild(trail);
+      }
+    }, 1600);
+  }
+  function hideCursorEffects() {
+    if (cursorGlow) {
+      cursorGlow.style.opacity = "0";
+    }
+    if (bgGlow) {
+      bgGlow.style.opacity = "0";
+    }
+  }
+  function showCursorEffects() {
+    if (cursorGlow) {
+      cursorGlow.style.opacity = "1";
+    }
+    if (bgGlow) {
+      bgGlow.style.opacity = "1";
+    }
+  }
+  document.addEventListener("mousemove", updateCursorPosition);
+  document.addEventListener("mouseleave", hideCursorEffects);
+  document.addEventListener("mouseenter", showCursorEffects);
+  cursorEffectsInitialized = true;
+  if (document.hasFocus()) {
+    showCursorEffects();
+  }
+}
+function resetCursorEffects() {
+  cursorEffectsInitialized = false;
+  cursorGlow = null;
+  bgGlow = null;
+  mouseX = 0;
+  mouseY = 0;
+  const existingTrails = document.querySelectorAll(".binary-trail");
+  existingTrails.forEach((trail) => {
+    if (trail.parentNode) {
+      trail.parentNode.removeChild(trail);
+    }
+  });
+  setTimeout(initCursorEffects, 50);
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initCursorEffects);
+} else {
+  initCursorEffects();
+}
+document.addEventListener("astro:page-load", resetCursorEffects);
+document.addEventListener("astro:after-swap", resetCursorEffects);
+document.addEventListener("astro:effects-reset", resetCursorEffects);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    setTimeout(resetCursorEffects, 100);
+  }
+});
+window.addEventListener("popstate", () => {
+  setTimeout(resetCursorEffects, 100);
+});</script></body></html>

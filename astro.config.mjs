@@ -1,4 +1,4 @@
-// Hybrid rendering config
+// Hybrid rendering config - In Astro v5, hybrid is now built into static mode
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
@@ -7,7 +7,7 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config  
 export default defineConfig({
-  output: "server",
+  output: "static", // Static with hybrid capabilities built-in
   adapter: vercel({
     webAnalytics: { enabled: true },
     functionPerRoute: false

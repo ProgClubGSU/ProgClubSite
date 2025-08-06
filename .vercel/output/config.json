@@ -20,95 +20,11 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^/admin/forms/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/debug-simple/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^/api/forms/search/?$",
 			"dest": "_render"
 		},
 		{
-			"src": "^/api/forms/search-backup/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^/api/forms/submit/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/forms/test/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/forms-disabled/debug/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/forms-disabled/get-structure/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/forms-disabled/search/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/forms-disabled/submit/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/forms-disabled/test/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/api/health/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/events/attendance/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/events/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/events(?:/(.*?))?/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/forms/feedback/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/history/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/interest/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/members/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/resources/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/rss\\.xml/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/thank-you/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/$",
 			"dest": "_render"
 		}
 	]
