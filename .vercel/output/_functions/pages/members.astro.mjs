@@ -1,9 +1,9 @@
 /* empty css                                 */
-import { c as createAstro, a as createComponent, m as maybeRenderHead, d as addAttribute, r as renderComponent, F as Fragment, b as renderTemplate, e as renderScript } from '../chunks/astro/server_ncwxtDV0.mjs';
+import { c as createAstro, a as createComponent, m as maybeRenderHead, d as addAttribute, r as renderComponent, F as Fragment, b as renderTemplate, e as renderScript } from '../chunks/astro/server_BkcvDG7p.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_CMInvgMo.mjs';
-import { $ as $$Section } from '../chunks/Section_nY4FSCjW.mjs';
-import { $ as $$Breadcrumb } from '../chunks/Breadcrumb_LU6jnPVl.mjs';
+import { $ as $$Layout } from '../chunks/Layout_Cr1Eyl0T.mjs';
+import { $ as $$Section } from '../chunks/Section_Ccnb_uPN.mjs';
+import { $ as $$Breadcrumb } from '../chunks/Breadcrumb_BSAyM0W5.mjs';
 /* empty css                                   */
 import 'clsx';
 import { D as DISCORD_LINK } from '../chunks/consts_Db3kfyLr.mjs';

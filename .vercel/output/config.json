@@ -21,101 +21,95 @@
 		},
 		{
 			"src": "^/admin/forms/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/debug-simple/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms/search/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/forms/search-backup/?$",
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms/submit/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms/test/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms-disabled/debug/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms-disabled/get-structure/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms-disabled/search/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms-disabled/submit/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/api/forms-disabled/test/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/health/?$",
+			"dest": "_render"
 		},
 		{
 			"src": "^/events/attendance/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/events/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/events(?:/(.*?))?/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/forms/feedback/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/history/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/interest/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/members/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/resources/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/rss\\.xml/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/thank-you/?$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		},
 		{
 			"src": "^/$",
-			"dest": "/_isr?x_astro_path=$0"
+			"dest": "_render"
 		}
-	],
-	"images": {
-		"sizes": [
-			640,
-			750,
-			828,
-			1080,
-			1200,
-			1920,
-			2048,
-			3840
-		],
-		"domains": [],
-		"remotePatterns": []
-	}
+	]
 }

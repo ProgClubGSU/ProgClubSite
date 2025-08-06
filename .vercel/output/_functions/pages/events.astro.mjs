@@ -1,13 +1,13 @@
 /* empty css                                 */
-import { c as createAstro, a as createComponent, m as maybeRenderHead, d as addAttribute, b as renderTemplate, r as renderComponent, F as Fragment } from '../chunks/astro/server_ncwxtDV0.mjs';
+import { c as createAstro, a as createComponent, m as maybeRenderHead, d as addAttribute, b as renderTemplate, r as renderComponent, F as Fragment } from '../chunks/astro/server_BkcvDG7p.mjs';
 import 'kleur/colors';
 import { g as getEvents } from '../chunks/sanity_BijJ_opN.mjs';
-import { s as sortEventsByPriority, a as separateEventsByDisplayType, $ as $$BlogPostCard } from '../chunks/eventUtils_DWGEVX8I.mjs';
+import { s as sortEventsByPriority, a as separateEventsByDisplayType, $ as $$BlogPostCard } from '../chunks/eventUtils_Dtj7j79c.mjs';
 import 'clsx';
 /* empty css                                 */
-import { $ as $$Section } from '../chunks/Section_nY4FSCjW.mjs';
-import { $ as $$Layout } from '../chunks/Layout_CMInvgMo.mjs';
-import { $ as $$Breadcrumb } from '../chunks/Breadcrumb_LU6jnPVl.mjs';
+import { $ as $$Section } from '../chunks/Section_Ccnb_uPN.mjs';
+import { $ as $$Layout } from '../chunks/Layout_Cr1Eyl0T.mjs';
+import { $ as $$Breadcrumb } from '../chunks/Breadcrumb_BSAyM0W5.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://proggsu.vercel.app");
