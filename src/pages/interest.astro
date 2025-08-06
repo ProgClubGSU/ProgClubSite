@@ -8,9 +8,10 @@ let formError = null;
 
 try {
   // In production, this would be your deployed API endpoint
+  const formId = import.meta.env.GOOGLE_FORMS_ID || 'interest-signup';
   const apiUrl = import.meta.env.DEV 
-    ? 'http://localhost:4321/api/forms/get-structure'
-    : `${Astro.site}api/forms/get-structure`;
+    ? `http://localhost:4321/api/forms/get-structure?formId=${formId}`
+    : `${Astro.site}api/forms/get-structure?formId=${formId}`;
   
   const response = await fetch(apiUrl);
   if (response.ok) {

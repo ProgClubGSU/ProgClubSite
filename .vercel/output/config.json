@@ -20,6 +20,10 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^/api/forms/get-structure/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^/api/forms/search/?$",
 			"dest": "_render"
 		},
