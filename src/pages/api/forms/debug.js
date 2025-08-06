@@ -11,32 +11,22 @@ const auth = new google.auth.GoogleAuth({
   ],
 });
 
-export async function GET({ url }) {
-  try {
-    const forms = google.forms({ version: 'v1', auth });
-    
-    // Check available methods on responses
-    console.log('Available methods on forms.forms.responses:', Object.keys(forms.forms.responses));
-    
-    // Check if there's a create method or similar
-    const responseMethods = Object.keys(forms.forms.responses);
-    console.log('Response methods:', responseMethods);
-    
-    return new Response(JSON.stringify({
-      success: true,
-      responseMethods: responseMethods
-    }), {
-      headers: { 'Content-Type': 'application/json' },
-    });
-    
-  } catch (error) {
-    console.error('Debug error:', error);
-    return new Response(JSON.stringify({ 
-      error: 'Debug failed',
-      details: error.message 
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
+export async function GET() {
+  const debugInfo = {
+    timestamp: new Date().toISOString(),
+    environment: import.meta.env.MODE,
+    hasGoogleServiceAccountEmail: !!import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    hasGooglePrivateKey: !!import.meta.env.GOOGLE_PRIVATE_KEY,
+    hasGoogleFormsId: !!import.meta.env.GOOGLE_FORMS_ID,
+    googleFormsId: import.meta.env.GOOGLE_FORMS_ID || 'not-set',
+    // Don't expose the actual credentials for security
+    serviceAccountEmailPrefix: import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ? 
+      import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL.substring(0, 10) + '...' : 'not-set',
+    privateKeyLength: import.meta.env.GOOGLE_PRIVATE_KEY ? 
+      import.meta.env.GOOGLE_PRIVATE_KEY.length : 0
+  };
+
+  return new Response(JSON.stringify(debugInfo, null, 2), {
+    headers: { 'Content-Type': 'application/json' },
+  });
 } 

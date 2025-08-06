@@ -15,6 +15,7 @@
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/vercel": "^8.2.5",
     "@notionhq/client": "^4.0.1",
     "@portabletext/to-html": "^2.0.14",
     "@sanity/client": "^6.29.1",

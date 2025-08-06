@@ -23,9 +23,10 @@ let formStructure = null;
 let formError = null;
 
 try {
+  // In production, use relative URL to avoid CORS issues
   const apiUrl = import.meta.env.DEV 
     ? `http://localhost:4321/api/forms/get-structure?formId=${formId}`
-    : `${Astro.site}api/forms/get-structure?formId=${formId}`;
+    : `/api/forms/get-structure?formId=${formId}`;
   
   const response = await fetch(apiUrl);
   if (response.ok) {
@@ -57,6 +58,14 @@ try {
       <div class="error-fallback">
         <h3>Form temporarily unavailable</h3>
         <p>Please try again later or contact us directly.</p>
+        <div class="fallback-form">
+          <p><strong>Alternative:</strong> You can also submit directly to our Google Form:</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdIuhYbn3uP0_3k9bAF7bhtqMaQTkGQLD9-lmY6NKgrumGqXw/viewform" 
+             target="_blank" 
+             class="fallback-link">
+            Open Google Form
+          </a>
+        </div>
       </div>
     ) : (
       <form id={`dynamic-form-${formId}`} class="dynamic-form" novalidate onsubmit="return false;">
@@ -149,7 +158,7 @@ try {
   }
   
   .form-description {
-    text-center;
+    text-align: center;
     color: #666;
     margin-bottom: 30px;
     line-height: 1.6;
@@ -288,6 +297,30 @@ try {
   .error-fallback h3 {
     margin-bottom: 10px;
     color: #e11d48;
+  }
+  
+  .fallback-form {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+  }
+  
+  .fallback-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .fallback-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
   }
   
   /* Error and success states */

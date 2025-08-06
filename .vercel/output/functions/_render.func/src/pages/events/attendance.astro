@@ -1,0 +1,67 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import DynamicForm from "@/components/DynamicForm.astro";
+import { SITE_TITLE } from "@/consts";
+
+// You can get the event info from your CMS or pass it as query params
+const eventName = Astro.url.searchParams.get('event') || 'Programming Workshop';
+const eventDate = Astro.url.searchParams.get('date') || 'Today';
+
+// Different Google Form IDs for different events
+const ATTENDANCE_FORMS = {
+  'leetcode-workshop': 'your-leetcode-workshop-form-id',
+  'react-workshop': 'your-react-workshop-form-id',
+  'career-fair': 'your-career-fair-form-id',
+  'default': 'your-default-attendance-form-id'
+};
+
+const eventType = Astro.url.searchParams.get('type') || 'default';
+const formId = ATTENDANCE_FORMS[eventType] || ATTENDANCE_FORMS.default;
+---
+
+<Layout title={`${eventName} - Attendance | ${SITE_TITLE}`}>
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+    <div class="container mx-auto px-4">
+      <!-- Event Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          {eventName}
+        </h1>
+        <p class="text-xl text-gray-600 mb-2">
+          {eventDate}
+        </p>
+        <p class="text-lg text-gray-500">
+          Please check in to confirm your attendance
+        </p>
+      </div>
+
+      <!-- Dynamic Attendance Form -->
+      <DynamicForm 
+        formId={formId}
+        title="Event Check-In"
+        description="Quick check-in to confirm your attendance and help us improve future events"
+        redirectUrl="/events/thank-you"
+        showFormTitle={true}
+      />
+
+      <!-- Quick Links -->
+      <div class="mt-12 text-center">
+        <div class="space-x-4">
+          <a href="/events" class="text-indigo-600 hover:text-indigo-800 underline">
+            Back to Events
+          </a>
+          <a href="/" class="text-indigo-600 hover:text-indigo-800 underline">
+            Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Custom styles for attendance form */
+  .container {
+    max-width: 800px;
+  }
+</style>
