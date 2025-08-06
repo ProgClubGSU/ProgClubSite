@@ -1,7 +1,7 @@
 /* empty css                                 */
 import { a as createComponent, r as renderComponent, b as renderTemplate, d as addAttribute, F as Fragment, m as maybeRenderHead } from '../chunks/astro/server_BkcvDG7p.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_c2u_HCNh.mjs';
+import { $ as $$Layout } from '../chunks/Layout_Cr1Eyl0T.mjs';
 import { $ as $$Section } from '../chunks/Section_Ccnb_uPN.mjs';
 import { $ as $$Breadcrumb } from '../chunks/Breadcrumb_BSAyM0W5.mjs';
 /* empty css                                   */

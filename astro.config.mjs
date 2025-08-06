@@ -8,7 +8,9 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config  
 export default defineConfig({
   output: "server",
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: { enabled: true }
+  }),
   site: "https://proggsu.vercel.app",
   integrations: [
     mdx(), 
@@ -33,12 +35,8 @@ export default defineConfig({
       },
     },
     build: {
-      // Keep CSS code splitting disabled for consistency
-      cssCodeSplit: false,
       // Disable minification - it breaks the form JavaScript
       minify: false,
-      // Inline small CSS files to reduce requests
-      assetsInlineLimit: 4096,
     },
     css: {
       // Transform CSS for better browser support
@@ -53,11 +51,7 @@ export default defineConfig({
       include: ['@astrojs/mdx', '@astrojs/tailwind'],
     },
   },
-  // Build optimizations
-  build: {
-    // Inline stylesheets smaller than 8kb to reduce FOUC
-    inlineStylesheets: 'always',
-  },
+
   // Exclude studio from main site processing
   srcDir: './src',
   publicDir: './public',

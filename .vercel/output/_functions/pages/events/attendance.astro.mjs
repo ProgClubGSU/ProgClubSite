@@ -1,8 +1,8 @@
 /* empty css                                    */
 import { c as createAstro, a as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_BkcvDG7p.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_c2u_HCNh.mjs';
-import { $ as $$DynamicForm } from '../../chunks/DynamicForm_DWr16pUC.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_Cr1Eyl0T.mjs';
+import { $ as $$DynamicForm } from '../../chunks/DynamicForm_D4KNHSUd.mjs';
 import { S as SITE_TITLE } from '../../chunks/consts_Db3kfyLr.mjs';
 /* empty css                                         */
 export { renderers } from '../../renderers.mjs';
