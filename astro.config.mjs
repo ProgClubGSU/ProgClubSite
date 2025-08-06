@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
+  output: "server",
   site: "https://proggsu.vercel.app",
   integrations: [
     mdx(), 
@@ -14,13 +14,6 @@ export default defineConfig({
     tailwind({
       // Re-enable base styles since we've optimized critical CSS
       applyBaseStyles: true,
-      // Use a custom config that doesn't conflict with critical CSS
-      config: {
-        corePlugins: {
-          // Disable preflight since we handle base styles in critical CSS
-          preflight: false,
-        }
-      }
     })
   ],
   markdown: {

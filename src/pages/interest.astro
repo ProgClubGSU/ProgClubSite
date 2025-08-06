@@ -120,7 +120,7 @@ import { SITE_TITLE, DISCORD_LINK } from "@/consts";
           <!-- SMS Consent -->
           <div class="form-group">
             <label class="checkbox-item">
-              <input type="checkbox" name="entry.372796838" value="I agree to receive SMS messages from PROGgsu about club events, workshops, and programming opportunities. Msg & data rates may apply. I can opt out anytime." class="form-checkbox" />
+                              <input type="checkbox" name="entry.372796838" value="I agree to receive SMS updates from progsu. Msg & data rates may apply. I can opt out anytime." class="form-checkbox" />
               <span class="checkbox-label">
                 I agree to receive SMS messages from PROGgsu about club events, workshops, and programming opportunities. 
                 Msg & data rates may apply. I can opt out anytime.
@@ -662,7 +662,7 @@ function initializeForm() {
     
     console.log('✅ Click handler added');
     
-    function handleFormSubmission() {
+    async function handleFormSubmission() {
       console.log('Starting form validation...');
       
       // Validate all fields
@@ -701,72 +701,47 @@ function initializeForm() {
       currentSubmitBtn.disabled = true;
       currentSubmitBtn.querySelector('.btn-text').textContent = 'Submitting...';
       
-      // Create Google Forms submission
-      const submitForm = document.createElement('form');
-      submitForm.method = 'POST';
-      submitForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdIuhYbn3uP0_3k9bAF7bhtqMaQTkGQLD9-lmY6NKgrumGqXw/formResponse';
-      submitForm.style.display = 'none';
-      
-      // Get form data
-      const formData = new FormData(form);
-      
-      console.log('Form data being submitted:');
-      for (let [name, value] of formData.entries()) {
-        // Skip SMS checkbox - handle separately
-        if (name === 'entry.372796838') continue;
+      try {
+        // Prepare form data for API
+        const formData = {
+          name: form.querySelector('#name').value,
+          email: form.querySelector('#email').value,
+          phone: form.querySelector('#phone').value.replace(/\D/g, ''),
+          interests: Array.from(form.querySelectorAll('input[name="entry.1453136131"]:checked'))
+            .map(cb => cb.value),
+          smsConsent: form.querySelector('input[name="entry.372796838"]:checked') ? 
+            form.querySelector('input[name="entry.372796838"]').value : null
+        };
         
-        if (value) {
-          // Clean phone number
-          if (name === 'entry.2095083110') {
-            value = value.replace(/\D/g, '');
-            if (!value) continue;
-          }
-          
-          console.log(name + ':', value);
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = name;
-          input.value = value;
-          submitForm.appendChild(input);
+        console.log('📤 Submitting to API:', formData);
+        
+        // Submit via API
+        const response = await fetch('/api/forms/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          console.log('✅ Form submitted successfully');
+          window.location.href = '/thank-you';
+        } else {
+          console.error('Form submission failed:', result.error);
+          alert('There was an error submitting the form. Please try again.');
+          currentSubmitBtn.disabled = false;
+          currentSubmitBtn.querySelector('.btn-text').textContent = 'Submit Application';
         }
+        
+      } catch (error) {
+        console.error('Network error:', error);
+        alert('There was a network error. Please check your connection and try again.');
+        currentSubmitBtn.disabled = false;
+        currentSubmitBtn.querySelector('.btn-text').textContent = 'Submit Application';
       }
-      
-      // Handle SMS consent
-      const smsCheckbox = form.querySelector('input[name="entry.372796838"]');
-      if (smsCheckbox && smsCheckbox.checked) {
-        console.log('SMS consent: checked');
-        const smsInput = document.createElement('input');
-        smsInput.type = 'hidden';
-        smsInput.name = 'entry.372796838';
-        smsInput.value = smsCheckbox.value;
-        submitForm.appendChild(smsInput);
-      }
-      
-      // Submit form
-      document.body.appendChild(submitForm);
-      console.log('📤 Submitting to Google Forms...');
-      
-      // Create hidden iframe for submission to prevent redirect
-      const iframe = document.createElement('iframe');
-      iframe.name = 'hidden_iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-      
-      // Set form target to iframe
-      submitForm.target = 'hidden_iframe';
-      submitForm.submit();
-      
-      // Cleanup and redirect immediately (don't wait for Google response)
-      setTimeout(() => {
-        document.body.removeChild(submitForm);
-        document.body.removeChild(iframe);
-        console.log('✅ Form submitted successfully');
-      }, 500);
-      
-      setTimeout(() => {
-        console.log('🔄 Redirecting to thank-you page...');
-        window.location.href = '/thank-you';
-      }, 1000);
     }
     
     console.log('✅ Form initialization complete');

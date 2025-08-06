@@ -35,3 +35,8 @@ studio/.sanity/
 # Temporary files
 *.tmp
 *.temp
+
+# .gitignore
+.env
+.env.local
+.env.*.local
