@@ -1,0 +1,85 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import DynamicForm from "@/components/DynamicForm.astro";
+import { SITE_TITLE } from "@/consts";
+
+// Example: Feedback form for different events/workshops
+const eventType = Astro.url.searchParams.get('event') || 'general';
+
+// Map different feedback forms
+const FEEDBACK_FORMS = {
+  'workshop': 'your-workshop-feedback-form-id',
+  'meeting': 'your-meeting-feedback-form-id',
+  'event': 'your-event-feedback-form-id',
+  'general': 'your-general-feedback-form-id'
+};
+
+const formId = FEEDBACK_FORMS[eventType] || FEEDBACK_FORMS.general;
+
+const titles = {
+  'workshop': 'Workshop Feedback',
+  'meeting': 'Meeting Feedback', 
+  'event': 'Event Feedback',
+  'general': 'General Feedback'
+};
+
+const descriptions = {
+  'workshop': 'Help us improve our workshops by sharing your experience',
+  'meeting': 'Share your thoughts about today\'s meeting',
+  'event': 'Tell us how we can make our events even better',
+  'general': 'We value your feedback and suggestions'
+};
+---
+
+<Layout title={`${titles[eventType]} | ${SITE_TITLE}`}>
+  <main class="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 py-12">
+    <div class="container mx-auto px-4">
+      
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          We Want Your Feedback!
+        </h1>
+        <p class="text-xl text-gray-600">
+          Your input helps us create better experiences for everyone
+        </p>
+      </div>
+
+      <!-- Dynamic Feedback Form -->
+      <DynamicForm 
+        formId={formId}
+        title={titles[eventType]}
+        description={descriptions[eventType]}
+        redirectUrl="/forms/thank-you"
+        showFormTitle={true}
+      />
+
+      <!-- Additional Info -->
+      <div class="mt-12 bg-white/50 backdrop-blur-sm rounded-lg p-6 text-center">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">
+          Other Feedback Forms
+        </h3>
+        <div class="space-x-4">
+          <a href="/forms/feedback?event=workshop" 
+             class="text-emerald-600 hover:text-emerald-800 underline">
+            Workshop Feedback
+          </a>
+          <a href="/forms/feedback?event=meeting" 
+             class="text-emerald-600 hover:text-emerald-800 underline">
+            Meeting Feedback
+          </a>
+          <a href="/forms/feedback?event=event" 
+             class="text-emerald-600 hover:text-emerald-800 underline">
+            Event Feedback
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 700px;
+  }
+</style>

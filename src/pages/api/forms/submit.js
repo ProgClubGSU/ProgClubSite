@@ -13,8 +13,9 @@ const auth = new google.auth.GoogleAuth({
 
 export async function POST({ request }) {
   try {
-    const formData = await request.json();
-    const formId = import.meta.env.GOOGLE_FORMS_ID;
+    const requestData = await request.json();
+    const { formId: requestFormId, ...formData } = requestData;
+    const formId = requestFormId || import.meta.env.GOOGLE_FORMS_ID;
     const forms = google.forms({ version: 'v1', auth });
     
     // Convert form data to Google Forms format

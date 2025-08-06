@@ -13,7 +13,9 @@ const auth = new google.auth.GoogleAuth({
 
 export async function GET({ url }) {
   try {
-    const formId = import.meta.env.GOOGLE_FORMS_ID;
+    // Get formId from query params or use default
+    const urlParams = new URL(url).searchParams;
+    const formId = urlParams.get('formId') || import.meta.env.GOOGLE_FORMS_ID;
     const forms = google.forms({ version: 'v1', auth });
     
     const response = await forms.forms.get({

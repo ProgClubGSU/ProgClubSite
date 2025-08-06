@@ -1,0 +1,458 @@
+---
+// Universal Dynamic Form Component
+// Usage: <DynamicForm formId="your-google-form-id" redirectUrl="/success" />
+
+export interface Props {
+  formId: string;
+  redirectUrl?: string;
+  title?: string;
+  description?: string;
+  showFormTitle?: boolean;
+}
+
+const { 
+  formId, 
+  redirectUrl = "/thank-you", 
+  title, 
+  description,
+  showFormTitle = true 
+} = Astro.props;
+
+// Fetch form structure server-side
+let formStructure = null;
+let formError = null;
+
+try {
+  const apiUrl = import.meta.env.DEV 
+    ? `http://localhost:4321/api/forms/get-structure?formId=${formId}`
+    : `${Astro.site}api/forms/get-structure?formId=${formId}`;
+  
+  const response = await fetch(apiUrl);
+  if (response.ok) {
+    formStructure = await response.json();
+  } else {
+    throw new Error(`API returned ${response.status}`);
+  }
+} catch (error) {
+  console.error('Failed to fetch form structure:', error);
+  formError = error.message;
+}
+---
+
+<div class="dynamic-form-container">
+  <div class="form-wrapper">
+    {showFormTitle && (
+      <h2 class="form-title">
+        {title || formStructure?.info?.title || "Form"}
+      </h2>
+    )}
+    
+    {(description || formStructure?.info?.description) && (
+      <p class="form-description">
+        {description || formStructure.info.description}
+      </p>
+    )}
+
+    {formError ? (
+      <div class="error-fallback">
+        <h3>Form temporarily unavailable</h3>
+        <p>Please try again later or contact us directly.</p>
+      </div>
+    ) : (
+      <form id={`dynamic-form-${formId}`} class="dynamic-form" novalidate onsubmit="return false;">
+        {formStructure?.items?.map((item) => {
+          const question = item.questionItem?.question;
+          if (!question) return null;
+          
+          const questionId = question.questionId;
+          const title = item.title;
+          const isRequired = question.required;
+          const description = item.description;
+          
+          // Smart field type detection
+          const isEmail = title.toLowerCase().includes('email');
+          const isPhone = title.toLowerCase().includes('phone');
+          const isName = title.toLowerCase().includes('name');
+          
+          return (
+            <div class="form-group">
+              <label class="form-label">
+                {title} {isRequired && <span class="required">*</span>}
+              </label>
+              
+              {description && (
+                <p class="field-description">{description}</p>
+              )}
+              
+              {question.choiceQuestion ? (
+                <div class={question.choiceQuestion.type === 'CHECKBOX' ? 'checkbox-group' : 'radio-group'}>
+                  {question.choiceQuestion.options.map((option) => (
+                    <label class="choice-item">
+                      <input 
+                        type={question.choiceQuestion.type === 'CHECKBOX' ? 'checkbox' : 'radio'}
+                        name={`question-${questionId}`}
+                        value={option.value}
+                        data-question-id={questionId}
+                        class="form-choice"
+                        required={isRequired && question.choiceQuestion.type === 'RADIO'}
+                      />
+                      <span class="choice-label">{option.value}</span>
+                    </label>
+                  ))}
+                </div>
+              ) : (
+                <input 
+                  type={isEmail ? 'email' : isPhone ? 'tel' : 'text'}
+                  id={`field-${questionId}`}
+                  name={`question-${questionId}`}
+                  data-question-id={questionId}
+                  class="form-input"
+                  placeholder={isEmail ? 'Enter your email' : isPhone ? 'Enter your phone number' : `Enter ${title.toLowerCase()}`}
+                  required={isRequired}
+                />
+              )}
+              
+              <div class="error-message"></div>
+            </div>
+          );
+        })}
+        
+        <button type="submit" class="submit-btn" data-form-id={formId} data-redirect={redirectUrl}>
+          <span class="btn-text">Submit</span>
+          <span class="btn-loading">Submitting...</span>
+        </button>
+      </form>
+    )}
+  </div>
+</div>
+
+<style>
+  .dynamic-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .form-description {
+    text-center;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .required {
+    color: #e11d48;
+  }
+  
+  .field-description {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .checkbox-group,
+  .radio-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 16px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .choice-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .choice-item:hover {
+    background: rgba(102, 126, 234, 0.05);
+  }
+  
+  .form-choice {
+    width: 18px;
+    height: 18px;
+    accent-color: #667eea;
+  }
+  
+  .choice-label {
+    font-size: 14px;
+    color: #374151;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  }
+  
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .btn-loading {
+    display: none;
+  }
+  
+  .submit-btn.loading .btn-text {
+    display: none;
+  }
+  
+  .submit-btn.loading .btn-loading {
+    display: inline;
+  }
+  
+  .error-message {
+    color: #e11d48;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+  }
+  
+  .error-message.show {
+    display: block;
+  }
+  
+  .error-fallback {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+  }
+  
+  .error-fallback h3 {
+    margin-bottom: 10px;
+    color: #e11d48;
+  }
+  
+  /* Error and success states */
+  .form-input.error,
+  .checkbox-group.error,
+  .radio-group.error {
+    border-color: rgba(225, 29, 72, 0.6);
+    background: rgba(225, 29, 72, 0.05);
+    box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+  }
+  
+  .form-input.success,
+  .checkbox-group.success,
+  .radio-group.success {
+    border-color: rgba(34, 197, 94, 0.6);
+    background: rgba(34, 197, 94, 0.05);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle all dynamic forms on the page
+    const forms = document.querySelectorAll('.dynamic-form');
+    
+    forms.forEach(form => {
+      const submitBtn = form.querySelector('.submit-btn');
+      const formId = submitBtn.dataset.formId;
+      const redirectUrl = submitBtn.dataset.redirect;
+      
+      submitBtn.addEventListener('click', async function() {
+        await handleFormSubmission(form, formId, redirectUrl);
+      });
+    });
+  });
+  
+  async function handleFormSubmission(form, formId, redirectUrl) {
+    const submitBtn = form.querySelector('.submit-btn');
+    
+    // Validate form
+    if (!validateForm(form)) {
+      return;
+    }
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    
+    try {
+      // Collect form data dynamically
+      const formData = collectFormData(form);
+      
+      // Submit via API
+      const response = await fetch('/api/forms/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, formId })
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        window.location.href = redirectUrl;
+      } else {
+        throw new Error(result.error || 'Submission failed');
+      }
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting the form. Please try again.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+    }
+  }
+  
+  function collectFormData(form) {
+    const data = {};
+    const inputs = form.querySelectorAll('[data-question-id]');
+    
+    inputs.forEach(input => {
+      const questionId = input.dataset.questionId;
+      
+      if (input.type === 'checkbox') {
+        if (input.checked) {
+          if (!data[questionId]) data[questionId] = [];
+          data[questionId].push(input.value);
+        }
+      } else if (input.type === 'radio') {
+        if (input.checked) {
+          data[questionId] = input.value;
+        }
+      } else {
+        data[questionId] = input.value;
+      }
+    });
+    
+    return data;
+  }
+  
+  function validateForm(form) {
+    let isValid = true;
+    const inputs = form.querySelectorAll('[data-question-id]');
+    
+    // Clear previous errors
+    form.querySelectorAll('.error-message').forEach(msg => {
+      msg.classList.remove('show');
+      msg.textContent = '';
+    });
+    
+    form.querySelectorAll('.form-input, .checkbox-group, .radio-group').forEach(el => {
+      el.classList.remove('error', 'success');
+    });
+    
+    // Validate each field
+    inputs.forEach(input => {
+      const isRequired = input.required || input.closest('.form-group').querySelector('.required');
+      
+      if (isRequired) {
+        let hasValue = false;
+        
+        if (input.type === 'checkbox' || input.type === 'radio') {
+          const group = input.closest('.checkbox-group, .radio-group');
+          const checked = group.querySelectorAll('input:checked');
+          hasValue = checked.length > 0;
+          
+          if (!hasValue) {
+            showFieldError(group, 'This field is required');
+            isValid = false;
+          } else {
+            showFieldSuccess(group);
+          }
+        } else {
+          hasValue = input.value.trim() !== '';
+          
+          if (!hasValue) {
+            showFieldError(input, 'This field is required');
+            isValid = false;
+          } else if (input.type === 'email' && !isValidEmail(input.value)) {
+            showFieldError(input, 'Please enter a valid email address');
+            isValid = false;
+          } else {
+            showFieldSuccess(input);
+          }
+        }
+      }
+    });
+    
+    return isValid;
+  }
+  
+  function showFieldError(element, message) {
+    element.classList.add('error');
+    const errorMsg = element.closest('.form-group').querySelector('.error-message');
+    errorMsg.textContent = message;
+    errorMsg.classList.add('show');
+  }
+  
+  function showFieldSuccess(element) {
+    element.classList.add('success');
+  }
+  
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+</script>
