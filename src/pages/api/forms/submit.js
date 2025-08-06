@@ -1,5 +1,8 @@
 import { google } from 'googleapis';
 
+// Force server-side rendering for this API route in hybrid mode  
+export const prerender = false;
+
 const auth = new google.auth.GoogleAuth({
   credentials: {
     client_email: import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
