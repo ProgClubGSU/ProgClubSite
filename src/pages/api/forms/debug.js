@@ -1,16 +1,3 @@
-import { google } from 'googleapis';
-
-const auth = new google.auth.GoogleAuth({
-  credentials: {
-    client_email: import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: import.meta.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  },
-  scopes: [
-    'https://www.googleapis.com/auth/forms.responses',
-    'https://www.googleapis.com/auth/drive.readonly'
-  ],
-});
-
 export async function GET() {
   const debugInfo = {
     timestamp: new Date().toISOString(),
