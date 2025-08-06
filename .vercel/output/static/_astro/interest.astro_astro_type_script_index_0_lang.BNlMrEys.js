@@ -24,32 +24,6 @@ function initializeForm() {
     }, showSuccess2 = function(input) {
       input.classList.remove("error");
       input.classList.add("success");
-    }, showCheckboxGroupError2 = function(message) {
-      const errorDiv = document.getElementById("interests-error");
-      const group = document.getElementById("interests-group");
-      if (errorDiv) {
-        errorDiv.textContent = message;
-        errorDiv.classList.add("show");
-      }
-      if (group) {
-        group.classList.remove("success");
-        group.classList.add("error");
-      }
-    }, hideCheckboxGroupError2 = function() {
-      const errorDiv = document.getElementById("interests-error");
-      const group = document.getElementById("interests-group");
-      if (errorDiv) {
-        errorDiv.classList.remove("show");
-      }
-      if (group) {
-        group.classList.remove("error");
-      }
-    }, showCheckboxGroupSuccess2 = function() {
-      const group = document.getElementById("interests-group");
-      if (group) {
-        group.classList.remove("error");
-        group.classList.add("success");
-      }
     }, showGroupError2 = function(group, message) {
       const errorDiv = group.parentElement.querySelector(".error-message");
       if (errorDiv) {
@@ -85,7 +59,7 @@ function initializeForm() {
         return true;
       }
     };
-    var showError = showError2, hideError = hideError2, showSuccess = showSuccess2, showCheckboxGroupError = showCheckboxGroupError2, hideCheckboxGroupError = hideCheckboxGroupError2, showCheckboxGroupSuccess = showCheckboxGroupSuccess2, showGroupError = showGroupError2, hideGroupError = hideGroupError2, showGroupSuccess = showGroupSuccess2, validateField = validateField2;
+    var showError = showError2, hideError = hideError2, showSuccess = showSuccess2, showGroupError = showGroupError2, hideGroupError = hideGroupError2, showGroupSuccess = showGroupSuccess2, validateField = validateField2;
     console.log("🔍 Looking for form elements...");
     const form = document.getElementById("join-form");
     const submitBtn = document.getElementById("submit-btn");
@@ -148,18 +122,25 @@ function initializeForm() {
     });
     console.log("✅ Input validation setup complete");
     console.log("🔧 Setting up checkbox validation...");
-    const checkboxes = form.querySelectorAll('input[name="entry.1453136131"]');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
     console.log("Found checkboxes:", checkboxes.length);
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
-        const checkedBoxes = form.querySelectorAll('input[name="entry.1453136131"]:checked');
+        const questionId = checkbox.dataset.questionId;
+        const checkedBoxes = form.querySelectorAll(`input[data-question-id="${questionId}"]:checked`);
         if (checkedBoxes.length > 0) {
-          hideCheckboxGroupError2();
-          showCheckboxGroupSuccess2();
+          const group = checkbox.closest(".checkbox-group, .radio-group");
+          if (group) {
+            hideGroupError2(group);
+            showGroupSuccess2(group);
+          }
         } else {
-          const group = document.getElementById("interests-group");
-          if (group.classList.contains("error") || group.classList.contains("success")) {
-            showCheckboxGroupError2("Please select at least one event interest");
+          const group = checkbox.closest(".checkbox-group, .radio-group");
+          if (group) {
+            const isRequired = group.closest(".form-group").querySelector(".form-label").textContent.includes("*");
+            if (isRequired) {
+              showGroupError2(group, "Please select at least one option");
+            }
           }
         }
       });
@@ -242,11 +223,11 @@ function initializeForm() {
           }
         });
         const apiData = {
-          name: formData["2e479368"] || "",
-          email: formData["7f606ef0"] || "",
-          phone: formData["7ce06e66"] || "",
-          interests: formData["569d1903"] || [],
-          smsConsent: formData["16386da6"] || null
+          name: formData["name_field"] || "",
+          email: formData["email_field"] || "",
+          phone: formData["phone_field"] || "",
+          interests: formData["interests_field"] || [],
+          formId: "interest-signup"
         };
         console.log("📤 Submitting to API:", apiData);
         const response = await fetch("/api/forms/submit", {

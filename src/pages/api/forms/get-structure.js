@@ -17,7 +17,7 @@ export async function GET({ url }) {
       });
     }
 
-    // Mock form structure for development/testing
+        // Mock form structure for development/testing
     // In production, you would use the Google Forms API to fetch real structure
     const mockFormStructure = {
       formId: formId,
@@ -33,7 +33,10 @@ export async function GET({ url }) {
           questionItem: {
             question: {
               questionId: "name_field",
-              required: true
+              required: true,
+              textQuestion: {
+                type: "SHORT_ANSWER"
+              }
             }
           }
         },
@@ -44,7 +47,10 @@ export async function GET({ url }) {
           questionItem: {
             question: {
               questionId: "email_field",
-              required: true
+              required: true,
+              textQuestion: {
+                type: "SHORT_ANSWER"
+              }
             }
           }
         },
@@ -71,12 +77,15 @@ export async function GET({ url }) {
         },
         {
           itemId: "phone_field",
-          title: "Phone Number",
+          title: "Phone Number", 
           description: "Optional - for important updates",
           questionItem: {
             question: {
               questionId: "phone_field",
-              required: false
+              required: false,
+              textQuestion: {
+                type: "SHORT_ANSWER"
+              }
             }
           }
         }

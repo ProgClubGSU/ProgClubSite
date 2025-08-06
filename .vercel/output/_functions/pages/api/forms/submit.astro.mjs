@@ -9,32 +9,26 @@ async function POST({ request }) {
     if (!formId) ;
     const formUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
     const submitFormData = new FormData();
-    if (formData.name) {
-      submitFormData.append("entry.776442728", formData.name);
-    }
-    if (formData.email) {
-      submitFormData.append("entry.2137026288", formData.email);
-    }
-    if (formData.interests && formData.interests.length > 0) {
-      formData.interests.forEach((interest) => {
-        submitFormData.append("entry.1453136131", interest);
+    if (!formData.name || !formData.email) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: "Missing required fields: name and email are required"
+      }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
       });
     }
-    if (formData.phone) {
-      submitFormData.append("entry.2095083110", formData.phone);
-    }
-    if (formData.smsConsent) {
-      submitFormData.append("entry.372796838", formData.smsConsent);
-    }
-    const response = await fetch(formUrl, {
-      method: "POST",
-      body: submitFormData,
-      mode: "no-cors"
-      // Required for cross-origin form submission
+    console.log("Form submission data:", {
+      formId,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      interests: formData.interests
     });
     return new Response(JSON.stringify({
       success: true,
-      message: "Form submitted successfully",
+      message: "Form submitted successfully (development mode)",
+      submittedData: formData,
       responseId: "response-" + Date.now(),
       timestamp: (/* @__PURE__ */ new Date()).toISOString()
     }), {
