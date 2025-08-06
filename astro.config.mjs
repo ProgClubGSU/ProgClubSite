@@ -11,7 +11,9 @@ export default defineConfig({
   adapter: vercel({
     webAnalytics: { enabled: true },
     imageService: true,
-    isr: true
+    isr: {
+      runtime: "nodejs20.x"
+    }
   }),
   site: "https://proggsu.vercel.app",
   integrations: [

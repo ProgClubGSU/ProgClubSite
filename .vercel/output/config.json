@@ -24,11 +24,7 @@
 			"dest": "/_isr?x_astro_path=$0"
 		},
 		{
-			"src": "^/api/forms/debug/?$",
-			"dest": "/_isr?x_astro_path=$0"
-		},
-		{
-			"src": "^/api/forms/get-structure/?$",
+			"src": "^/api/debug-simple/?$",
 			"dest": "/_isr?x_astro_path=$0"
 		},
 		{
@@ -41,6 +37,26 @@
 		},
 		{
 			"src": "^/api/forms/test/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms-disabled/debug/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms-disabled/get-structure/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms-disabled/search/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms-disabled/submit/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms-disabled/test/?$",
 			"dest": "/_isr?x_astro_path=$0"
 		},
 		{
