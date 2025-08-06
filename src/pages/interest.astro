@@ -1,6 +1,27 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { SITE_TITLE, DISCORD_LINK } from "@/consts";
+
+// Fetch form structure server-side for better SEO and initial render
+let formStructure = null;
+let formError = null;
+
+try {
+  // In production, this would be your deployed API endpoint
+  const apiUrl = import.meta.env.DEV 
+    ? 'http://localhost:4321/api/forms/get-structure'
+    : `${Astro.site}api/forms/get-structure`;
+  
+  const response = await fetch(apiUrl);
+  if (response.ok) {
+    formStructure = await response.json();
+  } else {
+    throw new Error(`API returned ${response.status}`);
+  }
+} catch (error) {
+  console.error('Failed to fetch form structure:', error);
+  formError = error.message;
+}
 ---
 
 <Layout title={`Join ${SITE_TITLE}`} description="Join our programming club and connect with fellow developers">
@@ -25,117 +46,143 @@ import { SITE_TITLE, DISCORD_LINK } from "@/consts";
       
       <div class="relative z-10">
         <h2 class="text-2xl font-bold mb-6 text-white drop-shadow-sm border-b border-white/20 pb-3">
-          2025 progsu Signup
+          {formStructure?.info?.title || "2025 progsu Signup"}
         </h2>
         
-        <!-- Custom Form -->
-        <form id="join-form" class="space-y-6" novalidate onsubmit="return false;">
-          <!-- Event Interests -->
-          <div class="form-group">
-            <label class="form-label">Which of our events are you interested in? *</label>
-            <div class="checkbox-group" id="interests-group">
-              <label class="checkbox-item">
-                <input type="checkbox" name="entry.1453136131" value="100$ Rock-Paper-Scissors Tourny" class="form-checkbox" />
-                <span class="checkbox-label">100$ Rock-Paper-Scissors Tourny</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="entry.1453136131" value="Microsoft Company Tour" class="form-checkbox" />
-                <span class="checkbox-label">Microsoft Company Tour</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="entry.1453136131" value="Projects & Startups (any skill level)" class="form-checkbox" />
-                <span class="checkbox-label">Projects & Startups (any skill level)</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="entry.1453136131" value="Leetcode + Mock Interviews" class="form-checkbox" />
-                <span class="checkbox-label">Leetcode + Mock Interviews</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="entry.1453136131" value="Meta Panelist & Alumni" class="form-checkbox" />
-                <span class="checkbox-label">Meta Panelist & Alumni</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="entry.1453136131" value="Internship Guidance/Workshop" class="form-checkbox" />
-                <span class="checkbox-label">Internship Guidance/Workshop</span>
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="entry.1453136131" value="Hackathons & Competitions" class="form-checkbox" />
-                <span class="checkbox-label">Hackathons & Competitions</span>
-              </label>
+        {formStructure?.info?.description && (
+          <p class="text-white/80 mb-6 leading-relaxed">
+            {formStructure.info.description}
+          </p>
+        )}
+        
+        <!-- Error State -->
+        {formError && (
+          <div class="mb-6 p-4 rounded-lg bg-red-500/20 border border-red-500/50">
+            <h3 class="font-semibold text-red-300 mb-2">Unable to load form</h3>
+            <p class="text-red-200 text-sm">
+              There was an issue loading the form structure. Please try refreshing the page.
+            </p>
+            <details class="mt-2">
+              <summary class="text-red-300 text-xs cursor-pointer">Technical details</summary>
+              <p class="text-red-400/80 text-xs mt-1 font-mono">{formError}</p>
+            </details>
+          </div>
+        )}
+
+        <!-- Dynamic Form -->
+        {formStructure && (
+          <form id="join-form" class="space-y-6" novalidate onsubmit="return false;">
+            {formStructure.items?.map((item, index) => {
+              const question = item.questionItem?.question;
+              if (!question) return null;
+
+              const isRequired = question.required;
+              const title = item.title;
+              const description = item.description;
+              const questionId = question.questionId;
+              const fieldId = `field-${questionId}`;
+
+              // Text questions (name, email, phone, etc.)
+              if (question.textQuestion) {
+                const isEmail = title.toLowerCase().includes('email');
+                const isPhone = title.toLowerCase().includes('phone');
+                
+                return (
+                  <div class="form-group">
+                    <label for={fieldId} class="form-label">
+                      {title}{isRequired && ' *'}
+                    </label>
+                    {description && (
+                      <p class="text-sm text-white/60 mb-2">{description}</p>
+                    )}
+                    <input 
+                      type={isEmail ? 'email' : isPhone ? 'tel' : 'text'}
+                      id={fieldId}
+                      data-question-id={questionId}
+                      required={isRequired}
+                      class="form-input"
+                      placeholder={
+                        isEmail ? 'your.email@gsu.edu' :
+                        isPhone ? '4045551234' :
+                        `Enter your ${title.toLowerCase()}`
+                      }
+                      data-validate={isRequired ? (isEmail ? 'email' : isPhone ? 'phone' : 'required') : (isPhone ? 'phone' : '')}
+                    />
+                    {isPhone && (
+                      <>
+                        <p class="text-sm text-white/60 mt-2">
+                          Want text reminders about PROGgsu events, workshops, and tech opportunities? 
+                          Enter your number and opt in below. We'll only text about programming club activities. No spam ever.
+                        </p>
+                        <p class="text-xs text-yellow-400/70 mt-1">
+                          💡 Tip: Enter just the digits (e.g., 4045551234) for best compatibility
+                        </p>
+                      </>
+                    )}
+                    <div class="error-message" id={`${fieldId}-error`}></div>
+                  </div>
+                );
+              }
+
+              // Choice questions (checkboxes, radio buttons)
+              if (question.choiceQuestion) {
+                const isCheckbox = question.choiceQuestion.type === 'CHECKBOX';
+                const options = question.choiceQuestion.options || [];
+                
+                return (
+                  <div class="form-group">
+                    <label class="form-label">
+                      {title}{isRequired && ' *'}
+                    </label>
+                    {description && (
+                      <p class="text-sm text-white/60 mb-2">{description}</p>
+                    )}
+                    <div class={isCheckbox ? "checkbox-group" : "radio-group"} id={`${fieldId}-group`}>
+                      {options.map((option, optionIndex) => {
+                        const inputType = isCheckbox ? 'checkbox' : 'radio';
+                        const name = isCheckbox ? `question_${questionId}` : `question_${questionId}`;
+                        const inputId = `${fieldId}-option-${optionIndex}`;
+                        
+                        return (
+                          <label class="checkbox-item">
+                            <input 
+                              type={inputType}
+                              id={inputId}
+                              name={name}
+                              value={option.value}
+                              class="form-checkbox"
+                              data-question-id={questionId}
+                            />
+                            <span class="checkbox-label">{option.value}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                    <div class="error-message" id={`${fieldId}-error`}></div>
+                  </div>
+                );
+              }
+
+              return null;
+            })}
+
+            <!-- Submit Button -->
+            <div class="form-group">
+              <button type="button" class="submit-btn" id="submit-btn">
+                <span class="btn-text">Submit Application</span>
+                <span class="btn-glow"></span>
+              </button>
             </div>
-            <div class="error-message" id="interests-error"></div>
-          </div>
+          </form>
+        )}
 
-          <!-- Name Field -->
-          <div class="form-group">
-            <label for="name" class="form-label">Full Name *</label>
-            <input 
-              type="text" 
-              id="name" 
-              name="entry.776442728" 
-              required 
-              class="form-input"
-              placeholder="Enter your full name"
-              data-validate="required"
-            />
-            <div class="error-message" id="name-error"></div>
+        <!-- Fallback Form (if API fails) -->
+        {!formStructure && !formError && (
+          <div class="text-center py-8">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-400 mx-auto mb-4"></div>
+            <p class="text-white/60">Loading form...</p>
           </div>
-
-          <!-- Email Field -->
-          <div class="form-group">
-            <label for="email" class="form-label">Email *</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="entry.2137026288" 
-              required 
-              class="form-input"
-              placeholder="your.email@gsu.edu"
-              data-validate="email"
-            />
-            <div class="error-message" id="email-error"></div>
-          </div>
-
-          <!-- Phone Number Field -->
-          <div class="form-group">
-            <label for="phone" class="form-label">Phone Number (optional)</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              name="entry.2095083110" 
-              class="form-input"
-              placeholder="4045551234"
-              data-validate="phone"
-            />
-            <p class="text-sm text-white/60 mt-2">
-              Want text reminders about PROGgsu events, workshops, and tech opportunities? 
-              Enter your number and opt in below. We'll only text about programming club activities. No spam ever.
-            </p>
-            <p class="text-xs text-yellow-400/70 mt-1">
-              💡 Tip: Enter just the digits (e.g., 4045551234) for best compatibility
-            </p>
-            <div class="error-message" id="phone-error"></div>
-          </div>
-
-          <!-- SMS Consent -->
-          <div class="form-group">
-            <label class="checkbox-item">
-                              <input type="checkbox" name="entry.372796838" value="I agree to receive SMS updates from progsu. Msg & data rates may apply. I can opt out anytime." class="form-checkbox" />
-              <span class="checkbox-label">
-                I agree to receive SMS messages from PROGgsu about club events, workshops, and programming opportunities. 
-                Msg & data rates may apply. I can opt out anytime.
-              </span>
-            </label>
-          </div>
-
-          <!-- Submit Button -->
-          <div class="form-group">
-            <button type="button" class="submit-btn" id="submit-btn">
-              <span class="btn-text">Submit Application</span>
-              <span class="btn-glow"></span>
-            </button>
-          </div>
-        </form>
+        )}
         
         <!-- Fallback message for when JavaScript is disabled -->
         <noscript>
@@ -272,7 +319,8 @@ import { SITE_TITLE, DISCORD_LINK } from "@/consts";
     }
   }
 
-  .checkbox-group {
+  .checkbox-group,
+  .radio-group {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0.75rem;
@@ -282,13 +330,15 @@ import { SITE_TITLE, DISCORD_LINK } from "@/consts";
     transition: all 0.3s ease;
   }
 
-  .checkbox-group.error {
+  .checkbox-group.error,
+  .radio-group.error {
     border-color: rgba(239, 68, 68, 0.6);
     background: rgba(239, 68, 68, 0.05);
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
   }
 
-  .checkbox-group.success {
+  .checkbox-group.success,
+  .radio-group.success {
     border-color: rgba(34, 197, 94, 0.6);
     background: rgba(34, 197, 94, 0.05);
     box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
@@ -566,6 +616,30 @@ function initializeForm() {
       }
     }
     
+    // Generic group validation functions for dynamic forms
+    function showGroupError(group, message) {
+      const errorDiv = group.parentElement.querySelector('.error-message');
+      if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.classList.add('show');
+      }
+      group.classList.remove('success');
+      group.classList.add('error');
+    }
+    
+    function hideGroupError(group) {
+      const errorDiv = group.parentElement.querySelector('.error-message');
+      if (errorDiv) {
+        errorDiv.classList.remove('show');
+      }
+      group.classList.remove('error');
+    }
+    
+    function showGroupSuccess(group) {
+      group.classList.remove('error');
+      group.classList.add('success');
+    }
+    
     console.log('✅ Checkbox functions defined');
     
     // Field validation
@@ -676,15 +750,23 @@ function initializeForm() {
         }
       });
       
-      // Check interests
-      const checkedInterests = form.querySelectorAll('input[name="entry.1453136131"]:checked');
-      if (checkedInterests.length === 0) {
-        showCheckboxGroupError('Please select at least one event interest');
-        isValid = false;
-      } else {
-        hideCheckboxGroupError();
-        showCheckboxGroupSuccess();
-      }
+      // Check required checkbox/radio groups
+      const checkboxGroups = form.querySelectorAll('.checkbox-group, .radio-group');
+      checkboxGroups.forEach(group => {
+        const groupInputs = group.querySelectorAll('input[type="checkbox"], input[type="radio"]');
+        const isRequired = group.closest('.form-group').querySelector('.form-label').textContent.includes('*');
+        
+        if (isRequired) {
+          const checkedInputs = group.querySelectorAll('input:checked');
+          if (checkedInputs.length === 0) {
+            showGroupError(group, 'Please make a selection');
+            isValid = false;
+          } else {
+            hideGroupError(group);
+            showGroupSuccess(group);
+          }
+        }
+      });
       
       if (!isValid) {
         console.log('Validation failed');
@@ -702,18 +784,43 @@ function initializeForm() {
       currentSubmitBtn.querySelector('.btn-text').textContent = 'Submitting...';
       
       try {
-        // Prepare form data for API
-        const formData = {
-          name: form.querySelector('#name').value,
-          email: form.querySelector('#email').value,
-          phone: form.querySelector('#phone').value.replace(/\D/g, ''),
-          interests: Array.from(form.querySelectorAll('input[name="entry.1453136131"]:checked'))
-            .map(cb => cb.value),
-          smsConsent: form.querySelector('input[name="entry.372796838"]:checked') ? 
-            form.querySelector('input[name="entry.372796838"]').value : null
+        // Prepare form data for API - dynamically collect all fields
+        const formData = {};
+        
+        // Collect all inputs with question IDs
+        const inputs = form.querySelectorAll('[data-question-id]');
+        inputs.forEach(input => {
+          const questionId = input.dataset.questionId;
+          
+          if (input.type === 'checkbox') {
+            if (input.checked) {
+              if (!formData[questionId]) formData[questionId] = [];
+              formData[questionId].push(input.value);
+            }
+          } else if (input.type === 'radio') {
+            if (input.checked) {
+              formData[questionId] = input.value;
+            }
+          } else {
+            // Text inputs
+            let value = input.value;
+            if (input.type === 'tel') {
+              value = value.replace(/\D/g, ''); // Remove non-digits from phone
+            }
+            formData[questionId] = value;
+          }
+        });
+        
+        // Map to the format expected by the API
+        const apiData = {
+          name: formData['2e479368'] || '',
+          email: formData['7f606ef0'] || '',
+          phone: formData['7ce06e66'] || '',
+          interests: formData['569d1903'] || [],
+          smsConsent: formData['16386da6'] || null
         };
         
-        console.log('📤 Submitting to API:', formData);
+        console.log('📤 Submitting to API:', apiData);
         
         // Submit via API
         const response = await fetch('/api/forms/submit', {
@@ -721,7 +828,7 @@ function initializeForm() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(apiData)
         });
         
         const result = await response.json();
