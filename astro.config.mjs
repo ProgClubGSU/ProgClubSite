@@ -9,7 +9,9 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   output: "server",
   adapter: vercel({
-    webAnalytics: { enabled: true }
+    webAnalytics: { enabled: true },
+    imageService: true,
+    isr: true
   }),
   site: "https://proggsu.vercel.app",
   integrations: [
