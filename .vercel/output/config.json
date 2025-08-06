@@ -1,0 +1,105 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/forms/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms/debug/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms/get-structure/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms/search/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms/submit/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/forms/test/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/events/attendance/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/events/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/events(?:/(.*?))?/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/forms/feedback/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/history/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/interest/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/members/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/resources/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/rss\\.xml/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/thank-you/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/$",
+			"dest": "/_isr?x_astro_path=$0"
+		}
+	],
+	"images": {
+		"sizes": [
+			640,
+			750,
+			828,
+			1080,
+			1200,
+			1920,
+			2048,
+			3840
+		],
+		"domains": [],
+		"remotePatterns": []
+	}
+}

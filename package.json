@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "fmt": "prettier . -w",
-    "sync": "node scripts/sync-notion.js"
+    "sync": "node scripts/sync-notion.js",
+    "vercel-build": "astro build"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.3",

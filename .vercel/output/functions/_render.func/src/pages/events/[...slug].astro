@@ -1,0 +1,257 @@
+---
+import { getEvents, getEvent, renderPortableText } from "@/lib/sanity.js";
+import Layout from "@/layouts/Layout.astro";
+import ResourceButtons from "@/components/ResourceButtons.astro";
+
+export async function getStaticPaths() {
+  const events = await getEvents();
+  return events.map((event) => ({
+    params: { slug: event.slug.current },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const descriptionHtml = renderPortableText(event.description);
+
+// Helper function to get event status
+function getEventStatus(date) {
+  if (!date) return 'tbd';
+  
+  const now = new Date();
+  const eventDate = new Date(date);
+  
+  if (isNaN(eventDate.getTime())) return 'tbd';
+  
+  eventDate.setHours(0, 0, 0, 0);
+  const today = new Date(now);
+  today.setHours(0, 0, 0, 0);
+  
+  if (eventDate < today) return 'past';
+  if (eventDate.getTime() === today.getTime()) return 'active';
+  return 'upcoming';
+}
+
+const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
+const eventStatus = getEventStatus(eventDate);
+
+// Format date for display
+const formattedDate = event.date?.isTBD ? 'TBD' : (eventDate ? eventDate.toLocaleDateString(undefined, { 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric' 
+}) : 'TBA');
+
+// Format location - handle both string and object types
+const locationText = event.location?.isTBD ? 'TBD' : 
+                    (typeof event.location === 'string' ? event.location : 
+                     (event.location?.value || 'TBA'));
+
+// Format time - handle both string and object types  
+const timeText = event.time?.isTBD ? 'TBD' : 
+                (typeof event.time === 'string' ? event.time : 
+                 (event.time?.value || null));
+
+// Status text for display
+const statusText = eventStatus === 'tbd' ? 'TBD' : 
+                  eventStatus === 'past' ? 'Past Event' :
+                  eventStatus === 'active' ? 'Happening Today' : 'Upcoming';
+---
+
+<Layout hideHomeButton={true}>
+  <!-- Breadcrumb -->
+  <div class="max-w-4xl mx-auto px-4 mb-6 mt-2">
+    <nav class="flex items-center gap-2 text-white/80 text-sm" aria-label="Breadcrumb">
+      <a href="/" class="hover:underline">Home</a>
+      <span>/</span>
+      <a href="/events" class="hover:underline">Events</a>
+      <span>/</span>
+      <span class="text-white">{event.title}</span>
+    </nav>
+  </div>
+
+  <!-- Event Header -->
+  <div class="max-w-4xl mx-auto mb-8 px-4">
+    <div class="text-center mb-8">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight break-words">
+        {event.title}
+      </h1>
+      {event.description && typeof event.description === 'string' && (
+        <p class="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
+          {event.description}
+        </p>
+      )}
+    </div>
+
+    <!-- Event Meta Information -->
+    <div class="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4 backdrop-blur-sm mb-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Date -->
+        <div class="text-center">
+          <div class="flex items-center justify-center gap-1.5 mb-2">
+            <svg class="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"></path>
+            </svg>
+            <span class="text-xs text-white/70 uppercase tracking-wide font-medium">Date</span>
+          </div>
+          <div class="text-sm sm:text-base font-semibold text-white">
+            {formattedDate}
+          </div>
+        </div>
+        
+        <!-- Time -->
+        <div class="text-center">
+          <div class="flex items-center justify-center gap-1.5 mb-2">
+            <svg class="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-xs text-white/70 uppercase tracking-wide font-medium">Time</span>
+          </div>
+          <div class="text-sm sm:text-base font-semibold text-white">
+            {timeText || 'TBA'}
+          </div>
+        </div>
+        
+        <!-- Location -->
+        <div class="text-center">
+          <div class="flex items-center justify-center gap-1.5 mb-2">
+            <svg class="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="text-xs text-white/70 uppercase tracking-wide font-medium">Location</span>
+          </div>
+          <div class="text-sm sm:text-base font-semibold text-white break-words px-2">
+            {locationText}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources Section -->
+  <div class="max-w-4xl mx-auto mb-6 px-4">
+    <div class="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4 backdrop-blur-sm">
+      <h2 class="text-base sm:text-lg font-bold text-white mb-3 flex items-center gap-2">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        Resources
+      </h2>
+      {event.resources && event.resources.length > 0 ? (
+        <ResourceButtons resources={event.resources} />
+      ) : (
+        <p class="text-xs sm:text-sm text-white/60 italic">No resources available for this event.</p>
+      )}
+    </div>
+  </div>
+
+  <!-- Event Details Section -->
+  {event.description && typeof event.description === 'object' && descriptionHtml && (
+    <div class="max-w-4xl mx-auto mb-6 px-4">
+      <div class="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4 backdrop-blur-sm">
+        <div class="mb-4">
+          <h2 class="text-base sm:text-lg font-bold text-white mb-3">Event Details</h2>
+          
+          <!-- Special Tags -->
+          {event.specialTags && event.specialTags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-4">
+              {event.specialTags.map((tag) => (
+                <span class={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium border 
+                  ${tag.color === 'blue' ? 'bg-blue-500/20 border-blue-400/30 text-blue-300' : ''}
+                  ${tag.color === 'green' ? 'bg-green-500/20 border-green-400/30 text-green-300' : ''}
+                  ${tag.color === 'red' ? 'bg-red-500/20 border-red-400/30 text-red-300' : ''}
+                  ${tag.color === 'yellow' ? 'bg-yellow-500/20 border-yellow-400/30 text-yellow-300' : ''}
+                  ${tag.color === 'purple' ? 'bg-purple-500/20 border-purple-400/30 text-purple-300' : ''}
+                  ${tag.color === 'pink' ? 'bg-pink-500/20 border-pink-400/30 text-pink-300' : ''}
+                  ${tag.color === 'indigo' ? 'bg-indigo-500/20 border-indigo-400/30 text-indigo-300' : ''}
+                  ${tag.color === 'gray' ? 'bg-gray-500/20 border-gray-400/30 text-gray-300' : ''}
+                  ${tag.color === 'teal' ? 'bg-teal-500/20 border-teal-400/30 text-teal-300' : ''}
+                  ${tag.color === 'orange' ? 'bg-orange-500/20 border-orange-400/30 text-orange-300' : ''}
+                `}>
+                  {tag.name}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        
+        <div 
+          class="prose prose-sm sm:prose-base md:prose-lg prose-invert max-w-none [&>*:last-child]:mb-0"
+          set:html={descriptionHtml} 
+        />
+      </div>
+    </div>
+  )}
+
+  <!-- Event Gallery Section -->
+  {event.gallery && event.gallery.length > 0 && (
+    <div class="max-w-4xl mx-auto mb-6 px-4">
+      <h2 class="text-base sm:text-lg font-bold text-white mb-3">Event Gallery</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {event.gallery.map((image) => (
+          <div class="group cursor-pointer rounded-lg overflow-hidden bg-white/5 border border-white/10">
+            <img 
+              src={image.asset?.url} 
+              alt={image.alt || 'Event gallery image'}
+              class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Event Recap Section -->
+  {event.post && (
+    <div class="max-w-4xl mx-auto mb-6 px-4">
+      <div class="bg-white/5 border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4 backdrop-blur-sm">
+        <h2 class="text-base sm:text-lg font-bold text-white mb-3">Event Recap</h2>
+        <div class="prose prose-sm sm:prose-base prose-invert max-w-none">
+          <div set:html={renderPortableText(event.post)} />
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Return to Events Button -->
+  <div class="max-w-4xl mx-auto px-4 mt-8 mb-8">
+    <div class="text-center">
+      <a 
+        href="/events" 
+        class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Return to All Events
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Mobile responsive styles */
+  @media (max-width: 640px) {
+    .prose {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .prose h1, .prose h2, .prose h3 {
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+    
+    .prose p {
+      margin-bottom: 0.75rem;
+    }
+  }
+  
+  .break-words {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+</style>
