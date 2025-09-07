@@ -114,12 +114,20 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Poorav Rawat",
-      role: "Director of Innovation and Outreach",
+      role: "Vice President of Innovation and Outreach",
       description: "A guy who loves to talk and build. Driving strategic outreach for the Progsu organization by connecting with campus partners, student organizations, and tech industry leaders.",
       github: "pooravrawat1",
       linkedin: "pooravrawat",
       specialties: ["Leadership", "Soccer and Basketball", "Thrifting","Creativity","Height: NOT 6'5\""]
+    },
+    {
+      name: "Brian Johnson",
+      role: "Director of Technology",
+      description: "",
+      linkedin: "brianjohnson360",
+      specialties: ["Making Music", "Cooking", "Learning Spanish", "Interested in Mobile Development and AI/ML"]
     }
+
   ],
   
   // =============================================================================
