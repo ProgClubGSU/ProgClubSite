@@ -100,7 +100,7 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Evan Anderson",
-      role: "Vice President",
+      role: "VP of Operations",
       description: "Vice President serving under Joey Zhang's leadership, bringing a unique blend of creative and technical skills to help guide PROGgsu's continued growth.",
       linkedin: "evan-anderson636",
       specialties: ["Fashion Design", "Cooking", "App Dev", "Data Analytics"]
@@ -114,19 +114,69 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Poorav Rawat",
-      role: "Director of Innovation and Outreach",
+      role: "VP of Innovation and Outreach",
       description: "A guy who loves to talk and build. Driving strategic outreach for the Progsu organization by connecting with campus partners, student organizations, and tech industry leaders.",
       github: "pooravrawat1",
       linkedin: "pooravrawat",
       specialties: ["Leadership", "Soccer and Basketball", "Thrifting","Creativity","Height: NOT 6'5\""]
     },
+     {
+      name: "Vaishnavi Adepu",
+      role: "VP of Operations",
+      description: "",
+      linkedin: "vaishnavi-adepu444",
+      specialties: ["Dancing", "Cooking", "Music"]
+    },
     {
-      name: "Brian Johnson",
-      role: "Director of Technology",
-      description: "Building and maintaining PROGgsu’s github and projects, mentoring devs,",
-      github: "brianjohnson360",
-      specialties: ["Making Music", "Cooking", "Learning Spanish", "Mobile dev and AI/ML"]
-    }
+      name: "Jamal Ford",
+      role: "Director of Membership",
+      description: "",
+      github: "JamalFord",
+      linkedin: "jamalford",
+      specialties: ["Jump-Roping", "Video Games", "Anime","Python","Cybersecurity"]
+    },
+    {
+      name: "Liam Ellison",
+      role: "VP of Technology",
+      description: "",
+      github: "liamellison02",
+      linkedin: "liam-ellison",
+      specialties: ["Software Development"]
+    },
+    {
+      name: "Yasmine Anderson",
+      role: "Marketing Team",
+      description: "",
+      linkedin: "yasmine-anderson-044b21250",
+      specialties: ["Cybersecurity","Data Analytics","Problem Solving", "Social Media Content Creation"]
+    },
+    {
+      name: "Arturo",
+      role: "Marketing Team",
+      description: "",
+      specialties: ["Photography","Video Games","Hands on Things"]
+    },
+    {
+      name: "Kailee Smith",
+      role: "Marketing Team",
+      description: "",
+      linkedin: "kailee-smith-19a759381",
+      specialties: ["Drawing","Video Games","Hands on Things"]
+    },
+    {
+      name: "Tyra Smith",
+      role: "Marketing Team",
+      description: "",
+      linkedin: "tyra-smith-5529a4267",
+      specialties: ["Drawing","Reading","Gaming", "Music"]
+    },
+    {
+      name: "Allie Chang",
+      role: "Marketing Team",
+      description: "",
+      linkedin: "alliejchang",
+      specialties: ["Cameras","Food","Making Matcha", "Friends and Family"]
+    },
 
   ],
   
