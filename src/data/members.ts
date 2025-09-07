@@ -119,7 +119,15 @@ export const membersByYear: MembersByYear = {
       github: "pooravrawat1",
       linkedin: "pooravrawat",
       specialties: ["Leadership", "Soccer and Basketball", "Thrifting","Creativity","Height: NOT 6'5\""]
+    },
+    {
+      name: "Brian Johnson",
+      role: "Director of Technology",
+      description: "Building and maintaining PROGgsu’s github and projects, mentoring devs,",
+      github: "brianjohnson360",
+      specialties: ["Making Music", "Cooking", "Learning Spanish", "Mobile dev and AI/ML"]
     }
+
   ],
   
   // =============================================================================
