@@ -144,6 +144,13 @@ export const membersByYear: MembersByYear = {
       specialties: ["Software Development"]
     },
     {
+      name: "Brian Johnson",
+      role: "Director of Technology",
+      description: "Building and maintaining PROGgsu’s github and projects, mentoring devs,",
+      github: "brianjohnson360",
+      specialties: ["Making Music", "Cooking", "Learning Spanish", "Mobile dev and AI/ML"]
+    },
+    {
       name: "Yasmine Anderson",
       role: "Marketing Team",
       description: "",
