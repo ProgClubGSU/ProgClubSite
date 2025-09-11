@@ -107,7 +107,7 @@ export function getRolePriority(role: string): number {
     "Founding Academic Advisor": 2,
     "Academic Advisor": 3,
     
-    // === LEADERSHIP ROLES ===
+    // === CORE LEADERSHIP ROLES ===
     "Vice President": 4,
     "Founding VP": 4,
     "Founding Member": 5,
@@ -120,12 +120,12 @@ export function getRolePriority(role: string): number {
     
     // === DIRECTOR/LEAD ROLES ===
     "Director of Events": 8,
-    "Director of Technology": 8,
-    "Tech Chair": 8,
+    "Director": 8,
     "Event Lead": 8,
     
     // === EXECUTIVE & GENERAL ROLES ===
     "Exec": 9,
+    "Officer": 9,
     "Server Owner": 10,
     "Member": 11
   };

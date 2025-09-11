@@ -13,7 +13,7 @@
  * 4. Save the file - changes appear automatically on the website!
  * 
  * 📋 REQUIRED FIELDS: name, role
- * 🎯 OPTIONAL FIELDS: description, github, linkedin, specialties
+ * 🎯 OPTIONAL FIELDS: description, major, team, github, linkedin, specialties
  * 
  * 🔍 HOW TO ADD NEW MEMBERS:
  * - Copy an existing member object structure
@@ -50,6 +50,12 @@ export interface Member {
   
   /** Official role/position in the club (required) */
   role: string;
+  
+  /** School major (optional) */
+  major?: string;
+  
+  /** Team or domain within the club (e.g., Technology, Marketing, Events) (optional) */
+  team?: string;
   
   /** Brief description of their contributions and background (optional) */
   description?: string;
@@ -93,33 +99,134 @@ export const membersByYear: MembersByYear = {
     {
       name: "Joey Zhang",
       role: "5th President",
+      major: "Math + CS",
+      team: "Executive",
       description: "Current 5th President leading PROGgsu into the future! Passionate about building community and helping fellow programmers grow. Math + CS @ GSU, building InfiniteMonke.",
       github: "joeyzhang-dev",
       linkedin: "joeyzhangdev",
       specialties: ["Leadership", "Bench Press", "Monkeytype", "Eating food", "Height: 6'5\""]
     },
     {
+      name: "Liam Ellison",
+      role: "Vice President",
+      major: "Math + CS",
+      team: "Executive",
+      description: "Head of Technology & Innovation. Doesn't like to talk about himself, but he hopes to be considered 'cracked' one day.",
+      github: "liamellison02",
+      linkedin: "liam-ellison/",
+      specialties: ["Competitive Programming", "Poker", "Basketball", "Options Trading", "Drumming"]
+    },
+    {
+      name: "Poorav Rawat",
+      role: "Vice President",
+      major: "CS",
+      team: "Outreach",
+      description: "A guy who loves to talk and build. Driving strategic outreach for the Progsu organization by connecting with campus partners, student organizations, and tech industry leaders.",
+      github: "pooravrawat1",
+      linkedin: "pooravrawat",
+      specialties: ["Leadership", "Soccer and Basketball", "Thrifting","Creativity","Height: NOT 6'5\""]
+    },
+    {
+      name: "Vaishnavi Adepu",
+      role: "Vice President",
+      major: "Honors CS",
+      team: "Executive",
+      description: "Head of Operations. Loves cooking and dancing.",
+      github: "naviadepu",
+      linkedin: "vaishnavi-adepu444",
+      specialties: ["Dancing", "Cooking", "Music"]
+    },
+    {
       name: "Evan Anderson",
       role: "Vice President",
+      major: "Honors CIS",
+      team: "Executive",
       description: "Vice President serving under Joey Zhang's leadership, bringing a unique blend of creative and technical skills to help guide PROGgsu's continued growth.",
       linkedin: "evan-anderson636",
       specialties: ["Fashion Design", "Cooking", "App Dev", "Data Analytics"]
     },
     {
       name: "Ibe Mohammed Ali",
-      role: "Director of Technology",
-      description: "Building and maintaining PROGgsu’s github and projects, mentoring devs, and making sure things break less than my sleep schedule.",
+      role: "Director",
+      major: "Math + CS",
+      team: "Technology",
+      description: "Building and maintaining PROGgsu's github and projects, mentoring devs, and making sure things break less than my sleep schedule.",
       github: "ibeeeees",
       specialties: ["Software Development", "Mentorship", "Debugging at 2 AM", "Good Ball"]
     },
     {
-      name: "Poorav Rawat",
-      role: "Director of Innovation and Outreach",
-      description: "A guy who loves to talk and build. Driving strategic outreach for the Progsu organization by connecting with campus partners, student organizations, and tech industry leaders.",
-      github: "pooravrawat1",
-      linkedin: "pooravrawat",
-      specialties: ["Leadership", "Soccer and Basketball", "Thrifting","Creativity","Height: NOT 6'5\""]
-    }
+      name: "Jamal Ford",
+      role: "Director",
+      major: "CS",
+      team: "Outreach",
+      description: "Head of Membership.",
+      github: "JamalFord",
+      linkedin: "jamalford",
+      specialties: ["Jump-Roping", "Video Games", "Anime","Python","Cybersecurity"]
+    },
+    {
+      name: "Brian Johnson",
+      role: "Director",
+      major: "CS (M.S.)",
+      team: "Technology",
+      description: "",
+      github: "brianjohnson360",
+      specialties: ["Making Music", "Cooking", "Learning Spanish", "Mobile dev and AI/ML"]
+    },
+    {
+      name: "Yasmine Anderson",
+      role: "Officer",
+      major: "CS",
+      team: "Marketing",
+      description: "",
+      linkedin: "yasmine-anderson-044b21250",
+      specialties: ["Cybersecurity","Data Analytics","Problem Solving", "Social Media Content Creation", "Sports"]
+    },
+    {
+      name: "Arturo",
+      role: "Officer",
+      major: "CS",
+      team: "Marketing",
+      description: "",
+      specialties: ["Photography","Video Games","Hands on Things"]
+    },
+    {
+      name: "Kailee Smith",
+      role: "Officer",
+      major: "CS",
+      team: "Marketing",
+      description: "",
+      linkedin: "kailee-smith-19a759381",
+      specialties: ["Drawing","Video Games",]
+    },
+    {
+      name: "Tyra Smith",
+      role: "Officer",
+      major: "CS",
+      team: "Marketing",
+      description: "",
+      linkedin: "tyra-smith-5529a4267",
+      specialties: ["Drawing","Reading","Gaming", "Music"]
+    },
+    {
+      name: "Allie Chang",
+      role: "Officer",
+      major: "Marketing",
+      team: "Marketing",
+      description: "",
+      linkedin: "alliejchang",
+      specialties: ["Cameras","Food","Making Matcha", "Friends and Family"]
+    },
+    {
+      name: "Gregory James",
+      role: "Officer",
+      major: "CIS",
+      team: "Outreach",
+      description: "",
+      linkedin: "gregory-james-560716237",
+      specialties: ["Making beats", "Playing soccer", "Coding/scripting", "Cybersecurity"]
+    },
+
   ],
   
   // =============================================================================

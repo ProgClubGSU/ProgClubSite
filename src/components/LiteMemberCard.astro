@@ -50,6 +50,14 @@ const { member, year } = Astro.props;
         <span class="text-xs font-medium uppercase tracking-wide text-white/90">
           {member.role}
         </span>
+        {member.team ? (
+          <>
+            <span class="text-white/50 text-xs">•</span>
+            <span class="text-[10px] font-medium px-2 py-0.5 rounded-full border border-white/20 text-white/90 bg-white/10">
+              {member.team}
+            </span>
+          </>
+        ) : null}
       </div>
     </div>
   </div>
@@ -58,12 +66,15 @@ const { member, year } = Astro.props;
   <div class="absolute top-0 right-0 w-32 h-32 transform translate-x-8 -translate-y-8 bg-white/[0.08] rounded-full"></div>
 
   <!-- Member Info (exact same structure as original) -->
-  <div class="relative p-4 pt-12 z-10">
+  <div class="relative p-4 pt-16 z-10">
     <!-- Name and Description -->
     <div class="mb-4">
       <h3 class="text-lg font-bold mb-2 transition-colors duration-300 text-white group-hover:text-cyan-300 drop-shadow-lg">
         {member.name}
       </h3>
+      {member.major ? (
+        <p class="text-xs text-white/80 mb-2">Major: {member.major}</p>
+      ) : null}
       {member.description ? (
         <p class="text-xs font-sans text-white/90 leading-relaxed">
           {member.description}
