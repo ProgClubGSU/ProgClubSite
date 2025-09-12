@@ -152,7 +152,8 @@ export const membersByYear: MembersByYear = {
       team: "Technology",
       description: "Building and maintaining PROGgsu's github and projects, mentoring devs, and making sure things break less than my sleep schedule.",
       github: "ibeeeees",
-      specialties: ["Software Development", "Mentorship", "Debugging at 2 AM", "Good Ball"]
+      linkedin: "ibe-mohammedali/",
+      specialties: ["Software Development", "Trading", "Debugging at 2 AM", "Good Ball", "Mentorship"]
     },
     {
       name: "Jamal Ford",
