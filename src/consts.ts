@@ -13,6 +13,7 @@ export const DISCORD_LINK = "https://discord.gg/BgKg9gskM2";
 export const EMAIL_LINK = "mailto:programmingclubatgsu@gmail.com";
 export const INSTAGRAM_LINK = "https://www.instagram.com/progclubgsu/";
 export const LINKEDIN_LINK = "https://www.linkedin.com/company/progsu";
+export const GITHUB_LINK = "https://github.com/ProgClubGSU"
 export const SOCIAL_LINKS = {
   discord: DISCORD_LINK,
   email: EMAIL_LINK,
