@@ -28,34 +28,74 @@ import { QUOTE, SITE_TITLE } from "@/consts";
     </div>
   </div>
   
-  <!-- Floating Geometric Shapes -->
-  <div class="floating-shapes">
-    <div class="floating-shape shape-1"></div>
-    <div class="floating-shape shape-2"></div>
-    <div class="floating-shape shape-3"></div>
-  </div>
   
-  <div class="flex items-center justify-between w-full h-full relative z-10 px-8 md:px-16">
-    <!-- Left Side - Text Content -->
-    <div class="flex flex-col justify-center flex-1">
-      <!-- Main Title -->
-      <h1 class="progsu-brand font-bold text-6xl md:text-8xl lg:text-[10rem] leading-none tracking-tight">
-        {SITE_TITLE}
-      </h1>
-      
-      <!-- Tagline -->
-      <h2 class="text-white/70 font-light mt-4 text-xl md:text-2xl lg:text-3xl">
-        at gsu
-      </h2>
+  <!-- Top Left Corner - Barcode and progsu text -->
+  <div class="absolute top-8 left-8 z-20">
+    <!-- Barcode Element -->
+    <div class="mb-1">
+      <svg width="140" height="30" viewBox="0 0 140 30" class="opacity-80">
+        <!-- Generate barcode-like pattern -->
+        <rect x="0" y="0" width="2" height="30" fill="white"/>
+        <rect x="4" y="0" width="1" height="30" fill="white"/>
+        <rect x="7" y="0" width="3" height="30" fill="white"/>
+        <rect x="12" y="0" width="1" height="30" fill="white"/>
+        <rect x="15" y="0" width="2" height="30" fill="white"/>
+        <rect x="19" y="0" width="1" height="30" fill="white"/>
+        <rect x="22" y="0" width="4" height="30" fill="white"/>
+        <rect x="28" y="0" width="1" height="30" fill="white"/>
+        <rect x="31" y="0" width="2" height="30" fill="white"/>
+        <rect x="35" y="0" width="1" height="30" fill="white"/>
+        <rect x="38" y="0" width="3" height="30" fill="white"/>
+        <rect x="43" y="0" width="1" height="30" fill="white"/>
+        <rect x="46" y="0" width="2" height="30" fill="white"/>
+        <rect x="50" y="0" width="1" height="30" fill="white"/>
+        <rect x="53" y="0" width="4" height="30" fill="white"/>
+        <rect x="59" y="0" width="1" height="30" fill="white"/>
+        <rect x="62" y="0" width="2" height="30" fill="white"/>
+        <rect x="66" y="0" width="3" height="30" fill="white"/>
+        <rect x="71" y="0" width="1" height="30" fill="white"/>
+        <rect x="74" y="0" width="2" height="30" fill="white"/>
+        <rect x="78" y="0" width="1" height="30" fill="white"/>
+        <rect x="81" y="0" width="3" height="30" fill="white"/>
+        <rect x="86" y="0" width="1" height="30" fill="white"/>
+        <rect x="89" y="0" width="2" height="30" fill="white"/>
+        <rect x="93" y="0" width="4" height="30" fill="white"/>
+        <rect x="99" y="0" width="1" height="30" fill="white"/>
+        <rect x="102" y="0" width="2" height="30" fill="white"/>
+        <rect x="106" y="0" width="1" height="30" fill="white"/>
+        <rect x="109" y="0" width="3" height="30" fill="white"/>
+        <rect x="114" y="0" width="1" height="30" fill="white"/>
+        <rect x="117" y="0" width="2" height="30" fill="white"/>
+        <rect x="121" y="0" width="1" height="30" fill="white"/>
+        <rect x="124" y="0" width="4" height="30" fill="white"/>
+        <rect x="130" y="0" width="1" height="30" fill="white"/>
+        <rect x="133" y="0" width="2" height="30" fill="white"/>
+        <rect x="137" y="0" width="3" height="30" fill="white"/>
+      </svg>
     </div>
     
-    <!-- Right Side - Massive Logo with Rotating Text -->
-    <div class="relative flex items-center justify-center flex-1">
+    <!-- progsu text -->
+    <h1 class="progsu-brand font-bold text-2xl md:text-3xl text-white">
+      {SITE_TITLE}
+    </h1>
+  </div>
+  
+  <!-- Bottom Left Corner - Collection info -->
+  <div class="absolute bottom-8 left-8 z-20">
+    <div class="text-white font-bold">
+      <p class="text-lg md:text-xl mb-1">FW 2025 // ATL</p>
+      <p class="text-sm md:text-base opacity-80">"REBIRTH GEN"</p>
+    </div>
+  </div>
+  
+  <!-- Right Side - Massive Logo with Rotating Text -->
+  <div class="flex items-center justify-end w-full h-full relative z-10 pr-16">
+    <div class="relative flex items-center justify-center">
       <!-- Main Logo - Huge and Grayed Out -->
       <img
         src="/progsu-logo.png"
         alt="progsu Logo"
-        class="w-80 h-80 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] object-contain opacity-20 grayscale"
+        class="w-96 h-96 md:w-[32rem] md:h-[32rem] lg:w-[40rem] lg:h-[40rem] object-contain opacity-20 grayscale"
       />
       
       <!-- Rotating Circular Text -->
@@ -66,9 +106,9 @@ import { QUOTE, SITE_TITLE } from "@/consts";
           </defs>
           <text class="fill-gray-400 text-sm font-medium tracking-widest uppercase" style="font-family: 'Helvetica Neue', sans-serif;">
             <textPath href="#circle-path" startOffset="0%">
-              do cool stuff • build cool sh*t • hackers • builders • innovators • creators • coders • dreamers • makers • built by students • at gsu • programming club • tech enthusiasts • problem solvers • 
+              do cool stuff • build cool sh*t • hackers • builders • innovators • creators • creatives • dreamers • makers • at gsu • x
             </textPath>
-          </text>
+          </text> 
         </svg>
       </div>
     </div>

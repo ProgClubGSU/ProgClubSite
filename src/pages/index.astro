@@ -62,6 +62,83 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
 
 <Layout title={SITE_TITLE}>
   <Hero />
+  
+  <!-- Our Mission Section -->
+  <section class="py-20 px-8 bg-black relative overflow-hidden">
+    <!-- Subtle grid background -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="w-full h-full" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <!-- Section Title -->
+      <div class="mb-16">
+        <h2 class="text-4xl md:text-6xl font-bold text-white mb-4" style="font-family: 'Helvetica Neue', sans-serif;">
+          Our Mission
+        </h2>
+        <div class="w-20 h-1 bg-white/20"></div>
+      </div>
+      
+      <!-- Mission Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Side - Mission Text -->
+        <div class="space-y-8">
+          <div class="space-y-6">
+            <p class="text-xl md:text-2xl text-white/90 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              We're building the next generation of <span class="text-white font-semibold">creators</span>, <span class="text-white font-semibold">innovators</span>, and <span class="text-white font-semibold">problem solvers</span> at Georgia State University.
+            </p>
+            
+            <p class="text-lg md:text-xl text-white/70 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              Through hands-on workshops, collaborative projects, and a supportive community, we empower students to transform ideas into reality and shape the future of technology.
+            </p>
+          </div>
+          
+          <!-- Mission Values -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div class="text-center md:text-left">
+              <div class="text-2xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">Learn</div>
+              <div class="text-sm text-white/60 uppercase tracking-wider" style="font-family: 'Helvetica Neue', sans-serif;">Master new technologies</div>
+            </div>
+            <div class="text-center md:text-left">
+              <div class="text-2xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">Build</div>
+              <div class="text-sm text-white/60 uppercase tracking-wider" style="font-family: 'Helvetica Neue', sans-serif;">Create meaningful projects</div>
+            </div>
+            <div class="text-center md:text-left">
+              <div class="text-2xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">Connect</div>
+              <div class="text-sm text-white/60 uppercase tracking-wider" style="font-family: 'Helvetica Neue', sans-serif;">Join our community</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Side - Visual Element -->
+        <div class="relative">
+          <!-- Large decorative number -->
+          <div class="text-[12rem] md:text-[16rem] font-bold text-white/5 absolute -top-20 -right-10 select-none" style="font-family: 'Helvetica Neue', sans-serif;">
+            01
+          </div>
+          
+          <!-- Stats or highlight boxes -->
+          <div class="relative z-10 space-y-6">
+            <div class="bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
+              <div class="text-3xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">500+</div>
+              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">Students Empowered</div>
+            </div>
+            
+            <div class="bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
+              <div class="text-3xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">100+</div>
+              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">Projects Built</div>
+            </div>
+            
+            <div class="bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
+              <div class="text-3xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">24/7</div>
+              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">Community Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <Section
     title="Events"
     className={"bg-gradient-to-b from-black/70 from-[5%] to-black via-black"}
