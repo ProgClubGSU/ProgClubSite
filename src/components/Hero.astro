@@ -43,6 +43,18 @@ import { QUOTE, SITE_TITLE } from "@/consts";
     <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none"></div>
   </div>
   
+  <!-- ASCII Art Background Layer -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-5">
+    <img 
+      src="/reiascii.png" 
+      alt="ASCII Art Background" 
+      class="max-w-2xl max-h-2xl object-contain opacity-10 grayscale select-none"
+      style="filter: brightness(0) invert(1); mix-blend-mode: overlay;"
+    />
+    <!-- Subtle radial fade to make it even more subtle -->
+    <div class="absolute inset-0 bg-gradient-radial from-transparent via-black/20 to-black/40"></div>
+  </div>
+  
   
   <!-- Top Left Corner - Barcode and progsu text -->
   <div class="absolute top-8 left-8 z-20">
@@ -110,7 +122,7 @@ import { QUOTE, SITE_TITLE } from "@/consts";
       <img
         src="/progsu-logo.png"
         alt="progsu Logo"
-        class="w-96 h-96 md:w-[32rem] md:h-[32rem] lg:w-[40rem] lg:h-[40rem] object-contain opacity-20 grayscale"
+        class="w-48 h-48 md:w-[16rem] md:h-[16rem] lg:w-[20rem] lg:h-[20rem] object-contain opacity-20 grayscale"
       />
       
       <!-- Rotating Circular Text -->

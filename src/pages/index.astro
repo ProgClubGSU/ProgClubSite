@@ -64,7 +64,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
   <Hero />
   
   <!-- Our Mission Section -->
-  <section class="py-20 px-8 bg-black relative overflow-hidden">
+  <section class="py-16 px-8 bg-black relative overflow-hidden">
     <!-- Continuing grid background with fade-in effect -->
     <div class="absolute inset-0">
       <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
@@ -73,115 +73,207 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
     </div>
     
     <div class="max-w-6xl mx-auto relative z-10">
-      <!-- Section Title -->
-      <div class="mb-16">
-        <h2 class="text-4xl md:text-6xl font-bold text-white mb-4" style="font-family: 'Helvetica Neue', sans-serif;">
-          Our Mission
-        </h2>
-        <div class="w-20 h-1 bg-white/20"></div>
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            our mission
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // building the future of tech
+          </div>
+        </div>
+        
+        <!-- Mission Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [01]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            core
+          </div>
+        </div>
       </div>
       
-      <!-- Mission Content -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <!-- Left Side - Mission Text -->
-        <div class="space-y-8">
-          <div class="space-y-6">
-            <p class="text-xl md:text-2xl text-white/90 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-              We're building the next generation of <span class="text-white font-semibold">creators</span>, <span class="text-white font-semibold">innovators</span>, and <span class="text-white font-semibold">problem solvers</span> at Georgia State University.
-            </p>
-            
-            <p class="text-lg md:text-xl text-white/70 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-              Through hands-on workshops, collaborative projects, and a supportive community, we empower students to transform ideas into reality and shape the future of technology.
-            </p>
+      <!-- Mission Content - Minimal & Profound -->
+      <div class="max-w-4xl mx-auto text-center space-y-12">
+        <!-- Core Mission Statement -->
+        <div class="space-y-6">
+          <h3 class="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-tight tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            we are creatives<br/>
+            <span class="font-bold">we create the future</span>
+          </h3>
+          
+          <p class="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
+            ATL's most creative students with the most amazing ideas
+          </p>
+        </div>
+        
+        <!-- Philosophy Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 mt-16">
+          <div class="space-y-3">
+            <div class="w-12 h-12 mx-auto md:mx-0 bg-white/5 rounded-full flex items-center justify-center">
+              <div class="w-3 h-3 bg-white rounded-full"></div>
+            </div>
+            <div class="text-lg font-medium text-white" style="font-family: 'Helvetica Neue', sans-serif;">think different</div>
+            <div class="text-sm text-white/50 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              challenge conventions.<br/>question everything.<br/>innovate beyond limits.
+            </div>
           </div>
           
-          <!-- Mission Values -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <div class="text-center md:text-left">
-              <div class="text-2xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">Learn</div>
-              <div class="text-sm text-white/60 uppercase tracking-wider" style="font-family: 'Helvetica Neue', sans-serif;">Master new technologies</div>
+          <div class="space-y-3">
+            <div class="w-12 h-12 mx-auto md:mx-0 bg-white/5 rounded-full flex items-center justify-center">
+              <div class="w-3 h-3 bg-white rounded-full"></div>
             </div>
-            <div class="text-center md:text-left">
-              <div class="text-2xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">Build</div>
-              <div class="text-sm text-white/60 uppercase tracking-wider" style="font-family: 'Helvetica Neue', sans-serif;">Create meaningful projects</div>
+            <div class="text-lg font-medium text-white" style="font-family: 'Helvetica Neue', sans-serif;">build fearlessly</div>
+            <div class="text-sm text-white/50 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              fail fast. learn faster.<br/>iterate relentlessly.<br/>ship with confidence.
             </div>
-            <div class="text-center md:text-left">
-              <div class="text-2xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">Connect</div>
-              <div class="text-sm text-white/60 uppercase tracking-wider" style="font-family: 'Helvetica Neue', sans-serif;">Join our community</div>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="w-12 h-12 mx-auto md:mx-0 bg-white/5 rounded-full flex items-center justify-center">
+              <div class="w-3 h-3 bg-white rounded-full"></div>
+            </div>
+            <div class="text-lg font-medium text-white" style="font-family: 'Helvetica Neue', sans-serif;">impact everything</div>
+            <div class="text-sm text-white/50 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              code with purpose.<br/>build with meaning.<br/>change the world.
             </div>
           </div>
         </div>
         
-        <!-- Right Side - Visual Element -->
-        <div class="relative">
-          <!-- Large decorative number -->
-          <div class="text-[12rem] md:text-[16rem] font-bold text-white/5 absolute -top-20 -right-10 select-none" style="font-family: 'Helvetica Neue', sans-serif;">
-            01
+        <!-- Minimal Stats -->
+        <div class="flex justify-center items-center gap-16 md:gap-24 mt-16 pt-8 border-t border-white/10">
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">500+</div>
+            <div class="text-xs text-white/40 uppercase tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">builders</div>
           </div>
-          
-          <!-- Stats or highlight boxes -->
-          <div class="relative z-10 space-y-6">
-            <div class="bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <div class="text-3xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">500+</div>
-              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">Students Empowered</div>
-            </div>
-            
-            <div class="bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <div class="text-3xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">100+</div>
-              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">Projects Built</div>
-            </div>
-            
-            <div class="bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
-              <div class="text-3xl font-bold text-white mb-2" style="font-family: 'Helvetica Neue', sans-serif;">24/7</div>
-              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">Community Support</div>
-            </div>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">∞</div>
+            <div class="text-xs text-white/40 uppercase tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">possibilities</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">+100%</div>
+            <div class="text-xs text-white/40 uppercase tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">ideas</div>
           </div>
         </div>
       </div>
     </div>
   </section>
   
-  <Section
-    title="Events"
-    className={"bg-gradient-to-b from-black/70 from-[5%] to-black via-black"}
-  >
-    {homePageEvents.length > 0 ? (
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {
-          homePageEvents.map((event) => {
-            const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
-            return (
-              <BlogPostCard
-                slug={event.slug.current}
-                title={event.title}
-                excerpt={getPlainTextExcerpt(event.description)}
-                date={eventDate}
-                time={event.time?.isTBD ? null : event.time?.value}
-                location={event.location?.isTBD ? null : event.location?.value}
-                status={getEventStatus(eventDate)}
-                pinned={event.pinned || false}
-                specialTags={event.specialTags || []}
-                resources={event.resources}
-              />
-            );
-          })
-        }
-      </div>
-    ) : (
-      <div class="text-center py-12">
-        <p class="text-white/60 text-lg">No upcoming events at the moment. Check back soon!</p>
-      </div>
-    )}
-    <div class="w-full flex justify-center mt-6">
-      <a 
-        href="/events" 
-        class="inline-flex items-center px-6 py-3 text-white font-medium rounded-lg transition-all duration-300 hover:scale-105 group border border-white/20 bg-white/[0.05] hover:bg-white/[0.1] hover:border-white/40"
-      >
-        <span class="mr-2 text-green-400 group-hover:text-green-300 transition-colors duration-300">❯</span>
-        <span class="group-hover:text-green-100 transition-colors duration-300">See All Events</span>
-      </a>
+  <!-- Events Section -->
+  <section class="py-16 px-8 bg-black relative overflow-hidden">
+    <!-- Continuing grid background -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
     </div>
-  </Section>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            events
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // upcoming workshops & meetups
+          </div>
+        </div>
+        
+        <!-- Event Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [{homePageEvents.length.toString().padStart(2, '0')}]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            active
+          </div>
+        </div>
+      </div>
+      
+      <!-- Events Content -->
+      {homePageEvents.length > 0 ? (
+        <>
+          <!-- Events List - Brutalist Style -->
+          <div class="space-y-1 mb-12">
+            {
+              homePageEvents.map((event, index) => {
+                const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
+                const formattedDate = eventDate ? eventDate.toLocaleDateString('en-US', { 
+                  month: '2-digit', 
+                  day: '2-digit',
+                  year: '2-digit'
+                }) : 'TBD';
+                
+                return (
+                  <a 
+                    href={`/events/${event.slug.current}`}
+                    class="block border border-white/10 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-200 group"
+                  >
+                    <div class="px-6 py-4 flex items-center justify-between">
+                      <!-- Left: Index & Title -->
+                      <div class="flex items-center space-x-6">
+                        <div class="text-white/40 font-mono text-sm min-w-[3rem]">
+                          {(index + 1).toString().padStart(2, '0')}.
+                        </div>
+                        <div>
+                          <h3 class="text-white group-hover:text-white font-medium text-lg tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+                            {event.title}
+                          </h3>
+                          <div class="text-white/50 text-sm font-mono mt-1">
+                            {getPlainTextExcerpt(event.description).substring(0, 60)}...
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Right: Date & Status -->
+                      <div class="text-right flex items-center space-x-4">
+                        <div>
+                          <div class="text-white/60 font-mono text-sm">
+                            {formattedDate}
+                          </div>
+                          {event.time?.value && (
+                            <div class="text-white/40 font-mono text-xs">
+                              {event.time.value}
+                            </div>
+                          )}
+                        </div>
+                        <div class="text-white/40 group-hover:text-white/60 transition-colors">
+                          →
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })
+            }
+          </div>
+          
+          <!-- Terminal-style Button -->
+          <div class="border-t border-white/10 pt-8">
+            <a 
+              href="/events" 
+              class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
+              style="font-family: 'Courier New', monospace;"
+            >
+              <span class="mr-2 text-green-400 group-hover:text-green-300">$</span>
+              <span class="group-hover:text-green-100">ls /events --all</span>
+              <span class="ml-2 text-white/30 group-hover:text-white/50">▊</span>
+            </a>
+          </div>
+        </>
+      ) : (
+        <!-- No Events - Terminal Style -->
+        <div class="border border-white/10 bg-white/[0.02] p-8">
+          <div class="font-mono text-white/60 space-y-2">
+            <div class="text-green-400">$ ls events/</div>
+            <div class="text-white/40">ls: cannot access 'events/': No such file or directory</div>
+            <div class="text-white/30 mt-4">// check back soon for new workshops</div>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
   {/* Technologies section - commented out for now, may be used in the future */}
   {/* <Section title="Technologies I Know" full_screen={false}>
     <div class="w-full grid place-items-center">
