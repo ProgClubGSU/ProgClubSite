@@ -65,9 +65,11 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
   
   <!-- Our Mission Section -->
   <section class="py-20 px-8 bg-black relative overflow-hidden">
-    <!-- Subtle grid background -->
-    <div class="absolute inset-0 opacity-5">
-      <div class="w-full h-full" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    <!-- Continuing grid background with fade-in effect -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <!-- Fade-in gradient at top -->
+      <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black via-black/80 to-transparent"></div>
     </div>
     
     <div class="max-w-6xl mx-auto relative z-10">

@@ -7,7 +7,7 @@ import { QUOTE, SITE_TITLE } from "@/consts";
   class="h-[75vh] !z-[20] relative w-full flex items-center justify-center px-8 overflow-hidden"
   id="hero"
 >
-  <!-- Wavy Grid Lines -->
+  <!-- Wavy Grid Lines with Fade Effect -->
   <div class="wavy-grid">
     <div class="grid-wave">
       <!-- Static Square Grid -->
@@ -22,10 +22,25 @@ import { QUOTE, SITE_TITLE } from "@/consts";
             <line x1="0" y1="0" x2="0" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
             <line x1="50" y1="0" x2="50" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
           </pattern>
+          
+          <!-- Gradient mask for fading effect -->
+          <linearGradient id="fadeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+            <stop offset="70%" style="stop-color:white;stop-opacity:1" />
+            <stop offset="85%" style="stop-color:white;stop-opacity:0.6" />
+            <stop offset="95%" style="stop-color:white;stop-opacity:0.2" />
+            <stop offset="100%" style="stop-color:white;stop-opacity:0" />
+          </linearGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#squareGrid)"/>
+        <rect width="100%" height="100%" fill="url(#squareGrid)" mask="url(#gridFadeMask)"/>
+        <mask id="gridFadeMask">
+          <rect width="100%" height="100%" fill="url(#fadeGradient)"/>
+        </mask>
       </svg>
     </div>
+    
+    <!-- Additional fade overlay at bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none"></div>
   </div>
   
   
