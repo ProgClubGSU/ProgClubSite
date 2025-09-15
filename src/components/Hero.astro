@@ -12,12 +12,12 @@ import { QUOTE, SITE_TITLE } from "@/consts";
     <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 150px 150px;"></div>
   </div>
   
-  <!-- ASCII Art Background Layer -->
-  <div class="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-end pr-8 z-5">
+  <!-- ASCII Art Background Layer - Hidden on Mobile -->
+  <div class="hidden md:block absolute right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-5">
     <img 
       src="/reiascii.png" 
       alt="ASCII Art" 
-      class="max-w-full max-h-full w-auto h-auto object-contain opacity-15 select-none"
+      class="h-[70vh] lg:h-[80vh] xl:h-[85vh] w-auto object-contain opacity-15 select-none"
       style="filter: brightness(0) invert(1); mix-blend-mode: screen;"
     />
   </div>
