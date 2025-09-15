@@ -4,114 +4,77 @@ import { QUOTE, SITE_TITLE } from "@/consts";
 
 <div class="hero-bg hidden md:block h-[60vh] hero-bg-animate absolute top-0"></div>
 <section
-  class="h-[60vh] !z-[20] relative w-full flex flex-col items-center justify-center"
+  class="h-[75vh] !z-[20] relative w-full flex items-center justify-center px-8 overflow-hidden"
   id="hero"
 >
-  <div class="text-center space-y-6">
-    <!-- Logo -->
-    <div class="flex justify-center mb-8">
+  <!-- Wavy Grid Lines -->
+  <div class="wavy-grid">
+    <div class="grid-wave">
+      <!-- Static Square Grid -->
+      <svg class="grid-overlay" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="squareGrid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+            <!-- Horizontal lines -->
+            <line x1="0" y1="0" x2="50" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <line x1="0" y1="50" x2="50" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            
+            <!-- Vertical lines -->
+            <line x1="0" y1="0" x2="0" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <line x1="50" y1="0" x2="50" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#squareGrid)"/>
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Floating Geometric Shapes -->
+  <div class="floating-shapes">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+  </div>
+  
+  <div class="flex items-center justify-between w-full h-full relative z-10 px-8 md:px-16">
+    <!-- Left Side - Text Content -->
+    <div class="flex flex-col justify-center flex-1">
+      <!-- Main Title -->
+      <h1 class="progsu-brand font-bold text-6xl md:text-8xl lg:text-[10rem] leading-none tracking-tight">
+        {SITE_TITLE}
+      </h1>
+      
+      <!-- Tagline -->
+      <h2 class="text-white/70 font-light mt-4 text-xl md:text-2xl lg:text-3xl">
+        at gsu
+      </h2>
+    </div>
+    
+    <!-- Right Side - Massive Logo with Rotating Text -->
+    <div class="relative flex items-center justify-center flex-1">
+      <!-- Main Logo - Huge and Grayed Out -->
       <img
         src="/progsu-logo.png"
         alt="progsu Logo"
-        class="w-48 h-48 md:w-64 md:h-64 object-contain filter drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+        class="w-80 h-80 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem] object-contain opacity-20 grayscale"
       />
+      
+      <!-- Rotating Circular Text -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <svg class="w-full h-full animate-spin-slow" viewBox="0 0 400 400">
+          <defs>
+            <path id="circle-path" d="M 200,200 m -180,0 a 180,180 0 1,1 360,0 a 180,180 0 1,1 -360,0"/>
+          </defs>
+          <text class="fill-gray-400 text-sm font-medium tracking-widest uppercase" style="font-family: 'Helvetica Neue', sans-serif;">
+            <textPath href="#circle-path" startOffset="0%">
+              do cool stuff • build cool sh*t • hackers • builders • innovators • creators • coders • dreamers • makers • built by students • at gsu • programming club • tech enthusiasts • problem solvers • 
+            </textPath>
+          </text>
+        </svg>
+      </div>
     </div>
-    
-    <!-- Title -->
-    <h1 class="font-bold text-5xl md:text-6xl glitch-title" data-text="{`<${SITE_TITLE} />`}">{`<${SITE_TITLE} />`}</h1>
-    
-    <!-- Tagline -->
-    <h2 class="text-xl md:text-2xl opacity-90 text-white/80 font-light">
-      Georgia State University Programming Club
-    </h2>
   </div>
 </section>
 
 <script>
-  // Simplified glitch effect for title only
-  let glitchIntervals = new Map();
-
-  // Initialize glitch effect on title
-  function initGlitchEffect() {
-    const title = document.querySelector('.glitch-title');
-    if (!title) {
-      setTimeout(initGlitchEffect, 100);
-      return;
-    }
-
-    // Split title into individual characters
-    const originalText = title.textContent;
-    const characters = originalText.split('');
-    
-    // Create spans for each character
-    title.innerHTML = '';
-    characters.forEach((char, index) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      span.className = 'glitch-char';
-      span.dataset.original = char;
-      span.dataset.index = index;
-      title.appendChild(span);
-    });
-
-    // Add hover effects to each character
-    const charSpans = title.querySelectorAll('.glitch-char');
-    charSpans.forEach((span, index) => {
-      span.addEventListener('mouseenter', () => {
-        startGlitchEffect(span);
-      });
-      
-      span.addEventListener('mouseleave', () => {
-        stopGlitchEffect(span);
-      });
-    });
-  }
-
-  // Start glitch effect for a character
-  function startGlitchEffect(span) {
-    const originalChar = span.dataset.original;
-    const symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '+', '[', ']', '{', '}', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/', '~', '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-    
-    // Clear any existing interval for this character
-    if (glitchIntervals.has(span)) {
-      clearInterval(glitchIntervals.get(span));
-    }
-    
-    // Add glitching class for visual effect
-    span.classList.add('glitching');
-    
-    // Start new glitch interval
-    const interval = setInterval(() => {
-      if (Math.random() > 0.3) { // 70% chance to show random symbol
-        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-      } else { // 30% chance to show original character
-        span.textContent = originalChar;
-      }
-    }, 50); // Update every 50ms for fast glitch effect
-    
-    glitchIntervals.set(span, interval);
-  }
-
-  // Stop glitch effect for a character
-  function stopGlitchEffect(span) {
-    if (glitchIntervals.has(span)) {
-      clearInterval(glitchIntervals.get(span));
-      glitchIntervals.delete(span);
-    }
-    // Remove glitching class
-    span.classList.remove('glitching');
-    // Restore original character
-    span.textContent = span.dataset.original;
-  }
-
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlitchEffect);
-  } else {
-    initGlitchEffect();
-  }
-
-  // Listen for Astro navigation events
-  document.addEventListener('astro:page-load', initGlitchEffect);
-  document.addEventListener('astro:after-swap', initGlitchEffect);
+  // No interactive effects for a cleaner, bolder hero.
 </script>

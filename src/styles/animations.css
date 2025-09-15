@@ -15,8 +15,8 @@ img,
 
 pre,
 code {
-  font-family: "VCR", monospace !important;
-  font-weight: 100;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+  font-weight: 400;
 }
 
 .hero-bg {
@@ -67,7 +67,7 @@ code {
   pointer-events: none;
   z-index: 9998;
   color: rgba(147, 51, 234, 0.4);
-  font-family: "VCR", monospace;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 16px;
   animation: fadeOut 1.5s ease-out forwards;
   will-change: transform, opacity;
@@ -160,7 +160,8 @@ code {
 .event-content-card h4,
 .event-content-card h5,
 .event-content-card h6 {
-  font-family: "VCR", monospace !important;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+  font-weight: 700;
 }
 
 /* Glitch title effect */
@@ -215,4 +216,119 @@ code {
     0 0 0 4px rgba(255, 255, 255, 1),
     0 0 50px rgba(147, 197, 253, 0.8),
     0 0 100px rgba(147, 197, 253, 0.4);
+}
+
+/* Wavy Grid Lines */
+.wavy-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.grid-wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+}
+
+.wavy-line {
+  position: absolute;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 1;
+  fill: none;
+  animation: waveFlow 8s ease-in-out infinite;
+}
+
+.horizontal-waves {
+  width: 100%;
+  height: 100%;
+}
+
+.vertical-waves {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes waveFlow {
+  0%, 100% {
+    d: path("M0,0 Q25,10 50,0 T100,0 T150,0 T200,0 T250,0 T300,0 T350,0 T400,0");
+  }
+  50% {
+    d: path("M0,0 Q25,-10 50,0 T100,0 T150,0 T200,0 T250,0 T300,0 T350,0 T400,0");
+  }
+}
+
+/* Floating Geometric Shapes */
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.floating-shape {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  animation: floatShape 15s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 60px;
+  height: 60px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+  border-radius: 50%;
+}
+
+.shape-2 {
+  width: 40px;
+  height: 40px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 5s;
+  transform: rotate(45deg);
+}
+
+.shape-3 {
+  width: 80px;
+  height: 80px;
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 10s;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+@keyframes floatShape {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+/* Slow rotation for circular text */
+.animate-spin-slow {
+  animation: spin 30s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 } 
