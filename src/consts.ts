@@ -43,8 +43,8 @@ export const NAV_LINKS: Array<{ title: string; href?: string; children?: Array<{
     href: "/#about",
   },
   {
-    title: "Join",
-    href: "/#join",
+    title: "Get Involved",
+    href: "/#get-involved",
   },
 ];
 

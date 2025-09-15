@@ -2,62 +2,28 @@
 import { QUOTE, SITE_TITLE } from "@/consts";
 ---
 
-<div class="hero-bg hidden md:block h-[60vh] hero-bg-animate absolute top-0"></div>
 <section
-  class="h-[75vh] !z-[20] relative w-full flex items-center justify-center px-8 overflow-hidden"
+  class="min-h-screen !z-[20] relative w-full flex items-center justify-center px-8 overflow-hidden"
   id="hero"
 >
-  <!-- Wavy Grid Lines with Fade Effect -->
-  <div class="wavy-grid">
-    <div class="grid-wave">
-      <!-- Static Square Grid -->
-      <svg class="grid-overlay" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <pattern id="squareGrid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-            <!-- Horizontal lines -->
-            <line x1="0" y1="0" x2="50" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-            <line x1="0" y1="50" x2="50" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-            
-            <!-- Vertical lines -->
-            <line x1="0" y1="0" x2="0" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-            <line x1="50" y1="0" x2="50" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-          </pattern>
-          
-          <!-- Gradient mask for fading effect -->
-          <linearGradient id="fadeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:white;stop-opacity:1" />
-            <stop offset="70%" style="stop-color:white;stop-opacity:1" />
-            <stop offset="85%" style="stop-color:white;stop-opacity:0.6" />
-            <stop offset="95%" style="stop-color:white;stop-opacity:0.2" />
-            <stop offset="100%" style="stop-color:white;stop-opacity:0" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#squareGrid)" mask="url(#gridFadeMask)"/>
-        <mask id="gridFadeMask">
-          <rect width="100%" height="100%" fill="url(#fadeGradient)"/>
-        </mask>
-      </svg>
-    </div>
-    
-    <!-- Additional fade overlay at bottom -->
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none"></div>
+  <!-- Hero-specific Grid Background -->
+  <div class="absolute inset-0 pointer-events-none bg-black">
+    <!-- Hero's large grid only -->
+    <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 150px 150px;"></div>
   </div>
   
   <!-- ASCII Art Background Layer -->
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-5">
+  <div class="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-end pr-8 z-5">
     <img 
       src="/reiascii.png" 
-      alt="ASCII Art Background" 
-      class="max-w-2xl max-h-2xl object-contain opacity-10 grayscale select-none"
-      style="filter: brightness(0) invert(1); mix-blend-mode: overlay;"
+      alt="ASCII Art" 
+      class="max-w-full max-h-full w-auto h-auto object-contain opacity-15 select-none"
+      style="filter: brightness(0) invert(1); mix-blend-mode: screen;"
     />
-    <!-- Subtle radial fade to make it even more subtle -->
-    <div class="absolute inset-0 bg-gradient-radial from-transparent via-black/20 to-black/40"></div>
   </div>
   
-  
   <!-- Top Left Corner - Barcode and progsu text -->
-  <div class="absolute top-8 left-8 z-20">
+  <div class="absolute top-6 left-8 z-20">
     <!-- Barcode Element -->
     <div class="mb-1">
       <svg width="140" height="30" viewBox="0 0 140 30" class="opacity-80">
@@ -102,46 +68,120 @@ import { QUOTE, SITE_TITLE } from "@/consts";
     </div>
     
     <!-- progsu text -->
-    <h1 id="hero-progsu" class="progsu-brand font-bold text-2xl md:text-3xl text-white transition-all duration-700 ease-out" style="font-family: 'Helvetica Neue', sans-serif;">
-      {SITE_TITLE}
+    <h1 class="progsu-brand font-bold text-2xl md:text-3xl text-white" style="font-family: 'Helvetica Neue', sans-serif; font-weight: bold;">
+      progsu
     </h1>
   </div>
   
-  <!-- Bottom Left Corner - Collection info -->
-  <div class="absolute bottom-8 left-8 z-20">
-    <div class="text-white font-bold">
-      <p class="text-lg md:text-xl mb-1">FW 2025 // ATL</p>
-      <p class="text-sm md:text-base opacity-80">"REBIRTH GEN"</p>
-    </div>
+  <!-- Bottom Left Corner - Additional text -->
+  <div class="absolute bottom-8 left-8 z-20 text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">
+    <p class="text-lg md:text-xl mb-1">FW 2025 // ATL</p>
+    <p class="text-sm md:text-base opacity-80">"REBIRTH GEN"</p>
   </div>
   
-  <!-- Right Side - Massive Logo with Rotating Text -->
-  <div class="flex items-center justify-end w-full h-full relative z-10 pr-16">
+  <!-- Logo Background Layer - Centered -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
     <div class="relative flex items-center justify-center">
       <!-- Main Logo - Huge and Grayed Out -->
       <img
         src="/progsu-logo.png"
         alt="progsu Logo"
-        class="w-48 h-48 md:w-[16rem] md:h-[16rem] lg:w-[20rem] lg:h-[20rem] object-contain opacity-20 grayscale"
+        class="w-64 h-64 md:w-[22rem] md:h-[22rem] lg:w-[28rem] lg:h-[28rem] object-contain opacity-35 grayscale logo-hover-glow transition-all duration-500"
+        id="hero-logo"
       />
       
       <!-- Rotating Circular Text -->
       <div class="absolute inset-0 flex items-center justify-center">
-        <svg class="w-full h-full animate-spin-slow" viewBox="0 0 400 400">
+        <svg class="w-full h-full animate-spin-slow rotating-text-hover transition-all duration-300" id="rotating-text" viewBox="0 0 400 400">
           <defs>
             <path id="circle-path" d="M 200,200 m -180,0 a 180,180 0 1,1 360,0 a 180,180 0 1,1 -360,0"/>
           </defs>
-          <text class="fill-gray-400 text-sm font-medium tracking-widest uppercase" style="font-family: 'Helvetica Neue', sans-serif;">
+          <text class="fill-gray-400 text-base font-medium tracking-widest uppercase" style="font-family: 'Helvetica Neue', sans-serif;">
             <textPath href="#circle-path" startOffset="0%">
-              do cool stuff • build cool sh*t • hackers • builders • innovators • creators • creatives • dreamers • makers • at gsu • x
+              do cool stuff • build cool sh*t • hackers • builders • innovators • creators • creatives • dreamers • gsu •
             </textPath>
-          </text> 
+          </text>
         </svg>
       </div>
     </div>
   </div>
 </section>
 
+<style>
+  /* Logo Hover Glow */
+  .logo-hover-glow {
+    transition: all 0.5s ease;
+  }
+  
+  .logo-hover-glow:hover {
+    filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.6)) grayscale(0.5);
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  
+  /* Rotating Text Speed Variation */
+  .rotating-text-hover:hover {
+    animation-duration: 8s !important;
+  }
+</style>
+
 <script>
-  // No interactive effects for a cleaner, bolder hero.
+  // Interactive Modern Effects for Hero Section
+  function initHeroEffects() {
+    const heroSection = document.getElementById('hero');
+    const logo = document.getElementById('hero-logo');
+    
+    if (!heroSection) return;
+    
+    // Logo proximity glow effect
+    if (logo) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const logoRect = logo.getBoundingClientRect();
+        const logoCenterX = logoRect.left + logoRect.width / 2;
+        const logoCenterY = logoRect.top + logoRect.height / 2;
+        
+        const distance = Math.sqrt(
+          Math.pow(e.clientX - logoCenterX, 2) + 
+          Math.pow(e.clientY - logoCenterY, 2)
+        );
+        
+        const maxDistance = 300; // pixels
+        const proximity = Math.max(0, 1 - (distance / maxDistance));
+        const glowIntensity = proximity * 0.4;
+        
+        if (proximity > 0.1) {
+          logo.style.filter = `drop-shadow(0 0 ${20 + proximity * 30}px rgba(147, 51, 234, ${glowIntensity})) grayscale(${1 - proximity * 0.3})`;
+          logo.style.opacity = 0.35 + proximity * 0.2;
+        }
+      });
+      
+      heroSection.addEventListener('mouseleave', () => {
+        logo.style.filter = 'grayscale(1)';
+        logo.style.opacity = '0.35';
+      });
+    }
+    
+    // Simple cleanup function
+    return function cleanup() {
+      // No cleanup needed for simple hover effects
+    };
+  }
+
+  // Store cleanup function
+  let heroCleanup = null;
+  
+  // Initialize when DOM is ready
+  function startHeroEffects() {
+    if (heroCleanup) heroCleanup(); // Clean up previous instance
+    heroCleanup = initHeroEffects();
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startHeroEffects);
+  } else {
+    startHeroEffects();
+  }
+  
+  // Re-initialize on Astro navigation
+  document.addEventListener('astro:page-load', startHeroEffects);
 </script>

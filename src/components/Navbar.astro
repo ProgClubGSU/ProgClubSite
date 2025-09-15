@@ -11,8 +11,8 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
   </style>
 
   <!-- Navigation Links - Dynamic Layout -->
-  <div id="nav-links" class="absolute top-1/2 left-8 transform -translate-y-1/2 pointer-events-auto">
-    <div class="hidden md:flex flex-col" id="nav-container" style="font-family: 'Helvetica Neue', sans-serif; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
+  <div id="nav-links" class="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 pointer-events-auto">
+    <div class="hidden md:flex flex-col space-y-4" id="nav-container" style="font-family: 'Helvetica Neue', sans-serif;">
       {
         links.map((link, index) => {
           if (link.children && link.children.length > 0) {
@@ -22,28 +22,28 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
                 <button class="text-white/60 hover:text-white text-lg font-light flex items-center gap-1">
                   {link.title.toLowerCase()}
                   <span class="text-xs opacity-60">▼</span>
-                </button>
+                  </button>
                 
                 <!-- Dropdown Menu -->
                 <div class="absolute left-0 top-8 bg-black/90 backdrop-blur-sm border border-white/10 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[140px] z-50">
-                  {link.children.map((child) => {
-                    const childHref = child.href ?? child.title.toLowerCase().replaceAll(" ", "-");
+                    {link.children.map((child) => {
+                      const childHref = child.href ?? child.title.toLowerCase().replaceAll(" ", "-");
                     const isExternalLink = childHref.startsWith("http://") || childHref.startsWith("https://");
                     const finalChildHref = isExternalLink ? childHref : childHref.startsWith('/') ? childHref : `/${childHref}`;
-                    
-                    return (
-                      <a
+                      
+                      return (
+                        <a
                         href={finalChildHref}
                         target={isExternalLink ? "_blank" : undefined}
                         rel={isExternalLink ? "noopener noreferrer" : undefined}
                         class="block px-4 py-2 text-white/60 hover:text-white hover:bg-white/5 text-sm font-light transition-colors duration-150"
                       >
                         {child.title.toLowerCase()}
-                      </a>
-                    );
-                  })}
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
             );
           } else {
             // Regular menu item
@@ -54,20 +54,18 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
             
             const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
             const finalHref = isExternalLink ? href : href;
-            
-            return (
-                <a
+          
+          return (
+              <a
                 class:list={[{ "text-white": isActive }]}
                 class="text-white/60 hover:text-white text-lg font-light nav-link block"
-                  href={finalHref}
-                  target={isExternalLink ? "_blank" : undefined}
-                  rel={isExternalLink ? "noopener noreferrer" : undefined}
-                style="transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);"
-                data-index={index}
-                >
+                href={finalHref}
+                target={isExternalLink ? "_blank" : undefined}
+                rel={isExternalLink ? "noopener noreferrer" : undefined}
+              >
                 {link.title.toLowerCase()}
-                </a>
-            );
+              </a>
+          );
           }
         })
       }
@@ -75,7 +73,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
     </div>
 
   <!-- Mobile Menu Button -->
-  <div class="md:hidden absolute top-6 right-6 pointer-events-auto">
+  <div class="md:hidden absolute top-4 right-4 pointer-events-auto">
     <button
       id="mobile-menu-btn"
       class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-300"
@@ -124,13 +122,13 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
 </nav>
 
 <script>
-  // Mobile menu toggle and dynamic navbar layout
+  // Mobile menu toggle and rotating progsu
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-    const navContainer = document.getElementById('nav-container');
-    
+    // Get the hero progsu element from Hero.astro
+    const heroProgsu = document.getElementById('hero-progsu');
+
     // Mobile menu toggle
     if (mobileMenuBtn && mobileMenu) {
       mobileMenuBtn.addEventListener('click', () => {
@@ -146,28 +144,10 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
       });
     }
 
-    // Smooth navbar layout transition using CSS transforms
-    if (navLinks && navContainer) {
-      let currentLayout = 'vertical';
+    // Rotating progsu functionality
+    if (heroProgsu) {
       let logoTransitioned = false;
       const heroHeight = window.innerHeight * 0.75;
-      const navLinkElements = navContainer.querySelectorAll('.nav-link');
-      const heroProgsu = document.getElementById('hero-progsu');
-      
-      // Set initial spacing using CSS transforms
-      const updateLinkPositions = (layout, progress = 1) => {
-        navLinkElements.forEach((link, index) => {
-          if (layout === 'horizontal') {
-            // Horizontal layout: side by side
-            const xOffset = index * 120; // Space between links
-            link.style.transform = `translateX(${xOffset * progress}px) translateY(${(1 - progress) * index * 30}px)`;
-          } else {
-            // Vertical layout: stacked
-            const yOffset = index * 30; // Space between links
-            link.style.transform = `translateY(${yOffset * progress}px) translateX(${(1 - progress) * index * 120}px)`;
-          }
-        });
-      };
       
       // Smooth scroll-following progsu transformation
       const updateHeroProgsuPosition = () => {
@@ -212,8 +192,8 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
             // Calculate current position (where it would be if still in hero)
             const currentHeroTop = originalTop - scrollY;
             
-              // Target position (much lower on screen, with more left padding)
-              const endLeft = 48;  // 3rem in pixels - more space from edge
+              // Target position (much lower on screen, closer to left edge)
+              const endLeft = 24;  // 1.5rem in pixels - closer to edge
               const endTop = 120;  // 7.5rem in pixels - much lower
               
               // Smooth interpolation from current hero position to target
@@ -233,8 +213,8 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
               heroProgsu.style.fontSize = `${fontSize}rem`;
             
           } else {
-            // Final sticky position - much lower, with more left padding
-            heroProgsu.style.left = '3rem'; // More space from edge
+            // Final sticky position - much lower, closer to left edge
+            heroProgsu.style.left = '1.5rem'; // Closer to edge
             heroProgsu.style.top = '7.5rem'; // Much lower - 120px from top
             heroProgsu.style.transform = 'rotate(-90deg)';
             heroProgsu.style.transformOrigin = 'left center'; // Consistent rotation point
@@ -243,56 +223,22 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
         }
       };
       
-      const updateNavbarLayout = () => {
-        const scrollY = window.scrollY;
-        const shouldBeHorizontal = scrollY < heroHeight * 0.35; // Much faster trigger - 35% instead of 60%
-        const targetLayout = shouldBeHorizontal ? 'horizontal' : 'vertical';
-        
-        // Update hero progsu position
-        updateHeroProgsuPosition();
-        
-        if (targetLayout !== currentLayout) {
-          currentLayout = targetLayout;
-          
-          // Faster, more responsive transition
-          let startTime = null;
-          const duration = 350; // Much faster - 350ms instead of 600ms
-          
-          const animate = (currentTime) => {
-            if (!startTime) startTime = currentTime;
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Snappier easing function
-            const easeOut = 1 - Math.pow(1 - progress, 2.5); // Less curve, more responsive
-            
-            updateLinkPositions(targetLayout, easeOut);
-            
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            }
-          };
-          
-          requestAnimationFrame(animate);
-        }
-      };
-      
       // Initial check
-      updateNavbarLayout();
+      updateHeroProgsuPosition();
       
-      // Throttled scroll listener
+      // Throttled scroll listener for progsu rotation
       let ticking = false;
-      const handleScroll = () => {
+      const throttledScroll = () => {
         if (!ticking) {
           requestAnimationFrame(() => {
-            updateNavbarLayout();
+            updateHeroProgsuPosition();
             ticking = false;
           });
           ticking = true;
         }
       };
 
-      window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('scroll', throttledScroll, { passive: true });
     }
   });
 </script>
