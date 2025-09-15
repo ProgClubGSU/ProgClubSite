@@ -17,3 +17,8 @@
   font-style: normal;
   letter-spacing: -0.02em;
 }
+
+/* Global font override */
+* {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+}

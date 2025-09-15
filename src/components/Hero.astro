@@ -1,200 +1,187 @@
 ---
-import { Image } from "astro:assets";
-import HeroImg from "@/hero.png";
 import { QUOTE, SITE_TITLE } from "@/consts";
 ---
 
-<div class="hero-bg hidden md:block h-screen hero-bg-animate absolute top-0"></div>
 <section
-  class="h-screen !z-[20] relative w-full grid grid-cols-1 grid-rows-1 sm:grid-cols-2 md:grid-cols-2 gap-4 items-center"
+  class="min-h-screen !z-[20] relative w-full flex items-center justify-center px-8 overflow-hidden"
   id="hero"
 >
-  <div class="grid place-items-center">
-    <div class="text-center -mt-10">
-      <h1 class="font-bold text-7xl glitch-title" data-text="{`<${SITE_TITLE} />`}">{`<${SITE_TITLE} />`}</h1>
-      <h2 class="text-2xl opacity-95 text-white">
-        do cool stuff. build cool sh*t
-      </h2>
-    </div>
+  <!-- Hero-specific Grid Background -->
+  <div class="absolute inset-0 pointer-events-none bg-black">
+    <!-- Hero's large grid only -->
+    <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 150px 150px;"></div>
   </div>
-  <div>
-    <Image
-      alt="Hero"
-      src={HeroImg}
-      class="brightness-200 w-full scale-90 invert"
+  
+  <!-- ASCII Art Background Layer - Hidden on Mobile -->
+  <div class="hidden md:block absolute right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-5">
+    <img 
+      src="/reiascii.png" 
+      alt="ASCII Art" 
+      class="h-[70vh] lg:h-[80vh] xl:h-[85vh] w-auto object-contain opacity-15 select-none"
+      style="filter: brightness(0) invert(1); mix-blend-mode: screen;"
     />
+  </div>
+  
+  <!-- Top Left Corner - Barcode and progsu text -->
+  <div class="absolute top-6 left-8 z-20">
+    <!-- Barcode Element -->
+    <div class="mb-1">
+      <svg width="140" height="30" viewBox="0 0 140 30" class="opacity-80">
+        <!-- Generate barcode-like pattern -->
+        <rect x="0" y="0" width="2" height="30" fill="white"/>
+        <rect x="4" y="0" width="1" height="30" fill="white"/>
+        <rect x="7" y="0" width="3" height="30" fill="white"/>
+        <rect x="12" y="0" width="1" height="30" fill="white"/>
+        <rect x="15" y="0" width="2" height="30" fill="white"/>
+        <rect x="19" y="0" width="1" height="30" fill="white"/>
+        <rect x="22" y="0" width="4" height="30" fill="white"/>
+        <rect x="28" y="0" width="1" height="30" fill="white"/>
+        <rect x="31" y="0" width="2" height="30" fill="white"/>
+        <rect x="35" y="0" width="1" height="30" fill="white"/>
+        <rect x="38" y="0" width="3" height="30" fill="white"/>
+        <rect x="43" y="0" width="1" height="30" fill="white"/>
+        <rect x="46" y="0" width="2" height="30" fill="white"/>
+        <rect x="50" y="0" width="1" height="30" fill="white"/>
+        <rect x="53" y="0" width="4" height="30" fill="white"/>
+        <rect x="59" y="0" width="1" height="30" fill="white"/>
+        <rect x="62" y="0" width="2" height="30" fill="white"/>
+        <rect x="66" y="0" width="3" height="30" fill="white"/>
+        <rect x="71" y="0" width="1" height="30" fill="white"/>
+        <rect x="74" y="0" width="2" height="30" fill="white"/>
+        <rect x="78" y="0" width="1" height="30" fill="white"/>
+        <rect x="81" y="0" width="3" height="30" fill="white"/>
+        <rect x="86" y="0" width="1" height="30" fill="white"/>
+        <rect x="89" y="0" width="2" height="30" fill="white"/>
+        <rect x="93" y="0" width="4" height="30" fill="white"/>
+        <rect x="99" y="0" width="1" height="30" fill="white"/>
+        <rect x="102" y="0" width="2" height="30" fill="white"/>
+        <rect x="106" y="0" width="1" height="30" fill="white"/>
+        <rect x="109" y="0" width="3" height="30" fill="white"/>
+        <rect x="114" y="0" width="1" height="30" fill="white"/>
+        <rect x="117" y="0" width="2" height="30" fill="white"/>
+        <rect x="121" y="0" width="1" height="30" fill="white"/>
+        <rect x="124" y="0" width="4" height="30" fill="white"/>
+        <rect x="130" y="0" width="1" height="30" fill="white"/>
+        <rect x="133" y="0" width="2" height="30" fill="white"/>
+        <rect x="137" y="0" width="3" height="30" fill="white"/>
+      </svg>
+    </div>
+    
+    <!-- progsu text -->
+    <h1 id="hero-progsu" class="progsu-brand font-bold text-2xl md:text-3xl text-white" style="font-family: 'Helvetica Neue', sans-serif; font-weight: bold;">
+      progsu
+    </h1>
+  </div>
+  
+  <!-- Bottom Left Corner - Additional text -->
+  <div class="absolute bottom-8 left-8 z-20 text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">
+    <p class="text-lg md:text-xl mb-1">FW 2025 // ATL</p>
+    <p class="text-sm md:text-base opacity-80">"REBIRTH GEN"</p>
+  </div>
+  
+  <!-- Logo Background Layer - Centered -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+    <div class="relative flex items-center justify-center">
+      <!-- Main Logo - Huge and Grayed Out -->
+      <img
+        src="/progsu-logo.png"
+        alt="progsu Logo"
+        class="w-64 h-64 md:w-[22rem] md:h-[22rem] lg:w-[28rem] lg:h-[28rem] object-contain opacity-35 grayscale logo-hover-glow transition-all duration-500"
+        id="hero-logo"
+      />
+      
+      <!-- Rotating Circular Text -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <svg class="w-full h-full animate-spin-slow rotating-text-hover transition-all duration-300" id="rotating-text" viewBox="0 0 400 400">
+          <defs>
+            <path id="circle-path" d="M 200,200 m -180,0 a 180,180 0 1,1 360,0 a 180,180 0 1,1 -360,0"/>
+          </defs>
+          <text class="fill-gray-400 text-base font-medium tracking-widest uppercase" style="font-family: 'Helvetica Neue', sans-serif;">
+            <textPath href="#circle-path" startOffset="0%">
+              do cool stuff • build cool sh*t • hackers • builders • innovators • creators • creatives • dreamers • gsu •
+            </textPath>
+          </text>
+        </svg>
+      </div>
+    </div>
   </div>
 </section>
 
-<script>
-  // Global variables to track initialization
-  let heroAnimationInitialized = false;
-  let heroInterval = null;
-  let glitchIntervals = new Map(); // Track glitch intervals for each character
-
-
-
-  // Ensure DOM is loaded before initializing animations
-  function initHeroAnimation() {
-    // Don't reinitialize if already done
-    if (heroAnimationInitialized) return;
-    
-    const hero_bg = document.querySelector(".hero-bg-animate");
-    if (!hero_bg) {
-      // Retry after a short delay if element not found
-      setTimeout(initHeroAnimation, 100);
-      return;
-    }
-
-    // Clear any existing interval
-    if (heroInterval) {
-      clearInterval(heroInterval);
-    }
-
-    // Initialize with first binary text
-    let binaryText = "";
-    for (let i = 0; i < 1500; i++) {
-      binaryText += Math.floor(Math.random() * 2).toString();
-    }
-    hero_bg.textContent = binaryText;
-    
-    // Make visible after content is set
-    hero_bg.style.color = "rgba(255, 255, 255, 0.4)";
-    hero_bg.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.2)";
-
-    // Start the interval - faster updates for more dynamic effect
-    heroInterval = setInterval(() => {
-      let binaryText = "";
-      for (let i = 0; i < 1500; i++) {
-        binaryText += Math.floor(Math.random() * 2).toString();
-      }
-      hero_bg.textContent = binaryText;
-    }, 250);
-
-    // Mark as initialized
-    heroAnimationInitialized = true;
+<style>
+  /* Logo Hover Glow */
+  .logo-hover-glow {
+    transition: all 0.5s ease;
   }
+  
+  .logo-hover-glow:hover {
+    filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.6)) grayscale(0.5);
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  
+  /* Rotating Text Speed Variation */
+  .rotating-text-hover:hover {
+    animation-duration: 8s !important;
+  }
+</style>
 
-  // Initialize glitch effect on title
-  function initGlitchEffect() {
-    const title = document.querySelector('.glitch-title');
-    if (!title) {
-      setTimeout(initGlitchEffect, 100);
-      return;
-    }
-
-    // Split title into individual characters
-    const originalText = title.textContent;
-    const characters = originalText.split('');
+<script>
+  // Interactive Modern Effects for Hero Section
+  function initHeroEffects() {
+    const heroSection = document.getElementById('hero');
+    const logo = document.getElementById('hero-logo');
     
-    // Create spans for each character
-    title.innerHTML = '';
-    characters.forEach((char, index) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      span.className = 'glitch-char';
-      span.dataset.original = char;
-      span.dataset.index = index;
-      title.appendChild(span);
-    });
-
-    // Add hover effects to each character
-    const charSpans = title.querySelectorAll('.glitch-char');
-    charSpans.forEach((span, index) => {
-      span.addEventListener('mouseenter', () => {
-        startGlitchEffect(span);
+    if (!heroSection) return;
+    
+    // Logo proximity glow effect
+    if (logo) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const logoRect = logo.getBoundingClientRect();
+        const logoCenterX = logoRect.left + logoRect.width / 2;
+        const logoCenterY = logoRect.top + logoRect.height / 2;
+        
+        const distance = Math.sqrt(
+          Math.pow(e.clientX - logoCenterX, 2) + 
+          Math.pow(e.clientY - logoCenterY, 2)
+        );
+        
+        const maxDistance = 300; // pixels
+        const proximity = Math.max(0, 1 - (distance / maxDistance));
+        const glowIntensity = proximity * 0.4;
+        
+        if (proximity > 0.1) {
+          logo.style.filter = `drop-shadow(0 0 ${20 + proximity * 30}px rgba(147, 51, 234, ${glowIntensity})) grayscale(${1 - proximity * 0.3})`;
+          logo.style.opacity = 0.35 + proximity * 0.2;
+        }
       });
       
-      span.addEventListener('mouseleave', () => {
-        stopGlitchEffect(span);
+      heroSection.addEventListener('mouseleave', () => {
+        logo.style.filter = 'grayscale(1)';
+        logo.style.opacity = '0.35';
       });
-    });
-  }
-
-  // Start glitch effect for a character
-  function startGlitchEffect(span) {
-    const originalChar = span.dataset.original;
-    const symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '+', '[', ']', '{', '}', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/', '~', '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-    
-    // Clear any existing interval for this character
-    if (glitchIntervals.has(span)) {
-      clearInterval(glitchIntervals.get(span));
     }
     
-    // Add glitching class for visual effect
-    span.classList.add('glitching');
-    
-    // Start new glitch interval
-    const interval = setInterval(() => {
-      if (Math.random() > 0.3) { // 70% chance to show random symbol
-        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-      } else { // 30% chance to show original character
-        span.textContent = originalChar;
-      }
-    }, 50); // Update every 50ms for fast glitch effect
-    
-    glitchIntervals.set(span, interval);
+    // Simple cleanup function
+    return function cleanup() {
+      // No cleanup needed for simple hover effects
+    };
   }
 
-  // Stop glitch effect for a character
-  function stopGlitchEffect(span) {
-    if (glitchIntervals.has(span)) {
-      clearInterval(glitchIntervals.get(span));
-      glitchIntervals.delete(span);
-    }
-    // Remove glitching class
-    span.classList.remove('glitching');
-    // Restore original character
-    span.textContent = span.dataset.original;
-  }
-
-  // Function to reset hero animation for navigation
-  function resetHeroAnimation() {
-    heroAnimationInitialized = false;
-    
-    // Clear existing intervals
-    if (heroInterval) {
-      clearInterval(heroInterval);
-      heroInterval = null;
-    }
-    
-    // Clear all glitch intervals
-    glitchIntervals.forEach(interval => clearInterval(interval));
-    glitchIntervals.clear();
-    
-    // Reinitialize after a short delay
-    setTimeout(() => {
-      initHeroAnimation();
-      initGlitchEffect();
-    }, 50);
-  }
-
+  // Store cleanup function
+  let heroCleanup = null;
+  
   // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initHeroAnimation();
-      initGlitchEffect();
-    });
-  } else {
-    initHeroAnimation();
-    initGlitchEffect();
+  function startHeroEffects() {
+    if (heroCleanup) heroCleanup(); // Clean up previous instance
+    heroCleanup = initHeroEffects();
   }
-
-  // Listen for Astro navigation events
-  document.addEventListener('astro:page-load', resetHeroAnimation);
-  document.addEventListener('astro:after-swap', resetHeroAnimation);
-  document.addEventListener('astro:effects-reset', resetHeroAnimation);
-
-  // Also initialize on page visibility change (for when user returns to tab)
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-      // Re-initialize animation when page becomes visible
-      setTimeout(resetHeroAnimation, 100);
-    }
-  });
-
-  // Fallback: also listen for popstate (browser back/forward)
-  window.addEventListener('popstate', () => {
-    setTimeout(resetHeroAnimation, 100);
-  });
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startHeroEffects);
+  } else {
+    startHeroEffects();
+  }
+  
+  // Re-initialize on Astro navigation
+  document.addEventListener('astro:page-load', startHeroEffects);
 </script>

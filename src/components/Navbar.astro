@@ -2,190 +2,117 @@
 import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
 ---
 
-<nav class="w-full !z-[9999] py-5 px-4 bg-black/50 backdrop-blur-sm relative">
-  <div class="w-full flex justify-between items-center">
-    <!-- Logo -->
-    <a href="/">
-      <div
-        id="logo"
-        class="pt-2 pb-1 !grid !place-items-center select-none leading-none hover:bg-black bg-white scale-110 hover:text-white text-black px-4 transition-all ease-in-out"
-      >
-        {SITE_TITLE}
-      </div>
-    </a>
+<!-- Minimal Clean Navigation -->
+<nav class="fixed top-0 left-0 w-full h-full pointer-events-none !z-[9999]">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 
-    <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center gap-4">
-      <div>/</div>
+  <!-- Navigation Links - Dynamic Layout -->
+  <div id="nav-links" class="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 pointer-events-auto">
+    <div class="hidden md:flex flex-col space-y-4" id="nav-container" style="font-family: 'Helvetica Neue', sans-serif;">
       {
-        links.map((link) => {
-          const href =
-            link.href ?? link.title.toLowerCase().replaceAll(" ", "-");
-          const pathname = Astro.url.pathname.replace(
-            import.meta.env.BASE_URL,
-            "",
-          );
-          const subpath = pathname.match(/[^\/]+/g);
-          const isActive =
-            href === pathname || href === "/" + (subpath?.[0] || "");
-          
-          // Check if href is an absolute URL (external link)
-          const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
-          const finalHref = isExternalLink ? href : `/${href}`;
-          
-          // Check if this link has children (dropdown)
+        links.map((link, index) => {
           if (link.children && link.children.length > 0) {
+            // Dropdown menu item
             return (
-              <>
-                <div class="relative group">
-                  <button
-                    class:list={[{ "bg-white text-black": isActive }]}
-                    class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit flex items-center gap-1"
-                  >
-                    <div>{link.title}</div>
-                    <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
+              <div class="relative group nav-link" data-index={index} style="transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
+                <button class="text-white/60 hover:text-white text-lg font-light flex items-center gap-1">
+                  {link.title.toLowerCase()}
+                  <span class="text-xs opacity-60">▼</span>
                   </button>
-                  <div class="absolute top-full left-0 mt-1 bg-black/95 backdrop-blur-md border border-white/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50">
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute left-0 top-8 bg-black/90 backdrop-blur-sm border border-white/10 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[140px] z-50">
                     {link.children.map((child) => {
                       const childHref = child.href ?? child.title.toLowerCase().replaceAll(" ", "-");
-                      const childPathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
-                      const childSubpath = childPathname.match(/[^\/]+/g);
-                      const childIsActive = childHref === childPathname || childHref === "/" + (childSubpath?.[0] || "");
-                      const childIsExternalLink = childHref.startsWith("http://") || childHref.startsWith("https://");
-                      const childFinalHref = childIsExternalLink ? childHref : `/${childHref}`;
+                    const isExternalLink = childHref.startsWith("http://") || childHref.startsWith("https://");
+                    const finalChildHref = isExternalLink ? childHref : childHref.startsWith('/') ? childHref : `/${childHref}`;
                       
                       return (
                         <a
-                          class:list={[{ "bg-white text-black": childIsActive }]}
-                          class="block hover:bg-white hover:text-black transition-all ease-in-out px-3 py-2 text-sm whitespace-nowrap"
-                          href={childFinalHref}
-                          target={childIsExternalLink ? "_blank" : undefined}
-                          rel={childIsExternalLink ? "noopener noreferrer" : undefined}
-                        >
-                          {child.title}
+                        href={finalChildHref}
+                        target={isExternalLink ? "_blank" : undefined}
+                        rel={isExternalLink ? "noopener noreferrer" : undefined}
+                        class="block px-4 py-2 text-white/60 hover:text-white hover:bg-white/5 text-sm font-light transition-colors duration-150"
+                      >
+                        {child.title.toLowerCase()}
                         </a>
                       );
                     })}
                   </div>
                 </div>
-                <div>/</div>
-              </>
             );
-          }
+          } else {
+            // Regular menu item
+            const href = link.href ?? link.title.toLowerCase().replaceAll(" ", "-");
+            const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
+            const subpath = pathname.match(/[^\/]+/g);
+            const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
+            
+            const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
+            const finalHref = isExternalLink ? href : href;
           
           return (
-            <>
               <a
-                class:list={[{ "bg-white text-black": isActive }]}
-                class="hover:bg-white hover:text-black transition-all ease-in-out px-2 max-w-fit"
+                class:list={[{ "text-white": isActive }]}
+                class="text-white/60 hover:text-white text-lg font-light nav-link block"
                 href={finalHref}
                 target={isExternalLink ? "_blank" : undefined}
                 rel={isExternalLink ? "noopener noreferrer" : undefined}
               >
-                <div>
-                  {link.title === "Join" ? (<span><span aria-label="love" role="img">❤️</span> Join</span>) : link.title}
-                </div>
+                {link.title.toLowerCase()}
               </a>
-              <div>/</div>
-            </>
           );
+          }
         })
       }
     </div>
+    </div>
 
-    <!-- Mobile Hamburger Button -->
+  <!-- Mobile Menu Button -->
+  <div class="md:hidden absolute top-4 right-4 pointer-events-auto">
     <button
-      id="hamburger-btn"
-      class="md:hidden flex justify-center items-center w-8 h-8 text-white hover:bg-white/10 rounded transition-colors relative z-10"
+      id="mobile-menu-btn"
+      class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-300"
       aria-label="Toggle mobile menu"
-      aria-expanded="false"
     >
-      <div class="relative w-6 h-4 flex flex-col justify-center items-center">
-        <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 0;"></span>
-        <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="top: 50%; transform: translateY(-50%);"></span>
-        <span class="hamburger-line absolute w-6 h-0.5 bg-white origin-center" style="bottom: 0;"></span>
+      <div class="w-4 h-4 flex flex-col justify-center items-center">
+        <span class="w-3 h-0.5 bg-white mb-1"></span>
+        <span class="w-3 h-0.5 bg-white mb-1"></span>
+        <span class="w-3 h-0.5 bg-white"></span>
       </div>
     </button>
   </div>
 
-  <!-- Mobile Dropdown Menu -->
+  <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
-    class="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md transform translate-y-0 scale-y-0 origin-top opacity-0 transition-all duration-300 ease-out pointer-events-none overflow-hidden"
-    aria-hidden="true"
+    class="md:hidden fixed inset-0 bg-black/95 backdrop-blur-md opacity-0 invisible transition-all duration-300 pointer-events-none"
+    style="font-family: 'Helvetica Neue', sans-serif;"
   >
-    <div class="px-4 py-6 space-y-3">
+    <div class="flex flex-col items-center justify-center h-full space-y-8">
       {
         links.map((link) => {
-          const href =
-            link.href ?? link.title.toLowerCase().replaceAll(" ", "-");
-          const pathname = Astro.url.pathname.replace(
-            import.meta.env.BASE_URL,
-            "",
-          );
+          const href = link.href ?? link.title.toLowerCase().replaceAll(" ", "-");
+          const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
           const subpath = pathname.match(/[^\/]+/g);
-          const isActive =
-            href === pathname || href === "/" + (subpath?.[0] || "");
+          const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
           
-          // Check if href is an absolute URL (external link)
           const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
           const finalHref = isExternalLink ? href : `/${href}`;
           
-          // Check if this link has children (dropdown)
-          if (link.children && link.children.length > 0) {
-            return (
-              <>
-                <button
-                  class="mobile-nav-link mobile-dropdown-btn w-full hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center flex items-center justify-center gap-2"
-                  tabindex="-1"
-                  data-dropdown-target={link.title.toLowerCase()}
-                >
-                  <span>{link.title}</span>
-                  <svg class="w-4 h-4 transition-transform mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div class="mobile-dropdown-content overflow-hidden transition-all duration-300 max-h-0" data-dropdown={link.title.toLowerCase()}>
-                  <div class="py-2 space-y-1">
-                    {link.children.map((child) => {
-                      const childHref = child.href ?? child.title.toLowerCase().replaceAll(" ", "-");
-                      const childPathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
-                      const childSubpath = childPathname.match(/[^\/]+/g);
-                      const childIsActive = childHref === childPathname || childHref === "/" + (childSubpath?.[0] || "");
-                      const childIsExternalLink = childHref.startsWith("http://") || childHref.startsWith("https://");
-                      const childFinalHref = childIsExternalLink ? childHref : `/${childHref}`;
-                      
-                      return (
-                        <a
-                          class:list={[{ "bg-white text-black": childIsActive }]}
-                          class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-8 py-2 rounded text-base mx-2"
-                          href={childFinalHref}
-                          target={childIsExternalLink ? "_blank" : undefined}
-                          rel={childIsExternalLink ? "noopener noreferrer" : undefined}
-                          tabindex="-1"
-                        >
-                          {child.title}
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-              </>
-            );
-          }
-          
           return (
             <a
-              class:list={[{ "bg-white text-black": isActive }]}
-              class="mobile-nav-link block hover:bg-white hover:text-black transition-all ease-in-out px-4 py-3 rounded text-lg text-center"
+              class:list={[{ "text-white": isActive }]}
+              class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300"
               href={finalHref}
               target={isExternalLink ? "_blank" : undefined}
               rel={isExternalLink ? "noopener noreferrer" : undefined}
-              tabindex="-1"
             >
-              {link.title === "Join" ? (<span><span aria-label="love" role="img">❤️</span> Join</span>) : link.title}
+              {link.title.toLowerCase()}
             </a>
           );
         })
@@ -194,323 +121,124 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
   </div>
 </nav>
 
-<style>
-  /* Optimized hamburger animations using CSS classes with GPU acceleration */
-  .hamburger-line {
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, opacity;
-    transform: translateZ(0); /* Force GPU layer */
-  }
-  
-  .hamburger-open .hamburger-line:nth-child(1) {
-    transform: translateZ(0) translateY(8px) rotate(45deg);
-  }
-  
-  .hamburger-open .hamburger-line:nth-child(2) {
-    opacity: 0;
-    transform: translateZ(0);
-  }
-  
-  .hamburger-open .hamburger-line:nth-child(3) {
-    transform: translateZ(0) translateY(-6px) rotate(-45deg);
-  }
-  
-  /* Optimized dropdown animations with GPU acceleration */
-  .mobile-dropdown-content {
-    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: max-height;
-  }
-  
-  .dropdown-open {
-    max-height: 200px !important;
-  }
-  
-  .mobile-dropdown-arrow {
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-    transform: translateZ(0);
-  }
-  
-  .dropdown-arrow-rotated {
-    transform: translateZ(0) rotate(180deg);
-  }
-  
-  /* Enhanced mobile menu animations with GPU acceleration */
-  #mobile-menu {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, opacity;
-    transform: translateZ(0);
-  }
-  
-  .mobile-menu-opening {
-    transform: translateZ(0) scaleY(1) !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-  
-  .mobile-menu-closing {
-    transform: translateZ(0) scaleY(0) !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-  
-  /* Optimize hover effects to reduce repaints */
-  .mobile-nav-link {
-    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: background-color, color;
-  }
-</style>
-
 <script>
-  // Use a more efficient approach with proper state management
-  class MobileNavbar {
-    private hamburgerBtn: HTMLElement | null;
-    private mobileMenu: HTMLElement | null;
-    private hamburgerLines: HTMLElement[];
-    private mobileLinks: HTMLElement[];
-    private mobileDropdownBtns: HTMLElement[];
-    private dropdownElements: Map<string, { dropdown: HTMLElement; arrow: HTMLElement }> = new Map();
-    private isOpen: boolean = false;
-    private logo: HTMLElement | null;
-    private rafId: number | null = null;
+  // Mobile menu toggle and rotating progsu
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    // Get the hero progsu element from Hero.astro
+    const heroProgsu = document.getElementById('hero-progsu');
 
-    constructor() {
-      this.hamburgerBtn = document.getElementById("hamburger-btn");
-      this.mobileMenu = document.getElementById("mobile-menu");
-      this.hamburgerLines = Array.from(document.querySelectorAll("#hamburger-btn .hamburger-line"));
-      this.mobileLinks = Array.from(document.querySelectorAll(".mobile-nav-link"));
-      this.mobileDropdownBtns = Array.from(document.querySelectorAll(".mobile-dropdown-btn"));
-      this.logo = document.getElementById("logo");
-      
-      this.cacheDropdownElements();
-      this.init();
+    // Mobile menu toggle
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('opacity-100');
+        
+        if (isOpen) {
+          mobileMenu.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+          mobileMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+        } else {
+          mobileMenu.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+          mobileMenu.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+        }
+      });
     }
 
-    private cacheDropdownElements(): void {
-      this.mobileDropdownBtns.forEach(btn => {
-        const target = btn.getAttribute("data-dropdown-target");
-        if (target) {
-          const dropdown = document.querySelector(`[data-dropdown="${target}"]`) as HTMLElement;
-          const arrow = btn.querySelector(".mobile-dropdown-arrow") as HTMLElement;
-          if (dropdown && arrow) {
-            this.dropdownElements.set(target, { dropdown, arrow });
+    // Rotating progsu functionality
+    if (heroProgsu) {
+      let logoTransitioned = false;
+      const heroHeight = window.innerHeight * 0.75;
+      
+      // Smooth scroll-following progsu transformation
+      const updateHeroProgsuPosition = () => {
+        if (!heroProgsu) return;
+        
+        const scrollY = window.scrollY;
+        const startTransition = heroHeight * 0.2; // Start earlier for smoother transition
+        const endTransition = heroHeight * 0.8;   // End later for more gradual change
+        
+        // Get the original hero position (relative to viewport when not scrolled)
+        const heroContainer = heroProgsu.parentElement;
+        const heroRect = heroContainer.getBoundingClientRect();
+        const originalLeft = heroRect.left + 32; // Account for hero's left padding
+        const originalTop = heroRect.top + 32;   // Account for hero's top padding
+        
+        if (scrollY < startTransition) {
+          // Reset to normal hero position
+          if (logoTransitioned) {
+            logoTransitioned = false;
+            heroProgsu.style.position = 'static';
+            heroProgsu.style.left = 'auto';
+            heroProgsu.style.top = 'auto';
+            heroProgsu.style.transform = 'none';
+            heroProgsu.style.transformOrigin = 'initial';
+            heroProgsu.style.zIndex = 'auto';
+            heroProgsu.style.fontSize = '';
+          }
+        } else {
+          // Start transition - make it fixed and animate
+          if (!logoTransitioned) {
+            logoTransitioned = true;
+            heroProgsu.style.position = 'fixed';
+            heroProgsu.style.zIndex = '10000';
+            heroProgsu.style.transformOrigin = 'left center';
+          }
+          
+          if (scrollY <= endTransition) {
+            // Transition phase - smooth interpolation from current visible position
+            const progress = (scrollY - startTransition) / (endTransition - startTransition);
+            const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out
+            
+            // Calculate current position (where it would be if still in hero)
+            const currentHeroTop = originalTop - scrollY;
+            
+              // Target position (much lower on screen, closer to left edge)
+              const endLeft = 48;  // 3rem in pixels - closer to edge but not clipped
+              const endTop = 120;  // 7.5rem in pixels - much lower
+              
+              // Smooth interpolation from current hero position to target
+              const currentLeft = originalLeft + (endLeft - originalLeft) * easeProgress;
+              const currentTop = currentHeroTop + (endTop - currentHeroTop) * easeProgress;
+              
+              // Interpolate rotation (0 to -90 degrees)
+              const rotation = -90 * easeProgress;
+              
+              // Interpolate size
+              const fontSize = 1.5 + (0.5 * easeProgress); // 1.5rem to 2rem
+              
+              heroProgsu.style.left = `${currentLeft}px`;
+              heroProgsu.style.top = `${currentTop}px`;
+              heroProgsu.style.transform = `rotate(${rotation}deg)`;
+              heroProgsu.style.transformOrigin = 'left center'; // Ensure consistent rotation point
+              heroProgsu.style.fontSize = `${fontSize}rem`;
+            
+          } else {
+            // Final sticky position - much lower, closer to left edge
+            heroProgsu.style.left = '3rem'; // Closer to edge but not clipped
+            heroProgsu.style.top = '7.5rem'; // Much lower - 120px from top
+            heroProgsu.style.transform = 'rotate(-90deg)';
+            heroProgsu.style.transformOrigin = 'left center'; // Consistent rotation point
+            heroProgsu.style.fontSize = '2rem';
           }
         }
-      });
-    }
-
-    private init(): void {
-      // Set up event listeners
-      this.hamburgerBtn?.addEventListener("click", this.toggle.bind(this));
-      
-      // Keyboard support
-      document.addEventListener("keydown", this.handleKeydown.bind(this));
-      
-      // Click outside to close
-      document.addEventListener("click", this.handleOutsideClick.bind(this));
-      
-      // Close menu when clicking on links (but not dropdown buttons)
-      this.mobileLinks.forEach(link => {
-        if (!link.classList.contains("mobile-dropdown-btn")) {
-          link.addEventListener("click", this.close.bind(this));
-        }
-      });
-
-      // Handle mobile dropdown toggles
-      this.mobileDropdownBtns.forEach(btn => {
-        btn.addEventListener("click", this.toggleMobileDropdown.bind(this));
-      });
-
-      // Logo scroll effect with throttling
-      this.initLogoScrollEffect();
-    }
-
-    private toggle(): void {
-      if (this.isOpen) {
-        this.close();
-      } else {
-        this.open();
-      }
-    }
-
-    private open(): void {
-      if (!this.mobileMenu || this.isOpen) return;
-      
-      this.isOpen = true;
-      
-      // Batch DOM updates for better performance
-      requestAnimationFrame(() => {
-        if (!this.mobileMenu || !this.hamburgerBtn) return;
-        
-        // Update accessibility
-        this.hamburgerBtn.setAttribute("aria-expanded", "true");
-        this.mobileMenu.setAttribute("aria-hidden", "false");
-        
-        // Show menu with optimized CSS classes
-        this.mobileMenu.classList.remove("scale-y-0", "opacity-0", "pointer-events-none", "mobile-menu-closing");
-        this.mobileMenu.classList.add("mobile-menu-opening");
-        
-        // Animate hamburger to X using CSS class
-        this.hamburgerBtn.classList.add("hamburger-open");
-        
-        // Enable tab navigation for menu items
-        this.mobileLinks.forEach(link => {
-          link.setAttribute("tabindex", "0");
-        });
-        
-        // Prevent body scroll
-        document.body.style.overflow = "hidden";
-      });
-    }
-
-    private close(): void {
-      if (!this.mobileMenu || !this.isOpen) return;
-      
-      this.isOpen = false;
-      
-      // Batch DOM updates for better performance
-      requestAnimationFrame(() => {
-        if (!this.mobileMenu || !this.hamburgerBtn) return;
-        
-        // Update accessibility
-        this.hamburgerBtn.setAttribute("aria-expanded", "false");
-        this.mobileMenu.setAttribute("aria-hidden", "true");
-        
-        // Hide menu with optimized CSS classes
-        this.mobileMenu.classList.remove("mobile-menu-opening");
-        this.mobileMenu.classList.add("mobile-menu-closing");
-        
-        // Reset hamburger animation using CSS class
-        this.hamburgerBtn.classList.remove("hamburger-open");
-        
-        // Disable tab navigation for menu items
-        this.mobileLinks.forEach(link => {
-          link.setAttribute("tabindex", "-1");
-        });
-        
-        // Close all mobile dropdowns
-        this.closeAllMobileDropdowns();
-        
-        // Restore body scroll
-        document.body.style.overflow = "";
-      });
-    }
-
-    private toggleMobileDropdown(e: Event): void {
-      const button = e.currentTarget as HTMLElement;
-      const target = button.getAttribute("data-dropdown-target");
-      
-      if (!target) return;
-      
-      const elements = this.dropdownElements.get(target);
-      if (!elements) return;
-      
-      const { dropdown, arrow } = elements;
-      const isOpen = dropdown.classList.contains("dropdown-open");
-      
-      // Batch DOM updates
-      requestAnimationFrame(() => {
-        if (isOpen) {
-          // Close dropdown using CSS class
-          dropdown.classList.remove("dropdown-open");
-          arrow.classList.remove("dropdown-arrow-rotated");
-        } else {
-          // Close other dropdowns first
-          this.closeAllMobileDropdowns();
-          
-          // Open this dropdown using CSS class
-          dropdown.classList.add("dropdown-open");
-          arrow.classList.add("dropdown-arrow-rotated");
-        }
-      });
-    }
-
-    private closeAllMobileDropdowns(): void {
-      // Use cached elements for better performance
-      this.dropdownElements.forEach(({ dropdown, arrow }) => {
-        dropdown.classList.remove("dropdown-open");
-        arrow.classList.remove("dropdown-arrow-rotated");
-      });
-    }
-
-    private handleKeydown(e: KeyboardEvent): void {
-      if (e.key === "Escape" && this.isOpen) {
-        this.close();
-        this.hamburgerBtn?.focus(); // Return focus to hamburger button
-      }
-    }
-
-    private handleOutsideClick(e: Event): void {
-      const target = e.target as Node;
-      if (this.isOpen && 
-          this.mobileMenu && 
-          !this.mobileMenu.contains(target) && 
-          !this.hamburgerBtn?.contains(target)) {
-        this.close();
-      }
-    }
-
-    private initLogoScrollEffect(): void {
-      let ticking = false;
-      
-      const updateLogo = () => {
-        if (!this.logo) return;
-        
-        if (window.scrollY > 100) {
-          this.logo.className =
-            "pt-2 pb-1 !grid !place-items-center select-none leading-none hover:bg-white bg-black scale-100 hover:text-black text-white px-4 transition-all ease-in-out";
-        } else {
-          this.logo.className =
-            "pt-2 pb-1 !grid !place-items-center select-none leading-none hover:bg-black bg-white scale-110 hover:text-white text-black px-4 transition-all ease-in-out";
-        }
-        
-        ticking = false;
-        this.rafId = null;
       };
-
-      const requestLogoUpdate = () => {
+      
+      // Initial check
+      updateHeroProgsuPosition();
+      
+      // Throttled scroll listener for progsu rotation
+      let ticking = false;
+      const throttledScroll = () => {
         if (!ticking) {
-          this.rafId = requestAnimationFrame(updateLogo);
+          requestAnimationFrame(() => {
+            updateHeroProgsuPosition();
+            ticking = false;
+          });
           ticking = true;
         }
       };
 
-      window.addEventListener("scroll", requestLogoUpdate, { passive: true });
+      window.addEventListener('scroll', throttledScroll, { passive: true });
     }
-
-    // Cleanup method to prevent memory leaks
-    public destroy(): void {
-      // Cancel any pending animation frames
-      if (this.rafId) {
-        cancelAnimationFrame(this.rafId);
-      }
-      
-      // Remove event listeners
-      this.hamburgerBtn?.removeEventListener("click", this.toggle.bind(this));
-      document.removeEventListener("keydown", this.handleKeydown.bind(this));
-      document.removeEventListener("click", this.handleOutsideClick.bind(this));
-      
-      this.mobileLinks.forEach(link => {
-        if (!link.classList.contains("mobile-dropdown-btn")) {
-          link.removeEventListener("click", this.close.bind(this));
-        }
-      });
-
-      this.mobileDropdownBtns.forEach(btn => {
-        btn.removeEventListener("click", this.toggleMobileDropdown.bind(this));
-      });
-      
-      // Clear cached elements
-      this.dropdownElements.clear();
-    }
-  }
-
-  // Initialize when DOM is ready
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => new MobileNavbar());
-  } else {
-    new MobileNavbar();
-  }
+  });
 </script>

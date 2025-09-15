@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Section from "@/components/Section.astro";
 import BlogPostCard from "@/components/BlogPostCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { KNOWN_TECH, ABOUT_ME, SITE_TITLE } from "@/consts";
+import { KNOWN_TECH, ABOUT_ME, SITE_TITLE, GOOGLE_FORM_URL, DISCORD_LINK, SOCIAL_LINKS, INSTAGRAM_LINK, LINKEDIN_LINK, EMAIL_LINK } from "@/consts";
 import { separateEventsByDisplayType, sortEventsByPriority, type Event } from "@/utils/eventUtils";
 
 const rawEvents = await getEvents();
@@ -56,60 +56,223 @@ const sortedEvents = sortEventsByPriority(events);
 // Get only featured and upcoming events (no past events)
 const { fullCardEvents, liteCardEvents } = separateEventsByDisplayType(sortedEvents);
 
-// Combine and limit to 4 events for home page
-const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 4);
+// Combine and limit to 3 events for home page (more minimal)
+const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
 ---
 
 <Layout title={SITE_TITLE}>
+  <div id="top"></div>
   <Hero />
-  <Section
-    title="Events"
-    className={"bg-gradient-to-b from-black/70 from-[5%] to-black via-black"}
-  >
+  
+  <!-- Our Mission Section -->
+  <section id="our-mission" class="pt-20 pb-16 px-8 bg-black relative overflow-hidden">
+    <!-- Small grid background starts here -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-5xl mx-auto relative z-10">
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            our mission
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // building the future of tech
+          </div>
+        </div>
+        
+        <!-- Mission Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [01]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            core
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mission Content - Minimal & Profound -->
+      <div class="max-w-4xl mx-auto text-center space-y-12">
+        <!-- Core Mission Statement -->
+        <div class="space-y-6">
+          <h3 class="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-tight tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            we are creatives<br/>
+            <span class="font-bold">we create the future</span>
+          </h3>
+          
+          <p class="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
+            ATL's most creative students with the most amazing ideas
+          </p>
+        </div>
+        
+        <!-- Philosophy Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 mt-16">
+          <div class="space-y-3">
+            <div class="w-12 h-12 mx-auto md:mx-0 bg-white/5 rounded-full flex items-center justify-center">
+              <div class="w-3 h-3 bg-white rounded-full"></div>
+            </div>
+            <div class="text-lg font-medium text-white" style="font-family: 'Helvetica Neue', sans-serif;">think different</div>
+            <div class="text-sm text-white/50 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              challenge conventions.<br/>question everything.<br/>innovate beyond limits.
+            </div>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="w-12 h-12 mx-auto md:mx-0 bg-white/5 rounded-full flex items-center justify-center">
+              <div class="w-3 h-3 bg-white rounded-full"></div>
+            </div>
+            <div class="text-lg font-medium text-white" style="font-family: 'Helvetica Neue', sans-serif;">build fearlessly</div>
+            <div class="text-sm text-white/50 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              fail fast. learn faster.<br/>iterate relentlessly.<br/>ship with confidence.
+            </div>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="w-12 h-12 mx-auto md:mx-0 bg-white/5 rounded-full flex items-center justify-center">
+              <div class="w-3 h-3 bg-white rounded-full"></div>
+            </div>
+            <div class="text-lg font-medium text-white" style="font-family: 'Helvetica Neue', sans-serif;">impact everything</div>
+            <div class="text-sm text-white/50 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              code with purpose.<br/>build with meaning.<br/>change the world.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Minimal Stats -->
+        <div class="flex justify-center items-center gap-16 md:gap-24 mt-16 pt-8 border-t border-white/10">
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">500+</div>
+            <div class="text-xs text-white/40 uppercase tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">builders</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">∞</div>
+            <div class="text-xs text-white/40 uppercase tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">possibilities</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">+100%</div>
+            <div class="text-xs text-white/40 uppercase tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">ideas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Events Section -->
+  <section id="events" class="py-16 px-8 bg-black relative overflow-hidden">
+    <!-- Continuing grid background -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-5xl mx-auto relative z-10">
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            events
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // upcoming workshops & meetups
+          </div>
+        </div>
+        
+        <!-- Event Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [{homePageEvents.length.toString().padStart(2, '0')}]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            active
+          </div>
+        </div>
+      </div>
+      
+      <!-- Events Content -->
     {homePageEvents.length > 0 ? (
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+        <>
+          <!-- Events List - Brutalist Style -->
+          <div class="space-y-1 mb-12">
         {
-          homePageEvents.map((event) => {
+              homePageEvents.map((event, index) => {
             const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
+                const formattedDate = eventDate ? eventDate.toLocaleDateString('en-US', { 
+                  month: '2-digit', 
+                  day: '2-digit',
+                  year: '2-digit'
+                }) : 'TBD';
+                
             return (
-              <BlogPostCard
-                slug={event.slug.current}
-                title={event.title}
-                excerpt={getPlainTextExcerpt(event.description)}
-                date={eventDate}
-                time={event.time?.isTBD ? null : event.time?.value}
-                location={event.location?.isTBD ? null : event.location?.value}
-                status={getEventStatus(eventDate)}
-                pinned={event.pinned || false}
-                specialTags={event.specialTags || []}
-                resources={event.resources}
-              />
+                  <a 
+                    href={`/events/${event.slug.current}`}
+                    class="block border border-white/10 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-200 group"
+                  >
+                    <div class="px-6 py-4 flex items-center justify-between">
+                      <!-- Left: Index & Title -->
+                      <div class="flex items-center space-x-6">
+                        <div class="text-white/40 font-mono text-sm min-w-[3rem]">
+                          {(index + 1).toString().padStart(2, '0')}.
+                        </div>
+                        <div>
+                          <h3 class="text-white group-hover:text-white font-medium text-lg tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+                            {event.title}
+                          </h3>
+                          <div class="text-white/50 text-sm font-mono mt-1">
+                            {getPlainTextExcerpt(event.description).substring(0, 60)}...
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Right: Date & Status -->
+                      <div class="text-right flex items-center space-x-4">
+                        <div>
+                          <div class="text-white/60 font-mono text-sm">
+                            {formattedDate}
+                          </div>
+                          {event.time?.value && (
+                            <div class="text-white/40 font-mono text-xs">
+                              {event.time.value}
+                            </div>
+                          )}
+                        </div>
+                        <div class="text-white/40 group-hover:text-white/60 transition-colors">
+                          →
+                        </div>
+                      </div>
+                    </div>
+                  </a>
             );
           })
         }
       </div>
-    ) : (
-      <div class="text-center py-12">
-        <p class="text-white/60 text-lg">No upcoming events at the moment. Check back soon!</p>
-      </div>
-    )}
-    <div class="w-full flex justify-center mt-8">
+          
+          <!-- Terminal-style Button -->
+          <div class="border-t border-white/10 pt-8">
       <a 
         href="/events" 
-        class="relative inline-flex items-center px-8 py-4 text-white font-medium rounded-xl transition-all duration-500 ease-out hover:scale-105 group overflow-hidden backdrop-blur-md border border-white/20 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] shadow-lg hover:shadow-2xl hover:border-white/40"
-      >
-        <!-- Glass effect overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-white/[0.1] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        
-        <!-- Subtle glow effect on hover -->
-        <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 via-transparent to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-        
-        <!-- Content -->
-        <span class="relative z-10 mr-2 text-green-400 group-hover:text-green-300 transition-colors duration-300 drop-shadow-sm">❯</span>
-        <span class="relative z-10 group-hover:text-green-100 transition-colors duration-300">See All Events</span>
-      </a>
+              class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
+              style="font-family: 'Courier New', monospace;"
+            >
+              <span class="mr-2 text-green-400 group-hover:text-green-300">$</span>
+              <span class="group-hover:text-green-100">ls /events --all</span>
+              <span class="ml-2 text-white/30 group-hover:text-white/50">▊</span>
+            </a>
+          </div>
+        </>
+      ) : (
+        <!-- No Events - Terminal Style -->
+        <div class="border border-white/10 bg-white/[0.02] p-8">
+          <div class="font-mono text-white/60 space-y-2">
+            <div class="text-green-400">$ ls events/</div>
+            <div class="text-white/40">ls: cannot access 'events/': No such file or directory</div>
+            <div class="text-white/30 mt-4">// check back soon for new workshops</div>
+          </div>
+        </div>
+      )}
     </div>
-  </Section>
+  </section>
   {/* Technologies section - commented out for now, may be used in the future */}
   {/* <Section title="Technologies I Know" full_screen={false}>
     <div class="w-full grid place-items-center">
@@ -120,13 +283,345 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 4);
       </div>
     </div>
   </Section> */}
-  <Section title="About">
-    <div class="w-full grid place-items-center">
-      <div
-        class="max-w-4xl text-xl md:text-lg opacity-90 text-center justify-evenly"
-      >
-        <p>{ABOUT_ME}</p>
+  <!-- About Section -->
+  <section id="about" class="py-16 px-8 bg-black relative overflow-hidden">
+    <!-- Continuing grid background -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-5xl mx-auto relative z-10">
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            about
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // who we are & what we do
+          </div>
+        </div>
+        
+        <!-- About Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [03]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            info
+          </div>
+        </div>
+      </div>
+      
+      <!-- About Content -->
+      <div class="max-w-4xl mx-auto">
+        <!-- Single Column Layout -->
+        <div class="border border-white/10 bg-white/[0.02] p-8">
+          <div class="space-y-8">
+            <!-- Description -->
+            <div class="text-lg text-white/80 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;" set:html={ABOUT_ME}></div>
+            
+            <!-- Navigation Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a 
+                href="/members"
+                class="block border-2 border-white/30 hover:border-white bg-white/[0.02] hover:bg-white/[0.08] p-6 transition-all duration-200 group"
+              >
+                <div class="text-center">
+                  <div class="text-white font-bold text-xl mb-2" style="font-family: 'Helvetica Neue', sans-serif;">
+                    MEMBERS
+                  </div>
+                  <div class="text-white/50 font-mono text-sm">
+                    ls team/ --all
+                  </div>
+                </div>
+              </a>
+              
+              <a 
+                href="/history"
+                class="block border-2 border-white/30 hover:border-white bg-white/[0.02] hover:bg-white/[0.08] p-6 transition-all duration-200 group"
+              >
+                <div class="text-center">
+                  <div class="text-white font-bold text-xl mb-2" style="font-family: 'Helvetica Neue', sans-serif;">
+                    HISTORY
+                  </div>
+                  <div class="text-white/50 font-mono text-sm">
+                    git log --oneline
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </Section>
+  </section>
+  
+  <!-- Get Involved Section -->
+  <section id="get-involved" class="py-16 px-8 bg-black relative overflow-hidden">
+    <!-- Continuing grid background -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            get involved
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // students & partners
+          </div>
+        </div>
+        
+        <!-- Section Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [04]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            connect
+          </div>
+        </div>
+      </div>
+      
+      <!-- Balanced Dual-Purpose Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Students Column -->
+        <div class="border border-white/10 bg-white/[0.02] p-8 space-y-8">
+          <!-- Student Header -->
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">
+                for students
+              </h3>
+              <div class="text-sm text-white/50 font-mono">// join the community</div>
+            </div>
+            <div class="text-lg font-mono text-white/40">[S1]</div>
+          </div>
+          
+          <!-- Student Description -->
+          <div class="space-y-3">
+            <h4 class="text-lg font-light text-white" style="font-family: 'Helvetica Neue', sans-serif;">
+              ready to build the future?
+            </h4>
+            <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              join 500+ creators, innovators, and builders at georgia state university
+            </p>
+          </div>
+          
+          <!-- Terminal Command -->
+          <div class="border border-white/10 bg-white/[0.02] p-4">
+            <div class="font-mono text-white/60 space-y-2 mb-4">
+              <div class="text-green-400 text-sm">$ git clone progsu@gsu.edu</div>
+              <div class="text-white/40 text-sm">Cloning into 'your-future'...</div>
+              <div class="text-white/40 text-sm">remote: Ready to innovate? [Y/n]</div>
+            </div>
+            
+            <!-- Prominent Student CTA -->
+            <a 
+              href={GOOGLE_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-8 py-4 bg-green-600 hover:bg-green-500 text-white font-medium text-lg transition-all duration-300 group border border-green-500 hover:border-green-400 w-full justify-center"
+              style="font-family: 'Helvetica Neue', sans-serif;"
+            >
+              <span class="mr-3 text-green-100 group-hover:text-white transition-colors duration-300 font-mono">></span>
+              <span class="group-hover:text-green-50 transition-colors duration-300">join progsu</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Partners Column -->
+        <div class="border border-white/10 bg-white/[0.02] p-8 space-y-8">
+          <!-- Partner Header -->
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">
+                for partners
+              </h3>
+              <div class="text-sm text-white/50 font-mono">// sponsor & recruit</div>
+            </div>
+            <div class="text-lg font-mono text-white/40">[P1]</div>
+          </div>
+          
+          <!-- Partner Description -->
+          <div class="space-y-3">
+            <h4 class="text-lg font-light text-white" style="font-family: 'Helvetica Neue', sans-serif;">
+              connect with atlanta's top tech talent
+            </h4>
+            <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              partner with georgia state's most engaged programming community
+            </p>
+          </div>
+          
+          <!-- Partner Benefits -->
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3">
+              <div class="text-white/40 font-mono text-xs">01.</div>
+              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">direct access to 500+ motivated cs students</div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-white/40 font-mono text-xs">02.</div>
+              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">co-host technical workshops & events</div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-white/40 font-mono text-xs">03.</div>
+              <div class="text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">early recruitment pipeline for internships</div>
+            </div>
+          </div>
+          
+          <!-- Partner Contact -->
+          <div class="border border-white/10 bg-white/[0.02] p-4">
+            <div class="font-mono text-white/60 space-y-2 mb-4">
+              <div class="text-green-400 text-sm">$ contact partnerships</div>
+              <div class="text-white/40 text-sm">initiating partnership protocol...</div>
+              <div class="text-white/40 text-sm">ready to collaborate? [Y/n]</div>
+            </div>
+            
+            <!-- Prominent Partner CTA -->
+            <a 
+              href="mailto:partnerships@progsu.org"
+              class="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-medium text-lg transition-all duration-300 group border border-blue-500 hover:border-blue-400 w-full justify-center"
+              style="font-family: 'Helvetica Neue', sans-serif;"
+            >
+              <span class="mr-3 text-blue-100 group-hover:text-white transition-colors duration-300 font-mono">></span>
+              <span class="group-hover:text-blue-50 transition-colors duration-300">start partnership</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Connect With Us Section -->
+      <div class="mt-16 border-t border-white/10 pt-16">
+        <div class="mb-12 text-center">
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            connect with us
+          </h3>
+          <div class="text-sm text-white/50 font-mono">
+            // multiple ways to stay in touch
+          </div>
+        </div>
+        
+        <!-- Terminal-Style Social Links Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Discord -->
+          <a 
+            href={DISCORD_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/30 transition-all duration-300 p-6 text-center"
+          >
+            <div class="space-y-4">
+              <div class="w-12 h-12 mx-auto bg-indigo-600 group-hover:bg-indigo-500 rounded-lg flex items-center justify-center transition-colors duration-300">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-white font-medium mb-1" style="font-family: 'Helvetica Neue', sans-serif;">discord</h4>
+                <div class="font-mono text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                  <span class="text-green-400">$</span> join server
+                </div>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Instagram -->
+          <a 
+            href={INSTAGRAM_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/30 transition-all duration-300 p-6 text-center"
+          >
+            <div class="space-y-4">
+              <div class="w-12 h-12 mx-auto bg-gradient-to-br from-purple-600 to-pink-600 group-hover:from-purple-500 group-hover:to-pink-500 rounded-lg flex items-center justify-center transition-all duration-300">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-white font-medium mb-1" style="font-family: 'Helvetica Neue', sans-serif;">instagram</h4>
+                <div class="font-mono text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                  <span class="text-green-400">$</span> follow us
+                </div>
+              </div>
+            </div>
+          </a>
+          
+          <!-- LinkedIn -->
+          <a 
+            href={LINKEDIN_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/30 transition-all duration-300 p-6 text-center"
+          >
+            <div class="space-y-4">
+              <div class="w-12 h-12 mx-auto bg-blue-700 group-hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors duration-300">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-white font-medium mb-1" style="font-family: 'Helvetica Neue', sans-serif;">linkedin</h4>
+                <div class="font-mono text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                  <span class="text-green-400">$</span> connect
+                </div>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Email -->
+          <a 
+            href={EMAIL_LINK}
+            class="group border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/30 transition-all duration-300 p-6 text-center"
+          >
+            <div class="space-y-4">
+              <div class="w-12 h-12 mx-auto bg-gray-600 group-hover:bg-gray-500 rounded-lg flex items-center justify-center transition-colors duration-300">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-white font-medium mb-1" style="font-family: 'Helvetica Neue', sans-serif;">email</h4>
+                <div class="font-mono text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                  <span class="text-green-400">$</span> send message
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Terminal Footer -->
+        <div class="mt-12 border-t border-white/10 pt-8">
+          <div class="font-mono text-white/60 text-center space-y-2">
+            <div class="text-green-400 text-sm">$ echo "stay connected"</div>
+            <div class="text-white/40 text-sm">multiple channels available for community engagement</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Minimal Footer -->
+  <footer class="border-t border-white/10 py-8 px-8 bg-black">
+    <!-- Grid background continues -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto flex justify-between items-center relative z-10">
+      <div class="font-mono text-white/40 text-sm" style="font-family: 'Helvetica Neue', sans-serif;">
+        © 2025 progsu at gsu
+      </div>
+      <div class="flex space-x-8 font-mono text-white/40 text-sm">
+        <a href="/members" class="hover:text-white/60 transition-colors">members</a>
+        <a href="/history" class="hover:text-white/60 transition-colors">history</a>
+      </div>
+    </div>
+  </footer>
 </Layout>

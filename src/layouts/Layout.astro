@@ -18,7 +18,7 @@ const isHome = Astro.url.pathname === "/";
 
   <body class="bg-black text-white tracking-wide !overflow-x-hidden">
     <header class="fixed top-0 w-screen z-[9999]"><Navbar /></header>
-    <main class="pt-32 sm:pt-28 md:pt-20">
+    <main class="pt-0">
       {/* Breadcrumb slot for subpages */}
       <div class="max-w-7xl mx-auto px-4">
         <slot name="breadcrumb" />

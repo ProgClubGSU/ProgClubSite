@@ -1,11 +1,6 @@
 /* Critical CSS - Inlined for fast initial render */
 
-@font-face {
-  font-family: "VCR";
-  src: url("/fonts/VCRosdNEUE.ttf") format("truetype");
-  font-style: normal;
-  font-display: swap;
-}
+/* Helvetica Neue is a system font, no @font-face needed */
 
 /* Essential Tailwind base styles */
 *,
@@ -20,7 +15,7 @@
 }
 
 html {
-  font-family: "VCR", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
@@ -28,7 +23,7 @@ html {
 
 /* Essential base styles */
 body {
-  font-family: "VCR", monospace !important;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
   background: #000;
   color: #fff;
   margin: 0;

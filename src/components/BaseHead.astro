@@ -16,7 +16,6 @@ const {
   description = SITE_DESCRIPTION,
   image = "/embed_preview.png",
 } = Astro.props;
-import HeroImage from "@/hero.png";
 import { ABOUT_ME, SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
 
 // Read critical CSS for inlining
@@ -37,13 +36,7 @@ import criticalCSS from "@/styles/critical.css?inline";
 <link rel="preconnect" href="https://proggsu.vercel.app" />
 
 <!-- Font preloads with higher priority and fallback -->
-<link
-  rel="preload"
-  href="/fonts/VCRosdNEUE.ttf"
-  as="font"
-  type="font/ttf"
-  crossorigin="anonymous"
-/>
+<!-- Helvetica Neue is a system font, no preload needed -->
 
 <!-- Critical CSS inlined for immediate render -->
 <style set:html={criticalCSS}></style>
@@ -52,7 +45,7 @@ import criticalCSS from "@/styles/critical.css?inline";
 <style>
   /* Fallback font stack to prevent layout shift */
   html {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   }
   
   /* Hide animations and transitions until page is ready */
@@ -64,19 +57,19 @@ import criticalCSS from "@/styles/critical.css?inline";
   /* Ensure content is visible immediately with fallback font */
   body {
     visibility: visible;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   }
   
-  /* Apply VCR font only after it's loaded */
+  /* Apply Helvetica Neue font after it's loaded */
   .font-loaded body,
   .font-loaded html {
-    font-family: "VCR", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   }
 </style>
 
 <!-- Font loading optimization script -->
 <script>
-  // Mark when VCR font is loaded to prevent FOUC
+  // Mark when Helvetica Neue font is loaded to prevent FOUC
   if ('fonts' in document) {
     document.fonts.ready.then(() => {
       document.documentElement.classList.add('font-loaded');
