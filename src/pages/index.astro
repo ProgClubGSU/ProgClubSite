@@ -10,7 +10,7 @@ import { separateEventsByDisplayType, sortEventsByPriority, type Event } from "@
 
 const rawEvents = await getEvents();
 
-// Helper function to extract plain text from description
+// aHelper function to extract plain text from description
 function getPlainTextExcerpt(description) {
   if (typeof description === 'string') return description;
   if (!description || !Array.isArray(description)) return '';
