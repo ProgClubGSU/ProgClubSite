@@ -315,77 +315,42 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
       
       <!-- About Content -->
       <div class="max-w-4xl mx-auto">
-        <!-- Main Description -->
-        <div class="border border-white/10 bg-white/[0.02] p-8 mb-8">
-          <p class="text-lg md:text-xl text-white/80 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
-            {ABOUT_ME}
-          </p>
-        </div>
-        
-        <!-- Key Stats/Info -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
-          <div class="border border-white/10 bg-white/[0.02] p-6">
-            <div class="space-y-2">
-              <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
-                location
-              </div>
-              <div class="text-white font-medium text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
-                georgia state university
-              </div>
-            </div>
-          </div>
-          
-          <div class="border border-white/10 bg-white/[0.02] p-6">
-            <div class="space-y-2">
-              <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
-                type
-              </div>
-              <div class="text-white font-medium text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
-                student organization
-              </div>
-            </div>
-          </div>
-          
-          <div class="border border-white/10 bg-white/[0.02] p-6">
-            <div class="space-y-2">
-              <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
-                focus
-              </div>
-              <div class="text-white font-medium text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
-                tech community
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Terminal-style Footer -->
-        <div class="border-t border-white/10 pt-8 mt-8">
-          <div class="font-mono text-white/60 space-y-1">
-            <div class="text-green-400 text-sm">$ whoami</div>
-            <div class="text-white/70 text-sm">progsu@gsu:~$ building the future, one line of code at a time</div>
-          </div>
-          
-          <!-- Terminal Commands -->
-          <div class="flex flex-col sm:flex-row gap-3 mt-6">
-            <a 
-              href="/members"
-              class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
-              style="font-family: 'Courier New', monospace;"
-            >
-              <span class="mr-2 text-green-400 group-hover:text-green-300">$</span>
-              <span class="group-hover:text-green-100">ls team/ --all</span>
-              <span class="ml-2 text-white/30 group-hover:text-white/50">▊</span>
-            </a>
+        <!-- Single Column Layout -->
+        <div class="border border-white/10 bg-white/[0.02] p-8">
+          <div class="space-y-8">
+            <!-- Description -->
+            <div class="text-lg text-white/80 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;" set:html={ABOUT_ME}></div>
             
-            <a 
-              href="/history"
-              class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
-              style="font-family: 'Courier New', monospace;"
-            >
-              <span class="mr-2 text-green-400 group-hover:text-green-300">$</span>
-              <span class="group-hover:text-green-100">git log --oneline</span>
-              <span class="ml-2 text-white/30 group-hover:text-white/50">▊</span>
-            </a>
+            <!-- Navigation Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a 
+                href="/members"
+                class="block border-2 border-white/30 hover:border-white bg-white/[0.02] hover:bg-white/[0.08] p-6 transition-all duration-200 group"
+              >
+                <div class="text-center">
+                  <div class="text-white font-bold text-xl mb-2" style="font-family: 'Helvetica Neue', sans-serif;">
+                    MEMBERS
+                  </div>
+                  <div class="text-white/50 font-mono text-sm">
+                    ls team/ --all
+                  </div>
+                </div>
+              </a>
+              
+              <a 
+                href="/history"
+                class="block border-2 border-white/30 hover:border-white bg-white/[0.02] hover:bg-white/[0.08] p-6 transition-all duration-200 group"
+              >
+                <div class="text-center">
+                  <div class="text-white font-bold text-xl mb-2" style="font-family: 'Helvetica Neue', sans-serif;">
+                    HISTORY
+                  </div>
+                  <div class="text-white/50 font-mono text-sm">
+                    git log --oneline
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
