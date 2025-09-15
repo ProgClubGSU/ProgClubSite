@@ -1,10 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/components/Section.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import ResourceButtons from "@/components/ResourceButtons.astro";
 import { getEvents, renderPortableText } from "@/lib/sanity.js";
-import { DISCORD_LINK } from "@/consts";
+import { DISCORD_LINK, SITE_TITLE } from "@/consts";
 
 // Get all events and sort by date
 const events = await getEvents();
@@ -18,236 +15,190 @@ const currentEvents = events.filter(event => {
   return eventDate > new Date(now.getTime() - 6 * 30 * 24 * 60 * 60 * 1000);
 });
 
-const upcomingEvents = [
+const resourceCategories = [
   {
-    title: "Technical Interview Prep Workshop",
-    description: "Comprehensive guide to technical interviews, common questions, and problem-solving strategies.",
-    date: "FALL 2025",
-    slug: "technical-interview-prep",
-    resources: []
+    name: "workshops",
+    description: "hands-on learning sessions & tutorials",
+    items: [
+      { title: "Technical Interview Prep", description: "Comprehensive guide to technical interviews, common questions, and problem-solving strategies", status: "active" },
+      { title: "Project Portfolio Building", description: "Learn how to showcase your projects effectively and build a compelling portfolio", status: "active" },
+      { title: "Resume & LinkedIn Optimization", description: "Professional branding and networking strategies for tech careers", status: "active" },
+      { title: "DSA Bootcamp Series", description: "Data structures and algorithms deep-dive sessions", status: "upcoming" }
+    ]
   },
   {
-    title: "Project Portfolio Building Session", 
-    description: "Learn how to showcase your projects effectively and build a compelling portfolio.",
-    date: "FALL 2025",
-    slug: "portfolio-building",
-    resources: []
+    name: "tools",
+    description: "development tools & platforms we recommend",
+    items: [
+      { title: "VS Code Extensions", description: "Essential extensions for productive coding", status: "active" },
+      { title: "Git & GitHub Workflow", description: "Version control best practices and collaboration", status: "active" },
+      { title: "Docker Containers", description: "Containerization for consistent development environments", status: "active" },
+      { title: "Cloud Platforms (AWS/GCP)", description: "Getting started with cloud computing and deployment", status: "active" }
+    ]
   },
   {
-    title: "Networking & Professional Branding",
-    description: "Master LinkedIn optimization, networking strategies, and building your professional brand.",
-    date: "FALL 2025",
-    slug: "networking-branding",
-    resources: []
+    name: "docs",
+    description: "documentation & reference materials",
+    items: [
+      { title: "Club Handbook", description: "Everything you need to know about progsu", status: "active" },
+      { title: "Event Archives", description: "Past workshop materials and recordings", status: "active" },
+      { title: "Career Resources", description: "Job search strategies and industry insights", status: "active" },
+      { title: "Study Guides", description: "Technical interview prep and CS fundamentals", status: "active" }
+    ]
+  },
+  {
+    name: "community",
+    description: "connect with fellow builders",
+    items: [
+      { title: "Discord Server", description: "Real-time chat, project collaboration, and help", status: "active", link: DISCORD_LINK },
+      { title: "Study Groups", description: "Peer learning sessions and group projects", status: "active" },
+      { title: "Mentorship Program", description: "Connect with experienced developers and alumni", status: "upcoming" },
+      { title: "Project Showcase", description: "Share your work and get feedback from the community", status: "active" }
+    ]
   }
 ];
 ---
 
-<Layout title="Resources">
-  <Fragment slot="breadcrumb">
-    <div class="mb-6 mt-2">
-      <nav class="flex items-center gap-2 text-white/80 text-sm" aria-label="Breadcrumb">
-        <a href="/" class="hover:underline">Home</a>
-        <span>/</span>
-        <Breadcrumb title="Resources" />
-      </nav>
+<Layout title={`Resources - ${SITE_TITLE}`}>
+  <div class="min-h-screen bg-black relative overflow-hidden">
+    <!-- Grid background -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
     </div>
-  </Fragment>
-  <Section title="Resources" className="pt-16">
-    <div class="w-full grid place-items-center">
-      <div class="max-w-6xl w-full space-y-12">
+    
+    <!-- Content -->
+    <div class="relative z-10 px-8 py-16">
+      <div class="max-w-6xl mx-auto">
+        <!-- Brutalist Page Header -->
+        <div class="mb-16 flex items-end justify-between">
+          <div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+              resources
+            </h1>
+            <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+              // tools & knowledge base
+            </div>
+          </div>
+          
+          <!-- Resources Counter -->
+          <div class="text-right">
+            <div class="text-2xl font-bold text-white font-mono">
+              [R1]
+            </div>
+            <div class="text-xs text-white/40 uppercase tracking-widest">
+              docs
+            </div>
+          </div>
+        </div>
         
-        <!-- Current Events -->
-        <div class="space-y-6">
-          <h2 class="text-3xl font-bold text-center mb-8">Fall 2025</h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {currentEvents.map((event) => (
-              <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-                <h3 class="text-xl font-semibold mb-3">{event.title}</h3>
-                <div class="prose prose-invert prose-sm mb-4 line-clamp-2" set:html={renderPortableText(event.description)} />
-                <ResourceButtons resources={event.resources || []} />
+        <!-- Terminal-style Directory Listing -->
+        <div class="mb-12">
+          <div class="border border-white/10 bg-white/[0.02] p-8">
+            <div class="font-mono text-white/60 space-y-4">
+              <div class="text-green-400 text-sm">$ ls resources/ --long</div>
+              <div class="space-y-2">
+                {resourceCategories.map(category => (
+                  <div class="flex items-center space-x-4 hover:text-white/80 transition-colors cursor-pointer group">
+                    <div class="text-white/40 text-xs w-8">drwx</div>
+                    <div class="text-blue-400 group-hover:text-blue-300 font-medium">{category.name}/</div>
+                    <div class="text-white/50 text-sm flex-1">{category.description}</div>
+                    <div class="text-white/30 text-xs">{category.items.length} items</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
-
-        <!-- Upcoming Resources -->
-        <div class="space-y-6">
-          <h2 class="text-3xl font-bold text-center mb-8">Upcoming Resources</h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {upcomingEvents.map((event) => (
-              <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-                <h3 class="text-xl font-semibold mb-3">{event.title}</h3>
-                <p class="text-white/80 mb-4 line-clamp-2">{event.description}</p>
-                <div class="flex flex-wrap gap-3">
-                  <span class="bg-yellow-600 text-white px-4 py-2 rounded">
-                    {event.date}
-                  </span>
-                  <ResourceButtons resources={event.resources} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+        
         <!-- Resource Categories -->
-        <div class="space-y-6">
-          <h2 class="text-3xl font-bold text-center mb-8">Resource Categories</h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <!-- Interview Prep -->
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">Interview Prep</h3>
-              <p class="text-white/80 mb-4">Data Structures, Algorithms, and Technical Interview Resources</p>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">DSA Review Materials</span>
+        <div class="space-y-16">
+          {resourceCategories.map((category, categoryIndex) => (
+            <div class="space-y-8">
+              <!-- Category Header -->
+              <div class="flex items-end justify-between">
+                <div>
+                  <h2 class="text-2xl md:text-3xl font-bold text-white mb-1 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+                    {category.name}
+                  </h2>
+                  <div class="text-sm text-white/50 font-mono">
+                    // {category.description}
+                  </div>
                 </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Common Interview Questions</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Problem-Solving Strategies</span>
+                <div class="text-right">
+                  <div class="text-lg font-bold text-white font-mono">
+                    [{(categoryIndex + 1).toString().padStart(2, '0')}]
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Career Development -->
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">Career Development</h3>
-              <p class="text-white/80 mb-4">Resume building, networking, and career planning resources</p>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Resume Templates</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">LinkedIn Optimization</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Networking Strategies</span>
-                </div>
+              
+              <!-- Category Items -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+                {category.items.map((item, itemIndex) => {
+                  const isExternal = item.link && (item.link.startsWith('http') || item.link.startsWith('https'));
+                  const Component = item.link ? 'a' : 'div';
+                  const linkProps = item.link ? {
+                    href: item.link,
+                    target: isExternal ? '_blank' : undefined,
+                    rel: isExternal ? 'noopener noreferrer' : undefined
+                  } : {};
+                  
+                  return (
+                    <Component 
+                      {...linkProps}
+                      class={`border border-white/10 bg-white/[0.02] p-6 ${item.link ? 'hover:bg-white/[0.05] hover:border-white/20 transition-all duration-200 cursor-pointer group' : ''}`}
+                    >
+                      <div class="space-y-3">
+                        <!-- Item Header -->
+                        <div class="flex items-center justify-between">
+                          <div class="flex items-center space-x-3">
+                            <div class="text-white/40 font-mono text-xs">
+                              {(itemIndex + 1).toString().padStart(2, '0')}.
+                            </div>
+                            <h3 class={`text-white font-medium text-lg ${item.link ? 'group-hover:text-green-300' : ''}`} style="font-family: 'Helvetica Neue', sans-serif;">
+                              {item.title}
+                            </h3>
+                          </div>
+                          
+                          <!-- Status Indicator -->
+                          <div class={`text-xs font-mono px-2 py-1 rounded-sm ${
+                            item.status === 'active' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                            item.status === 'upcoming' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
+                            'bg-gray-500/20 text-gray-400 border border-gray-500/30'
+                          }`}>
+                            {item.status}
+                          </div>
+                        </div>
+                        
+                        <!-- Item Description -->
+                        <p class="text-white/60 text-sm leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+                          {item.description}
+                        </p>
+                        
+                        {item.link && (
+                          <div class="flex items-center text-white/40 group-hover:text-white/60 text-sm font-mono">
+                            <span class="mr-2">→</span>
+                            <span>access resource</span>
+                          </div>
+                        )}
+                      </div>
+                    </Component>
+                  );
+                })}
               </div>
             </div>
-
-            <!-- Technical Skills -->
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">Technical Skills</h3>
-              <p class="text-white/80 mb-4">Programming languages, frameworks, and development tools</p>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Python Tutorials</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Web Development</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Git & GitHub</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Projects & Portfolio -->
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">Projects & Portfolio</h3>
-              <p class="text-white/80 mb-4">Project ideas, portfolio building, and showcase resources</p>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Project Ideas</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Portfolio Templates</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Showcase Examples</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Hackathons & Competitions -->
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">Hackathons & Competitions</h3>
-              <p class="text-white/80 mb-4">Competitive programming and hackathon resources</p>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Competition Platforms</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Hackathon Tips</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Team Formation</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Industry Connections -->
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">Industry Connections</h3>
-              <p class="text-white/80 mb-4">Guest speakers, company visits, and industry insights</p>
-              <div class="space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Guest Speaker Recordings</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Company Visit Resources</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-white rounded-full"></span>
-                  <span class="text-sm text-white/70">Industry Insights</span>
-                </div>
-              </div>
-            </div>
-
+          ))}
+        </div>
+        
+        <!-- Terminal-style Footer -->
+        <div class="mt-16 border-t border-white/10 pt-8">
+          <div class="font-mono text-white/60 space-y-2">
+            <div class="text-green-400 text-sm">$ find . -name "*.help" | head -3</div>
+            <div class="text-white/50 text-sm">./discord/general-help</div>
+            <div class="text-white/50 text-sm">./workshops/ask-questions</div>
+            <div class="text-white/50 text-sm">./mentors/office-hours</div>
+            <div class="text-white/40 text-sm mt-4">// need help? reach out in discord or join our next workshop</div>
           </div>
         </div>
-
-        <!-- Quick Links -->
-        <div class="space-y-6">
-          <h2 class="text-3xl font-bold text-center mb-8">Quick Links</h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">External Resources</h3>
-              <div class="space-y-3">
-                <a href="https://leetcode.com" target="_blank" class="block text-white/80 hover:text-white transition-colors">→ LeetCode (Practice Problems)</a>
-                <a href="https://github.com/ProgClubGSU" target="_blank" class="block text-white/80 hover:text-white transition-colors">→ GitHub</a>
-                <span class="block text-gray-500 cursor-not-allowed select-none">→ LinkedIn (Coming Soon)</span>
-                <span class="block text-gray-500 cursor-not-allowed select-none">→ HackerRank (Coming Soon)</span>
-              </div>
-            </div>
-            <div class="bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/20 rounded-lg p-6">
-              <h3 class="text-lg font-semibold mb-3">Club Resources</h3>
-              <div class="space-y-3">
-                <a href="/events" class="block text-white/80 hover:text-white transition-colors">→ All Events</a>
-                <a href={String(DISCORD_LINK)} target="_blank" class="block text-white/80 hover:text-white transition-colors">→ Discord Server</a>
-                <span class="block text-gray-500 cursor-not-allowed select-none">→ Meeting Schedule (Coming Soon)</span>
-                <span class="block text-gray-500 cursor-not-allowed select-none">→ Contact Information (Coming Soon)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </Section>
 </Layout> 

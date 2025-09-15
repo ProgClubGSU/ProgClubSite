@@ -28,23 +28,23 @@ export const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdIuhYb
 export const NAV_LINKS: Array<{ title: string; href?: string; children?: Array<{ title: string; href?: string }> }> = [
   {
     title: "Home",
-    href: "#top",
+    href: "/#top",
   },
   {
     title: "Mission",
-    href: "#our-mission",
+    href: "/#our-mission",
   },
   {
     title: "Events", 
-    href: "#events",
+    href: "/#events",
   },
   {
     title: "About",
-    href: "#about",
+    href: "/#about",
   },
   {
     title: "Join",
-    href: "#join",
+    href: "/#join",
   },
 ];
 

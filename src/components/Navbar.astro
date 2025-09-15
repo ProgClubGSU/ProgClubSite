@@ -15,27 +15,60 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
     <div class="hidden md:flex flex-col" id="nav-container" style="font-family: 'Helvetica Neue', sans-serif; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
       {
         links.map((link, index) => {
-          const href = link.href ?? link.title.toLowerCase().replaceAll(" ", "-");
-          const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
-          const subpath = pathname.match(/[^\/]+/g);
-          const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
-          
-          const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
-          const finalHref = isExternalLink ? href : `/${href}`;
-          
-          return (
-              <a
-              class:list={[{ "text-white": isActive }]}
-              class="text-white/60 hover:text-white text-lg font-light nav-link block"
-                href={finalHref}
-                target={isExternalLink ? "_blank" : undefined}
-                rel={isExternalLink ? "noopener noreferrer" : undefined}
-              style="transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);"
-              data-index={index}
-              >
-              {link.title.toLowerCase()}
-              </a>
-          );
+          if (link.children && link.children.length > 0) {
+            // Dropdown menu item
+            return (
+              <div class="relative group nav-link" data-index={index} style="transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
+                <button class="text-white/60 hover:text-white text-lg font-light flex items-center gap-1">
+                  {link.title.toLowerCase()}
+                  <span class="text-xs opacity-60">▼</span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute left-0 top-8 bg-black/90 backdrop-blur-sm border border-white/10 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[140px] z-50">
+                  {link.children.map((child) => {
+                    const childHref = child.href ?? child.title.toLowerCase().replaceAll(" ", "-");
+                    const isExternalLink = childHref.startsWith("http://") || childHref.startsWith("https://");
+                    const finalChildHref = isExternalLink ? childHref : childHref.startsWith('/') ? childHref : `/${childHref}`;
+                    
+                    return (
+                      <a
+                        href={finalChildHref}
+                        target={isExternalLink ? "_blank" : undefined}
+                        rel={isExternalLink ? "noopener noreferrer" : undefined}
+                        class="block px-4 py-2 text-white/60 hover:text-white hover:bg-white/5 text-sm font-light transition-colors duration-150"
+                      >
+                        {child.title.toLowerCase()}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          } else {
+            // Regular menu item
+            const href = link.href ?? link.title.toLowerCase().replaceAll(" ", "-");
+            const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
+            const subpath = pathname.match(/[^\/]+/g);
+            const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
+            
+            const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
+            const finalHref = isExternalLink ? href : href;
+            
+            return (
+                <a
+                class:list={[{ "text-white": isActive }]}
+                class="text-white/60 hover:text-white text-lg font-light nav-link block"
+                  href={finalHref}
+                  target={isExternalLink ? "_blank" : undefined}
+                  rel={isExternalLink ? "noopener noreferrer" : undefined}
+                style="transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);"
+                data-index={index}
+                >
+                {link.title.toLowerCase()}
+                </a>
+            );
+          }
         })
       }
     </div>
