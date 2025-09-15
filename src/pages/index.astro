@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Section from "@/components/Section.astro";
 import BlogPostCard from "@/components/BlogPostCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { KNOWN_TECH, ABOUT_ME, SITE_TITLE } from "@/consts";
+import { KNOWN_TECH, ABOUT_ME, SITE_TITLE, GOOGLE_FORM_URL } from "@/consts";
 import { separateEventsByDisplayType, sortEventsByPriority, type Event } from "@/utils/eventUtils";
 
 const rawEvents = await getEvents();
@@ -61,10 +61,11 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
 ---
 
 <Layout title={SITE_TITLE}>
+  <div id="top"></div>
   <Hero />
   
   <!-- Our Mission Section -->
-  <section class="py-16 px-8 bg-black relative overflow-hidden">
+  <section id="our-mission" class="py-16 px-8 bg-black relative overflow-hidden">
     <!-- Continuing grid background with fade-in effect -->
     <div class="absolute inset-0">
       <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
@@ -162,7 +163,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
   </section>
   
   <!-- Events Section -->
-  <section class="py-16 px-8 bg-black relative overflow-hidden">
+  <section id="events" class="py-16 px-8 bg-black relative overflow-hidden">
     <!-- Continuing grid background -->
     <div class="absolute inset-0">
       <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
@@ -192,20 +193,20 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
       </div>
       
       <!-- Events Content -->
-      {homePageEvents.length > 0 ? (
+    {homePageEvents.length > 0 ? (
         <>
           <!-- Events List - Brutalist Style -->
           <div class="space-y-1 mb-12">
-            {
+        {
               homePageEvents.map((event, index) => {
-                const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
+            const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
                 const formattedDate = eventDate ? eventDate.toLocaleDateString('en-US', { 
                   month: '2-digit', 
                   day: '2-digit',
                   year: '2-digit'
                 }) : 'TBD';
                 
-                return (
+            return (
                   <a 
                     href={`/events/${event.slug.current}`}
                     class="block border border-white/10 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-200 group"
@@ -244,15 +245,15 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
                       </div>
                     </div>
                   </a>
-                );
-              })
-            }
-          </div>
+            );
+          })
+        }
+      </div>
           
           <!-- Terminal-style Button -->
           <div class="border-t border-white/10 pt-8">
-            <a 
-              href="/events" 
+      <a 
+        href="/events" 
               class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
               style="font-family: 'Courier New', monospace;"
             >
@@ -284,13 +285,156 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
       </div>
     </div>
   </Section> */}
-  <Section title="About">
-    <div class="w-full grid place-items-center">
-      <div
-        class="max-w-4xl text-xl md:text-lg opacity-90 text-center justify-evenly"
-      >
-        <p>{ABOUT_ME}</p>
+  <!-- About Section -->
+  <section id="about" class="py-16 px-8 bg-black relative overflow-hidden">
+    <!-- Continuing grid background -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            about
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // who we are & what we do
+          </div>
+        </div>
+        
+        <!-- About Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [03]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            info
+          </div>
+        </div>
+      </div>
+      
+      <!-- About Content -->
+      <div class="max-w-4xl mx-auto">
+        <!-- Main Description -->
+        <div class="border border-white/10 bg-white/[0.02] p-8 mb-8">
+          <p class="text-lg md:text-xl text-white/80 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
+            {ABOUT_ME}
+          </p>
+        </div>
+        
+        <!-- Key Stats/Info -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+          <div class="border border-white/10 bg-white/[0.02] p-6">
+            <div class="space-y-2">
+              <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
+                location
+              </div>
+              <div class="text-white font-medium text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
+                georgia state university
+              </div>
+            </div>
+          </div>
+          
+          <div class="border border-white/10 bg-white/[0.02] p-6">
+            <div class="space-y-2">
+              <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
+                type
+              </div>
+              <div class="text-white font-medium text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
+                student organization
+              </div>
+            </div>
+          </div>
+          
+          <div class="border border-white/10 bg-white/[0.02] p-6">
+            <div class="space-y-2">
+              <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
+                focus
+              </div>
+              <div class="text-white font-medium text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
+                tech community
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Terminal-style Footer -->
+        <div class="border-t border-white/10 pt-8 mt-8">
+          <div class="font-mono text-white/60 space-y-1">
+            <div class="text-green-400 text-sm">$ whoami</div>
+            <div class="text-white/70 text-sm">progsu@gsu:~$ building the future, one line of code at a time</div>
+          </div>
+        </div>
       </div>
     </div>
-  </Section>
+  </section>
+  
+  <!-- Join Section -->
+  <section id="join" class="py-16 px-8 bg-black relative overflow-hidden">
+    <!-- Continuing grid background -->
+    <div class="absolute inset-0">
+      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto relative z-10">
+      <!-- Brutalist Section Header -->
+      <div class="mb-16 flex items-end justify-between">
+        <div>
+          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            join
+          </h2>
+          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
+            // become part of the community
+          </div>
+        </div>
+        
+        <!-- Join Counter -->
+        <div class="text-right">
+          <div class="text-2xl font-bold text-white font-mono">
+            [04]
+          </div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">
+            start
+          </div>
+        </div>
+      </div>
+      
+      <!-- Join Content -->
+      <div class="max-w-4xl mx-auto text-center space-y-12">
+        <div class="space-y-6">
+          <h3 class="text-3xl md:text-5xl font-light text-white leading-tight tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+            ready to build the future?
+          </h3>
+          
+          <p class="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
+            join a community of creators, innovators, and builders at georgia state university
+          </p>
+        </div>
+        
+        <!-- Join Action -->
+        <div class="border border-white/10 bg-white/[0.02] p-8">
+          <div class="space-y-6">
+            <div class="font-mono text-white/60 space-y-2">
+              <div class="text-green-400 text-sm">$ git clone progsu@gsu.edu</div>
+              <div class="text-white/40 text-sm">Cloning into 'your-future'...</div>
+              <div class="text-white/40 text-sm">remote: Ready to innovate? [Y/n]</div>
+            </div>
+            
+            <a 
+              href={GOOGLE_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-8 py-4 text-white font-medium text-lg transition-all duration-300 group bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40"
+              style="font-family: 'Helvetica Neue', sans-serif;"
+            >
+              <span class="mr-3 text-green-400 group-hover:text-green-300 transition-colors duration-300 font-mono">></span>
+              <span class="group-hover:text-green-100 transition-colors duration-300">join progsu</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

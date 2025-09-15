@@ -27,25 +27,24 @@ export const SOCIAL_LINKS = {
 export const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdIuhYbn3uP0_3k9bAF7bhtqMaQTkGQLD9-lmY6NKgrumGqXw/viewform";
 export const NAV_LINKS: Array<{ title: string; href?: string; children?: Array<{ title: string; href?: string }> }> = [
   {
-    title: "Events",
+    title: "Home",
+    href: "#top",
   },
   {
-    title: "Resources",
+    title: "Mission",
+    href: "#our-mission",
+  },
+  {
+    title: "Events", 
+    href: "#events",
   },
   {
     title: "About",
-    children: [
-      {
-        title: "Members",
-      },
-      {
-        title: "History",
-      },
-    ],
+    href: "#about",
   },
   {
     title: "Join",
-    href: "join",
+    href: "#join",
   },
 ];
 

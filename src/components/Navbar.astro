@@ -4,11 +4,17 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
 
 <!-- Minimal Clean Navigation -->
 <nav class="fixed top-0 left-0 w-full h-full pointer-events-none !z-[9999]">
-  <!-- Navigation Links - Middle Left -->
-  <div class="absolute top-1/2 left-8 transform -translate-y-1/2 pointer-events-auto">
-    <div class="hidden md:flex flex-col space-y-6" style="font-family: 'Helvetica Neue', sans-serif;">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+
+  <!-- Navigation Links - Dynamic Layout -->
+  <div id="nav-links" class="absolute top-1/2 left-8 transform -translate-y-1/2 pointer-events-auto">
+    <div class="hidden md:flex flex-col" id="nav-container" style="font-family: 'Helvetica Neue', sans-serif; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
       {
-        links.map((link) => {
+        links.map((link, index) => {
           const href = link.href ?? link.title.toLowerCase().replaceAll(" ", "-");
           const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, "");
           const subpath = pathname.match(/[^\/]+/g);
@@ -18,20 +24,22 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
           const finalHref = isExternalLink ? href : `/${href}`;
           
           return (
-            <a
+              <a
               class:list={[{ "text-white": isActive }]}
-              class="text-white/60 hover:text-white text-lg font-light transition-colors duration-300"
-              href={finalHref}
-              target={isExternalLink ? "_blank" : undefined}
-              rel={isExternalLink ? "noopener noreferrer" : undefined}
-            >
+              class="text-white/60 hover:text-white text-lg font-light nav-link block"
+                href={finalHref}
+                target={isExternalLink ? "_blank" : undefined}
+                rel={isExternalLink ? "noopener noreferrer" : undefined}
+              style="transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);"
+              data-index={index}
+              >
               {link.title.toLowerCase()}
-            </a>
+              </a>
           );
         })
       }
     </div>
-  </div>
+    </div>
 
   <!-- Mobile Menu Button -->
   <div class="md:hidden absolute top-6 right-6 pointer-events-auto">
@@ -83,11 +91,14 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
 </nav>
 
 <script>
-  // Mobile menu toggle
+  // Mobile menu toggle and dynamic navbar layout
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    const navContainer = document.getElementById('nav-container');
     
+    // Mobile menu toggle
     if (mobileMenuBtn && mobileMenu) {
       mobileMenuBtn.addEventListener('click', () => {
         const isOpen = mobileMenu.classList.contains('opacity-100');
@@ -100,6 +111,155 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
           mobileMenu.classList.add('opacity-100', 'visible', 'pointer-events-auto');
         }
       });
+    }
+
+    // Smooth navbar layout transition using CSS transforms
+    if (navLinks && navContainer) {
+      let currentLayout = 'vertical';
+      let logoTransitioned = false;
+      const heroHeight = window.innerHeight * 0.75;
+      const navLinkElements = navContainer.querySelectorAll('.nav-link');
+      const heroProgsu = document.getElementById('hero-progsu');
+      
+      // Set initial spacing using CSS transforms
+      const updateLinkPositions = (layout, progress = 1) => {
+        navLinkElements.forEach((link, index) => {
+          if (layout === 'horizontal') {
+            // Horizontal layout: side by side
+            const xOffset = index * 120; // Space between links
+            link.style.transform = `translateX(${xOffset * progress}px) translateY(${(1 - progress) * index * 30}px)`;
+          } else {
+            // Vertical layout: stacked
+            const yOffset = index * 30; // Space between links
+            link.style.transform = `translateY(${yOffset * progress}px) translateX(${(1 - progress) * index * 120}px)`;
+          }
+        });
+      };
+      
+      // Smooth scroll-following progsu transformation
+      const updateHeroProgsuPosition = () => {
+        if (!heroProgsu) return;
+        
+        const scrollY = window.scrollY;
+        const startTransition = heroHeight * 0.2; // Start earlier for smoother transition
+        const endTransition = heroHeight * 0.8;   // End later for more gradual change
+        
+        // Get the original hero position (relative to viewport when not scrolled)
+        const heroContainer = heroProgsu.parentElement;
+        const heroRect = heroContainer.getBoundingClientRect();
+        const originalLeft = heroRect.left + 32; // Account for hero's left padding
+        const originalTop = heroRect.top + 32;   // Account for hero's top padding
+        
+        if (scrollY < startTransition) {
+          // Reset to normal hero position
+          if (logoTransitioned) {
+            logoTransitioned = false;
+            heroProgsu.style.position = 'static';
+            heroProgsu.style.left = 'auto';
+            heroProgsu.style.top = 'auto';
+            heroProgsu.style.transform = 'none';
+            heroProgsu.style.transformOrigin = 'initial';
+            heroProgsu.style.zIndex = 'auto';
+            heroProgsu.style.fontSize = '';
+          }
+        } else {
+          // Start transition - make it fixed and animate
+          if (!logoTransitioned) {
+            logoTransitioned = true;
+            heroProgsu.style.position = 'fixed';
+            heroProgsu.style.zIndex = '10000';
+            heroProgsu.style.transformOrigin = 'left center';
+          }
+          
+          if (scrollY <= endTransition) {
+            // Transition phase - smooth interpolation from current visible position
+            const progress = (scrollY - startTransition) / (endTransition - startTransition);
+            const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out
+            
+            // Calculate current position (where it would be if still in hero)
+            const currentHeroTop = originalTop - scrollY;
+            
+              // Target position (much lower on screen, with more left padding)
+              const endLeft = 48;  // 3rem in pixels - more space from edge
+              const endTop = 120;  // 7.5rem in pixels - much lower
+              
+              // Smooth interpolation from current hero position to target
+              const currentLeft = originalLeft + (endLeft - originalLeft) * easeProgress;
+              const currentTop = currentHeroTop + (endTop - currentHeroTop) * easeProgress;
+              
+              // Interpolate rotation (0 to -90 degrees)
+              const rotation = -90 * easeProgress;
+              
+              // Interpolate size
+              const fontSize = 1.5 + (0.5 * easeProgress); // 1.5rem to 2rem
+              
+              heroProgsu.style.left = `${currentLeft}px`;
+              heroProgsu.style.top = `${currentTop}px`;
+              heroProgsu.style.transform = `rotate(${rotation}deg)`;
+              heroProgsu.style.transformOrigin = 'left center'; // Ensure consistent rotation point
+              heroProgsu.style.fontSize = `${fontSize}rem`;
+            
+          } else {
+            // Final sticky position - much lower, with more left padding
+            heroProgsu.style.left = '3rem'; // More space from edge
+            heroProgsu.style.top = '7.5rem'; // Much lower - 120px from top
+            heroProgsu.style.transform = 'rotate(-90deg)';
+            heroProgsu.style.transformOrigin = 'left center'; // Consistent rotation point
+            heroProgsu.style.fontSize = '2rem';
+          }
+        }
+      };
+      
+      const updateNavbarLayout = () => {
+        const scrollY = window.scrollY;
+        const shouldBeHorizontal = scrollY < heroHeight * 0.35; // Much faster trigger - 35% instead of 60%
+        const targetLayout = shouldBeHorizontal ? 'horizontal' : 'vertical';
+        
+        // Update hero progsu position
+        updateHeroProgsuPosition();
+        
+        if (targetLayout !== currentLayout) {
+          currentLayout = targetLayout;
+          
+          // Faster, more responsive transition
+          let startTime = null;
+          const duration = 350; // Much faster - 350ms instead of 600ms
+          
+          const animate = (currentTime) => {
+            if (!startTime) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Snappier easing function
+            const easeOut = 1 - Math.pow(1 - progress, 2.5); // Less curve, more responsive
+            
+            updateLinkPositions(targetLayout, easeOut);
+            
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+          
+          requestAnimationFrame(animate);
+        }
+      };
+      
+      // Initial check
+      updateNavbarLayout();
+      
+      // Throttled scroll listener
+      let ticking = false;
+      const handleScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateNavbarLayout();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
     }
   });
 </script>
