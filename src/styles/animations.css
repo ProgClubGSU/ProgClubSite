@@ -23,13 +23,11 @@ code {
   z-index: -1;
   width: 100vw;
   word-wrap: break-word;
-  opacity: 0.08;
-  font-size: 3rem;
+  opacity: 0.03;
+  font-size: 2rem;
   user-select: none;
-  /* Start transparent to prevent FOUC, JavaScript will make it visible */
-  color: transparent;
-  text-shadow: none;
-  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  color: rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
 /* fadeIn keyframe removed - using CSS transition instead for better FOUC prevention */

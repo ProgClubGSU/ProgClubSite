@@ -1,79 +1,35 @@
 ---
-import { Image } from "astro:assets";
-import HeroImg from "@/hero.png";
 import { QUOTE, SITE_TITLE } from "@/consts";
 ---
 
-<div class="hero-bg hidden md:block h-screen hero-bg-animate absolute top-0"></div>
+<div class="hero-bg hidden md:block h-[60vh] hero-bg-animate absolute top-0"></div>
 <section
-  class="h-screen !z-[20] relative w-full grid grid-cols-1 grid-rows-1 sm:grid-cols-2 md:grid-cols-2 gap-4 items-center"
+  class="h-[60vh] !z-[20] relative w-full flex flex-col items-center justify-center"
   id="hero"
 >
-  <div class="grid place-items-center">
-    <div class="text-center -mt-10">
-      <h1 class="font-bold text-7xl glitch-title" data-text="{`<${SITE_TITLE} />`}">{`<${SITE_TITLE} />`}</h1>
-      <h2 class="text-2xl opacity-95 text-white">
-        do cool stuff. build cool sh*t
-      </h2>
+  <div class="text-center space-y-6">
+    <!-- Logo -->
+    <div class="flex justify-center mb-8">
+      <img
+        src="/progsu-logo.png"
+        alt="progsu Logo"
+        class="w-48 h-48 md:w-64 md:h-64 object-contain filter drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+      />
     </div>
-  </div>
-  <div>
-    <Image
-      alt="Hero"
-      src={HeroImg}
-      class="brightness-200 w-full scale-90 invert"
-    />
+    
+    <!-- Title -->
+    <h1 class="font-bold text-5xl md:text-6xl glitch-title" data-text="{`<${SITE_TITLE} />`}">{`<${SITE_TITLE} />`}</h1>
+    
+    <!-- Tagline -->
+    <h2 class="text-xl md:text-2xl opacity-90 text-white/80 font-light">
+      Georgia State University Programming Club
+    </h2>
   </div>
 </section>
 
 <script>
-  // Global variables to track initialization
-  let heroAnimationInitialized = false;
-  let heroInterval = null;
-  let glitchIntervals = new Map(); // Track glitch intervals for each character
-
-
-
-  // Ensure DOM is loaded before initializing animations
-  function initHeroAnimation() {
-    // Don't reinitialize if already done
-    if (heroAnimationInitialized) return;
-    
-    const hero_bg = document.querySelector(".hero-bg-animate");
-    if (!hero_bg) {
-      // Retry after a short delay if element not found
-      setTimeout(initHeroAnimation, 100);
-      return;
-    }
-
-    // Clear any existing interval
-    if (heroInterval) {
-      clearInterval(heroInterval);
-    }
-
-    // Initialize with first binary text
-    let binaryText = "";
-    for (let i = 0; i < 1500; i++) {
-      binaryText += Math.floor(Math.random() * 2).toString();
-    }
-    hero_bg.textContent = binaryText;
-    
-    // Make visible after content is set
-    hero_bg.style.color = "rgba(255, 255, 255, 0.4)";
-    hero_bg.style.textShadow = "0 0 10px rgba(255, 255, 255, 0.2)";
-
-    // Start the interval - faster updates for more dynamic effect
-    heroInterval = setInterval(() => {
-      let binaryText = "";
-      for (let i = 0; i < 1500; i++) {
-        binaryText += Math.floor(Math.random() * 2).toString();
-      }
-      hero_bg.textContent = binaryText;
-    }, 250);
-
-    // Mark as initialized
-    heroAnimationInitialized = true;
-  }
+  // Simplified glitch effect for title only
+  let glitchIntervals = new Map();
 
   // Initialize glitch effect on title
   function initGlitchEffect() {
@@ -148,53 +104,14 @@ import { QUOTE, SITE_TITLE } from "@/consts";
     span.textContent = span.dataset.original;
   }
 
-  // Function to reset hero animation for navigation
-  function resetHeroAnimation() {
-    heroAnimationInitialized = false;
-    
-    // Clear existing intervals
-    if (heroInterval) {
-      clearInterval(heroInterval);
-      heroInterval = null;
-    }
-    
-    // Clear all glitch intervals
-    glitchIntervals.forEach(interval => clearInterval(interval));
-    glitchIntervals.clear();
-    
-    // Reinitialize after a short delay
-    setTimeout(() => {
-      initHeroAnimation();
-      initGlitchEffect();
-    }, 50);
-  }
-
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initHeroAnimation();
-      initGlitchEffect();
-    });
+    document.addEventListener('DOMContentLoaded', initGlitchEffect);
   } else {
-    initHeroAnimation();
     initGlitchEffect();
   }
 
   // Listen for Astro navigation events
-  document.addEventListener('astro:page-load', resetHeroAnimation);
-  document.addEventListener('astro:after-swap', resetHeroAnimation);
-  document.addEventListener('astro:effects-reset', resetHeroAnimation);
-
-  // Also initialize on page visibility change (for when user returns to tab)
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-      // Re-initialize animation when page becomes visible
-      setTimeout(resetHeroAnimation, 100);
-    }
-  });
-
-  // Fallback: also listen for popstate (browser back/forward)
-  window.addEventListener('popstate', () => {
-    setTimeout(resetHeroAnimation, 100);
-  });
+  document.addEventListener('astro:page-load', initGlitchEffect);
+  document.addEventListener('astro:after-swap', initGlitchEffect);
 </script>

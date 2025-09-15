@@ -56,8 +56,8 @@ const sortedEvents = sortEventsByPriority(events);
 // Get only featured and upcoming events (no past events)
 const { fullCardEvents, liteCardEvents } = separateEventsByDisplayType(sortedEvents);
 
-// Combine and limit to 4 events for home page
-const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 4);
+// Combine and limit to 3 events for home page (more minimal)
+const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
 ---
 
 <Layout title={SITE_TITLE}>
@@ -67,7 +67,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 4);
     className={"bg-gradient-to-b from-black/70 from-[5%] to-black via-black"}
   >
     {homePageEvents.length > 0 ? (
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {
           homePageEvents.map((event) => {
             const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
@@ -93,20 +93,13 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 4);
         <p class="text-white/60 text-lg">No upcoming events at the moment. Check back soon!</p>
       </div>
     )}
-    <div class="w-full flex justify-center mt-8">
+    <div class="w-full flex justify-center mt-6">
       <a 
         href="/events" 
-        class="relative inline-flex items-center px-8 py-4 text-white font-medium rounded-xl transition-all duration-500 ease-out hover:scale-105 group overflow-hidden backdrop-blur-md border border-white/20 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] shadow-lg hover:shadow-2xl hover:border-white/40"
+        class="inline-flex items-center px-6 py-3 text-white font-medium rounded-lg transition-all duration-300 hover:scale-105 group border border-white/20 bg-white/[0.05] hover:bg-white/[0.1] hover:border-white/40"
       >
-        <!-- Glass effect overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-white/[0.1] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        
-        <!-- Subtle glow effect on hover -->
-        <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 via-transparent to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-        
-        <!-- Content -->
-        <span class="relative z-10 mr-2 text-green-400 group-hover:text-green-300 transition-colors duration-300 drop-shadow-sm">❯</span>
-        <span class="relative z-10 group-hover:text-green-100 transition-colors duration-300">See All Events</span>
+        <span class="mr-2 text-green-400 group-hover:text-green-300 transition-colors duration-300">❯</span>
+        <span class="group-hover:text-green-100 transition-colors duration-300">See All Events</span>
       </a>
     </div>
   </Section>
