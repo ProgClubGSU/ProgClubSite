@@ -193,7 +193,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
             const currentHeroTop = originalTop - scrollY;
             
               // Target position (much lower on screen, closer to left edge)
-              const endLeft = 24;  // 1.5rem in pixels - closer to edge
+              const endLeft = 48;  // 3rem in pixels - closer to edge but not clipped
               const endTop = 120;  // 7.5rem in pixels - much lower
               
               // Smooth interpolation from current hero position to target
@@ -214,7 +214,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
             
           } else {
             // Final sticky position - much lower, closer to left edge
-            heroProgsu.style.left = '1.5rem'; // Closer to edge
+            heroProgsu.style.left = '3rem'; // Closer to edge but not clipped
             heroProgsu.style.top = '7.5rem'; // Much lower - 120px from top
             heroProgsu.style.transform = 'rotate(-90deg)';
             heroProgsu.style.transformOrigin = 'left center'; // Consistent rotation point
