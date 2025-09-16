@@ -19,10 +19,10 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
             // Dropdown menu item
             return (
               <div class="relative group nav-link" data-index={index} style="transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
-                <button class="text-white/60 hover:text-white text-lg font-light flex items-center gap-1">
+                <div class="text-white/60 hover:text-white text-lg font-light flex items-center gap-1 cursor-pointer">
                   {link.title.toLowerCase()}
                   <span class="text-xs opacity-60">▼</span>
-                  </button>
+                </div>
                 {/* Dropdown Menu */}
                 <div class="absolute left-0 top-8 bg-black/90 backdrop-blur-sm border border-white/10 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[140px] z-50">
                     {link.children.map((child) => {
@@ -93,6 +93,18 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
     class="md:hidden fixed inset-0 bg-black/95 backdrop-blur-md opacity-0 invisible transition-all duration-300 pointer-events-none"
     style="font-family: 'Helvetica Neue', sans-serif;"
   >
+    <!-- Close button -->
+    <button
+      id="mobile-menu-close"
+      class="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-300"
+      aria-label="Close mobile menu"
+    >
+      <div class="w-4 h-4 flex flex-col justify-center items-center">
+        <span class="w-3 h-0.5 bg-white rotate-45 absolute"></span>
+        <span class="w-3 h-0.5 bg-white -rotate-45 absolute"></span>
+      </div>
+    </button>
+    
     <div class="flex flex-col items-center justify-center h-full space-y-8">
       {
         links.map((link) => {
@@ -101,11 +113,12 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
           const subpath = pathname.match(/[^\/]+/g);
           const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
           const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
-          const finalHref = isExternalLink ? href : `/${href}`;
+          // For mobile menu, use the href as-is since it's already properly formatted as anchor links
+          const finalHref = isExternalLink ? href : href;
           return (
             <a
               class:list={[{ "text-white": isActive }]}
-              class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300"
+              class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300 mobile-nav-link"
               href={finalHref}
               target={isExternalLink ? "_blank" : undefined}
               rel={isExternalLink ? "noopener noreferrer" : undefined}
@@ -116,7 +129,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
         })
       }
       {/* Contact button for mobile */}
-      <a href="#contact" class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300">
+      <a href="#contact" class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300 mobile-nav-link">
         contact
       </a>
     </div>
@@ -127,21 +140,55 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
   // Mobile menu toggle and rotating progsu
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
     // Get the hero progsu element from Hero.astro
     const heroProgsu = document.getElementById('hero-progsu');
+
+    // Function to close mobile menu
+    const closeMobileMenu = () => {
+      if (mobileMenu) {
+        mobileMenu.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+        mobileMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+      }
+    };
+
+    // Function to open mobile menu
+    const openMobileMenu = () => {
+      if (mobileMenu) {
+        mobileMenu.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+      }
+    };
 
     // Mobile menu toggle
     if (mobileMenuBtn && mobileMenu) {
       mobileMenuBtn.addEventListener('click', () => {
         const isOpen = mobileMenu.classList.contains('opacity-100');
-        
         if (isOpen) {
-          mobileMenu.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
-          mobileMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+          closeMobileMenu();
         } else {
-          mobileMenu.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
-          mobileMenu.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+          openMobileMenu();
+        }
+      });
+    }
+
+    // Close button
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+
+    // Close menu when clicking on links
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('.mobile-nav-link');
+    mobileMenuLinks?.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close menu when clicking outside
+    if (mobileMenu) {
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+          closeMobileMenu();
         }
       });
     }
