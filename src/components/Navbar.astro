@@ -113,11 +113,12 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
           const subpath = pathname.match(/[^\/]+/g);
           const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
           const isExternalLink = href.startsWith("http://") || href.startsWith("https://");
-          const finalHref = isExternalLink ? href : `/${href}`;
+          // For mobile menu, use the href as-is since it's already properly formatted as anchor links
+          const finalHref = isExternalLink ? href : href;
           return (
             <a
               class:list={[{ "text-white": isActive }]}
-              class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300"
+              class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300 mobile-nav-link"
               href={finalHref}
               target={isExternalLink ? "_blank" : undefined}
               rel={isExternalLink ? "noopener noreferrer" : undefined}
@@ -128,7 +129,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
         })
       }
       {/* Contact button for mobile */}
-      <a href="#contact" class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300">
+      <a href="#contact" class="text-white/60 hover:text-white text-xl font-light transition-colors duration-300 mobile-nav-link">
         contact
       </a>
     </div>
@@ -178,7 +179,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
     }
 
     // Close menu when clicking on links
-    const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('.mobile-nav-link');
     mobileMenuLinks?.forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
