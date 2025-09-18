@@ -1,10 +1,10 @@
-# PROGgsu Website
+# PROGSU Website
 
 Official website for Georgia State University's Programming Club, built with modern web technologies to serve our growing community of developers and programming enthusiasts.
 
-## About PROGgsu
+## About PROGSU
 
-PROGgsu is Georgia State University's premier programming club, dedicated to fostering an inclusive and supportive technology community for students at all skill levels. Our mission is to provide learning opportunities, networking events, and practical programming experience to help students grow as developers and professionals.
+progsu is Georgia State University's premier programming club, dedicated to fostering an inclusive and supportive technology community for students at all skill levels. Our mission is to provide learning opportunities, networking events, and practical programming experience to help students grow as developers and professionals.
 
 ### What We Offer
 
@@ -109,7 +109,7 @@ Our website uses Sanity CMS for managing events, announcements, and other dynami
 **Getting Access:**
 1. Contact a club officer on Discord or at club meetings
 2. Request access to the Sanity CMS workspace
-3. You'll receive an invitation to join the PROGgsuSite project
+3. You'll receive an invitation to join the progsuSite project
 
 **Using Sanity Studio:**
 1. Navigate to the studio directory: `cd studio`
@@ -358,4 +358,4 @@ This project is open source under the MIT License. Feel free to use this code as
 
 ---
 
-Built with care by PROGgsu members. Everyone is welcome to contribute and learn together.
+Built with care by progsu members. Everyone is welcome to contribute and learn together.
