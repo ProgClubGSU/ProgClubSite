@@ -194,37 +194,52 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
     }
 
     // Rotating progsu functionality
+    let currentScrollListener = null;
+    let animationInitialized = false;
+    
     function initProgsuScrollAnimation() {
       const heroProgsu = document.getElementById('hero-progsu');
       if (!heroProgsu) return;
+      
+      // Remove any existing listener first
+      if (currentScrollListener) {
+        window.removeEventListener('scroll', currentScrollListener, { passive: true });
+        currentScrollListener = null;
+      }
+      
       let logoTransitioned = false;
       const heroHeight = window.innerHeight * 0.75;
+      
       const updateHeroProgsuPosition = () => {
-        if (!heroProgsu) return;
+        const element = document.getElementById('hero-progsu');
+        if (!element) return;
+        
         const scrollY = window.scrollY;
         const startTransition = heroHeight * 0.2;
         const endTransition = heroHeight * 0.8;
-        const heroContainer = heroProgsu.parentElement;
+        
+        // Calculate original position fresh each time to ensure accuracy
+        const heroContainer = element.parentElement;
         const heroRect = heroContainer.getBoundingClientRect();
         const originalLeft = heroRect.left + 32;
         const originalTop = heroRect.top + 32;
         if (scrollY < startTransition) {
           if (logoTransitioned) {
             logoTransitioned = false;
-            heroProgsu.style.position = 'static';
-            heroProgsu.style.left = 'auto';
-            heroProgsu.style.top = 'auto';
-            heroProgsu.style.transform = 'none';
-            heroProgsu.style.transformOrigin = 'initial';
-            heroProgsu.style.zIndex = 'auto';
-            heroProgsu.style.fontSize = '';
+            element.style.position = 'static';
+            element.style.left = 'auto';
+            element.style.top = 'auto';
+            element.style.transform = 'none';
+            element.style.transformOrigin = 'initial';
+            element.style.zIndex = 'auto';
+            element.style.fontSize = '';
           }
         } else {
           if (!logoTransitioned) {
             logoTransitioned = true;
-            heroProgsu.style.position = 'fixed';
-            heroProgsu.style.zIndex = '10000';
-            heroProgsu.style.transformOrigin = 'left center';
+            element.style.position = 'fixed';
+            element.style.zIndex = '10000';
+            element.style.transformOrigin = 'left center';
           }
           if (scrollY <= endTransition) {
             const progress = (scrollY - startTransition) / (endTransition - startTransition);
@@ -236,20 +251,21 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
             const currentTop = currentHeroTop + (endTop - currentHeroTop) * easeProgress;
             const rotation = -90 * easeProgress;
             const fontSize = 1.5 + (0.5 * easeProgress);
-            heroProgsu.style.left = `${currentLeft}px`;
-            heroProgsu.style.top = `${currentTop}px`;
-            heroProgsu.style.transform = `rotate(${rotation}deg)`;
-            heroProgsu.style.transformOrigin = 'left center';
-            heroProgsu.style.fontSize = `${fontSize}rem`;
+            element.style.left = `${currentLeft}px`;
+            element.style.top = `${currentTop}px`;
+            element.style.transform = `rotate(${rotation}deg)`;
+            element.style.transformOrigin = 'left center';
+            element.style.fontSize = `${fontSize}rem`;
           } else {
-            heroProgsu.style.left = '3rem';
-            heroProgsu.style.top = '7.5rem';
-            heroProgsu.style.transform = 'rotate(-90deg)';
-            heroProgsu.style.transformOrigin = 'left center';
-            heroProgsu.style.fontSize = '2rem';
+            element.style.left = '3rem';
+            element.style.top = '7.5rem';
+            element.style.transform = 'rotate(-90deg)';
+            element.style.transformOrigin = 'left center';
+            element.style.fontSize = '2rem';
           }
         }
       };
+      
       updateHeroProgsuPosition();
       let ticking = false;
       const throttledScroll = () => {
@@ -261,22 +277,49 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
           ticking = true;
         }
       };
+      
       window.addEventListener('scroll', throttledScroll, { passive: true });
+      currentScrollListener = throttledScroll;
+      animationInitialized = true;
     }
 
-    // Run on initial load
-    initProgsuScrollAnimation();
+    // Continuous check for the element and re-initialize if needed
+    function checkAndInitAnimation() {
+      const heroProgsu = document.getElementById('hero-progsu');
+      if (heroProgsu && !animationInitialized) {
+        // Reset element first
+        heroProgsu.style.position = '';
+        heroProgsu.style.left = '';
+        heroProgsu.style.top = '';
+        heroProgsu.style.transform = '';
+        heroProgsu.style.transformOrigin = '';
+        heroProgsu.style.zIndex = '';
+        heroProgsu.style.fontSize = '';
+        
+        initProgsuScrollAnimation();
+      } else if (!heroProgsu && animationInitialized) {
+        animationInitialized = false;
+        if (currentScrollListener) {
+          window.removeEventListener('scroll', currentScrollListener, { passive: true });
+          currentScrollListener = null;
+        }
+      }
+    }
 
-    // Re-run on Astro client navigation events
-    window.addEventListener('astro:after-swap', () => {
-      setTimeout(() => {
-        initProgsuScrollAnimation();
-      }, 50);
-    });
-    window.addEventListener('astro:page-load', () => {
-      setTimeout(() => {
-        initProgsuScrollAnimation();
-      }, 50);
+    // Run initial check
+    checkAndInitAnimation();
+    
+    // Check periodically for the element
+    setInterval(checkAndInitAnimation, 500);
+
+    // Also check on common events
+    ['astro:after-swap', 'astro:page-load', 'DOMContentLoaded', 'load'].forEach(event => {
+      window.addEventListener(event, () => {
+        setTimeout(() => {
+          animationInitialized = false;
+          checkAndInitAnimation();
+        }, 100);
+      });
     });
   });
 </script>
