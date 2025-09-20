@@ -194,88 +194,98 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
     }
 
     // Rotating progsu functionality
-    if (heroProgsu) {
-      let logoTransitioned = false;
-      const heroHeight = window.innerHeight * 0.75;
+    let currentScrollListener = null;
+    let currentObserver = null;
+    let animationInitialized = false;
+    
+    function resetHeroProgsuStyles(element) {
+      if (!element) return;
+      element.style.position = '';
+      element.style.left = '';
+      element.style.top = '';
+      element.style.transform = '';
+      element.style.transformOrigin = '';
+      element.style.zIndex = '';
+      element.style.fontSize = '';
+    }
+    
+    function cleanupAnimation() {
+      if (currentScrollListener) {
+        window.removeEventListener('scroll', currentScrollListener, { passive: true });
+        currentScrollListener = null;
+      }
+      if (currentObserver) {
+        currentObserver.disconnect();
+        currentObserver = null;
+      }
+      animationInitialized = false;
+    }
+    
+    function initProgsuScrollAnimation() {
+      const heroProgsu = document.getElementById('hero-progsu');
+      if (!heroProgsu) return;
       
-      // Smooth scroll-following progsu transformation
+      // Remove any existing listener first
+      if (currentScrollListener) {
+        window.removeEventListener('scroll', currentScrollListener, { passive: true });
+        currentScrollListener = null;
+      }
+      
+      let logoTransitioned = false;
+      
       const updateHeroProgsuPosition = () => {
-        if (!heroProgsu) return;
+        const element = document.getElementById('hero-progsu');
+        if (!element) return;
         
         const scrollY = window.scrollY;
+        // Recalculate heroHeight on each scroll to handle viewport changes
+        const heroHeight = window.innerHeight * 0.75;
         const startTransition = heroHeight * 0.2; // Start earlier for smoother transition
         const endTransition = heroHeight * 0.8;   // End later for more gradual change
         
-        // Get the original hero position (relative to viewport when not scrolled)
-        const heroContainer = heroProgsu.parentElement;
+        // Calculate original position fresh each time to ensure accuracy
+        const heroContainer = element.parentElement;
         const heroRect = heroContainer.getBoundingClientRect();
         const originalLeft = heroRect.left + 32; // Account for hero's left padding
         const originalTop = heroRect.top + 32;   // Account for hero's top padding
-        
         if (scrollY < startTransition) {
-          // Reset to normal hero position
           if (logoTransitioned) {
             logoTransitioned = false;
-            heroProgsu.style.position = 'static';
-            heroProgsu.style.left = 'auto';
-            heroProgsu.style.top = 'auto';
-            heroProgsu.style.transform = 'none';
-            heroProgsu.style.transformOrigin = 'initial';
-            heroProgsu.style.zIndex = 'auto';
-            heroProgsu.style.fontSize = '';
+            resetHeroProgsuStyles(element);
           }
         } else {
-          // Start transition - make it fixed and animate
           if (!logoTransitioned) {
             logoTransitioned = true;
-            heroProgsu.style.position = 'fixed';
-            heroProgsu.style.zIndex = '10000';
-            heroProgsu.style.transformOrigin = 'left center';
+            element.style.position = 'fixed';
+            element.style.zIndex = '10000';
+            element.style.transformOrigin = 'left center';
           }
-          
           if (scrollY <= endTransition) {
-            // Transition phase - smooth interpolation from current visible position
             const progress = (scrollY - startTransition) / (endTransition - startTransition);
-            const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out
-            
-            // Calculate current position (where it would be if still in hero)
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
             const currentHeroTop = originalTop - scrollY;
-            
-              // Target position (much lower on screen, closer to left edge)
-              const endLeft = 48;  // 3rem in pixels - closer to edge but not clipped
-              const endTop = 120;  // 7.5rem in pixels - much lower
-              
-              // Smooth interpolation from current hero position to target
-              const currentLeft = originalLeft + (endLeft - originalLeft) * easeProgress;
-              const currentTop = currentHeroTop + (endTop - currentHeroTop) * easeProgress;
-              
-              // Interpolate rotation (0 to -90 degrees)
-              const rotation = -90 * easeProgress;
-              
-              // Interpolate size
-              const fontSize = 1.5 + (0.5 * easeProgress); // 1.5rem to 2rem
-              
-              heroProgsu.style.left = `${currentLeft}px`;
-              heroProgsu.style.top = `${currentTop}px`;
-              heroProgsu.style.transform = `rotate(${rotation}deg)`;
-              heroProgsu.style.transformOrigin = 'left center'; // Ensure consistent rotation point
-              heroProgsu.style.fontSize = `${fontSize}rem`;
-            
+            const endLeft = 48;
+            const endTop = 120;
+            const currentLeft = originalLeft + (endLeft - originalLeft) * easeProgress;
+            const currentTop = currentHeroTop + (endTop - currentHeroTop) * easeProgress;
+            const rotation = -90 * easeProgress;
+            const fontSize = 1.5 + (0.5 * easeProgress);
+            element.style.left = `${currentLeft}px`;
+            element.style.top = `${currentTop}px`;
+            element.style.transform = `rotate(${rotation}deg)`;
+            element.style.transformOrigin = 'left center';
+            element.style.fontSize = `${fontSize}rem`;
           } else {
-            // Final sticky position - much lower, closer to left edge
-            heroProgsu.style.left = '3rem'; // Closer to edge but not clipped
-            heroProgsu.style.top = '7.5rem'; // Much lower - 120px from top
-            heroProgsu.style.transform = 'rotate(-90deg)';
-            heroProgsu.style.transformOrigin = 'left center'; // Consistent rotation point
-            heroProgsu.style.fontSize = '2rem';
+            element.style.left = '3rem';
+            element.style.top = '7.5rem';
+            element.style.transform = 'rotate(-90deg)';
+            element.style.transformOrigin = 'left center';
+            element.style.fontSize = '2rem';
           }
         }
       };
       
-      // Initial check
       updateHeroProgsuPosition();
-      
-      // Throttled scroll listener for progsu rotation
       let ticking = false;
       const throttledScroll = () => {
         if (!ticking) {
@@ -286,8 +296,59 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
           ticking = true;
         }
       };
-
+      
       window.addEventListener('scroll', throttledScroll, { passive: true });
+      currentScrollListener = throttledScroll;
+      animationInitialized = true;
     }
+
+    // Watch for the element using MutationObserver
+    function startWatchingForElement() {
+      if (currentObserver) {
+        currentObserver.disconnect();
+      }
+      
+      const heroProgsu = document.getElementById('hero-progsu');
+      if (heroProgsu && !animationInitialized) {
+        // Reset element first
+        resetHeroProgsuStyles(heroProgsu);
+        
+        initProgsuScrollAnimation();
+        return;
+      }
+      
+      // Create MutationObserver to watch for element appearance
+      currentObserver = new MutationObserver((mutations) => {
+        const foundElement = document.getElementById('hero-progsu');
+        if (foundElement && !animationInitialized) {
+          // Reset element first
+          resetHeroProgsuStyles(foundElement);
+          
+          initProgsuScrollAnimation();
+        } else if (!foundElement && animationInitialized) {
+          cleanupAnimation();
+        }
+      });
+      
+      currentObserver.observe(document.body, { 
+        childList: true, 
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['id']
+      });
+    }
+
+    // Run initial check
+    startWatchingForElement();
+
+    // Also check on common events
+    ['astro:after-swap', 'astro:page-load', 'DOMContentLoaded', 'load'].forEach(event => {
+      window.addEventListener(event, () => {
+        setTimeout(() => {
+          cleanupAnimation();
+          startWatchingForElement();
+        }, 100);
+      });
+    });
   });
 </script>
