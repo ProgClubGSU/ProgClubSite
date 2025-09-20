@@ -195,7 +195,20 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
 
     // Rotating progsu functionality
     let currentScrollListener = null;
+    let currentObserver = null;
     let animationInitialized = false;
+    
+    function cleanupAnimation() {
+      if (currentScrollListener) {
+        window.removeEventListener('scroll', currentScrollListener, { passive: true });
+        currentScrollListener = null;
+      }
+      if (currentObserver) {
+        currentObserver.disconnect();
+        currentObserver = null;
+      }
+      animationInitialized = false;
+    }
     
     function initProgsuScrollAnimation() {
       const heroProgsu = document.getElementById('hero-progsu');
@@ -284,8 +297,12 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
       animationInitialized = true;
     }
 
-    // Continuous check for the element and re-initialize if needed
-    function checkAndInitAnimation() {
+    // Watch for the element using MutationObserver
+    function startWatchingForElement() {
+      if (currentObserver) {
+        currentObserver.disconnect();
+      }
+      
       const heroProgsu = document.getElementById('hero-progsu');
       if (heroProgsu && !animationInitialized) {
         // Reset element first
@@ -298,27 +315,45 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
         heroProgsu.style.fontSize = '';
         
         initProgsuScrollAnimation();
-      } else if (!heroProgsu && animationInitialized) {
-        animationInitialized = false;
-        if (currentScrollListener) {
-          window.removeEventListener('scroll', currentScrollListener, { passive: true });
-          currentScrollListener = null;
-        }
+        return;
       }
+      
+      // Create MutationObserver to watch for element appearance
+      currentObserver = new MutationObserver((mutations) => {
+        const foundElement = document.getElementById('hero-progsu');
+        if (foundElement && !animationInitialized) {
+          // Reset element first
+          foundElement.style.position = '';
+          foundElement.style.left = '';
+          foundElement.style.top = '';
+          foundElement.style.transform = '';
+          foundElement.style.transformOrigin = '';
+          foundElement.style.zIndex = '';
+          foundElement.style.fontSize = '';
+          
+          initProgsuScrollAnimation();
+        } else if (!foundElement && animationInitialized) {
+          cleanupAnimation();
+        }
+      });
+      
+      currentObserver.observe(document.body, { 
+        childList: true, 
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['id']
+      });
     }
 
     // Run initial check
-    checkAndInitAnimation();
-    
-    // Check periodically for the element
-    setInterval(checkAndInitAnimation, 500);
+    startWatchingForElement();
 
     // Also check on common events
     ['astro:after-swap', 'astro:page-load', 'DOMContentLoaded', 'load'].forEach(event => {
       window.addEventListener(event, () => {
         setTimeout(() => {
-          animationInitialized = false;
-          checkAndInitAnimation();
+          cleanupAnimation();
+          startWatchingForElement();
         }, 100);
       });
     });
