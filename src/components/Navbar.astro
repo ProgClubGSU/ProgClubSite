@@ -198,6 +198,17 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
     let currentObserver = null;
     let animationInitialized = false;
     
+    function resetHeroProgsuStyles(element) {
+      if (!element) return;
+      element.style.position = '';
+      element.style.left = '';
+      element.style.top = '';
+      element.style.transform = '';
+      element.style.transformOrigin = '';
+      element.style.zIndex = '';
+      element.style.fontSize = '';
+    }
+    
     function cleanupAnimation() {
       if (currentScrollListener) {
         window.removeEventListener('scroll', currentScrollListener, { passive: true });
@@ -240,13 +251,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
         if (scrollY < startTransition) {
           if (logoTransitioned) {
             logoTransitioned = false;
-            element.style.position = 'static';
-            element.style.left = 'auto';
-            element.style.top = 'auto';
-            element.style.transform = 'none';
-            element.style.transformOrigin = 'initial';
-            element.style.zIndex = 'auto';
-            element.style.fontSize = '';
+            resetHeroProgsuStyles(element);
           }
         } else {
           if (!logoTransitioned) {
@@ -306,13 +311,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
       const heroProgsu = document.getElementById('hero-progsu');
       if (heroProgsu && !animationInitialized) {
         // Reset element first
-        heroProgsu.style.position = '';
-        heroProgsu.style.left = '';
-        heroProgsu.style.top = '';
-        heroProgsu.style.transform = '';
-        heroProgsu.style.transformOrigin = '';
-        heroProgsu.style.zIndex = '';
-        heroProgsu.style.fontSize = '';
+        resetHeroProgsuStyles(heroProgsu);
         
         initProgsuScrollAnimation();
         return;
@@ -323,13 +322,7 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
         const foundElement = document.getElementById('hero-progsu');
         if (foundElement && !animationInitialized) {
           // Reset element first
-          foundElement.style.position = '';
-          foundElement.style.left = '';
-          foundElement.style.top = '';
-          foundElement.style.transform = '';
-          foundElement.style.transformOrigin = '';
-          foundElement.style.zIndex = '';
-          foundElement.style.fontSize = '';
+          resetHeroProgsuStyles(foundElement);
           
           initProgsuScrollAnimation();
         } else if (!foundElement && animationInitialized) {
