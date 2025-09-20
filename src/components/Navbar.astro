@@ -240,14 +240,14 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
         const scrollY = window.scrollY;
         // Recalculate heroHeight on each scroll to handle viewport changes
         const heroHeight = window.innerHeight * 0.75;
-        const startTransition = heroHeight * 0.2;
-        const endTransition = heroHeight * 0.8;
+        const startTransition = heroHeight * 0.2; // Start earlier for smoother transition
+        const endTransition = heroHeight * 0.8;   // End later for more gradual change
         
         // Calculate original position fresh each time to ensure accuracy
         const heroContainer = element.parentElement;
         const heroRect = heroContainer.getBoundingClientRect();
-        const originalLeft = heroRect.left + 32;
-        const originalTop = heroRect.top + 32;
+        const originalLeft = heroRect.left + 32; // Account for hero's left padding
+        const originalTop = heroRect.top + 32;   // Account for hero's top padding
         if (scrollY < startTransition) {
           if (logoTransitioned) {
             logoTransitioned = false;
