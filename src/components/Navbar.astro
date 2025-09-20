@@ -208,13 +208,14 @@ import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
       }
       
       let logoTransitioned = false;
-      const heroHeight = window.innerHeight * 0.75;
       
       const updateHeroProgsuPosition = () => {
         const element = document.getElementById('hero-progsu');
         if (!element) return;
         
         const scrollY = window.scrollY;
+        // Recalculate heroHeight on each scroll to handle viewport changes
+        const heroHeight = window.innerHeight * 0.75;
         const startTransition = heroHeight * 0.2;
         const endTransition = heroHeight * 0.8;
         
