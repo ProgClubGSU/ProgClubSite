@@ -3,8 +3,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
 import DeferredStyles from "@/components/DeferredStyles.astro";
-import SpeedInsights from '@vercel/speed-insights/astro';
-import Analytics from '@vercel/analytics/astro';
+// Using vanilla JS approach for better domain control
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION, hideHomeButton = false } = Astro.props;
@@ -36,11 +35,25 @@ const isHome = Astro.url.pathname === "/";
     <!-- Load non-critical styles after page render -->
     <DeferredStyles />
     
-    <!-- Vercel Speed Insights -->
-    <SpeedInsights />
-    
-    <!-- Vercel Analytics -->
-    <Analytics />
+    <!-- Vercel Analytics & Speed Insights -->
+    <script>
+      // Load Vercel Analytics - let it auto-detect domain
+      if (typeof window !== 'undefined') {
+        // Load Analytics
+        import('@vercel/analytics').then(({ inject }) => {
+          inject();
+        }).catch(err => {
+          console.warn('Vercel Analytics failed to load:', err);
+        });
+        
+        // Load Speed Insights  
+        import('@vercel/speed-insights').then(({ inject }) => {
+          inject();
+        }).catch(err => {
+          console.warn('Vercel Speed Insights failed to load:', err);
+        });
+      }
+    </script>
   </body>
 </html>
 
