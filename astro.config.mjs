@@ -7,7 +7,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  site: "https://proggsu.vercel.app",
+  site: "https://progsu.com",
   integrations: [
     mdx(), 
     sitemap(), 
