@@ -1,0 +1,510 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { DISCORD_LINK, SITE_TITLE } from "@/consts";
+
+// gitPAID main categories
+const categories = [
+  {
+    id: "getting-interview",
+    title: "Getting the Interview",
+    description: "Build your professional presence and get noticed by recruiters",
+    icon: "📧",
+    color: "blue",
+    steps: [
+      {
+        title: "Build Your Foundation",
+        description: "Create projects and establish your technical credibility",
+        skills: ["Programming fundamentals", "Git/GitHub", "Portfolio projects"],
+        timeframe: "2-4 months",
+        priority: "essential"
+      },
+      {
+        title: "Professional Presence",
+        description: "Optimize your resume and LinkedIn for maximum impact",
+        skills: ["Resume optimization", "LinkedIn networking", "Personal branding"],
+        timeframe: "2-3 weeks",
+        priority: "high-impact"
+      },
+      {
+        title: "Strategic Networking",
+        description: "Build relationships and get referrals to skip the resume pile",
+        skills: ["Referral strategy", "Coffee chats", "Industry connections"],
+        timeframe: "Ongoing",
+        priority: "multiplier"
+      }
+    ]
+  },
+  {
+    id: "passing-interview",
+    title: "Passing the Interview",
+    description: "Master technical and behavioral interviews to convert opportunities into offers",
+    icon: "💻",
+    color: "purple",
+    steps: [
+      {
+        title: "Technical Mastery",
+        description: "Master data structures, algorithms, and system design",
+        skills: ["DSA fundamentals", "LeetCode practice", "System design"],
+        timeframe: "3-6 months",
+        priority: "core"
+      },
+      {
+        title: "Interview Strategy",
+        description: "Learn to communicate your thinking and handle pressure",
+        skills: ["Problem-solving approach", "Communication", "Mock interviews"],
+        timeframe: "1-2 months",
+        priority: "execution"
+      },
+      {
+        title: "Behavioral Excellence",
+        description: "Tell compelling stories and demonstrate cultural fit",
+        skills: ["STAR method", "Company research", "Questions preparation"],
+        timeframe: "2-3 weeks",
+        priority: "differentiation"
+      }
+    ]
+  }
+];
+
+// Essential resources organized by category
+const resources = {
+  "getting-interview": [
+    {
+      title: "Resume Guide",
+      description: "Step-by-step guide to writing a technical resume that gets interviews",
+      url: "#", // Replace with your actual link
+      difficulty: "beginner",
+      impact: "high"
+    },
+    {
+      title: "LinkedIn Optimization",
+      description: "Optimize your LinkedIn profile for tech recruiting and networking",
+      url: "#", // Replace with your actual link
+      difficulty: "beginner",
+      impact: "high"
+    },
+    {
+      title: "Getting Referrals",
+      description: "How to find and request referrals for tech positions",
+      url: "#", // Replace with your actual link
+      difficulty: "intermediate",
+      impact: "multiplier"
+    }
+  ],
+  "passing-interview": [
+    {
+      title: "DSA & LeetCode Strategy",
+      description: "Efficient approach to data structures, algorithms, and coding interviews",
+      url: "#", // Replace with your actual link
+      difficulty: "intermediate",
+      impact: "essential"
+    }
+  ]
+};
+---
+
+<Layout title={`Resources - ${SITE_TITLE}`}>
+  <div class="min-h-screen bg-white">
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <!-- gitPAID Header -->
+        <div class="mb-16">
+          <div class="mb-8">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+              gitPAID
+            </h1>
+            <div class="text-xl md:text-2xl text-white/80 mb-4" style="font-family: 'Helvetica Neue', sans-serif;">
+              From Code to Career: A Strategic Guide to Landing Your First Tech Job
+            </div>
+            <div class="text-sm text-white/50 font-mono uppercase tracking-widest">
+              // progsu's comprehensive career development program
+            </div>
+          </div>
+        </div>
+
+        <!-- Program Introduction -->
+        <div class="mb-16">
+          <div class="border border-white/10 bg-white/[0.02] p-8">
+            <h2 class="text-2xl font-bold text-white mb-6" style="font-family: 'Helvetica Neue', sans-serif;">
+              What is gitPAID?
+            </h2>
+
+            <div class="space-y-6 text-white/70 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+              <p>
+                <strong class="text-white">gitPAID</strong> is progsu's comprehensive career development program designed to take you from coding fundamentals to landing your first tech internship or full-time position. The name represents the journey: mastering <em>git</em> (version control and collaborative development) to getting <em>PAID</em> (landing that dream job).
+              </p>
+
+              <p>
+                This isn't just another collection of interview prep materials. gitPAID is a structured, battle-tested methodology that breaks down the job search into two critical phases: <strong class="text-blue-400">getting the interview</strong> and <strong class="text-purple-400">passing the interview</strong>. We've distilled the most effective approaches from successful club members who've landed positions at Google, Microsoft, Amazon, and top startups.
+              </p>
+
+              <p>
+                Most people fail because they focus on the wrong things at the wrong time. Our framework ensures you're building the right skills in the right order, maximizing your chances of success while minimizing wasted effort.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why This Works -->
+        <div class="mb-16">
+          <div class="border border-white/10 bg-white/[0.02] p-8">
+            <h2 class="text-2xl font-bold text-white mb-6" style="font-family: 'Helvetica Neue', sans-serif;">
+              Why This Approach Works
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-4">
+                <div class="border border-green-500/20 bg-green-500/5 p-4">
+                  <h3 class="text-green-400 font-semibold mb-2">Strategic, Not Random</h3>
+                  <p class="text-white/70 text-sm leading-relaxed">
+                    Every action is purposeful. We focus on high-impact activities that directly improve your chances of landing interviews and offers.
+                  </p>
+                </div>
+
+                <div class="border border-blue-500/20 bg-blue-500/5 p-4">
+                  <h3 class="text-blue-400 font-semibold mb-2">Proven by Results</h3>
+                  <p class="text-white/70 text-sm leading-relaxed">
+                    This methodology has been refined through the successes and failures of dozens of club members over multiple years.
+                  </p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="border border-purple-500/20 bg-purple-500/5 p-4">
+                  <h3 class="text-purple-400 font-semibold mb-2">Efficiency First</h3>
+                  <p class="text-white/70 text-sm leading-relaxed">
+                    We eliminate busywork and focus on the 20% of activities that produce 80% of the results in your job search.
+                  </p>
+                </div>
+
+                <div class="border border-orange-500/20 bg-orange-500/5 p-4">
+                  <h3 class="text-orange-400 font-semibold mb-2">Community Driven</h3>
+                  <p class="text-white/70 text-sm leading-relaxed">
+                    Get support, accountability, and insider knowledge from peers who are on the same journey and mentors who've made it.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The gitPAID Framework -->
+        <div class="mb-16">
+          <div class="mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+              The gitPAID Framework
+            </h2>
+            <div class="text-white/70 leading-relaxed mb-4" style="font-family: 'Helvetica Neue', sans-serif;">
+              Our approach is built around two critical phases. You can work on both simultaneously, but understanding which phase you're struggling with helps you focus your efforts where they'll have the biggest impact.
+            </div>
+            <div class="text-sm text-white/50 font-mono">
+              // most people fail because they confuse these two phases
+            </div>
+          </div>
+
+          <div class="space-y-8">
+            {categories.map((category, categoryIndex) => (
+              <div class="border border-white/10 bg-white/[0.02] p-8">
+                <div class="mb-8">
+                  <div class="flex items-center space-x-4 mb-4">
+                    <div class={`text-3xl`}>{category.icon}</div>
+                    <div>
+                      <h3 class={`text-2xl font-bold mb-2 ${category.color === 'blue' ? 'text-blue-400' : 'text-purple-400'}`} style="font-family: 'Helvetica Neue', sans-serif;">
+                        {category.title}
+                      </h3>
+                      <p class="text-white/70 leading-relaxed">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-6">
+                  {category.steps.map((step, stepIndex) => (
+                    <div class="border border-white/10 bg-white/[0.02] p-6 hover:bg-white/[0.05] transition-colors">
+                      <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                          <div class={`w-10 h-10 border ${category.color === 'blue' ? 'border-blue-500/50 bg-blue-500/10' : 'border-purple-500/50 bg-purple-500/10'} rounded-sm flex items-center justify-center mb-2`}>
+                            <span class={`${category.color === 'blue' ? 'text-blue-400' : 'text-purple-400'} font-mono text-sm font-bold`}>{stepIndex + 1}</span>
+                          </div>
+                          <div class="text-center">
+                            <div class="text-xs text-white/40 font-mono">{step.timeframe}</div>
+                          </div>
+                        </div>
+
+                        <div class="flex-1">
+                          <div class="flex items-start justify-between mb-3">
+                            <h4 class="text-white font-semibold text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
+                              {step.title}
+                            </h4>
+                            <div class={`text-xs font-mono px-2 py-1 rounded-sm ${
+                              step.priority === 'essential' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                              step.priority === 'high-impact' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                              step.priority === 'multiplier' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
+                              step.priority === 'core' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                              step.priority === 'execution' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
+                              'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                            }`}>
+                              {step.priority}
+                            </div>
+                          </div>
+
+                          <p class="text-white/70 mb-4 leading-relaxed">
+                            {step.description}
+                          </p>
+
+                          <div class="flex flex-wrap gap-2">
+                            {step.skills.map(skill => (
+                              <span class="text-xs bg-white/10 text-white/80 px-3 py-1 border border-white/20 font-mono rounded-sm">
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Essential Resources -->
+        <div class="mb-16">
+          <div class="mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
+              Essential Resources
+            </h2>
+            <div class="text-white/70 leading-relaxed mb-4" style="font-family: 'Helvetica Neue', sans-serif;">
+              These comprehensive guides form the core of the gitPAID methodology. Each one focuses on a specific area critical for success in either getting or passing interviews.
+            </div>
+            <div class="text-sm text-white/50 font-mono">
+              // click any guide to access the full content
+            </div>
+          </div>
+
+          <div class="space-y-8">
+            {categories.map((category) => (
+              <div class="border border-white/10 bg-white/[0.02] p-6">
+                <div class="flex items-center space-x-3 mb-6">
+                  <div class="text-2xl">{category.icon}</div>
+                  <h3 class={`text-xl font-bold ${category.color === 'blue' ? 'text-blue-400' : 'text-purple-400'}`} style="font-family: 'Helvetica Neue', sans-serif;">
+                    {category.title} Resources
+                  </h3>
+                </div>
+
+                <div class="space-y-3">
+                  {resources[category.id].map((resource, index) => {
+                    const isExternal = resource.url && (resource.url.startsWith('http') || resource.url.startsWith('https'));
+                    const Component = resource.url && resource.url !== '#' ? 'a' : 'div';
+                    const linkProps = resource.url && resource.url !== '#' ? {
+                      href: resource.url,
+                      target: isExternal ? '_blank' : undefined,
+                      rel: isExternal ? 'noopener noreferrer' : undefined
+                    } : {};
+
+                    return (
+                      <Component
+                        {...linkProps}
+                        class={`border border-white/10 bg-white/[0.02] p-5 ${resource.url && resource.url !== '#' ? 'hover:bg-white/[0.05] hover:border-white/20 transition-all duration-200 cursor-pointer group' : 'opacity-60'}`}
+                      >
+                        <div class="flex items-start space-x-4">
+                          <div class="flex-shrink-0 text-white/40 font-mono text-sm font-bold w-6">
+                            {(index + 1).toString().padStart(2, '0')}.
+                          </div>
+
+                          <div class="flex-1">
+                            <div class="flex items-start justify-between mb-3">
+                              <h4 class={`text-white font-semibold text-lg ${resource.url && resource.url !== '#' ? 'group-hover:text-green-300' : ''}`} style="font-family: 'Helvetica Neue', sans-serif;">
+                                {resource.title}
+                              </h4>
+
+                              <div class="flex items-center space-x-2 ml-4">
+                                <!-- Impact Badge -->
+                                <div class={`text-xs font-mono px-2 py-1 rounded-sm whitespace-nowrap ${
+                                  resource.impact === 'high' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                                  resource.impact === 'multiplier' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
+                                  'bg-red-500/20 text-red-400 border border-red-500/30'
+                                }`}>
+                                  {resource.impact}
+                                </div>
+
+                                <!-- Difficulty Badge -->
+                                <div class={`text-xs font-mono px-2 py-1 rounded-sm whitespace-nowrap ${
+                                  resource.difficulty === 'beginner' ? 'bg-green-900/30 text-green-300 border border-green-700/40' :
+                                  'bg-yellow-900/30 text-yellow-300 border border-yellow-700/40'
+                                }`}>
+                                  {resource.difficulty}
+                                </div>
+                              </div>
+                            </div>
+
+                            <p class="text-white/70 mb-4 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+                              {resource.description}
+                            </p>
+
+                            <div class="flex items-center justify-between">
+                              {resource.url && resource.url !== '#' ? (
+                                <div class="flex items-center text-white/40 group-hover:text-white/60 text-sm font-mono">
+                                  <span class="mr-2">→</span>
+                                  <span>read full guide</span>
+                                </div>
+                              ) : (
+                                <div class="flex items-center text-white/30 text-sm font-mono">
+                                  <span class="mr-2">⚠</span>
+                                  <span>coming soon - link needed</span>
+                                </div>
+                              )}
+
+                              <div class="text-xs text-white/40 font-mono">
+                                {category.id === 'getting-interview' && '📧 Professional Presence'}
+                                {category.id === 'passing-interview' && '💻 Technical Excellence'}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Component>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Getting Started -->
+        <div class="mb-16">
+          <div class="border border-white/10 bg-white/[0.02] p-8">
+            <h2 class="text-2xl font-bold text-white mb-6" style="font-family: 'Helvetica Neue', sans-serif;">
+              Ready to Start Your gitPAID Journey?
+            </h2>
+
+            <div class="space-y-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="border border-blue-500/20 bg-blue-500/5 p-6 rounded">
+                  <div class="flex items-center space-x-3 mb-4">
+                    <div class="text-2xl">📧</div>
+                    <h3 class="text-blue-400 font-bold text-lg">Struggling to Get Interviews?</h3>
+                  </div>
+                  <p class="text-white/70 text-sm mb-4">Focus on the "Getting the Interview" track first:</p>
+                  <ol class="text-white/70 space-y-2 text-sm leading-relaxed">
+                    <li class="flex items-start space-x-2">
+                      <span class="text-blue-400 font-mono">1.</span>
+                      <span>Build 2-3 solid projects to showcase</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-blue-400 font-mono">2.</span>
+                      <span>Optimize your resume using our guide</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-blue-400 font-mono">3.</span>
+                      <span>Build your LinkedIn presence</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-blue-400 font-mono">4.</span>
+                      <span>Master the referrals strategy</span>
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="border border-purple-500/20 bg-purple-500/5 p-6 rounded">
+                  <div class="flex items-center space-x-3 mb-4">
+                    <div class="text-2xl">💻</div>
+                    <h3 class="text-purple-400 font-bold text-lg">Getting Interviews But Failing Them?</h3>
+                  </div>
+                  <p class="text-white/70 text-sm mb-4">Focus on the "Passing the Interview" track:</p>
+                  <ol class="text-white/70 space-y-2 text-sm leading-relaxed">
+                    <li class="flex items-start space-x-2">
+                      <span class="text-purple-400 font-mono">1.</span>
+                      <span>Master our DSA & LeetCode strategy</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-purple-400 font-mono">2.</span>
+                      <span>Practice explaining your thought process</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-purple-400 font-mono">3.</span>
+                      <span>Prepare behavioral stories using STAR method</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-purple-400 font-mono">4.</span>
+                      <span>Do mock interviews with peers</span>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="border border-green-500/20 bg-green-500/5 p-6 rounded">
+                <div class="flex items-center space-x-3 mb-4">
+                  <div class="text-2xl">🚀</div>
+                  <h3 class="text-green-400 font-bold text-lg">Complete Beginner?</h3>
+                </div>
+                <p class="text-white/70 text-sm mb-4">Start here and work through both tracks systematically:</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <ol class="text-white/70 space-y-2 text-sm leading-relaxed">
+                    <li class="flex items-start space-x-2">
+                      <span class="text-green-400 font-mono">1.</span>
+                      <span>Join our Discord community</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-green-400 font-mono">2.</span>
+                      <span>Attend beginner workshops</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-green-400 font-mono">3.</span>
+                      <span>Build your foundation (2-4 months)</span>
+                    </li>
+                  </ol>
+                  <ol class="text-white/70 space-y-2 text-sm leading-relaxed" start="4">
+                    <li class="flex items-start space-x-2">
+                      <span class="text-green-400 font-mono">4.</span>
+                      <span>Focus on getting interviews first</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-green-400 font-mono">5.</span>
+                      <span>Then master technical interviews</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                      <span class="text-green-400 font-mono">6.</span>
+                      <span>Land your dream job! 🎉</span>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <div>
+                  <div class="text-white font-semibold mb-1">Questions? Need Help?</div>
+                  <div class="text-white/60 text-sm">Our community is here to support you every step of the way.</div>
+                </div>
+                <a
+                  href={DISCORD_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 font-semibold transition-colors flex items-center space-x-2"
+                >
+                  <span>Join Discord Community</span>
+                  <span class="font-mono text-sm">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Terminal-style Footer -->
+        <div class="mt-16 border-t border-white/10 pt-8">
+          <div class="font-mono text-white/60 space-y-2">
+            <div class="text-green-400 text-sm">$ git log --oneline gitPAID</div>
+            <div class="text-white/50 text-sm">commit 1: Built foundations and technical skills</div>
+            <div class="text-white/50 text-sm">commit 2: Optimized resume and LinkedIn presence</div>
+            <div class="text-white/50 text-sm">commit 3: Mastered technical interviews and networking</div>
+            <div class="text-white/50 text-sm">commit 4: Landed dream job at [YOUR_COMPANY]</div>
+            <div class="text-white/40 text-sm mt-4">// your success story starts here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</Layout> 

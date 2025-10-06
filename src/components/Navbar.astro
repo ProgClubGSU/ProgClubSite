@@ -1,9 +1,10 @@
 ---
 import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
+const { staticHeader = false } = Astro.props;
 ---
 
 <!-- Minimal Clean Navigation -->
-<nav class="fixed top-0 left-0 w-full h-full pointer-events-none !z-[9999]">
+<nav class={staticHeader ? "relative top-0 left-0 w-full h-auto pointer-events-none !z-[9999]" : "fixed top-0 left-0 w-full h-full pointer-events-none !z-[9999]"}>
   <style>
     html {
       scroll-behavior: smooth;

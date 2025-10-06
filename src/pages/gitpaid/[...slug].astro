@@ -1,0 +1,571 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { DISCORD_LINK, SITE_TITLE } from "@/consts";
+
+export async function getStaticPaths() {
+  const gitpaidGuides = await getCollection('gitpaid');
+  return gitpaidGuides.map(guide => ({
+    params: { slug: guide.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const { Content, headings } = await guide.render();
+---
+
+<Layout title={`${guide.data.title} - ${SITE_TITLE}`} staticHeader={true}>
+  <div class="min-h-screen bg-white">
+    <!-- Custom Static Header for gitPAID -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Left: Logo/Brand -->
+        <div class="flex items-center space-x-3">
+          <a href="/" class="text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
+            progsu
+          </a>
+          <span class="text-gray-300">/</span>
+          <a href="/gitpaid" class="text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors">gitPAID</a>
+          <span class="text-gray-300">/</span>
+          <span class="text-sm text-gray-600">{guide.data.title}</span>
+        </div>
+
+        <!-- Right: Navigation -->
+        <nav class="flex items-center space-x-6">
+          <a href="/#events" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Events</a>
+          <a href="/#about" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">About</a>
+          <a href={DISCORD_LINK} target="_blank" rel="noopener noreferrer" class="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors">
+            Join Discord
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto px-6 py-12 lg:ml-80">
+      <!-- Back Navigation -->
+      <div class="mb-6">
+        <a href="/gitpaid" class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium">
+          ← Back to gitPAID Resources
+        </a>
+      </div>
+
+      <!-- Mobile TOC Toggle -->
+      <div class="lg:hidden mb-6">
+        <button
+          id="toc-toggle"
+          class="w-full flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
+        >
+          <span class="font-semibold text-gray-900 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            Table of Contents
+          </span>
+          <svg class="w-5 h-5 transform transition-transform duration-200 text-blue-600" id="toc-icon" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile TOC Content -->
+      <nav class="hidden lg:hidden mb-6" id="toc-content-mobile">
+        <div class="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-5 shadow-lg">
+          <div class="space-y-1 text-sm">
+            <div class="toc-item">
+              <a href="#writing-amazing-resume" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Writing an Amazing Resume
+              </a>
+            </div>
+            <div class="toc-item">
+              <a href="#resume-structure" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Resume Structure Overview
+              </a>
+            </div>
+            <div class="toc-item">
+              <a href="#baby-steps" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Back to the Basics
+              </a>
+            </div>
+            <div class="toc-item">
+              <a href="#bullet-points" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Bullet Points
+              </a>
+            </div>
+            <div class="toc-item">
+              <a href="#work-experience" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Work Experience
+              </a>
+            </div>
+            <div class="toc-item">
+              <a href="#projects-section" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Projects Section
+              </a>
+            </div>
+            <div class="toc-item">
+              <a href="#skills-section" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Skills Section
+              </a>
+            </div>
+            <div class="toc-item">
+              <a href="#getting-the-template" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
+                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
+                Getting the Template
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Table of Contents Sidebar - Fixed Desktop -->
+      <aside class="hidden lg:block">
+        <div class="fixed left-6 top-24 h-[calc(100vh-6rem)] w-72 overflow-y-auto z-40">
+            <!-- TOC Content -->
+            <nav id="toc-content">
+              <div class="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-5 shadow-lg backdrop-blur-sm">
+                <div class="flex items-center mb-4">
+                  <div class="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <h3 class="font-bold text-gray-900 text-lg">Navigation</h3>
+                </div>
+                <div class="space-y-1 text-sm">
+                  {headings.filter(heading => heading.slug).map((heading) => {
+                    const isSubheading = heading.depth > 2;
+                    const marginClass = isSubheading ? 'ml-4' : '';
+                    const textColorClass = isSubheading ? 'text-gray-500' : 'text-gray-600';
+                    const textSizeClass = isSubheading ? 'text-xs' : '';
+                    const dotSizeClass = isSubheading ? 'w-1 h-1' : 'w-1.5 h-1.5';
+
+                    return (
+                      <div class={`toc-item ${marginClass}`}>
+                        <a href={`#${heading.slug}`} class={`toc-link flex items-center px-3 py-2 rounded-lg ${textColorClass} hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group ${textSizeClass}`}>
+                          <div class={`${dotSizeClass} bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors`}></div>
+                          {heading.text}
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </nav>
+          </div>
+        </aside>
+
+      <!-- Guide Metadata -->
+      <div class="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+        <div class="flex items-center justify-between mb-2">
+          <h1 class="text-2xl font-bold text-gray-900">{guide.data.title}</h1>
+          <div class="flex space-x-2">
+            <span class={`text-xs px-2 py-1 rounded ${
+              guide.data.impact === 'high' ? 'bg-green-100 text-green-800' :
+              guide.data.impact === 'multiplier' ? 'bg-yellow-100 text-yellow-800' :
+              'bg-red-100 text-red-800'
+            }`}>
+              {guide.data.impact}
+            </span>
+            <span class={`text-xs px-2 py-1 rounded ${
+              guide.data.difficulty === 'beginner' ? 'bg-green-100 text-green-800' :
+              'bg-yellow-100 text-yellow-800'
+            }`}>
+              {guide.data.difficulty}
+            </span>
+          </div>
+        </div>
+        <p class="text-gray-600">{guide.data.description}</p>
+      </div>
+
+      <!-- Guide Content -->
+      <article class="prose prose-lg prose-gray max-w-none">
+        <Content />
+      </article>
+
+      <!-- Footer Navigation -->
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <div class="flex items-center justify-center">
+          <a href="/gitpaid" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+            ← Back to all gitPAID resources
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Disable cursor and background glow effects on gitPAID pages, keep binary trail */
+  #cursor-glow {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  #bg-glow {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .cursor-glow {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* Custom prose styles for better readability */
+  .prose {
+    color: rgb(55 65 81);
+  }
+
+  .prose h1 {
+    color: rgb(17 24 39);
+    font-weight: 700;
+  }
+
+  .prose h2 {
+    color: rgb(17 24 39);
+    font-weight: 600;
+  }
+
+  .prose h3 {
+    color: rgb(17 24 39);
+    font-weight: 600;
+  }
+
+  /* Default blockquote styling - Info theme */
+  .prose blockquote {
+    border-left: 4px solid rgb(59 130 246);
+    background: linear-gradient(to right, rgb(239 246 255), rgb(255 255 255));
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+  }
+
+  .prose blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    color: rgb(59 130 246);
+    position: absolute;
+    left: -10px;
+    top: -5px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+  }
+
+  /* Tip Quote - Green theme */
+  .prose .tip-quote {
+    border-left: 4px solid rgb(34 197 94);
+    background: linear-gradient(to right, rgb(240 253 244), rgb(255 255 255));
+    box-shadow: 0 2px 4px rgba(34, 197, 94, 0.1);
+  }
+
+  .prose .tip-quote::before {
+    content: '💡';
+    font-size: 1.5rem;
+    position: absolute;
+    left: -10px;
+    top: 10px;
+  }
+
+  /* Warning Quote - Orange/Red theme */
+  .prose .warning-quote {
+    border-left: 4px solid rgb(251 146 60);
+    background: linear-gradient(to right, rgb(255 247 237), rgb(255 255 255));
+    box-shadow: 0 2px 4px rgba(251, 146, 60, 0.1);
+  }
+
+  .prose .warning-quote::before {
+    content: '⚠️';
+    font-size: 1.5rem;
+    position: absolute;
+    left: -10px;
+    top: 10px;
+  }
+
+  /* Code/Technical Quote - Dark theme */
+  .prose .code-quote {
+    border-left: 4px solid rgb(100 116 139);
+    background: linear-gradient(to right, rgb(248 250 252), rgb(255 255 255));
+    box-shadow: 0 2px 4px rgba(100, 116, 139, 0.1);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .prose .code-quote::before {
+    content: '{ }';
+    font-size: 1.5rem;
+    color: rgb(100 116 139);
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  /* Success Quote - Bright Green theme */
+  .prose .success-quote {
+    border-left: 4px solid rgb(16 185 129);
+    background: linear-gradient(to right, rgb(236 253 245), rgb(255 255 255));
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+  }
+
+  .prose .success-quote::before {
+    content: '✅';
+    font-size: 1.5rem;
+    position: absolute;
+    left: -10px;
+    top: 10px;
+  }
+
+  .prose code {
+    background: rgb(243 244 246);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .prose pre {
+    background: rgb(17 24 39);
+    color: rgb(243 244 246);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .prose table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid rgb(209 213 219);
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  .prose th {
+    background: rgb(249 250 251);
+    font-weight: 600;
+  }
+
+  .prose em {
+    font-style: italic;
+  }
+
+  .prose p {
+    margin: 1rem 0;
+    line-height: 1.7;
+  }
+
+  /* TOC Custom Styles */
+  .toc-item {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .toc-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 0;
+    background: linear-gradient(to bottom, #3b82f6, #6366f1);
+    transition: height 0.3s ease;
+    border-radius: 1px;
+  }
+
+  .toc-item:hover::before {
+    height: 70%;
+  }
+
+  .toc-link.active::before {
+    height: 100%;
+  }
+
+  /* Scrollbar styling for TOC */
+  .lg\\:overflow-y-auto::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .lg\\:overflow-y-auto::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+  }
+
+  .lg\\:overflow-y-auto::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #3b82f6, #6366f1);
+    border-radius: 2px;
+  }
+
+  .lg\\:overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #2563eb, #4f46e5);
+  }
+
+  /* Sidebar entrance animation */
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .lg\\:fixed {
+    animation: slideInFromLeft 0.6s ease-out;
+  }
+
+  /* Progress indicator */
+  .toc-progress {
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #3b82f6, #6366f1);
+    border-radius: 1px;
+    transition: height 0.3s ease;
+  }
+</style>
+
+<script>
+  // Additional JavaScript to ensure glow effects are disabled
+  document.addEventListener('DOMContentLoaded', function() {
+    const cursorGlow = document.getElementById('cursor-glow');
+    const bgGlow = document.getElementById('bg-glow');
+
+    if (cursorGlow) {
+      cursorGlow.style.display = 'none';
+      cursorGlow.style.opacity = '0';
+      cursorGlow.style.visibility = 'hidden';
+    }
+
+    if (bgGlow) {
+      bgGlow.style.display = 'none';
+      bgGlow.style.opacity = '0';
+      bgGlow.style.visibility = 'hidden';
+    }
+  });
+
+  // Override any cursor effects that might be set by the main layout
+  document.addEventListener('mousemove', function(e) {
+    const cursorGlow = document.getElementById('cursor-glow');
+    const bgGlow = document.getElementById('bg-glow');
+
+    if (cursorGlow) {
+      cursorGlow.style.display = 'none';
+      cursorGlow.style.opacity = '0';
+    }
+
+    if (bgGlow) {
+      bgGlow.style.display = 'none';
+      bgGlow.style.opacity = '0';
+    }
+  });
+
+  // Table of Contents functionality for mobile
+  const tocToggle = document.getElementById('toc-toggle');
+  const tocContentMobile = document.getElementById('toc-content-mobile');
+  const tocIcon = document.getElementById('toc-icon');
+
+  if (tocToggle && tocContentMobile && tocIcon) {
+    tocToggle.addEventListener('click', function() {
+      const isHidden = tocContentMobile.classList.contains('hidden');
+
+      if (isHidden) {
+        tocContentMobile.classList.remove('hidden');
+        tocIcon.style.transform = 'rotate(180deg)';
+      } else {
+        tocContentMobile.classList.add('hidden');
+        tocIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
+
+  // Highlight active section in TOC
+  const tocLinks = document.querySelectorAll('.toc-link, .toc-link-mobile');
+  const tocItems = document.querySelectorAll('.toc-item');
+  const sections = document.querySelectorAll('h1[id], h2[id], h3[id]');
+
+  function highlightActiveSection() {
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 120; // Offset for header
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (scrollPosition >= sectionTop) {
+        currentSection = section.id;
+      }
+    });
+
+    // Reset all links
+    tocLinks.forEach((link, index) => {
+      const tocItem = tocItems[index];
+      link.classList.remove('text-blue-600', 'font-semibold', 'bg-blue-50', 'shadow-sm');
+      link.classList.add('text-gray-600');
+
+      // Reset dots
+      const dot = link.querySelector('div');
+      if (dot) {
+        dot.classList.remove('bg-blue-600', 'scale-125');
+        dot.classList.add('bg-gray-400');
+      }
+
+      // Add active state
+      if (link.getAttribute('href') === `#${currentSection}`) {
+        link.classList.remove('text-gray-600');
+        link.classList.add('text-blue-600', 'font-semibold', 'bg-blue-50', 'shadow-sm');
+
+        // Animate dot
+        if (dot) {
+          dot.classList.remove('bg-gray-400');
+          dot.classList.add('bg-blue-600', 'scale-125');
+        }
+
+        // Add pulse animation to active item
+        if (tocItem) {
+          tocItem.style.transform = 'translateX(4px)';
+          tocItem.style.transition = 'transform 0.2s ease';
+          setTimeout(() => {
+            tocItem.style.transform = 'translateX(0)';
+          }, 200);
+        }
+      }
+    });
+  }
+
+  // Smooth scroll for TOC links
+  tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        const headerOffset = 100;
+        const elementPosition = targetElement.offsetTop;
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Update active section on scroll
+  window.addEventListener('scroll', highlightActiveSection);
+  highlightActiveSection(); // Initial highlight
+</script>
