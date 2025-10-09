@@ -1,100 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { DISCORD_LINK, SITE_TITLE } from "@/consts";
-
-// gitPAID main categories
-const categories = [
-  {
-    id: "getting-interview",
-    title: "Getting the Interview",
-    description: "Build your professional presence and get noticed by recruiters",
-    icon: "📧",
-    color: "blue",
-    steps: [
-      {
-        title: "Build Your Foundation",
-        description: "Create projects and establish your technical credibility",
-        skills: ["Programming fundamentals", "Git/GitHub", "Portfolio projects"],
-        priority: "essential"
-      },
-      {
-        title: "Professional Presence",
-        description: "Optimize your resume and LinkedIn for maximum impact",
-        skills: ["Resume optimization", "LinkedIn networking", "Personal branding"],
-        priority: "high-impact"
-      },
-      {
-        title: "Strategic Networking",
-        description: "Build relationships and get referrals to skip the resume pile",
-        skills: ["Referral strategy", "Coffee chats", "Industry connections"],
-        priority: "multiplier"
-      }
-    ]
-  },
-  {
-    id: "passing-interview",
-    title: "Passing the Interview",
-    description: "Master technical and behavioral interviews to convert opportunities into offers",
-    icon: "💻",
-    color: "purple",
-    steps: [
-      {
-        title: "Technical Mastery",
-        description: "Master data structures, algorithms, and system design",
-        skills: ["DSA fundamentals", "LeetCode practice", "System design"],
-        priority: "core"
-      },
-      {
-        title: "Interview Strategy",
-        description: "Learn to communicate your thinking and handle pressure",
-        skills: ["Problem-solving approach", "Communication", "Mock interviews"],
-        priority: "execution"
-      },
-      {
-        title: "Behavioral Excellence",
-        description: "Tell compelling stories and demonstrate cultural fit",
-        skills: ["STAR method", "Company research", "Questions preparation"],
-        priority: "differentiation"
-      }
-    ]
-  }
-];
-
-// Essential resources organized by category
-const resources = {
-  "getting-interview": [
-    {
-      title: "Resume Guide",
-      description: "Step-by-step guide to writing a technical resume that gets interviews",
-      url: "/gitpaid/resume-guide",
-      difficulty: "beginner",
-      impact: "high"
-    },
-    {
-      title: "LinkedIn Optimization",
-      description: "Optimize your LinkedIn profile for tech recruiting and networking",
-      url: "#", // Replace with your actual link
-      difficulty: "beginner",
-      impact: "high"
-    },
-    {
-      title: "Getting Referrals",
-      description: "How to find and request referrals for tech positions",
-      url: "/gitpaid/referrals-guide",
-      difficulty: "intermediate",
-      impact: "multiplier"
-    }
-  ],
-  "passing-interview": [
-    {
-      title: "DSA & LeetCode Strategy",
-      description: "Efficient approach to data structures, algorithms, and coding interviews",
-      url: "#", // Replace with your actual link
-      difficulty: "intermediate",
-      impact: "essential"
-    }
-  ]
-};
+import { gettingInterviewGuides, passingInterviewGuides, additionalResources } from "@/data/gitpaid";
 ---
 
 <Layout title={`Resources - ${SITE_TITLE}`} staticHeader={true}>
@@ -131,6 +38,7 @@ const resources = {
           <ul class="space-y-1 text-sm">
             <li><a href="#getting-interview" class="text-blue-600 hover:text-blue-800">Getting the Interview</a></li>
             <li><a href="#passing-interview" class="text-blue-600 hover:text-blue-800">Passing the Interview</a></li>
+            <li><a href="#additional-resources" class="text-blue-600 hover:text-blue-800">Additional Resources</a></li>
           </ul>
         </nav>
 
@@ -143,7 +51,7 @@ const resources = {
         <section id="getting-interview" class="mb-8">
           <h2 class="text-xl font-bold text-gray-900 mb-3">📧 Getting the Interview</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {resources["getting-interview"].map((resource) => {
+            {gettingInterviewGuides.map((resource) => {
               const isExternal = resource.url && (resource.url.startsWith('http') || resource.url.startsWith('https'));
               const Component = resource.url && resource.url !== '#' ? 'a' : 'div';
               const linkProps = resource.url && resource.url !== '#' ? {
@@ -176,7 +84,7 @@ const resources = {
         <section id="passing-interview" class="mb-8">
           <h2 class="text-xl font-bold text-gray-900 mb-3">💻 Passing the Interview</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {resources["passing-interview"].map((resource) => {
+            {passingInterviewGuides.map((resource) => {
               const isExternal = resource.url && (resource.url.startsWith('http') || resource.url.startsWith('https'));
               const Component = resource.url && resource.url !== '#' ? 'a' : 'div';
               const linkProps = resource.url && resource.url !== '#' ? {
@@ -205,7 +113,31 @@ const resources = {
           </div>
         </section>
 
-        
+        <!-- Additional Resources -->
+        <section id="additional-resources" class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Additional Resources</h2>
+
+          {additionalResources.map((category) => (
+            <div class="mb-8">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="mr-2">{category.icon}</span>
+                {category.title}
+              </h3>
+              <ul class="space-y-3">
+                {category.resources.map((resource) => (
+                  <li class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+                    <a href={resource.url} target="_blank" rel="noopener noreferrer" class="block">
+                      <div class="font-semibold text-blue-600">{resource.title}</div>
+                      <p class="text-sm text-gray-600 mt-1">{resource.description}</p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+
         <!-- Footer -->
         <footer class="mt-12 pt-6 border-t border-gray-200">
           <div class="text-center text-sm text-gray-500">
