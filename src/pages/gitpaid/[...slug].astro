@@ -163,6 +163,18 @@ const { Content, headings } = await guide.render();
         </div>
       </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 opacity-0 invisible z-50 flex items-center space-x-2 font-semibold"
+      aria-label="Back to top"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+      </svg>
+      <span>Back to the Top</span>
+    </button>
   </div>
 </Layout>
 
@@ -536,4 +548,28 @@ const { Content, headings } = await guide.render();
   // Update active section on scroll
   window.addEventListener('scroll', highlightActiveSection);
   highlightActiveSection(); // Initial highlight
+
+  // Back to Top Button functionality
+  const backToTopButton = document.getElementById('back-to-top');
+
+  if (backToTopButton) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopButton.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
 </script>
