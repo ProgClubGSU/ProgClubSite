@@ -182,95 +182,53 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
         <!-- Event Counter -->
         <div class="text-right">
           <div class="text-2xl font-bold text-white font-mono">
-            [{homePageEvents.length.toString().padStart(2, '0')}]
+            [02]
           </div>
           <div class="text-xs text-white/40 uppercase tracking-widest">
-            active
+            calendar
           </div>
         </div>
       </div>
       
-      <!-- Events Content -->
-    {homePageEvents.length > 0 ? (
-        <>
-          <!-- Events List - Brutalist Style -->
-          <div class="space-y-1 mb-12">
-        {
-              homePageEvents.map((event, index) => {
-            const eventDate = event.date?.isTBD ? null : (event.date?.value ? new Date(event.date.value) : null);
-                const formattedDate = eventDate ? eventDate.toLocaleDateString('en-US', { 
-                  month: '2-digit', 
-                  day: '2-digit',
-                  year: '2-digit'
-                }) : 'TBD';
-                
-            return (
-                  <a 
-                    href={`/events/${event.slug.current}`}
-                    class="block border border-white/10 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-200 group"
-                  >
-                    <div class="px-6 py-4 flex items-center justify-between">
-                      <!-- Left: Index & Title -->
-                      <div class="flex items-center space-x-6">
-                        <div class="text-white/40 font-mono text-sm min-w-[3rem]">
-                          {(index + 1).toString().padStart(2, '0')}.
-                        </div>
-                        <div>
-                          <h3 class="text-white group-hover:text-white font-medium text-lg tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-                            {event.title}
-                          </h3>
-                          <div class="text-white/50 text-sm font-mono mt-1">
-                            {getPlainTextExcerpt(event.description).substring(0, 60)}...
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <!-- Right: Date & Status -->
-                      <div class="text-right flex items-center space-x-4">
-                        <div>
-                          <div class="text-white/60 font-mono text-sm">
-                            {formattedDate}
-                          </div>
-                          {event.time?.value && (
-                            <div class="text-white/40 font-mono text-xs">
-                              {event.time.value}
-                            </div>
-                          )}
-                        </div>
-                        <div class="text-white/40 group-hover:text-white/60 transition-colors">
-                          →
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-            );
-          })
-        }
-      </div>
-          
-          <!-- Terminal-style Button -->
-          <div class="border-t border-white/10 pt-8">
-      <a 
-        href="/events" 
-              class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
-              style="font-family: 'Courier New', monospace;"
-            >
-              <span class="mr-2 text-green-400 group-hover:text-green-300">$</span>
-              <span class="group-hover:text-green-100">ls /events --all</span>
-              <span class="ml-2 text-white/30 group-hover:text-white/50">▊</span>
-            </a>
-          </div>
-        </>
-      ) : (
-        <!-- No Events - Terminal Style -->
-        <div class="border border-white/10 bg-white/[0.02] p-8">
-          <div class="font-mono text-white/60 space-y-2">
-            <div class="text-green-400">$ ls events/</div>
-            <div class="text-white/40">ls: cannot access 'events/': No such file or directory</div>
-            <div class="text-white/30 mt-4">// check back soon for new workshops</div>
+      <!-- Lu.ma Calendar Embed -->
+      <div class="mb-8">
+        <!-- Embed Container -->
+        <div class="border-2 border-white/20 rounded-lg overflow-hidden bg-white/5 p-2">
+          <div class="bg-white rounded overflow-hidden">
+            <iframe
+              src="https://luma.com/embed/calendar/cal-mnXzEncGOB8WmNB/events"
+              width="100%"
+              height="600"
+              frameborder="0"
+              style="border: none;"
+              allowfullscreen=""
+              aria-hidden="false"
+              tabindex="0"
+            ></iframe>
           </div>
         </div>
-      )}
+
+        <!-- Terminal Footer -->
+        <div class="mt-6 flex items-center justify-between border-t border-white/10 pt-6">
+          <div class="font-mono text-white/40 text-xs">
+            <span class="text-white/30">// calendar powered by </span>
+            <a href="https://lu.ma" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white/70 transition-colors">lu.ma</a>
+          </div>
+
+          <!-- Link to full Lu.ma calendar -->
+          <a
+            href="https://luma.com/calendar/cal-mnXzEncGOB8WmNB"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
+            style="font-family: 'Courier New', monospace;"
+          >
+            <span class="mr-2 text-green-400 group-hover:text-green-300">$</span>
+            <span class="group-hover:text-green-100">open calendar --external</span>
+            <span class="ml-2 text-white/30 group-hover:text-white/50">▊</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
   {/* Technologies section - commented out for now, may be used in the future */}
