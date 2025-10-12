@@ -108,7 +108,13 @@ const interviewPrep: Resource[] = [
     title: "NeetCode",
     description: "Curated list of 150 essential LeetCode problems with video explanations",
     url: "https://neetcode.io/",
-    tier: "S"
+    tier: "S+"
+  },
+  {
+    title: "GeeksforGeeks",
+    description: "Comprehensive tutorials, practice problems, and interview preparation resources",
+    url: "https://www.geeksforgeeks.org/",
+    tier: "A"
   },
   {
     title: "Tech Interview Handbook",
@@ -120,16 +126,34 @@ const interviewPrep: Resource[] = [
 
 const resumePortfolio: Resource[] = [
   {
-    title: "Overleaf",
-    description: "LaTeX editor for creating professional, ATS-friendly resumes",
-    url: "https://www.overleaf.com/",
-    tier: "S"
+    title: "Jake's Resume",
+    description: "Most popular LaTeX resume template in tech, clean single-page format",
+    url: "https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs",
+    tier: "S+"
   },
   {
     title: "GitHub",
     description: "Showcase your projects and contributions with a professional developer portfolio",
     url: "https://github.com/",
     tier: "S"
+  },
+  {
+    title: "GitHub Pages",
+    description: "Free hosting for portfolio sites directly from your GitHub repositories",
+    url: "https://pages.github.com/",
+    tier: "A"
+  },
+  {
+    title: "Vercel",
+    description: "Deploy portfolio sites for free with automatic deployments from Git",
+    url: "https://vercel.com/",
+    tier: "S+"
+  },
+  {
+    title: "Netlify",
+    description: "Free hosting platform for static sites and portfolios with continuous deployment",
+    url: "https://www.netlify.com/",
+    tier: "A"
   }
 ];
 
@@ -138,13 +162,13 @@ const learningPlatforms: Resource[] = [
     title: "NeetCode YouTube",
     description: "Clear video explanations for coding interview problems and DSA concepts",
     url: "https://www.youtube.com/@NeetCode",
-    tier: "S"
+    tier: "S+"
   },
   {
-    title: "TechLead",
-    description: "Career advice and interview tips from an ex-Google/ex-Facebook tech lead",
-    url: "https://www.youtube.com/@TechInterviewPro",
-    tier: "A"
+    title: "TheOdinProject",
+    description: "Free + Guided full stack web development curriculum",
+    url: "https://www.theodinproject.com/",
+    tier: "S"
   }
 ];
 
