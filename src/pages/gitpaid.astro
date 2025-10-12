@@ -117,22 +117,40 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
         <section id="additional-resources" class="mb-12">
           <h2 class="text-2xl font-bold text-gray-900 mb-6">Additional Resources</h2>
 
-          {additionalResources.map((category) => (
-            <div class="mb-8">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <span class="mr-2">{category.icon}</span>
-                {category.title}
-              </h3>
-              <ul class="space-y-3">
-                {category.resources.map((resource) => (
-                  <li class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-colors">
-                    <a href={resource.url} target="_blank" rel="noopener noreferrer" class="block">
-                      <div class="font-semibold text-blue-600">{resource.title}</div>
-                      <p class="text-sm text-gray-600 mt-1">{resource.description}</p>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {additionalResources.map((category, index) => (
+            <div class="mb-3 border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                class="resource-category-toggle w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
+                data-category-id={category.id}
+                aria-expanded="false"
+              >
+                <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                  <span class="mr-2">{category.icon}</span>
+                  {category.title}
+                  <span class="ml-2 text-xs text-gray-500 font-normal">({category.resources.length})</span>
+                </h3>
+                <svg
+                  class="category-chevron w-5 h-5 text-gray-600 transform transition-transform duration-200"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+              <div class="resource-category-content hidden" data-category-id={category.id}>
+                <ul class="p-4 space-y-2 bg-white">
+                  {category.resources.map((resource) => (
+                    <li class="border border-gray-100 rounded-lg p-3 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                      <a href={resource.url} target="_blank" rel="noopener noreferrer" class="block">
+                        <div class="font-medium text-blue-600 text-sm">{resource.title}</div>
+                        <p class="text-xs text-gray-600 mt-1">{resource.description}</p>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </section>
@@ -203,5 +221,27 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
       bgGlow.style.display = 'none';
       bgGlow.style.opacity = '0';
     }
+  });
+
+  // Accordion functionality for additional resources
+  document.querySelectorAll('.resource-category-toggle').forEach(button => {
+    button.addEventListener('click', function() {
+      const categoryId = this.getAttribute('data-category-id');
+      const content = document.querySelector(`.resource-category-content[data-category-id="${categoryId}"]`);
+      const chevron = this.querySelector('.category-chevron');
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded) {
+        // Collapse
+        content.classList.add('hidden');
+        this.setAttribute('aria-expanded', 'false');
+        chevron.style.transform = 'rotate(0deg)';
+      } else {
+        // Expand
+        content.classList.remove('hidden');
+        this.setAttribute('aria-expanded', 'true');
+        chevron.style.transform = 'rotate(180deg)';
+      }
+    });
   });
 </script> 
