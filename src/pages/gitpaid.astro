@@ -30,27 +30,63 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
     </header>
 
     <!-- Content -->
-    <div class="max-w-4xl mx-auto px-6 py-12">
+    <div class="max-w-5xl mx-auto px-6 py-16">
 
-        <!-- Table of Contents -->
-        <nav class="mb-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
-          <h2 class="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">Quick Access</h2>
-          <ul class="space-y-1 text-sm">
-            <li><a href="#getting-interview" class="text-blue-600 hover:text-blue-800">Getting the Interview</a></li>
-            <li><a href="#passing-interview" class="text-blue-600 hover:text-blue-800">Passing the Interview</a></li>
-            <li><a href="#additional-resources" class="text-blue-600 hover:text-blue-800">Additional Resources</a></li>
-          </ul>
-        </nav>
+        <!-- Hero Section -->
+        <div class="mb-16 text-center">
+          <h1 class="text-5xl font-bold text-gray-900 mb-4">gitPAID Resources</h1>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Your complete roadmap to landing your first tech job. We break it down into two clear phases:
+            <span class="font-semibold text-blue-600">getting the interview</span> and
+            <span class="font-semibold text-green-600">passing the interview</span>.
+          </p>
+        </div>
 
-        <!-- Overview -->
-        <section id="overview" class="mb-6">
-          <p class="text-gray-600 mb-4">gitPAID breaks down landing your first tech job into two phases: <strong>getting the interview</strong> and <strong>passing the interview</strong>. Each resource below targets a specific challenge in your job search.</p>
-        </section>
-        
+        <!-- Job Search Process Diagram -->
+        <div class="mb-20 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-8 shadow-lg">
+          <svg viewBox="0 0 800 280" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <!-- Phase 1: Getting the Interview -->
+            <g>
+              <!-- Box -->
+              <rect x="30" y="30" width="360" height="220" rx="16" fill="#3B82F6" stroke="#1E40AF" stroke-width="4"/>
+
+              <!-- Title -->
+              <text x="210" y="110" text-anchor="middle" fill="white" font-size="26" font-weight="bold">Getting the Interview</text>
+
+              <!-- Icons/Keywords -->
+              <text x="210" y="160" text-anchor="middle" fill="#DBEAFE" font-size="17">Resume • Networking</text>
+              <text x="210" y="190" text-anchor="middle" fill="#DBEAFE" font-size="17">Referrals • Applications</text>
+            </g>
+
+            <!-- Phase 2: Passing the Interview -->
+            <g>
+              <!-- Box -->
+              <rect x="410" y="30" width="360" height="220" rx="16" fill="#10B981" stroke="#047857" stroke-width="4"/>
+
+              <!-- Title -->
+              <text x="590" y="110" text-anchor="middle" fill="white" font-size="26" font-weight="bold">Passing the Interview</text>
+
+              <!-- Icons/Keywords -->
+              <text x="590" y="160" text-anchor="middle" fill="#D1FAE5" font-size="17">Coding • Behavioral</text>
+              <text x="590" y="190" text-anchor="middle" fill="#D1FAE5" font-size="17">System Design • Culture Fit</text>
+            </g>
+          </svg>
+        </div>
+
         <!-- Getting the Interview -->
-        <section id="getting-interview" class="mb-8">
-          <h2 class="text-xl font-bold text-gray-900 mb-3">📧 Getting the Interview</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <section id="getting-interview" class="mb-20 scroll-mt-24">
+          <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-3 flex items-center">
+              <span class="bg-blue-100 rounded-xl p-3 mr-3">
+                <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </span>
+              Getting the Interview
+            </h2>
+            <p class="text-gray-600 text-lg">Build your foundation with resume optimization, networking strategies, and referral tactics.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {gettingInterviewGuides.map((resource) => {
               const isExternal = resource.url && (resource.url.startsWith('http') || resource.url.startsWith('https'));
               const Component = resource.url && resource.url !== '#' ? 'a' : 'div';
@@ -63,17 +99,17 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
               return (
                 <Component
                   {...linkProps}
-                  class={`block border border-gray-200 rounded-lg p-4 ${resource.url && resource.url !== '#' ? 'hover:border-blue-300 hover:bg-blue-50 transition-colors cursor-pointer' : 'bg-gray-50'}`}
+                  class={`block border-2 border-gray-200 rounded-xl p-5 transition-all ${resource.url && resource.url !== '#' ? 'hover:border-blue-400 hover:shadow-md hover:-translate-y-1 cursor-pointer bg-white' : 'bg-gray-50'}`}
                 >
-                  <div class="flex items-center justify-between mb-2">
-                    <h3 class={`font-semibold ${resource.url && resource.url !== '#' ? 'text-blue-600' : 'text-gray-500'}`}>
+                  <div class="flex items-center justify-between mb-3">
+                    <h3 class={`font-bold text-base ${resource.url && resource.url !== '#' ? 'text-blue-600' : 'text-gray-500'}`}>
                       {resource.title}
                     </h3>
                     {resource.url === '#' && (
-                      <span class="text-xs px-2 py-1 bg-gray-200 text-gray-600 rounded">Coming Soon</span>
+                      <span class="text-xs px-3 py-1 bg-gray-200 text-gray-600 rounded-full font-medium">Coming Soon</span>
                     )}
                   </div>
-                  <p class="text-gray-600 text-sm">{resource.description}</p>
+                  <p class="text-gray-600 text-sm leading-relaxed">{resource.description}</p>
                 </Component>
               );
             })}
@@ -81,9 +117,19 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
         </section>
 
         <!-- Passing the Interview -->
-        <section id="passing-interview" class="mb-8">
-          <h2 class="text-xl font-bold text-gray-900 mb-3">💻 Passing the Interview</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <section id="passing-interview" class="mb-20 scroll-mt-24">
+          <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-3 flex items-center">
+              <span class="bg-green-100 rounded-xl p-3 mr-3">
+                <svg class="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </span>
+              Passing the Interview
+            </h2>
+            <p class="text-gray-600 text-lg">Master technical skills, behavioral questions, and interview strategies to ace every round.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {passingInterviewGuides.map((resource) => {
               const isExternal = resource.url && (resource.url.startsWith('http') || resource.url.startsWith('https'));
               const Component = resource.url && resource.url !== '#' ? 'a' : 'div';
@@ -96,17 +142,17 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
               return (
                 <Component
                   {...linkProps}
-                  class={`block border border-gray-200 rounded-lg p-4 ${resource.url && resource.url !== '#' ? 'hover:border-blue-300 hover:bg-blue-50 transition-colors cursor-pointer' : 'bg-gray-50'}`}
+                  class={`block border-2 border-gray-200 rounded-xl p-5 transition-all ${resource.url && resource.url !== '#' ? 'hover:border-green-400 hover:shadow-md hover:-translate-y-1 cursor-pointer bg-white' : 'bg-gray-50'}`}
                 >
-                  <div class="flex items-center justify-between mb-2">
-                    <h3 class={`font-semibold ${resource.url && resource.url !== '#' ? 'text-blue-600' : 'text-gray-500'}`}>
+                  <div class="flex items-center justify-between mb-3">
+                    <h3 class={`font-bold text-base ${resource.url && resource.url !== '#' ? 'text-green-600' : 'text-gray-500'}`}>
                       {resource.title}
                     </h3>
                     {resource.url === '#' && (
-                      <span class="text-xs px-2 py-1 bg-gray-200 text-gray-600 rounded">Coming Soon</span>
+                      <span class="text-xs px-3 py-1 bg-gray-200 text-gray-600 rounded-full font-medium">Coming Soon</span>
                     )}
                   </div>
-                  <p class="text-gray-600 text-sm">{resource.description}</p>
+                  <p class="text-gray-600 text-sm leading-relaxed">{resource.description}</p>
                 </Component>
               );
             })}
@@ -114,33 +160,68 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
         </section>
 
         <!-- Additional Resources -->
-        <section id="additional-resources" class="mb-12">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Additional Resources</h2>
+        <section id="additional-resources" class="mb-16 scroll-mt-24">
+          <div class="mb-10">
+            <h2 class="text-3xl font-bold text-gray-900 mb-3 flex items-center">
+              <span class="bg-purple-100 rounded-xl p-3 mr-3">
+                <svg class="w-7 h-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                </svg>
+              </span>
+              Additional Resources
+            </h2>
+            <p class="text-gray-600 text-lg">Curated tools and platforms to support every step of your job search journey.</p>
+          </div>
 
-          {additionalResources.map((category, index) => (
-            <div class="mb-3 border border-gray-200 rounded-lg overflow-hidden">
+          {additionalResources.map((category, index) => {
+            // Define SVG icons for each category
+            const categoryIcons = {
+              'job-boards': (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              ),
+              'interview-prep': (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              ),
+              'resume-portfolio': (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              ),
+              'learning-platforms': (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+              )
+            };
+
+            return (
+            <div class="mb-4 border-2 border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <button
-                class="resource-category-toggle w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
+                class="resource-category-toggle w-full flex items-center justify-between p-5 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 transition-all"
                 data-category-id={category.id}
                 aria-expanded="false"
               >
-                <h3 class="text-lg font-semibold text-gray-900 flex items-center">
-                  <span class="mr-2">{category.icon}</span>
+                <h3 class="text-xl font-bold text-gray-900 flex items-center">
+                  <span class="mr-3 text-gray-600">{categoryIcons[category.id]}</span>
                   {category.title}
-                  <span class="ml-2 text-xs text-gray-500 font-normal">({category.resources.length})</span>
+                  <span class="ml-3 text-sm text-gray-500 font-normal bg-white px-3 py-1 rounded-full">{category.resources.length} resources</span>
                 </h3>
                 <svg
-                  class="category-chevron w-5 h-5 text-gray-600 transform transition-transform duration-200"
+                  class="category-chevron w-6 h-6 text-gray-600 transform transition-transform duration-300"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
                 </svg>
               </button>
 
               <div class="resource-category-content hidden" data-category-id={category.id}>
-                <ul class="p-4 space-y-2 bg-white">
+                <ul class="p-5 space-y-3 bg-white">
                   {category.resources
                     .sort((a, b) => {
                       const tierOrder = { 'S+': -1, 'S': 0, 'A': 1, 'B': 2, 'C': 3 };
@@ -157,15 +238,15 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
                       const tierColor = tierColors[resource.tier];
 
                       return (
-                        <li class="border border-gray-100 rounded-lg p-3 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                        <li class="border-2 border-gray-100 rounded-lg p-4 hover:border-blue-300 hover:shadow-sm transition-all bg-white">
                           <a href={resource.url} target="_blank" rel="noopener noreferrer" class="block">
-                            <div class="flex items-center gap-3">
-                              <span class={`${tierColor} px-2.5 py-1 rounded text-xs font-bold shadow-sm border flex-shrink-0`}>
+                            <div class="flex items-center gap-4">
+                              <span class={`${tierColor} px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm border flex-shrink-0`}>
                                 {resource.tier}
                               </span>
                               <div class="flex-1">
-                                <div class="font-medium text-blue-600 text-sm">{resource.title}</div>
-                                <p class="text-xs text-gray-600 mt-1">{resource.description}</p>
+                                <div class="font-semibold text-blue-600 text-base mb-1">{resource.title}</div>
+                                <p class="text-sm text-gray-600 leading-relaxed">{resource.description}</p>
                               </div>
                             </div>
                           </a>
@@ -175,15 +256,21 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
                 </ul>
               </div>
             </div>
-          ))}
+            );
+          })}
         </section>
 
 
         <!-- Footer -->
-        <footer class="mt-12 pt-6 border-t border-gray-200">
-          <div class="text-center text-sm text-gray-500">
-            <p>Part of progsu's commitment to helping students land their first tech job.</p>
-            <p class="mt-1">Questions? Join our <a href={DISCORD_LINK} target="_blank" class="text-blue-600 hover:text-blue-800">Discord community</a>.</p>
+        <footer class="mt-20 pt-8 border-t-2 border-gray-200">
+          <div class="text-center">
+            <p class="text-base text-gray-600 mb-2">Part of <span class="font-semibold text-gray-900">progsu</span>'s commitment to helping students land their first tech job.</p>
+            <p class="text-base text-gray-600">
+              Questions? Join our
+              <a href={DISCORD_LINK} target="_blank" class="text-blue-600 hover:text-blue-700 font-semibold underline decoration-2 underline-offset-2">
+                Discord community
+              </a>
+            </p>
           </div>
         </footer>
       </div>
