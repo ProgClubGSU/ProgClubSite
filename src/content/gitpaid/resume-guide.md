@@ -8,39 +8,33 @@ publishDate: 2024-01-15T00:00:00.000Z
 lastUpdated: 2024-01-15T00:00:00.000Z
 ---
 
-# progsu resume quickstart guide
-A clean, ATS-optimized LaTeX resume template + in-depth guide built by PROGSU to help early-career developers write top-tier software engineering resumes.  
-  
-Built by students, for students — powered by [PROGSU](https://progsu.com), Georgia State’s tech club for builders, coders, and creators.
+# 👋 let's quick start your resume
 
 
-### **[GRAB THE TEMPLATE](#getting-the-template)**
+### **[👉 cop the resume template](#getting-the-template)**
 
-<h1 id="writing-amazing-resume">Writing an Amazing Resume</h1> 
 
-<blockquote class="tip-quote">
-💡 <strong>Pro Tip:</strong> This guide compiles the best resume practices to get into these tech roles we're all aiming for — even with no prior experience.
-</blockquote>
+
 
 ## Does my resume even matter that much?
 
 Your resume is the **biggest asset** in your job search!
 
-Before any interview, referral, or offer — it needs to get past the recruiter screen and Applicant Tracking Systems (ATS).
+Before any interview, referral, or offer, it needs to get past the recruiter screen and Applicant Tracking Systems (ATS).
 
-- It's asymmetric: a few hours of focused resume work can unlock dozens of interview opportunities.
-- In this space we're breaking into, your resume is often the first impression — so let’s make it count.
+- a couple hours working on your resume can unlock dozens on interviews that you've been missing out on!
+- your resume is often the first impression, so let’s make it count.
 
 ---
 
 <h1 id="resume-structure">Resume Structure Overview</h1>
 
-Recruiters skim resumes in 6–12 seconds. Top to bottom. Left to right.
+Recruiters skim resumes in 6–12 seconds. **Top to bottom. Left to right.**
 
 So we structure by **relevance**, not **chronology**:
 Notice how the relevancy for internships is your education that is one of the things recruiters confirm and check first, so we put that at the tippity top.
 After graduating when you have more relevant experience, education goes below it.
-1. **Work Experience** — put *below* Education if you're applying to internships
+1. **Work Experience** --> put *below* Education if you're applying to internships
 2. **Education**
 3. **Skills**
 4. **Projects**
@@ -52,11 +46,9 @@ After graduating when you have more relevant experience, education goes below it
 <strong>Success Strategy:</strong> If you're applying for internships, keep Education at the top. Intern recruiters care most about your school, GPA, and that you're a current student. If you've interned at a FAANG company, lead with that!
 </blockquote>
 
----
 
-<h1 id="baby-steps">Back to the Basics — Baby Steps</h1>
+<h1 id="baby-steps">alright let's start with the basics</h1>
 
----
 
 <h2 id="resume-header">Resume Header: Your Name + Links</h2>
 
