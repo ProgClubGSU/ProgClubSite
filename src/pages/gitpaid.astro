@@ -141,14 +141,37 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
 
               <div class="resource-category-content hidden" data-category-id={category.id}>
                 <ul class="p-4 space-y-2 bg-white">
-                  {category.resources.map((resource) => (
-                    <li class="border border-gray-100 rounded-lg p-3 hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                      <a href={resource.url} target="_blank" rel="noopener noreferrer" class="block">
-                        <div class="font-medium text-blue-600 text-sm">{resource.title}</div>
-                        <p class="text-xs text-gray-600 mt-1">{resource.description}</p>
-                      </a>
-                    </li>
-                  ))}
+                  {category.resources
+                    .sort((a, b) => {
+                      const tierOrder = { 'S+': -1, 'S': 0, 'A': 1, 'B': 2, 'C': 3 };
+                      return tierOrder[a.tier] - tierOrder[b.tier];
+                    })
+                    .map((resource) => {
+                      const tierColors = {
+                        'S+': 'bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white border-purple-600 shadow-lg shadow-purple-500/50',
+                        'S': 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white border-yellow-500',
+                        'A': 'bg-gradient-to-r from-green-400 to-emerald-500 text-white border-green-500',
+                        'B': 'bg-gradient-to-r from-blue-400 to-cyan-500 text-white border-blue-500',
+                        'C': 'bg-gradient-to-r from-gray-400 to-slate-500 text-white border-gray-500'
+                      };
+                      const tierColor = tierColors[resource.tier];
+
+                      return (
+                        <li class="border border-gray-100 rounded-lg p-3 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                          <a href={resource.url} target="_blank" rel="noopener noreferrer" class="block">
+                            <div class="flex items-center gap-3">
+                              <span class={`${tierColor} px-2.5 py-1 rounded text-xs font-bold shadow-sm border flex-shrink-0`}>
+                                {resource.tier}
+                              </span>
+                              <div class="flex-1">
+                                <div class="font-medium text-blue-600 text-sm">{resource.title}</div>
+                                <p class="text-xs text-gray-600 mt-1">{resource.description}</p>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>
