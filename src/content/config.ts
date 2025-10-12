@@ -5,7 +5,7 @@ const gitpaidCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    type: z.enum(['career', 'technical', 'networking']),
+    type: z.enum(['career', 'technical', 'networking', 'interview', 'meta']),
     difficulty: z.enum(['beginner', 'intermediate', 'advanced']),
     impact: z.enum(['high', 'multiplier', 'essential']),
     publishDate: z.date().optional(),

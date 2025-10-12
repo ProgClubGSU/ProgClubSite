@@ -8,7 +8,7 @@ publishDate: 2024-01-15T00:00:00.000Z
 lastUpdated: 2024-01-15T00:00:00.000Z
 ---
 
-# 👋 let's quick start your resume
+# 👋 let's quickstart your resume
 
 
 ### **[👉 cop the resume template](#getting-the-template)**
@@ -27,7 +27,7 @@ Before any interview, referral, or offer, it needs to get past the recruiter scr
 
 ---
 
-<h1 id="resume-structure">Resume Structure Overview</h1>
+# Resume Structure Overview
 
 Recruiters skim resumes in 6–12 seconds. **Top to bottom. Left to right.**
 
@@ -47,10 +47,9 @@ After graduating when you have more relevant experience, education goes below it
 </blockquote>
 
 
-<h1 id="baby-steps">alright let's start with the basics</h1>
+# alright let's start with the basics
 
-
-<h2 id="resume-header">Resume Header: Your Name + Links</h2>
+## Resume Header: Your Name + Links
 
 The header should **immediately tell the recruiter who you are and how to reach you**.
 
@@ -62,20 +61,20 @@ The header should **immediately tell the recruiter who you are and how to reach 
 - **GitHub**
 - **LinkedIn**
 - **Portfolio/Website** *(if relevant and active)*
-- ONLY IF US CITIZEN! **Citizenship status** (especially useful if you have a non-Western name)
+-  **Citizenship status** in your headline if you have a non-western name
 
 ### Common Mistakes
 
 - Using `.edu` email (especially if you don't check it)
-- Not linking LinkedIn — recruiters actually click this!
+- Not linking LinkedIn: recruiters actually click this!
 - Including your full mailing address (obsolete)
 - Hyperlinking text (just show the raw URL)
 
 ---
 
-<h2 id="education-section">Education Section</h2>
+## Education Section
 
-Your **Education** section should be compact, clean, and front-loaded with the most important info — especially for internships.
+Your **Education** section should be compact, clean, and front-loaded with the most important info, especially for internships.
 
 ### What to include:
 
@@ -91,26 +90,35 @@ Your **Education** section should be compact, clean, and front-loaded with the m
 <strong>Important:</strong> Keep this to <strong>2–3 lines max</strong>. It should never take up more vertical space than your biggest project.
 </blockquote>
 
+**👀 does your resume look like this so far?**
 ![Header + Education Example](/images/gitpaid/resume-guide/header-and-education.png)
 
 ---
 
-<h1 id="bullet-points">Before We Move On... Let's Talk Bullet Points (Your Bread & Butter)</h1>
+# deep dive: your bullet points
 
 Bullet points are **90% of your technical signal**.
+
+**Just lie...** okay don't actually straight up lie, but you can frame your experiences and bullet points to match the role as much as possible. Embellish it if you want, as long as you can defend it you're good.
 
 Bad bullet points = mid resume  
 Strong bullet points = legit internship-level resume
 
-<h3 id="xyz-formula">The XYZ Formula</h3>
+### The XYZ Formula
 
-**Accomplished [X] by doing [Y], resulting in [Z]**
+Accomplished [X] by doing [Y], resulting in [Z]
+
+**how to make it better???**
+
+**Engineered [X] with [Y technologies], increasing [Z] by [# metric].**
+
+
+
 
 <blockquote class="code-quote">
-<strong>Formula:</strong> This is how we write high-signal, ATS-optimized bullets. Be concrete. Be quantifiable. Be technical.
+<strong>Formula:</strong> This tells the recruiter what you did --> with what technologies (helps them look for keywords) --> actual impact that it had with a metric
 </blockquote>
 
----
 
 #### Bad Example:
 Made a multiplayer typing game using React and Socket.IO.
@@ -142,11 +150,11 @@ Made a multiplayer typing game using React and Socket.IO.
 
 ---
 
-<h1 id="work-experience">Work Experience Section</h1>
+# Work Experience Section
 
-This is your **core section** if you’ve had internships, freelance gigs, research, or even volunteer engineering work.
+This is your **core section** if you've had internships, freelance gigs, research, or even volunteer engineering work.
 
-Even without big names on your resume, you can still make this section look like a legit engineer's — if your bullets are solid.
+Even without big names or even "legit" experience on your resume, you can still make this section look like an engineer's, if your bullets are solid.
 
 ### What to Include:
 
@@ -156,9 +164,8 @@ Even without big names on your resume, you can still make this section look like
 - **Start + End Dates**
 - **3–4 bullets** using the XYZ method
 
----
 
-### Title Upgrades
+#### Title Upgrades
 
 | Original Title        | Better Version              |
 |-----------------------|-----------------------------|
@@ -167,46 +174,42 @@ Even without big names on your resume, you can still make this section look like
 | “Research Assistant”  | Computer Science Researcher |
 | “IT Assistant”        | Backend Developer           |
 
----
 
-### Common Mistakes
+#### Common Mistakes
 
-- Vague bullets like “Helped with codebase”
+- Vague bullets like "Helped with codebase"
 - No tech/tools listed
 - No outcomes or impact
 - Using the same verb repeatedly
 - 5+ bullets or one-line walls of text
 
-### Pro Tips
+#### Pro Tips
 
 - Use LinkedIn job listings as inspiration
 - Write long-term personal projects like jobs
 - Open source = valid experience if team-based
 
-**TLDR**: Don’t write like a student learning — write like an engineer shipping.
+**TLDR**: Don’t write like a student learning, but like an engineer.
 
 ---
 
-<h1 id="projects-section">Projects Section</h1>
+# Projects Section
 
 Projects are your **proof of work**.
 
-Treat every project like a feature at a startup — not a class assignment.
+Frame your projects section like they are startups with the potential for **real** impact.
 
 > Most recruiters skim this, but hiring managers *read it closely*.
 
 ![Project Example](/images/gitpaid/resume-guide/project-example.png)
 
----
 
-### What to include:
+#### What to include:
 
 - **Project name**
 - 1-line tech stack summary
 - 3–4 bullets using XYZ
 - GitHub/demo link
-
----
 
 ### Project Writing Rules
 
@@ -215,19 +218,15 @@ Treat every project like a feature at a startup — not a class assignment.
 - Explain **problem solved**
 - Show **metrics/impact**
 
----
+#### Common Mistakes
 
-### Common Mistakes
-
-- “Built a personal website using HTML/CSS”
+- "Built a personal website using HTML/CSS"
 - No bullets
 - Generic verbs
 - No tech
 - No results
 
----
-
-### Pro Tips
+#### Pro Tips
 
 - Think like a product engineer: What problem? Who used it? What changed?
 - Reframe class projects like real-world features
@@ -240,9 +239,9 @@ Treat every project like a feature at a startup — not a class assignment.
 
 ---
 
-<h1 id="skills-section">Skills Section</h1>
+# Skills Section
 
-This section helps **ATS match you** to job descriptions — and rounds out your technical profile.
+This section helps **ATS match you** to job descriptions and rounds out your technical profile.
 
 > For internships: include most technologies you've touched *and can talk about*
 
@@ -250,7 +249,6 @@ This section helps **ATS match you** to job descriptions — and rounds out your
 <strong>Caution:</strong> Don't label groups — mix by relevance and strength.
 </blockquote>
 
----
 
 ### What to Include (in 2–3 lines max)
 
@@ -259,13 +257,13 @@ This section helps **ATS match you** to job descriptions — and rounds out your
 - Tools/platforms
 - Databases/cloud
 
-> Caution: Don’t label groups — mix by relevance and strength.
+**Tip!** I would just write down all the different technologies that you have touched before, even just a little bit --> feed it to **ChatGPT** and ask it to categorize it for you.
 
-## Common Mistakes
-- Putting “problem solving” or “communication” — this isn’t LinkedIn
-- Alphabetizing or randomly ordering
+### Common Mistakes
+- Putting "problem solving" or "communication", this isn't LinkedIn
+- Alphabetizing or randomly ordering, remember top to bottom & left to right
 
-<h2 id="getting-the-template">Getting the Template</h2>
+## Getting the Template
 
 ### Google Doc Resume Template:
 1. [Make a copy](https://docs.google.com/document/d/17HbHSMNyWPT6WssjoGNgAGWahOESpl_bz7ECVi9Rizs/edit?usp=sharing)

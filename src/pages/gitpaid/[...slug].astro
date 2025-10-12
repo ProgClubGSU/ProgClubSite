@@ -73,54 +73,22 @@ const { Content, headings } = await guide.render();
       <nav class="hidden lg:hidden mb-6" id="toc-content-mobile">
         <div class="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-5 shadow-lg">
           <div class="space-y-1 text-sm">
-            <div class="toc-item">
-              <a href="#writing-amazing-resume" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Writing an Amazing Resume
-              </a>
-            </div>
-            <div class="toc-item">
-              <a href="#resume-structure" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Resume Structure Overview
-              </a>
-            </div>
-            <div class="toc-item">
-              <a href="#baby-steps" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Back to the Basics
-              </a>
-            </div>
-            <div class="toc-item">
-              <a href="#bullet-points" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Bullet Points
-              </a>
-            </div>
-            <div class="toc-item">
-              <a href="#work-experience" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Work Experience
-              </a>
-            </div>
-            <div class="toc-item">
-              <a href="#projects-section" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Projects Section
-              </a>
-            </div>
-            <div class="toc-item">
-              <a href="#skills-section" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Skills Section
-              </a>
-            </div>
-            <div class="toc-item">
-              <a href="#getting-the-template" class="toc-link-mobile flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group">
-                <div class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors"></div>
-                Getting the Template
-              </a>
-            </div>
+            {headings.filter(heading => heading.slug).map((heading) => {
+              const isSubheading = heading.depth > 2;
+              const marginClass = isSubheading ? 'ml-4' : '';
+              const textColorClass = isSubheading ? 'text-gray-500' : 'text-gray-600';
+              const textSizeClass = isSubheading ? 'text-xs' : '';
+              const dotSizeClass = isSubheading ? 'w-1 h-1' : 'w-1.5 h-1.5';
+
+              return (
+                <div class={`toc-item ${marginClass}`}>
+                  <a href={`#${heading.slug}`} class={`toc-link-mobile flex items-center px-3 py-2 rounded-lg ${textColorClass} hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group ${textSizeClass}`}>
+                    <div class={`${dotSizeClass} bg-gray-400 rounded-full mr-3 group-hover:bg-blue-600 transition-colors`}></div>
+                    {heading.text}
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </div>
       </nav>

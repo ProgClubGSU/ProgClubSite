@@ -42,6 +42,31 @@ const jobBoards: Resource[] = [
     title: "Levels.fyi Internships",
     description: "Curated list of tech internships with salary data and company reviews",
     url: "https://www.levels.fyi/internships/"
+  },
+  {
+    title: "Wellfound (formerly AngelList)",
+    description: "Startup job board connecting talent with early-stage companies and venture-backed startups",
+    url: "https://wellfound.com/"
+  },
+  {
+    title: "Startup Search / Board",
+    description: "Discover startup opportunities and explore jobs at growing companies",
+    url: "https://www.startupboard.io/"
+  },
+  {
+    title: "Handshake",
+    description: "College recruiting platform connecting students with internships and entry-level positions",
+    url: "https://www.joinhandshake.com/"
+  },
+  {
+    title: "Y Combinator Job Board",
+    description: "Explore career opportunities at YC-backed startups and high-growth companies",
+    url: "https://www.ycombinator.com/jobs"
+  },
+  {
+    title: "SubscriptionIntern",
+    description: "Personalized job search service that finds startup internships and opportunities for you",
+    url: "https://subscriptionintern.com/"
   }
 ];
 
