@@ -280,8 +280,8 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
             <div class="text-lg text-white/80 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;" set:html={ABOUT_ME}></div>
             
             <!-- Navigation Buttons -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a 
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <a
                 href="/members"
                 class="block border-2 border-white/30 hover:border-white bg-white/[0.02] hover:bg-white/[0.08] p-6 transition-all duration-200 group"
               >
@@ -294,8 +294,8 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
                   </div>
                 </div>
               </a>
-              
-              <a 
+
+              <a
                 href="/history"
                 class="block border-2 border-white/30 hover:border-white bg-white/[0.02] hover:bg-white/[0.08] p-6 transition-all duration-200 group"
               >
@@ -305,6 +305,20 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
                   </div>
                   <div class="text-white/50 font-mono text-sm">
                     git log --oneline
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="/gitpaid"
+                class="block border-2 border-white/30 hover:border-white bg-white/[0.02] hover:bg-white/[0.08] p-6 transition-all duration-200 group"
+              >
+                <div class="text-center">
+                  <div class="text-white font-bold text-xl mb-2" style="font-family: 'Helvetica Neue', sans-serif;">
+                    GITPAID
+                  </div>
+                  <div class="text-white/50 font-mono text-sm">
+                    cat resources/jobs.md
                   </div>
                 </div>
               </a>
