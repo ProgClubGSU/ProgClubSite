@@ -49,9 +49,9 @@ const jobBoards: Resource[] = [
   },
   {
     title: "Levels.fyi Internships",
-    description: "Curated list of tech internships with salary data and company reviews",
+    description: "Mainly good for looking at salaries for tech roles",
     url: "https://www.levels.fyi/internships/",
-    tier: "C"
+    tier: "B"
   },
   {
     title: "Wellfound (formerly AngelList)",
