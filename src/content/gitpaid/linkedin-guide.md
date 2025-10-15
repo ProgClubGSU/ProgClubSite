@@ -21,7 +21,9 @@ We'll go through each part of your profile, what recruiters actually look for, a
 
 ## 1. Your Profile Photo & Banner
 
-First impressions matter and your profile picture and banner plays a huge part in this. My first LinkedIn profile picture was a selfie I took in NYC and I didn't think too much of it. Do not do that.
+First impressions matter and your profile picture and banner plays a huge part in this. My first LinkedIn profile picture was a selfie I took in NYC and I didn't think too much of it. Do **NOT** do that.
+
+**Bad Example:**
 
 <img src="/gitpaid/old_headshot.jpg" alt="Old Headshot" width="500"/>
 
@@ -36,6 +38,8 @@ You don’t need to rent a studio. A friend with a decent phone camera + portrai
 
 **Banner tip:**
 Pick something that fits your vibe. It could be a tech-themed background, your city skyline, or do what I did and pick something minimalist from [Canva](https://www.canva.com/create/linkedin-banners/).
+
+**Better Example:**
 
 <img src="/gitpaid/new_headshot.jpg" alt="New Headshot" width="500"/>
 
