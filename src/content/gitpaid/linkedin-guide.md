@@ -23,7 +23,7 @@ We'll go through each part of your profile, what recruiters actually look for, a
 
 First impressions matter and your profile picture and banner plays a huge part in this. My first LinkedIn profile picture was a selfie I took in NYC and I didn't think too much of it. Do not do that.
 
-<img src="assets/old_headshot.jpg" alt="Old Headshot" width="500"/>
+<img src="/gitpaid/old_headshot.jpg" alt="Old Headshot" width="500"/>
 
 Here’s what works:
 
@@ -37,7 +37,7 @@ You don’t need to rent a studio. A friend with a decent phone camera + portrai
 **Banner tip:**
 Pick something that fits your vibe. It could be a tech-themed background, your city skyline, or do what I did and pick something minimalist from [Canva](https://www.canva.com/create/linkedin-banners/).
 
-<img src="assets/new_headshot.jpg" alt="Old Headshot" width="500"/>
+<img src="/gitpaid/new_headshot.jpg" alt="New Headshot" width="500"/>
 
 ---
 
