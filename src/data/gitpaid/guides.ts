@@ -29,9 +29,9 @@ export const gettingInterviewGuides: Guide[] = [
   {
     title: "LinkedIn Optimization",
     description: "Optimize your LinkedIn profile for tech recruiting and networking",
-    url: "#", // Replace with your actual link when ready
+    url: "/gitpaid/linkedin-guide",
     difficulty: "beginner",
-    impact: "high"
+    impact: "essential"
   },
   {
     title: "Getting Referrals",
