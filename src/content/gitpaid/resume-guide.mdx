@@ -9,27 +9,42 @@ lastUpdated: 2024-01-15T00:00:00.000Z
 ---
 
 import Callout from '@/components/gitpaid/Callout.astro';
+import Card from '@/components/gitpaid/Card.astro';
+import Button from '@/components/gitpaid/Button.tsx';
+import ButtonGroup from '@/components/gitpaid/ButtonGroup.tsx';
 
 # 👋 let's quickstart your resume
 
-## 🚀 Get Started with Our Templates
+<Card variant="gradient">
 
-**Before diving into the guide, grab one of our proven resume templates:**
+## Start with our proven templates
 
-### Google Doc Resume Template:
-1. **[Make a copy](https://docs.google.com/document/d/17HbHSMNyWPT6WssjoGNgAGWahOESpl_bz7ECVi9Rizs/edit?usp=sharing)** of our Google Doc template
-2. Start filling it out as you read through this guide
+We've created templates on Google Docs and LaTeX with notes to guide you and jumpstart your resume:
 
-### LaTeX Resume Template (Recommended):
-1. **Open in Overleaf:** [View and copy template](https://www.overleaf.com/read/hkwggdfzrdjf#f0af7d)
-2. **Make a copy:** File → Copy Project in Overleaf
-3. Or manually copy the `.tex` code into a new Overleaf project
+<ButtonGroup alignment="center" spacing="md" client:load>
+  <Button
+    variant="primary"
+    icon=""
+    size="sm"
+    href="https://docs.google.com/document/d/17HbHSMNyWPT6WssjoGNgAGWahOESpl_bz7ECVi9Rizs/edit?usp=sharing"
+    external={true}
+    client:load
+  >
+    Google Docs
+  </Button>
+  <Button
+    variant="success"
+    icon=""
+    size="sm"
+    href="https://www.overleaf.com/read/hkwggdfzrdjf#f0af7d"
+    external={true}
+    client:load
+  >
+    LaTeX (Advanced)
+  </Button>
+</ButtonGroup>
 
-<Callout type="success" title="Pro Tip">
-The LaTeX template produces the cleanest, most professional-looking resumes that stand out to recruiters. It's worth the extra effort!
-</Callout>
-
-
+</Card>
 
 
 ## Does my resume even matter that much?

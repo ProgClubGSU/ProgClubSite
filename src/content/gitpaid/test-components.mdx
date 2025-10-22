@@ -1,0 +1,546 @@
+---
+title: "Component Test Guide"
+description: "Testing all MDX components for gitPaid guides"
+type: "meta"
+difficulty: "beginner"
+impact: "high"
+publishDate: 2024-01-15T00:00:00.000Z
+lastUpdated: 2024-01-15T00:00:00.000Z
+---
+
+import Callout from '@/components/gitpaid/Callout.astro';
+import Card from '@/components/gitpaid/Card.astro';
+import CodeBlock from '@/components/gitpaid/CodeBlock.tsx';
+import Accordion from '@/components/gitpaid/Accordion.tsx';
+import Timeline from '@/components/gitpaid/Timeline.tsx';
+import StepList from '@/components/gitpaid/StepList.tsx';
+import Button from '@/components/gitpaid/Button.tsx';
+import ButtonGroup from '@/components/gitpaid/ButtonGroup.tsx';
+
+# Component Library Showcase
+
+Welcome to the gitPaid component library! This page showcases all available components you can use in your guides. Each component is fully functional - click around and test them out!
+
+<Callout type="info" title="Using These Components">
+All components shown here are ready to use in any gitPaid guide. Simply import the ones you need at the top of your MDX file and start building engaging content!
+</Callout>
+
+## Button Components (React - Interactive)
+
+Buttons are essential for calls-to-action, navigation, and interactive elements in your guides.
+
+### Button Variants
+
+<ButtonGroup alignment="center" client:load>
+  <Button variant="primary" icon="🚀" client:load>
+    Primary Button
+  </Button>
+  <Button variant="secondary" icon="⚙️" client:load>
+    Secondary
+  </Button>
+  <Button variant="success" icon="✅" client:load>
+    Success
+  </Button>
+  <Button variant="danger" icon="🚨" client:load>
+    Danger
+  </Button>
+</ButtonGroup>
+
+### Gradient & Outline Buttons
+
+<ButtonGroup alignment="center" client:load>
+  <Button variant="gradient" icon="✨" client:load>
+    Gradient Magic
+  </Button>
+  <Button variant="outline" icon="🎯" client:load>
+    Outline Style
+  </Button>
+</ButtonGroup>
+
+### Button Sizes
+
+<ButtonGroup alignment="center" client:load>
+  <Button variant="primary" size="sm" client:load>
+    Small Button
+  </Button>
+  <Button variant="primary" size="md" client:load>
+    Medium Button
+  </Button>
+  <Button variant="primary" size="lg" client:load>
+    Large Button
+  </Button>
+</ButtonGroup>
+
+### Buttons with Icons
+
+<ButtonGroup alignment="center" client:load>
+  <Button variant="success" icon="📝" iconPosition="left" client:load>
+    Start Writing
+  </Button>
+  <Button variant="primary" icon="➡️" iconPosition="right" client:load>
+    Next Step
+  </Button>
+  <Button variant="gradient" icon="💼" client:load>
+    Apply Now
+  </Button>
+</ButtonGroup>
+
+### Button Links
+
+Buttons can also function as links to external or internal pages:
+
+<ButtonGroup alignment="center" client:load>
+  <Button
+    variant="primary"
+    icon="📄"
+    href="https://docs.google.com/document/d/17HbHSMNyWPT6WssjoGNgAGWahOESpl_bz7ECVi9Rizs/edit?usp=sharing"
+    external={true}
+    client:load
+  >
+    View Resume Template
+  </Button>
+  <Button
+    variant="success"
+    icon="💬"
+    href="https://discord.gg/progsu"
+    external={true}
+    client:load
+  >
+    Join Discord
+  </Button>
+  <Button
+    variant="outline"
+    icon="🏠"
+    href="/gitpaid"
+    client:load
+  >
+    Back to gitPAID
+  </Button>
+</ButtonGroup>
+
+### Full Width Buttons
+
+<Button variant="gradient" icon="🎓" fullWidth={true} client:load>
+  Enroll in Full Course
+</Button>
+
+<Button variant="success" icon="⬇️" fullWidth={true} size="lg" client:load>
+  Download Resources
+</Button>
+
+### Disabled State
+
+<ButtonGroup alignment="center" client:load>
+  <Button variant="primary" disabled={true} client:load>
+    Disabled Button
+  </Button>
+  <Button variant="success" icon="🔒" disabled={true} client:load>
+    Coming Soon
+  </Button>
+</ButtonGroup>
+
+### Vertical Button Groups
+
+<ButtonGroup vertical={true} alignment="center" client:load>
+  <Button variant="primary" icon="1️⃣" fullWidth={true} client:load>
+    Step 1: Setup
+  </Button>
+  <Button variant="primary" icon="2️⃣" fullWidth={true} client:load>
+    Step 2: Configure
+  </Button>
+  <Button variant="success" icon="3️⃣" fullWidth={true} client:load>
+    Step 3: Launch
+  </Button>
+</ButtonGroup>
+
+---
+
+## Callout Components (Astro - Static)
+
+### Info Callout (Default)
+
+<Callout type="info" title="Information">
+This is an informational callout. Use this for general helpful information.
+</Callout>
+
+### Success Callout
+
+<Callout type="success" title="Success!">
+This is a success callout. Use this for positive outcomes, pro tips, and best practices.
+</Callout>
+
+### Warning Callout
+
+<Callout type="warning" title="Watch Out">
+This is a warning callout. Use this to caution users about potential issues.
+</Callout>
+
+### Tip Callout
+
+<Callout type="tip">
+This is a tip callout without a title. Quick tips can be displayed this way!
+</Callout>
+
+### Danger Callout
+
+<Callout type="danger" title="Critical Warning">
+This is a danger callout. Use this for critical information that must not be ignored.
+</Callout>
+
+---
+
+## Card Components (Astro - Static)
+
+### Default Card
+
+<Card title="Default Card Style">
+This is a default card with a simple border and shadow. Great for highlighting sections of content.
+</Card>
+
+### Gradient Card
+
+<Card title="Gradient Card Style" variant="gradient">
+This card has a beautiful gradient background. Perfect for featured content or important sections.
+</Card>
+
+### Bordered Card
+
+<Card variant="bordered" title="Bordered Card Style">
+This card has a prominent border. Use this when you want to draw extra attention to content.
+</Card>
+
+### Card Without Title
+
+<Card variant="gradient">
+Cards can also be used without titles for more flexible layouts.
+</Card>
+
+---
+
+## Interactive Components (React)
+
+### Accordion Component
+
+<Accordion title="Click to expand this section" client:load>
+This content is hidden by default and can be expanded. Perfect for FAQ sections or hiding detailed information that users can access on demand.
+
+- You can put any content in here
+- Including lists
+- And **formatted text**
+</Accordion>
+
+<Accordion title="This accordion starts open" defaultOpen={true} client:load>
+This accordion is open by default because we set `defaultOpen={true}`. Users can still collapse it by clicking the title.
+</Accordion>
+
+<Accordion title="Advanced Configuration Tips" client:load>
+Here are some advanced tips:
+
+1. Keep accordion content concise
+2. Use descriptive titles
+3. Don't nest accordions too deeply
+4. Consider UX when hiding critical info
+</Accordion>
+
+---
+
+### Code Block Component
+
+<CodeBlock
+  code={`function calculateGPA(grades) {
+  const sum = grades.reduce((a, b) => a + b, 0);
+  return (sum / grades.length).toFixed(2);
+}
+
+// Usage example
+const grades = [4.0, 3.7, 3.9, 4.0];
+console.log(calculateGPA(grades)); // 3.90`}
+  language="javascript"
+  title="GPA Calculator"
+  showLineNumbers={true}
+  client:load
+/>
+
+<CodeBlock
+  code={`# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build`}
+  language="bash"
+  title="Quick Start Commands"
+  client:load
+/>
+
+<CodeBlock
+  code={`SELECT name, email, graduation_year
+FROM students
+WHERE gpa >= 3.5
+ORDER BY graduation_year DESC;`}
+  language="sql"
+  title="Query Top Students"
+  showLineNumbers={true}
+  client:load
+/>
+
+---
+
+### Timeline Component
+
+<Timeline items={[
+  {
+    title: 'Polish Your Resume',
+    description: 'Update your resume using our templates and guidelines',
+    date: 'Week 1',
+    status: 'completed'
+  },
+  {
+    title: 'Network on LinkedIn',
+    description: 'Connect with recruiters and alumni in your target companies',
+    date: 'Week 2-3',
+    status: 'completed'
+  },
+  {
+    title: 'Apply to Companies',
+    description: 'Submit 10-15 applications per week with personalized cover letters',
+    date: 'Week 3-6',
+    status: 'in-progress'
+  },
+  {
+    title: 'Interview Preparation',
+    description: 'Practice coding problems, behavioral questions, and system design',
+    date: 'Ongoing',
+    status: 'in-progress'
+  },
+  {
+    title: 'Receive Offers',
+    description: 'Negotiate your offers and make your final decision',
+    date: 'Week 8+',
+    status: 'upcoming'
+  }
+]} client:load />
+
+---
+
+### Step List Component
+
+<StepList steps={[
+  {
+    title: 'Create Your Account',
+    description: 'Sign up on the company career portal with your university email for better tracking'
+  },
+  {
+    title: 'Upload Your Resume',
+    description: 'Make sure it\'s in PDF format and follows ATS-friendly guidelines'
+  },
+  {
+    title: 'Fill Out Application',
+    description: 'Complete all required fields. Be thorough but concise in your responses'
+  },
+  {
+    title: 'Submit and Follow Up',
+    description: 'After submitting, connect with recruiters on LinkedIn and send a brief message'
+  }
+]} client:load />
+
+---
+
+## Combining Components
+
+You can mix and match components for rich content:
+
+<Card variant="gradient" title="Getting Started with Internship Applications">
+
+<StepList steps={[
+  {
+    title: 'Research Companies',
+    description: 'Make a list of 20-30 target companies that match your interests'
+  },
+  {
+    title: 'Prepare Materials',
+    description: 'Finalize your resume, cover letter template, and portfolio'
+  },
+  {
+    title: 'Start Applying',
+    description: 'Apply consistently, track everything in a spreadsheet'
+  }
+]} client:load />
+
+<Callout type="tip" title="Pro Tip">
+Don't wait for the "perfect" application. Apply early and iterate!
+</Callout>
+
+</Card>
+
+---
+
+## Buttons in Real Scenarios
+
+Here's how you might use buttons in an actual guide:
+
+<Card variant="gradient" title="Ready to Get Started?">
+
+Follow these steps to kickstart your internship search:
+
+<ButtonGroup alignment="center" spacing="lg" client:load>
+  <Button
+    variant="primary"
+    icon="📝"
+    href="https://docs.google.com/document/d/17HbHSMNyWPT6WssjoGNgAGWahOESpl_bz7ECVi9Rizs/edit"
+    external={true}
+    client:load
+  >
+    Get Resume Template
+  </Button>
+  <Button
+    variant="success"
+    icon="💼"
+    href="/gitpaid/linkedin-guide"
+    client:load
+  >
+    LinkedIn Guide
+  </Button>
+  <Button
+    variant="gradient"
+    icon="🎯"
+    href="/gitpaid/referrals-guide"
+    client:load
+  >
+    Get Referrals
+  </Button>
+</ButtonGroup>
+
+<Callout type="success" title="Pro Tip">
+Using buttons strategically can increase engagement and help guide readers to take action!
+</Callout>
+
+</Card>
+
+---
+
+## Mixed Content Example
+
+<Callout type="info" title="Before You Start">
+Make sure you've read the resume guide before diving into applications.
+</Callout>
+
+Here's a typical interview preparation timeline:
+
+<Timeline items={[
+  {
+    title: 'Technical Prep',
+    description: 'LeetCode easy/medium problems, 2-3 hours daily',
+    status: 'in-progress'
+  },
+  {
+    title: 'Behavioral Prep',
+    description: 'Prepare STAR stories for common questions',
+    status: 'in-progress'
+  },
+  {
+    title: 'Mock Interviews',
+    description: 'Practice with peers or use Pramp/Interviewing.io',
+    status: 'upcoming'
+  }
+]} client:load />
+
+<Accordion title="View Sample Behavioral Questions" client:load>
+
+**Common Behavioral Questions:**
+
+1. Tell me about yourself
+2. Why do you want to work here?
+3. Describe a challenging project you worked on
+4. Tell me about a time you failed
+5. Where do you see yourself in 5 years?
+
+<Callout type="tip">
+Use the STAR method: Situation, Task, Action, Result
+</Callout>
+
+</Accordion>
+
+---
+
+## Nested Components
+
+<Card variant="bordered" title="Advanced React Project Example">
+
+<CodeBlock
+  code={`import React, { useState, useEffect } from 'react';
+
+function UserDashboard() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/users')
+      .then(res => res.json())
+      .then(data => setUsers(data));
+  }, []);
+
+  return (
+    <div className="dashboard">
+      {users.map(user => (
+        <UserCard key={user.id} user={user} />
+      ))}
+    </div>
+  );
+}`}
+  language="javascript"
+  title="React Dashboard Component"
+  showLineNumbers={true}
+  client:load
+/>
+
+<Callout type="success" title="Great Job!">
+This demonstrates how to fetch and display data in React. Make sure to add error handling in production!
+</Callout>
+
+</Card>
+
+---
+
+## Conclusion
+
+This showcase demonstrates all available components in the gitPaid library. Use them to create engaging, interactive guides that help students get paid!
+
+### Quick Reference
+
+**Static Components (No JavaScript overhead):**
+- 🔔 **Callout** - Info boxes with 5 variants
+- 🃏 **Card** - Content containers with 3 styles
+
+**Interactive Components (React):**
+- 🔘 **Button** - Fancy buttons with 6 variants, icons, links
+- 📦 **ButtonGroup** - Group buttons with alignment options
+- 📂 **Accordion** - Collapsible content sections
+- 💻 **CodeBlock** - Syntax highlighted code with copy button
+- 📅 **Timeline** - Visual progress timelines
+- 🔢 **StepList** - Numbered step-by-step instructions
+
+<ButtonGroup alignment="center" spacing="lg" client:load>
+  <Button
+    variant="primary"
+    icon="📚"
+    href="/gitpaid"
+    client:load
+  >
+    Back to gitPAID
+  </Button>
+  <Button
+    variant="gradient"
+    icon="💬"
+    href="https://discord.gg/progsu"
+    external={true}
+    client:load
+  >
+    Join Our Discord
+  </Button>
+</ButtonGroup>
+
+<Callout type="success" title="Ready to Build?">
+For detailed component documentation and code examples, check out `src/components/gitpaid/README.md`
+</Callout>

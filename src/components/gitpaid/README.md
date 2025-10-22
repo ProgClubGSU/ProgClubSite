@@ -44,7 +44,93 @@ This content is hidden by default.
 
 ## Available Components
 
-### 1. Callout (Astro - Static)
+### 1. Button (React - Interactive)
+
+Create beautiful, interactive buttons with multiple variants and sizes.
+
+**Important:** Add `client:load` when using this component.
+
+**Props:**
+- `children`: Button text/content
+- `variant`: 'primary' | 'secondary' | 'success' | 'danger' | 'gradient' | 'outline' (default: 'primary')
+- `size`: 'sm' | 'md' | 'lg' (default: 'md')
+- `icon`: Optional emoji or icon to display
+- `iconPosition`: 'left' | 'right' (default: 'left')
+- `onClick`: Optional click handler function
+- `href`: Optional URL to link to (makes button an anchor tag)
+- `external`: Boolean, opens link in new tab if true (default: false)
+- `fullWidth`: Boolean, makes button full width (default: false)
+- `disabled`: Boolean, disables the button (default: false)
+
+**Examples:**
+
+```mdx
+{/* Basic buttons */}
+<Button variant="primary" client:load>
+  Click Me
+</Button>
+
+<Button variant="gradient" icon="✨" client:load>
+  Fancy Button
+</Button>
+
+{/* Button with icon on right */}
+<Button variant="success" icon="➡️" iconPosition="right" client:load>
+  Next Step
+</Button>
+
+{/* Button as link */}
+<Button
+  variant="primary"
+  href="https://example.com"
+  external={true}
+  client:load
+>
+  Visit Website
+</Button>
+
+{/* Full width button */}
+<Button variant="gradient" fullWidth={true} client:load>
+  Apply Now
+</Button>
+
+{/* Different sizes */}
+<Button variant="primary" size="sm" client:load>Small</Button>
+<Button variant="primary" size="md" client:load>Medium</Button>
+<Button variant="primary" size="lg" client:load>Large</Button>
+```
+
+### 2. ButtonGroup (React - Interactive)
+
+Group buttons together with consistent spacing and alignment.
+
+**Important:** Add `client:load` when using this component.
+
+**Props:**
+- `children`: Button components to group
+- `alignment`: 'left' | 'center' | 'right' (default: 'left')
+- `spacing`: 'sm' | 'md' | 'lg' (default: 'md')
+- `vertical`: Boolean, stacks buttons vertically (default: false)
+
+**Examples:**
+
+```mdx
+{/* Horizontal button group */}
+<ButtonGroup alignment="center" client:load>
+  <Button variant="primary" client:load>Option 1</Button>
+  <Button variant="secondary" client:load>Option 2</Button>
+  <Button variant="success" client:load>Option 3</Button>
+</ButtonGroup>
+
+{/* Vertical button group */}
+<ButtonGroup vertical={true} client:load>
+  <Button variant="primary" fullWidth={true} client:load>Step 1</Button>
+  <Button variant="primary" fullWidth={true} client:load>Step 2</Button>
+  <Button variant="success" fullWidth={true} client:load>Step 3</Button>
+</ButtonGroup>
+```
+
+### 3. Callout (Astro - Static)
 
 Display important information with styled callouts.
 
@@ -77,7 +163,7 @@ This is critical information.
 </Callout>
 ```
 
-### 2. Card (Astro - Static)
+### 4. Card (Astro - Static)
 
 Display content in a styled card container.
 
@@ -103,7 +189,7 @@ This has a prominent border
 </Card>
 ```
 
-### 3. CodeBlock (React - Interactive)
+### 5. CodeBlock (React - Interactive)
 
 Display code with syntax highlighting and a copy button.
 
@@ -129,7 +215,7 @@ Display code with syntax highlighting and a copy button.
 />
 ```
 
-### 4. Accordion (React - Interactive)
+### 6. Accordion (React - Interactive)
 
 Create collapsible content sections.
 
@@ -152,7 +238,7 @@ This content is visible by default.
 </Accordion>
 ```
 
-### 5. Timeline (React - Static Data)
+### 7. Timeline (React - Static Data)
 
 Display events or steps in a timeline format.
 
@@ -182,7 +268,7 @@ Display events or steps in a timeline format.
 ]} />
 ```
 
-### 6. StepList (React - Static Data)
+### 8. StepList (React - Static Data)
 
 Display numbered step-by-step instructions.
 
