@@ -3,14 +3,16 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
   output: "static",
   site: "https://progsu.com",
   integrations: [
-    mdx(), 
-    sitemap(), 
+    react(),
+    mdx(),
+    sitemap(),
     tailwind({
       // Re-enable base styles since we've optimized critical CSS
       applyBaseStyles: true,

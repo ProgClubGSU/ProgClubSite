@@ -8,12 +8,43 @@ publishDate: 2024-01-15T00:00:00.000Z
 lastUpdated: 2024-01-15T00:00:00.000Z
 ---
 
+import Callout from '@/components/gitpaid/Callout.astro';
+import Card from '@/components/gitpaid/Card.astro';
+import Button from '@/components/gitpaid/Button.tsx';
+import ButtonGroup from '@/components/gitpaid/ButtonGroup.tsx';
+
 # 👋 let's quickstart your resume
 
+<Card variant="gradient">
 
-### **[👉 cop the resume template](#getting-the-template)**
+## Start with our proven templates
 
+We've created templates on Google Docs and LaTeX with notes to guide you and jumpstart your resume:
 
+<ButtonGroup alignment="center" spacing="md" client:load>
+  <Button
+    variant="primary"
+    icon=""
+    size="sm"
+    href="https://docs.google.com/document/d/17HbHSMNyWPT6WssjoGNgAGWahOESpl_bz7ECVi9Rizs/edit?usp=sharing"
+    external={true}
+    client:load
+  >
+    Google Docs
+  </Button>
+  <Button
+    variant="success"
+    icon=""
+    size="sm"
+    href="https://www.overleaf.com/read/hkwggdfzrdjf#f0af7d"
+    external={true}
+    client:load
+  >
+    LaTeX (Advanced)
+  </Button>
+</ButtonGroup>
+
+</Card>
 
 
 ## Does my resume even matter that much?
@@ -124,7 +155,7 @@ Accomplished [X] by doing [Y], resulting in [Z]
 Made a multiplayer typing game using React and Socket.IO.
 
 #### Good Example:
-**Developed** a real-time multiplayer typing simulator using React and WebSockets, **to support** 50+ concurrent users with <50ms latency and persistent session states, **resulting in** 3,000+ matches played in the first month.
+**Developed** a real-time multiplayer typing simulator using React and WebSockets, **to support** 50+ concurrent users with &lt;50ms latency and persistent session states, **resulting in** 3,000+ matches played in the first month.
 
 ---
 
@@ -262,20 +293,6 @@ This section helps **ATS match you** to job descriptions and rounds out your tec
 ### Common Mistakes
 - Putting "problem solving" or "communication", this isn't LinkedIn
 - Alphabetizing or randomly ordering, remember top to bottom & left to right
-
-## Getting the Template
-
-### Google Doc Resume Template:
-1. [Make a copy](https://docs.google.com/document/d/17HbHSMNyWPT6WssjoGNgAGWahOESpl_bz7ECVi9Rizs/edit?usp=sharing)
-### LaTeX resume template:
-
-1. **Open in Overleaf (view-only link):**  
-   [Click here to view and copy](https://www.overleaf.com/read/hkwggdfzrdjf#f0af7d)
-
-2. **Make a copy to your own Overleaf account**  
-   File → Copy Project
-
-3. Or copy the `.tex` code into a new Overleaf project manually
 
 ---
 
