@@ -1,19 +1,54 @@
 ---
 import { SITE_TITLE, NAV_LINKS as links } from "@/consts";
+import '@fontsource/silkscreen'; 
 const { staticHeader = false } = Astro.props;
 ---
 
 <!-- Minimal Clean Navigation -->
 <nav class={staticHeader ? "relative top-0 left-0 w-full h-auto pointer-events-none !z-[9999]" : "fixed top-0 left-0 w-full h-full pointer-events-none !z-[9999]"}>
-  <style>
+ <style>
+    
     html {
       scroll-behavior: smooth;
     }
+    
+    .nav-link {
+      font-family: "Silkscreen", cursive;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      right: -8px;
+      top: -4px;
+      bottom: -4px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.4),
+        0 0 40px rgba(255, 255, 255, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-link:hover::before {
+      opacity: 1;
+    }
+    
+    .nav-link:hover {
+      text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.4);
+    }
   </style>
-
   <!-- Navigation Links - Dynamic Layout -->
   <div id="nav-links" class="absolute top-1/2 left-4 md:left-8 transform -translate-y-1/2 pointer-events-auto">
-    <div class="hidden md:flex flex-col space-y-4" id="nav-container" style="font-family: 'Helvetica Neue', sans-serif;">
+    <div class="hidden md:flex flex-col space-y-4 backdrop-blur-sm bg-black/30 rounded-2xl p-4 shadow-[0_0_30px_rgba(255,255,255,0.1)] border border-white/10" id="nav-container" style="font-family: 'Helvetica Neue', sans-serif;">
       {
         links.map((link, index) => {
           if (link.children && link.children.length > 0) {
