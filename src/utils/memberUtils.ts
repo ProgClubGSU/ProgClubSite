@@ -102,34 +102,39 @@ export function getRolePriority(role: string): number {
     "3rd President": 1,
     "4th President": 1,
     "5th President": 1,
-    
+
     // === ADVISOR ROLES ===
     "Founding Academic Advisor": 2,
     "Academic Advisor": 3,
-    
-    // === CORE LEADERSHIP ROLES ===
+
+    // === CORE LEADERSHIP ROLES (Vice Presidents) ===
     "Vice President": 4,
     "Founding VP": 4,
+    "Tech VP": 4,
+    "Ops VP": 4,
+    "Marketing VP": 4,
+    "Startup VP": 4,
     "Founding Member": 5,
-    
+
     // === OFFICER ROLES ===
     "Secretary": 6,
     "Secretary/Librarian": 6,
     "Librarian": 6,
     "Treasurer": 7,
-    
+
     // === DIRECTOR/LEAD ROLES ===
     "Director of Events": 8,
     "Director": 8,
+    "Outreach Director": 8,
     "Event Lead": 8,
-    
+
     // === EXECUTIVE & GENERAL ROLES ===
     "Exec": 9,
     "Officer": 9,
     "Server Owner": 10,
     "Member": 11
   };
-  
+
   return priorities[role] || 99; // Default to lowest priority for unknown roles
 }
 
@@ -272,16 +277,20 @@ export function shouldGetFullAnimatedCard(role: string): boolean {
   // Full animated cards for important leadership roles only
   const importantRoles = [
     "President",
-    "Founding President", 
+    "Founding President",
     "2nd President",
-    "3rd President", 
+    "3rd President",
     "4th President",
     "5th President",
     "Vice President",
-    "Founding VP", 
+    "Founding VP",
+    "Tech VP",
+    "Ops VP",
+    "Marketing VP",
+    "Startup VP",
     "Academic Advisor",
     "Founding Academic Advisor"
   ];
-  
+
   return importantRoles.includes(role);
 } 

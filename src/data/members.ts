@@ -96,9 +96,12 @@ export const membersByYear: MembersByYear = {
   // CURRENT LEADERSHIP (2025-2027)
   // =============================================================================
   "2025-2027": [
+    // =============================================================================
+    // LEADERSHIP - President & Vice Presidents
+    // =============================================================================
     {
       name: "Joey Zhang",
-      role: "5th President",
+      role: "President",
       major: "Math + CS",
       team: "Executive",
       description: "Current 5th President leading PROGgsu into the future! Passionate about building community and helping fellow programmers grow. Math + CS @ GSU, building InfiniteMonke.",
@@ -108,124 +111,158 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Liam Ellison",
-      role: "Vice President",
+      role: "Tech VP",
       major: "Math + CS",
-      team: "Executive",
+      team: "Technology",
       description: "Head of Technology & Innovation. Doesn't like to talk about himself, but he hopes to be considered 'cracked' one day.",
       github: "liamellison02",
       linkedin: "liam-ellison/",
       specialties: ["Competitive Programming", "Poker", "Basketball", "Options Trading", "Drumming"]
     },
     {
-      name: "Poorav Rawat",
-      role: "Vice President",
-      major: "CS",
-      team: "Outreach",
-      description: "A guy who loves to talk and build. Driving strategic outreach for the Progsu organization by connecting with campus partners, student organizations, and tech industry leaders.",
-      github: "pooravrawat1",
-      linkedin: "pooravrawat",
-      specialties: ["Leadership", "Soccer and Basketball", "Thrifting","Creativity","Height: NOT 6'5\""]
-    },
-    {
       name: "Vaishnavi Adepu",
-      role: "Vice President",
+      role: "Ops VP",
       major: "Honors CS",
-      team: "Executive",
+      team: "Operations",
       description: "Head of Operations. Loves cooking and dancing.",
       github: "naviadepu",
       linkedin: "vaishnavi-adepu444",
       specialties: ["Dancing", "Cooking", "Music"]
     },
     {
-      name: "Evan Anderson",
-      role: "Vice President",
-      major: "Honors CIS",
-      team: "Executive",
-      description: "Vice President serving under Joey Zhang's leadership, bringing a unique blend of creative and technical skills to help guide PROGgsu's continued growth.",
-      linkedin: "evan-anderson636",
-      specialties: ["Fashion Design", "Cooking", "App Dev", "Data Analytics"]
+      name: "Natasha Narine",
+      role: "Marketing VP",
+      major: "CS",
+      team: "Marketing",
+      description: "",
+      linkedin: "natasha-narine",
+      specialties: ["UI/UX", "Graphic Design", "Nail Tech", "Photography", "Music"]
+    },
+    {
+      name: "Arhaan Keshwani",
+      role: "Startup VP",
+      major: "CS",
+      team: "Startup",
+      description: "",
+      specialties: ["Locked In"]
+    },
+
+    // =============================================================================
+    // DIRECTORS & TEAM MEMBERS
+    // =============================================================================
+    {
+      name: "Poorav Rawat",
+      role: "Outreach Director",
+      major: "CS",
+      team: "Outreach",
+      description: "A guy who loves to talk and build. Driving strategic outreach for the Progsu organization by connecting with campus partners, student organizations, and tech industry leaders.",
+      github: "pooravrawat1",
+      linkedin: "pooravrawat",
+      specialties: ["Basketball", "Soccer", "Music", "Thrifting"]
     },
     {
       name: "Ibe Mohammed Ali",
-      role: "Director",
+      role: "Tech",
       major: "Math + CS",
       team: "Technology",
       description: "Building and maintaining PROGgsu's github and projects, mentoring devs, and making sure things break less than my sleep schedule.",
       github: "ibeeeees",
-      linkedin: "ibe-mohammedali/",
-      specialties: ["Software Development", "Trading", "Debugging at 2 AM", "Good Ball", "Mentorship"]
-    },
-    {
-      name: "Jamal Ford",
-      role: "Director",
-      major: "CS",
-      team: "Outreach",
-      description: "Head of Membership.",
-      github: "JamalFord",
-      linkedin: "jamalford",
-      specialties: ["Jump-Roping", "Video Games", "Anime","Python","Cybersecurity"]
+      linkedin: "ibrahim-m-80947622a/",
+      specialties: ["Coding", "Sports", "Trading", "Cooking", "Playing the Game"]
     },
     {
       name: "Brian Johnson",
-      role: "Director",
+      role: "Tech",
       major: "CS (M.S.)",
       team: "Technology",
       description: "",
       github: "brianjohnson360",
-      specialties: ["Making Music", "Cooking", "Learning Spanish", "Mobile dev and AI/ML"]
+      linkedin: "brianjohnson360",
+      specialties: ["Making music", "Cooking", "Learning spanish", "Mobile development and AI/ML"]
     },
     {
-      name: "Yasmine Anderson",
-      role: "Officer",
+      name: "Darshit Shah",
+      role: "Tech",
+      major: "CS",
+      team: "Technology",
+      description: "",
+      github: "shahh-darshit",
+      linkedin: "shahh-darshit",
+      specialties: ["Hiking", "Biking", "Badminton", "Cricket", "QuantF"]
+    },
+    {
+      name: "Jared Beresford",
+      role: "Startup",
+      major: "CS",
+      team: "Startup",
+      description: "",
+      github: "jsberesford",
+      linkedin: "jaredberesford",
+      specialties: ["PC Building", "Gaming", "Web Dev", "Mobile Dev", "Gym", "Trading", "Car Mods"]
+    },
+    {
+      name: "Nina Kilidzhiyska",
+      role: "Startup",
+      major: "CS",
+      team: "Startup",
+      description: "",
+      specialties: ["Web dev", "Music", "Dancing", "Reading"]
+    },
+    {
+      name: "Jamal Ford",
+      role: "Marketing - IRL",
       major: "CS",
       team: "Marketing",
-      description: "",
-      linkedin: "yasmine-anderson-044b21250",
-      specialties: ["Cybersecurity","Data Analytics","Problem Solving", "Social Media Content Creation", "Sports"]
+      description: "Head of Membership.",
+      github: "JamalFord",
+      linkedin: "jamalford",
+      specialties: ["Jump-roping", "Video games", "Anime","Python","Cybersecurity"]
     },
     {
       name: "Arturo",
-      role: "Officer",
+      role: "Marketing - Media",
       major: "CS",
       team: "Marketing",
       description: "",
-      specialties: ["Photography","Video Games","Hands on Things"]
+      specialties: ["Photography","Video Games","Hands On Things"]
     },
     {
       name: "Kailee Smith",
-      role: "Officer",
+      role: "Marketing - GFX",
       major: "CS",
       team: "Marketing",
       description: "",
       linkedin: "kailee-smith-19a759381",
-      specialties: ["Drawing","Video Games",]
+      specialties: ["Drawing","Video games"]
     },
     {
       name: "Tyra Smith",
-      role: "Officer",
+      role: "Marketing - GFX",
       major: "CS",
       team: "Marketing",
       description: "",
       linkedin: "tyra-smith-5529a4267",
-      specialties: ["Drawing","Reading","Gaming", "Music"]
+      specialties: ["Reading", "Gaming", "Drawing", "Music"]
     },
     {
-      name: "Allie Chang",
-      role: "Officer",
-      major: "Marketing",
+      name: "Charan Peeriga",
+      role: "Marketing - GFX",
+      major: "CS",
       team: "Marketing",
       description: "",
-      linkedin: "alliejchang",
-      specialties: ["Cameras","Food","Making Matcha", "Friends and Family"]
+      github: "CharanPeeriga",
+      linkedin: "cpeeriga",
+      specialties: ["Cooking", "Video Games", "AI/ML", "UI/UX"]
     },
     {
       name: "Gregory James",
-      role: "Officer",
+      role: "Outreach",
       major: "CIS",
       team: "Outreach",
       description: "",
-      linkedin: "gregory-james-560716237",
-      specialties: ["Making beats", "Playing soccer", "Coding/scripting", "Cybersecurity"]
+      github: "qr-eg",
+      linkedin: "gregory-james-560716237/",
+      specialties: ["Making beats", "Playing soccer", "Learning how to code/script"]
     },
 
   ],
