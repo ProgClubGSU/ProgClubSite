@@ -111,6 +111,24 @@ const interviewPrep: Resource[] = [
     tier: "S+"
   },
   {
+    title: "Codeforces",
+    description: "Most prestigous competitive programming platform globally, recommended for more advanced problems",
+    url: "https://codeforces.com/",
+    tier: "S"
+  },
+  {
+    title: "LC Problem Rankings",
+    description: "LeetCode Problem Rating Database with ELO-like difficulty ratings for quantifying progress",
+    url: "https://zerotrac.github.io/leetcode_problem_rating/#/",
+    tier: "S"
+  },
+  {
+    title: "CSES Problem Set",
+    description: "Advanced problem set for DSA/competitive programming",
+    url: "https://cses.fi/problemset/",
+    tier: "A"
+  },
+  {
     title: "GeeksforGeeks",
     description: "Comprehensive tutorials, practice problems, and interview preparation resources",
     url: "https://www.geeksforgeeks.org/",
