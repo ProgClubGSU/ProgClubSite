@@ -28,6 +28,9 @@ dev.log
 # jetbrains setting folder
 .idea/
 
+# claude code
+.claude/
+
 # Sanity studio build
 studio/dist/
 studio/.sanity/

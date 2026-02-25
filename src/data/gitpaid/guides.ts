@@ -46,7 +46,7 @@ export const passingInterviewGuides: Guide[] = [
   {
     title: "DSA & LeetCode Strategy",
     description: "Efficient approach to data structures, algorithms, and coding interviews",
-    url: "#", // Replace with your actual link when ready
+    url: "/gitpaid/dsa-leetcode-strategy",
     difficulty: "intermediate",
     impact: "essential"
   }
