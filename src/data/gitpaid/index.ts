@@ -9,5 +9,7 @@
 
 export { gettingInterviewGuides, passingInterviewGuides } from './guides';
 export { additionalResources } from './additional-resources';
+export { workshopRecaps } from './workshop-recaps';
 export type { Guide } from './guides';
 export type { Resource, ResourceCategory } from './additional-resources';
+export type { WorkshopEvent, WorkshopMaterial } from './workshop-recaps';
