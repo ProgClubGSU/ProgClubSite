@@ -6,20 +6,23 @@ import { QUOTE, SITE_TITLE } from "@/consts";
   class="min-h-screen !z-[20] relative w-full flex items-center justify-center px-8 overflow-hidden"
   id="hero"
 >
-  <!-- Hero-specific Grid Background -->
-  <div class="absolute inset-0 pointer-events-none bg-black">
-    <!-- Hero's large grid only -->
-    <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 150px 150px;"></div>
-  </div>
+  <!-- Hero Background -->
+  <div class="absolute inset-0 pointer-events-none bg-black"></div>
   
-  <!-- ASCII Art Background Layer - Hidden on Mobile -->
-  <div class="hidden md:block absolute right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-5">
-    <img 
-      src="/reiascii.png" 
-      alt="ASCII Art" 
-      class="h-[70vh] lg:h-[80vh] xl:h-[85vh] w-auto object-contain opacity-15 select-none"
-      style="filter: brightness(0) invert(1); mix-blend-mode: screen;"
-    />
+  <!-- Infinite Scrolling Image Marquee Background -->
+  <div class="absolute inset-0 z-[1] pointer-events-none overflow-hidden opacity-20">
+    <div class="marquee-track">
+      <img src="/hacklanta/1.png" alt="" class="marquee-img" />
+      <img src="/hacklanta/2.png" alt="" class="marquee-img" />
+      <img src="/hacklanta/3.png" alt="" class="marquee-img" />
+      <img src="/hacklanta/4.png" alt="" class="marquee-img" />
+      <img src="/hacklanta/5.png" alt="" class="marquee-img" />
+      <img src="/hacklanta/1.png" alt="" class="marquee-img" aria-hidden="true" />
+      <img src="/hacklanta/2.png" alt="" class="marquee-img" aria-hidden="true" />
+      <img src="/hacklanta/3.png" alt="" class="marquee-img" aria-hidden="true" />
+      <img src="/hacklanta/4.png" alt="" class="marquee-img" aria-hidden="true" />
+      <img src="/hacklanta/5.png" alt="" class="marquee-img" aria-hidden="true" />
+    </div>
   </div>
   
   <!-- Top Left Corner - Barcode and progsu text -->
@@ -75,21 +78,54 @@ import { QUOTE, SITE_TITLE } from "@/consts";
   
   <!-- Bottom Left Corner - Additional text -->
   <div class="absolute bottom-8 left-8 z-20 text-white/70" style="font-family: 'Helvetica Neue', sans-serif;">
-    <p class="text-lg md:text-xl mb-1">FW 2025 // ATL</p>
+    <p class="text-lg md:text-xl mb-1">SS 2026 // ATL</p>
     <p class="text-sm md:text-base opacity-80">"REBIRTH GEN"</p>
   </div>
   
-  <!-- Logo Background Layer - Centered -->
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-    <div class="relative flex items-center justify-center">
-      <!-- Main Logo - Huge and Grayed Out -->
-      <img
-        src="/progsu-logo.png"
-        alt="progsu Logo"
-        class="w-64 h-64 md:w-[22rem] md:h-[22rem] lg:w-[28rem] lg:h-[28rem] object-contain opacity-35 grayscale logo-hover-glow transition-all duration-500"
-        id="hero-logo"
-      />
-      
+  <!-- Center Content -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+    <!-- Giant HACKLANTA Title -->
+    <h2 class="hacklanta-title select-none" style="font-family: 'Helvetica Neue', Arial, sans-serif;">HACKLANTA</h2>
+
+    <!-- 3D Dice -->
+    <div class="relative flex items-center justify-center w-64 h-64 md:w-[22rem] md:h-[22rem] lg:w-[28rem] lg:h-[28rem] pointer-events-none">
+      <div class="dice-scene" id="hero-logo">
+        <div class="dice-cube">
+          <!-- Face 1 -->
+          <div class="dice-face dice-face--front">
+            <span class="pip pip-center"></span>
+          </div>
+          <!-- Face 6 -->
+          <div class="dice-face dice-face--back">
+            <span class="pip pip-tl"></span><span class="pip pip-tr"></span>
+            <span class="pip pip-ml"></span><span class="pip pip-mr"></span>
+            <span class="pip pip-bl"></span><span class="pip pip-br"></span>
+          </div>
+          <!-- Face 2 -->
+          <div class="dice-face dice-face--right">
+            <span class="pip pip-tr"></span>
+            <span class="pip pip-bl"></span>
+          </div>
+          <!-- Face 5 -->
+          <div class="dice-face dice-face--left">
+            <span class="pip pip-tl"></span><span class="pip pip-tr"></span>
+            <span class="pip pip-center"></span>
+            <span class="pip pip-bl"></span><span class="pip pip-br"></span>
+          </div>
+          <!-- Face 3 -->
+          <div class="dice-face dice-face--top">
+            <span class="pip pip-tr"></span>
+            <span class="pip pip-center"></span>
+            <span class="pip pip-bl"></span>
+          </div>
+          <!-- Face 4 -->
+          <div class="dice-face dice-face--bottom">
+            <span class="pip pip-tl"></span><span class="pip pip-tr"></span>
+            <span class="pip pip-bl"></span><span class="pip pip-br"></span>
+          </div>
+        </div>
+      </div>
+
       <!-- Rotating Circular Text -->
       <div class="absolute inset-0 flex items-center justify-center">
         <svg class="w-full h-full animate-spin-slow rotating-text-hover transition-all duration-300" id="rotating-text" viewBox="0 0 400 400">
@@ -104,84 +140,206 @@ import { QUOTE, SITE_TITLE } from "@/consts";
         </svg>
       </div>
     </div>
+
+    <!-- CTA Button -->
+    <a
+      href="https://hacklanta.dev"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hacklanta-btn"
+      style="font-family: 'Helvetica Neue', Arial, sans-serif;"
+    >
+      REGISTER NOW
+    </a>
   </div>
 </section>
 
 <style>
-  /* Logo Hover Glow */
-  .logo-hover-glow {
-    transition: all 0.5s ease;
-  }
-  
-  .logo-hover-glow:hover {
-    filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.6)) grayscale(0.5);
-    opacity: 0.5;
-    transform: scale(1.05);
-  }
-  
-  /* Rotating Text Speed Variation */
   .rotating-text-hover:hover {
     animation-duration: 8s !important;
+  }
+
+  /* Infinite scrolling marquee */
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: max-content;
+    animation: marqueeScroll 120s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-img {
+    height: 100vh;
+    width: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  @keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* HACKLANTA Title */
+  .hacklanta-title {
+    font-size: clamp(4rem, 15vw, 12rem);
+    font-weight: 900;
+    color: #e50914;
+    letter-spacing: -0.03em;
+    line-height: 0.85;
+    text-transform: uppercase;
+    z-index: 15;
+  }
+
+  /* CTA Button */
+  .hacklanta-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: white;
+    border: 2px solid #e50914;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 15;
+    pointer-events: auto;
+  }
+
+  .hacklanta-btn:hover {
+    background: #e50914;
+    color: black;
+  }
+
+  /* 3D Dice */
+  .dice-scene {
+    --size: 130px;
+    width: var(--size);
+    height: var(--size);
+    perspective: 400px;
+    opacity: 0.35;
+    transition: opacity 0.5s ease;
+    animation: dicePulse 4s ease-in-out infinite;
+  }
+
+  @media (min-width: 768px) {
+    .dice-scene { --size: 180px; perspective: 550px; }
+  }
+
+  @media (min-width: 1024px) {
+    .dice-scene { --size: 230px; perspective: 700px; }
+  }
+
+  .dice-cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: diceRoll 10s linear infinite;
+  }
+
+  .dice-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 6px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding: 18%;
+    gap: 8%;
+  }
+
+  .pip {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: white;
+  }
+
+  /* Position pips in the 3x3 grid */
+  .pip-tl { grid-area: 1 / 1; }
+  .pip-tr { grid-area: 1 / 3; }
+  .pip-ml { grid-area: 2 / 1; }
+  .pip-center { grid-area: 2 / 2; }
+  .pip-mr { grid-area: 2 / 3; }
+  .pip-bl { grid-area: 3 / 1; }
+  .pip-br { grid-area: 3 / 3; }
+
+  /* Face positions — half of size */
+  .dice-face--front  { transform: rotateY(  0deg) translateZ(calc(var(--size) / 2)); }
+  .dice-face--back   { transform: rotateY(180deg) translateZ(calc(var(--size) / 2)); }
+  .dice-face--right  { transform: rotateY( 90deg) translateZ(calc(var(--size) / 2)); }
+  .dice-face--left   { transform: rotateY(-90deg) translateZ(calc(var(--size) / 2)); }
+  .dice-face--top    { transform: rotateX( 90deg) translateZ(calc(var(--size) / 2)); }
+  .dice-face--bottom { transform: rotateX(-90deg) translateZ(calc(var(--size) / 2)); }
+
+  @keyframes dicePulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 8px rgba(147, 51, 234, 0.15));
+    }
+    50% {
+      filter: drop-shadow(0 0 35px rgba(147, 51, 234, 0.4)) drop-shadow(0 0 80px rgba(147, 51, 234, 0.15));
+    }
+  }
+
+  @keyframes diceRoll {
+    0%      { transform: rotateX(0deg)   rotateY(0deg); }
+    16.66%  { transform: rotateX(90deg)  rotateY(90deg); }
+    33.33%  { transform: rotateX(180deg) rotateY(0deg); }
+    50%     { transform: rotateX(270deg) rotateY(90deg); }
+    66.66%  { transform: rotateX(0deg)   rotateY(180deg); }
+    83.33%  { transform: rotateX(90deg)  rotateY(270deg); }
+    100%    { transform: rotateX(0deg)   rotateY(360deg); }
   }
 </style>
 
 <script>
-  // Interactive Modern Effects for Hero Section
   function initHeroEffects() {
     const heroSection = document.getElementById('hero');
-    const logo = document.getElementById('hero-logo');
-    
-    if (!heroSection) return;
-    
-    // Logo proximity glow effect
-    if (logo) {
-      heroSection.addEventListener('mousemove', (e) => {
-        const logoRect = logo.getBoundingClientRect();
-        const logoCenterX = logoRect.left + logoRect.width / 2;
-        const logoCenterY = logoRect.top + logoRect.height / 2;
-        
-        const distance = Math.sqrt(
-          Math.pow(e.clientX - logoCenterX, 2) + 
-          Math.pow(e.clientY - logoCenterY, 2)
-        );
-        
-        const maxDistance = 300; // pixels
-        const proximity = Math.max(0, 1 - (distance / maxDistance));
-        const glowIntensity = proximity * 0.4;
-        
-        if (proximity > 0.1) {
-          logo.style.filter = `drop-shadow(0 0 ${20 + proximity * 30}px rgba(147, 51, 234, ${glowIntensity})) grayscale(${1 - proximity * 0.3})`;
-          logo.style.opacity = 0.35 + proximity * 0.2;
-        }
-      });
-      
-      heroSection.addEventListener('mouseleave', () => {
-        logo.style.filter = 'grayscale(1)';
-        logo.style.opacity = '0.35';
-      });
-    }
-    
-    // Simple cleanup function
-    return function cleanup() {
-      // No cleanup needed for simple hover effects
-    };
+    const dice = document.getElementById('hero-logo');
+
+    if (!heroSection || !dice) return;
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = dice.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+      const proximity = Math.max(0, 1 - dist / 300);
+
+      if (proximity > 0.1) {
+        dice.style.filter = `drop-shadow(0 0 ${20 + proximity * 30}px rgba(147, 51, 234, ${proximity * 0.4}))`;
+        dice.style.opacity = String(0.35 + proximity * 0.3);
+      }
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      dice.style.filter = '';
+      dice.style.opacity = '0.35';
+    });
+
+    return function cleanup() {};
   }
 
-  // Store cleanup function
   let heroCleanup = null;
-  
-  // Initialize when DOM is ready
+
   function startHeroEffects() {
-    if (heroCleanup) heroCleanup(); // Clean up previous instance
+    if (heroCleanup) heroCleanup();
     heroCleanup = initHeroEffects();
   }
-  
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', startHeroEffects);
   } else {
     startHeroEffects();
   }
-  
-  // Re-initialize on Astro navigation
+
   document.addEventListener('astro:page-load', startHeroEffects);
 </script>
