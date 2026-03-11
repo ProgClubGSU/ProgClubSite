@@ -302,6 +302,17 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
     opacity: 0 !important;
     visibility: hidden !important;
   }
+
+  /* Override global selection styles for light-themed gitPAID page */
+  ::selection {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  ::-moz-selection {
+    background: #3b82f6;
+    color: #fff;
+  }
 </style>
 
 <script>
