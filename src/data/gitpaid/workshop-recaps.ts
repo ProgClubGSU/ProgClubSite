@@ -33,6 +33,39 @@ export interface WorkshopEvent {
 
 export const workshopRecaps: WorkshopEvent[] = [
   {
+    id: "resume-workshop-mar-2026",
+    title: "Crack the Code: Resume Workshop",
+    date: "March 11, 2026",
+    time: "5:30 - 7:30 PM",
+    location: "CLSO Room 150",
+    hosts: ["Joey Zhang", "Liam"],
+    description:
+      "Building a resume that gets you paid. We walked members through resume review, formatting, and tailoring strategies — including real before-and-after transformations. Learn how to iterate on your resume and present your best self to recruiters.",
+    topics: [
+      "Resume Review",
+      "Resume Formatting",
+      "Tailoring to Job Listings",
+      "Presenting to Recruiters",
+    ],
+    flyer: "/gitpaid/events/resume-workshop-mar2026-flyer.png.jpg",
+    recapPhotos: [
+      { src: "/gitpaid/events/resume-workshop-the-method.png", alt: "The method: reiteration upon reiteration, tailoring resumes to job listings" },
+      { src: "/gitpaid/events/resume-workshop-maxxing.png", alt: "Resume maxxing — before and after transformation" },
+      { src: "/gitpaid/events/resume-workshop-best-self.png", alt: "Presenting your best self to recruiters" },
+      { src: "/gitpaid/events/resume-workshop-collage.jpg", alt: "Students working on resumes during the workshop" },
+      { src: "/gitpaid/events/resume-workshop-glad-you-came.png.jpg", alt: "We're glad you came — stay tuned for more workshops" },
+    ],
+    materials: [
+      {
+        title: "Resume Workshop Slides",
+        description: "Full slide deck from the workshop covering resume review, formatting, and tailoring strategies",
+        url: "/gitpaid/events/resume workshop.pptx",
+        type: "slides",
+      },
+    ],
+    practiceProblems: [],
+  },
+  {
     id: "crack-the-code-feb-2026",
     title: "Crack the Code: LeetCode & DSA Workshop",
     date: "February 25, 2026",

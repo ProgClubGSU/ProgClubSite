@@ -434,6 +434,19 @@ const { Content, headings } = await guide.render();
   }
 </style>
 
+<style is:global>
+  /* Override global selection styles for light-themed gitPAID pages */
+  ::selection {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  ::-moz-selection {
+    background: #3b82f6;
+    color: #fff;
+  }
+</style>
+
 <script>
   // Additional JavaScript to ensure glow effects are disabled
   document.addEventListener('DOMContentLoaded', function() {
