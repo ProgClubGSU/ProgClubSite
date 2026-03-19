@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { DISCORD_LINK, SITE_TITLE } from "@/consts";
-import { gettingInterviewGuides, passingInterviewGuides, additionalResources } from "@/data/gitpaid";
+import { gettingInterviewGuides, passingInterviewGuides, additionalResources, workshopRecaps } from "@/data/gitpaid";
 ---
 
 <Layout title={`Resources - ${SITE_TITLE}`} staticHeader={true}>
@@ -163,6 +163,232 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
               );
             })}
           </div>
+        </section>
+
+        <!-- Event Recaps -->
+        <section id="recap-of-events" class="mb-20 scroll-mt-24">
+          <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-3 flex items-center">
+              <span class="bg-red-100 rounded-xl p-3 mr-3">
+                <svg class="w-7 h-7 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </span>
+              Event Recaps
+            </h2>
+            <p class="text-gray-600 text-lg">Missed a workshop? Catch up with materials, resources, and key takeaways from past gitPAID events.</p>
+          </div>
+
+          {workshopRecaps.map((event) => {
+            const difficultyColors = {
+              'Easy': 'bg-green-100 text-green-700',
+              'Medium': 'bg-yellow-100 text-yellow-700',
+              'Hard': 'bg-red-100 text-red-700',
+            };
+
+            return (
+              <div class="mb-4 border-2 border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button
+                  class="event-recap-toggle w-full flex items-center justify-between p-5 bg-gradient-to-r from-red-50 to-rose-50 hover:from-red-100 hover:to-rose-100 transition-all text-left"
+                  data-event-id={event.id}
+                  aria-expanded="false"
+                >
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">{event.title}</h3>
+                    <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+                      <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        {event.date}
+                      </span>
+                      <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        {event.time}
+                      </span>
+                      <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        {event.location}
+                      </span>
+                    </div>
+                  </div>
+                  <svg
+                    class="event-chevron w-6 h-6 text-gray-600 transform transition-transform duration-300 flex-shrink-0 ml-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+
+                <div class="event-recap-content hidden" data-event-id={event.id}>
+                  <div class="p-6 bg-white space-y-6">
+
+                    {/* Event description and flyer */}
+                    <div class="flex flex-col md:flex-row gap-6">
+                      <div class="flex-1">
+                        <p class="text-gray-700 leading-relaxed mb-4">{event.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                          {event.hosts.map((host) => (
+                            <span class="text-xs font-medium px-3 py-1 bg-red-100 text-red-700 rounded-full">
+                              Hosted by {host}
+                            </span>
+                          ))}
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                          {event.topics.map((topic) => (
+                            <span class="text-xs font-medium px-3 py-1 bg-gray-100 text-gray-600 rounded-full">
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      {event.flyer && (
+                        <div class="md:w-48 flex-shrink-0">
+                          <img
+                            src={event.flyer}
+                            alt={`${event.title} flyer`}
+                            class="w-full rounded-lg border-2 border-gray-200 shadow-sm"
+                          />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Materials */}
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Workshop Materials
+                      </h4>
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {event.materials.map((material) => (
+                          <a
+                            href={material.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-start gap-3 p-4 border-2 border-gray-100 rounded-lg hover:border-red-300 hover:shadow-sm transition-all bg-white"
+                          >
+                            <span class="flex-shrink-0 mt-0.5">
+                              {material.type === 'pdf' ? (
+                                <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                </svg>
+                              ) : (
+                                <svg class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                </svg>
+                              )}
+                            </span>
+                            <div>
+                              <div class="font-semibold text-sm text-red-600">{material.title}</div>
+                              <p class="text-xs text-gray-500 mt-0.5">{material.description}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Practice Problems */}
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                        Practice Problems
+                      </h4>
+                      <div class="flex flex-wrap gap-3">
+                        {event.practiceProblems.map((problem) => (
+                          <a
+                            href={problem.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center gap-2 px-4 py-2.5 border-2 border-gray-100 rounded-lg hover:border-red-300 hover:shadow-sm transition-all bg-white"
+                          >
+                            <span class={`text-xs font-bold px-2 py-0.5 rounded ${difficultyColors[problem.difficulty]}`}>
+                              {problem.difficulty}
+                            </span>
+                            <span class="font-medium text-sm text-gray-800">{problem.title}</span>
+                            <svg class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Recap Photos Slideshow */}
+                    {event.recapPhotos && event.recapPhotos.length > 0 && (
+                      <div>
+                        <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                          <svg class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                          </svg>
+                          Recap Photos
+                        </h4>
+                        <div class="photo-slideshow relative rounded-xl overflow-hidden border-2 border-gray-200 bg-gray-900" data-event-id={event.id}>
+                          {/* Slides */}
+                          <div class="slideshow-track relative w-full" style="aspect-ratio: 4/5; max-height: 550px;">
+                            {event.recapPhotos.map((photo, i) => (
+                              <img
+                                src={photo.src}
+                                alt={photo.alt}
+                                class={`slideshow-slide absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                                data-slide-index={i}
+                                loading="lazy"
+                              />
+                            ))}
+                          </div>
+
+                          {/* Prev/Next Arrows */}
+                          <button
+                            class="slideshow-prev absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+                            aria-label="Previous photo"
+                          >
+                            <svg class="w-5 h-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                          </button>
+                          <button
+                            class="slideshow-next absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+                            aria-label="Next photo"
+                          >
+                            <svg class="w-5 h-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+                            </svg>
+                          </button>
+
+                          {/* Dots */}
+                          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                            {event.recapPhotos.map((_, i) => (
+                              <button
+                                class={`slideshow-dot w-2.5 h-2.5 rounded-full transition-all ${i === 0 ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/75'}`}
+                                data-dot-index={i}
+                                aria-label={`Go to photo ${i + 1}`}
+                              />
+                            ))}
+                          </div>
+
+                          {/* Counter */}
+                          <div class="slideshow-counter absolute top-4 right-4 bg-black/50 text-white text-xs font-medium px-3 py-1 rounded-full">
+                            1 / {event.recapPhotos.length}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </section>
 
         <!-- Additional Resources -->
@@ -348,6 +574,72 @@ import { gettingInterviewGuides, passingInterviewGuides, additionalResources } f
       bgGlow.style.display = 'none';
       bgGlow.style.opacity = '0';
     }
+  });
+
+  // Accordion functionality for event recaps
+  document.querySelectorAll('.event-recap-toggle').forEach(button => {
+    button.addEventListener('click', function() {
+      const eventId = this.getAttribute('data-event-id');
+      const content = document.querySelector(`.event-recap-content[data-event-id="${eventId}"]`);
+      const chevron = this.querySelector('.event-chevron');
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded) {
+        content.classList.add('hidden');
+        this.setAttribute('aria-expanded', 'false');
+        chevron.style.transform = 'rotate(0deg)';
+      } else {
+        content.classList.remove('hidden');
+        this.setAttribute('aria-expanded', 'true');
+        chevron.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+
+  // Photo slideshow functionality
+  document.querySelectorAll('.photo-slideshow').forEach(slideshow => {
+    const slides = slideshow.querySelectorAll('.slideshow-slide');
+    const dots = slideshow.querySelectorAll('.slideshow-dot');
+    const counter = slideshow.querySelector('.slideshow-counter');
+    const prevBtn = slideshow.querySelector('.slideshow-prev');
+    const nextBtn = slideshow.querySelector('.slideshow-next');
+    let current = 0;
+    let autoplayTimer = null;
+
+    function goTo(index) {
+      slides[current].classList.remove('opacity-100');
+      slides[current].classList.add('opacity-0');
+      dots[current].classList.remove('bg-white', 'scale-110');
+      dots[current].classList.add('bg-white/50');
+
+      current = (index + slides.length) % slides.length;
+
+      slides[current].classList.remove('opacity-0');
+      slides[current].classList.add('opacity-100');
+      dots[current].classList.remove('bg-white/50');
+      dots[current].classList.add('bg-white', 'scale-110');
+      counter.textContent = `${current + 1} / ${slides.length}`;
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(() => goTo(current + 1), 4000);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    }
+
+    prevBtn.addEventListener('click', () => { goTo(current - 1); startAutoplay(); });
+    nextBtn.addEventListener('click', () => { goTo(current + 1); startAutoplay(); });
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { goTo(i); startAutoplay(); });
+    });
+
+    slideshow.addEventListener('mouseenter', stopAutoplay);
+    slideshow.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
   });
 
   // Accordion functionality for additional resources
