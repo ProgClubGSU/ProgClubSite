@@ -204,17 +204,6 @@ const { Content, headings } = await guide.render();
     visibility: hidden !important;
   }
 
-  /* Override global selection styles for light-themed gitPAID pages */
-  ::selection {
-    background: #3b82f6;
-    color: #fff;
-  }
-
-  ::-moz-selection {
-    background: #3b82f6;
-    color: #fff;
-  }
-
   /* Custom prose styles for better readability */
   .prose {
     color: rgb(55 65 81);
@@ -442,6 +431,19 @@ const { Content, headings } = await guide.render();
     background: linear-gradient(to bottom, #3b82f6, #6366f1);
     border-radius: 1px;
     transition: height 0.3s ease;
+  }
+</style>
+
+<style is:global>
+  /* Override global selection styles for light-themed gitPAID pages */
+  ::selection {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  ::-moz-selection {
+    background: #3b82f6;
+    color: #fff;
   }
 </style>
 
