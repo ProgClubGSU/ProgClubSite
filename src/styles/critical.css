@@ -117,13 +117,13 @@ main {
 
 /* Basic selection styles */
 ::selection {
-  background: #fff;
-  color: #000;
+  background: rgba(59, 130, 246, 0.4);
+  color: #fff;
 }
 
 ::-moz-selection {
-  background: #fff;
-  color: #000;
+  background: rgba(59, 130, 246, 0.4);
+  color: #fff;
 }
 
 /* Prevent layout shift for images */
