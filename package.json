@@ -18,6 +18,8 @@
     "@astrojs/tailwind": "^5.1.4",
     "@notionhq/client": "^4.0.1",
     "@portabletext/to-html": "^2.0.14",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "@sanity/client": "^6.29.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@vercel/analytics": "^1.5.0",
@@ -26,10 +28,12 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "sharp": "^0.34.3",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
+    "@types/three": "^0.183.1",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1"
   }

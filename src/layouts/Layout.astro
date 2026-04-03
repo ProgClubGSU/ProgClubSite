@@ -1,7 +1,7 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
 import Navbar from "@/components/Navbar.astro";
-import Footer from "@/components/Footer.astro";
+
 import DeferredStyles from "@/components/DeferredStyles.astro";
 import SpeedInsights from '@vercel/speed-insights/astro';
 import Analytics from '@vercel/analytics/astro';
@@ -25,14 +25,7 @@ const isHome = Astro.url.pathname === "/";
       </div>
       <slot />
     </main>
-    <footer class="w-screen bottom-0 overflow-x-hidden"><Footer /></footer>
-    
-    <!-- Cursor glow element -->
-    <div id="cursor-glow" class="cursor-glow"></div>
-    
-    <!-- Background glow effect -->
-    <div id="bg-glow" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-300"></div>
-    
+
     <!-- Load non-critical styles after page render -->
     <DeferredStyles />
     
@@ -43,152 +36,3 @@ const isHome = Astro.url.pathname === "/";
     <Analytics />
   </body>
 </html>
-
-
-
-<script>
-  // Global variables to track initialization
-  let cursorEffectsInitialized = false;
-  let cursorGlow, bgGlow;
-  let mouseX = 0, mouseY = 0;
-  let trailElements = [];
-
-  // Initialize cursor effects when DOM is ready
-  function initCursorEffects() {
-    // Don't reinitialize if already done
-    if (cursorEffectsInitialized) return;
-    
-    cursorGlow = document.getElementById('cursor-glow');
-    bgGlow = document.getElementById('bg-glow');
-
-    // Check if elements exist
-    if (!cursorGlow || !bgGlow) {
-      // Retry after a short delay if elements not found
-      setTimeout(initCursorEffects, 100);
-      return;
-    }
-
-    // Initialize cursor position
-    function updateCursorPosition(e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      
-      if (cursorGlow) {
-        cursorGlow.style.left = mouseX + 'px';
-        cursorGlow.style.top = mouseY + 'px';
-        cursorGlow.style.opacity = '1';
-      }
-      
-      // Create background glow effect
-      if (bgGlow) {
-        const rect = document.body.getBoundingClientRect();
-        const x = (mouseX / rect.width) * 100;
-        const y = (mouseY / rect.height) * 100;
-        
-        bgGlow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(147, 51, 234, 0.12) 0%, rgba(147, 51, 234, 0.06) 40%, transparent 70%)`;
-        bgGlow.style.opacity = '1';
-      }
-      
-      // Create binary trail
-      if (Math.random() > 0.85) { // 15% chance to create trail element - less frequent for smoother effect
-        createBinaryTrail(e.clientX, e.clientY);
-      }
-    }
-
-    // Create binary trail element
-    function createBinaryTrail(x, y) {
-      const trail = document.createElement('div');
-      trail.className = 'binary-trail';
-      trail.textContent = Math.random() > 0.5 ? '1' : '0';
-      trail.style.left = x + 'px';
-      trail.style.top = y + 'px';
-      document.body.appendChild(trail);
-      
-      // Remove trail element after animation completes
-      setTimeout(() => {
-        if (trail.parentNode) {
-          trail.parentNode.removeChild(trail);
-        }
-      }, 1600); // Slightly longer than animation duration to ensure smooth completion
-    }
-
-    // Hide cursor glow when mouse leaves window
-    function hideCursorEffects() {
-      if (cursorGlow) {
-        cursorGlow.style.opacity = '0';
-      }
-      if (bgGlow) {
-        bgGlow.style.opacity = '0';
-      }
-    }
-
-    // Show cursor glow when mouse enters window
-    function showCursorEffects() {
-      if (cursorGlow) {
-        cursorGlow.style.opacity = '1';
-      }
-      if (bgGlow) {
-        bgGlow.style.opacity = '1';
-      }
-    }
-
-    // Add event listeners
-    document.addEventListener('mousemove', updateCursorPosition);
-    document.addEventListener('mouseleave', hideCursorEffects);
-    document.addEventListener('mouseenter', showCursorEffects);
-
-    // Mark as initialized
-    cursorEffectsInitialized = true;
-    
-    // Trigger initial cursor position if mouse is already over the page
-    if (document.hasFocus()) {
-      showCursorEffects();
-    }
-  }
-
-  // Function to reset effects for navigation
-  function resetCursorEffects() {
-    cursorEffectsInitialized = false;
-    cursorGlow = null;
-    bgGlow = null;
-    mouseX = 0;
-    mouseY = 0;
-    trailElements = [];
-    
-    // Remove any existing trail elements
-    const existingTrails = document.querySelectorAll('.binary-trail');
-    existingTrails.forEach(trail => {
-      if (trail.parentNode) {
-        trail.parentNode.removeChild(trail);
-      }
-    });
-    
-    // Reinitialize after a short delay
-    setTimeout(initCursorEffects, 50);
-  }
-
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCursorEffects);
-  } else {
-    initCursorEffects();
-  }
-
-  // Listen for Astro navigation events
-  document.addEventListener('astro:page-load', resetCursorEffects);
-  document.addEventListener('astro:after-swap', resetCursorEffects);
-  document.addEventListener('astro:effects-reset', resetCursorEffects);
-
-  // Also initialize on page visibility change (for when user returns to tab)
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-      // Re-initialize effects when page becomes visible
-      setTimeout(resetCursorEffects, 100);
-    }
-  });
-
-  // Fallback: also listen for popstate (browser back/forward)
-  window.addEventListener('popstate', () => {
-    setTimeout(resetCursorEffects, 100);
-  });
-</script>
