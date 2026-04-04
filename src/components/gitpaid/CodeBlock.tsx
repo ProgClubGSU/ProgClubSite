@@ -26,9 +26,9 @@ export default function CodeBlock({
   return (
     <div className="my-4 rounded-lg overflow-hidden border border-gray-700">
       {title && (
-        <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
-          <span className="text-gray-300 text-sm font-medium">{title}</span>
-          <span className="text-gray-500 text-xs">{language}</span>
+        <div className="bg-white/[0.05] px-4 py-2 flex items-center justify-between">
+          <span className="text-white/20 text-sm font-medium">{title}</span>
+          <span className="text-white/40 text-xs">{language}</span>
         </div>
       )}
       <div className="relative">
@@ -38,12 +38,12 @@ export default function CodeBlock({
         >
           {copied ? '✓ Copied!' : 'Copy'}
         </button>
-        <pre className="bg-gray-900 p-4 overflow-x-auto">
+        <pre className="bg-white/[0.08] p-4 overflow-x-auto">
           <code className="text-gray-100 text-sm">
             {showLineNumbers ? (
               lines.map((line, i) => (
                 <div key={i} className="flex">
-                  <span className="text-gray-500 select-none mr-4 text-right" style={{ minWidth: '2em' }}>
+                  <span className="text-white/40 select-none mr-4 text-right" style={{ minWidth: '2em' }}>
                     {i + 1}
                   </span>
                   <span>{line}</span>

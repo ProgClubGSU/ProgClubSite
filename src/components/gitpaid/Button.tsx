@@ -23,43 +23,33 @@ export default function Button({
   fullWidth = false,
   disabled = false,
 }: ButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-xl no-underline';
+  const baseClasses = 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 no-underline text-center [&>p]:m-0 [&>p]:p-0 [&>p]:leading-none';
 
   const sizeClasses = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    sm: 'px-3 py-1.5 text-xs tracking-widest rounded',
+    md: 'px-4 py-2 text-xs tracking-widest rounded',
+    lg: 'px-5 py-2.5 text-sm tracking-widest rounded',
   };
 
   const variantClasses = {
-    primary: 'bg-blue-600 hover:bg-blue-700 text-white',
-    secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
-    success: 'bg-green-600 hover:bg-green-700 text-white',
-    danger: 'bg-red-600 hover:bg-red-700 text-white',
-    gradient: 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white',
-    outline: 'bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',
+    primary: 'bg-white/[0.06] hover:bg-white/[0.1] text-white/70 hover:text-white border border-white/10 hover:border-white/20',
+    secondary: 'bg-white/[0.03] hover:bg-white/[0.06] text-white/50 hover:text-white/70 border border-white/5 hover:border-white/10',
+    success: 'bg-white/[0.03] hover:bg-white/[0.06] text-white/50 hover:text-white/70 border border-white/5 hover:border-white/10',
+    danger: 'bg-white/[0.03] hover:bg-white/[0.06] text-white/50 hover:text-white/70 border border-white/5 hover:border-white/10',
+    gradient: 'bg-white/[0.06] hover:bg-white/[0.1] text-white/70 hover:text-white border border-white/10 hover:border-white/20',
+    outline: 'bg-transparent hover:bg-white/[0.04] text-white/50 hover:text-white/70 border border-white/10 hover:border-white/20',
   };
 
-  const disabledClasses = 'opacity-50 cursor-not-allowed hover:scale-100 active:scale-100';
+  const disabledClasses = 'opacity-30 cursor-not-allowed';
   const widthClass = fullWidth ? 'w-full' : '';
 
-  const className = `
-    ${baseClasses}
-    ${sizeClasses[size]}
-    ${variantClasses[variant]}
-    ${disabled ? disabledClasses : ''}
-    ${widthClass}
-  `.trim().replace(/\s+/g, ' ');
+  const className = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${disabled ? disabledClasses : ''} ${widthClass}`.trim().replace(/\s+/g, ' ');
 
   const content = (
     <>
-      {icon && iconPosition === 'left' && (
-        <span className="text-xl">{icon}</span>
-      )}
+      {icon && iconPosition === 'left' && <span>{icon}</span>}
       {children}
-      {icon && iconPosition === 'right' && (
-        <span className="text-xl">{icon}</span>
-      )}
+      {icon && iconPosition === 'right' && <span>{icon}</span>}
     </>
   );
 
@@ -78,12 +68,7 @@ export default function Button({
   }
 
   return (
-    <button
-      className={className}
-      onClick={onClick}
-      disabled={disabled}
-      type="button"
-    >
+    <button className={className} onClick={onClick} disabled={disabled} type="button">
       {content}
     </button>
   );

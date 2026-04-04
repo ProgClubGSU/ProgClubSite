@@ -38,12 +38,12 @@ export default function Timeline({ items }: TimelineProps) {
           {/* Content */}
           <div className="flex-1">
             <div className="flex items-baseline justify-between mb-1">
-              <h4 className="font-semibold text-gray-900">{item.title}</h4>
+              <h4 className="font-semibold text-white">{item.title}</h4>
               {item.date && (
-                <span className="text-sm text-gray-500">{item.date}</span>
+                <span className="text-sm text-white/40">{item.date}</span>
               )}
             </div>
-            <p className="text-gray-600 text-sm">{item.description}</p>
+            <p className="text-white/50 text-sm">{item.description}</p>
           </div>
         </div>
       ))}

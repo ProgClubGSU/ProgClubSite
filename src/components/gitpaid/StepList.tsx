@@ -19,8 +19,8 @@ export default function StepList({ steps }: StepListProps) {
 
           {/* Step content */}
           <div className="flex-1 pt-1">
-            <h4 className="font-semibold text-gray-900 mb-1">{step.title}</h4>
-            <p className="text-gray-600 text-sm">{step.description}</p>
+            <h4 className="font-semibold text-white mb-1">{step.title}</h4>
+            <p className="text-white/50 text-sm">{step.description}</p>
           </div>
         </div>
       ))}
