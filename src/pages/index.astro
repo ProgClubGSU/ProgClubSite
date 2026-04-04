@@ -64,99 +64,40 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
   <div id="top"></div>
   <Hero />
   
-  <!-- Our Mission Section -->
-  <section id="our-mission" class="pt-20 pb-16 px-8 bg-black relative overflow-hidden">
-
-    <div class="max-w-4xl mx-auto relative z-10 text-center">
-      <h3 class="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-tight tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-        we are creatives<br/>
-        <span class="font-bold">we create the future</span>
-      </h3>
-
-      <p class="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed font-light mt-6" style="font-family: 'Helvetica Neue', sans-serif;">
-        ATL's most creative students with the most amazing ideas
-      </p>
-    </div>
-  </section>
-  
-  <!-- Events Section -->
-  <section id="events" class="py-16 px-8 bg-black relative overflow-hidden">
-    <!-- Continuing grid background -->
-    
+  <!-- Movements Section -->
+  <section id="movements" class="py-16 px-8 bg-black relative overflow-hidden">
     <div class="max-w-5xl mx-auto relative z-10">
-      <!-- Brutalist Section Header -->
-      <div class="mb-16 flex items-end justify-between">
-        <div>
-          <h2 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-            events
-          </h2>
-          <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-            // upcoming workshops & meetups
-          </div>
-        </div>
-        
-        <!-- Event Counter -->
-        <div class="text-right">
-          <div class="text-2xl font-bold text-white font-mono">
-            [02]
-          </div>
-          <div class="text-xs text-white/40 uppercase tracking-widest">
-            calendar
-          </div>
-        </div>
-      </div>
-      
-      <!-- Lu.ma Calendar Embed -->
-      <div class="mb-8">
-        <!-- Embed Container -->
-        <div class="border-2 border-white/20 rounded-lg overflow-hidden bg-white/5 p-2">
-          <div class="bg-white rounded overflow-hidden">
-            <iframe
-              src="https://luma.com/embed/calendar/cal-mnXzEncGOB8WmNB/events"
-              width="100%"
-              height="600"
-              frameborder="0"
-              style="border: none;"
-              allowfullscreen=""
-              aria-hidden="false"
-              tabindex="0"
-            ></iframe>
-          </div>
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-16 tracking-widest text-center" style="font-family: 'Helvetica Neue', sans-serif;">
+        movements
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Buildnight -->
+        <div class="space-y-4 text-center">
+          <h3 class="text-4xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">buildnight</h3>
+          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+            weekly sessions where we come together to build. no agenda, no lectures — just makers in a room shipping real projects side by side.
+          </p>
         </div>
 
-        <!-- Terminal Footer -->
-        <div class="mt-6 flex items-center justify-between border-t border-white/10 pt-6">
-          <div class="font-mono text-white/40 text-xs">
-            <span class="text-white/30">// calendar powered by </span>
-            <a href="https://lu.ma" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white/70 transition-colors">lu.ma</a>
-          </div>
+        <!-- Hacklanta -->
+        <div class="space-y-4 text-center">
+          <h3 class="text-4xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">hacklanta</h3>
+          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+            our flagship hackathon. 24 hours of building, breaking, and creating something from nothing — atlanta's proving ground for new ideas.
+          </p>
+        </div>
 
-          <!-- Link to full Lu.ma calendar -->
-          <a
-            href="https://luma.com/calendar/cal-mnXzEncGOB8WmNB"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center text-white/60 hover:text-white font-mono text-sm transition-colors duration-200 group"
-            style="font-family: 'Courier New', monospace;"
-          >
-            <span class="mr-2 text-green-400 group-hover:text-green-300">$</span>
-            <span class="group-hover:text-green-100">open calendar --external</span>
-            <span class="ml-2 text-white/30 group-hover:text-white/50">▊</span>
-          </a>
+        <!-- Mentorship -->
+        <div class="space-y-4 text-center">
+          <h3 class="text-4xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">mentorship</h3>
+          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+            pairing students with industry professionals. career guidance, technical growth, and a direct line to the people already doing the work.
+          </p>
         </div>
       </div>
     </div>
   </section>
-  {/* Technologies section - commented out for now, may be used in the future */}
-  {/* <Section title="Technologies I Know" full_screen={false}>
-    <div class="w-full grid place-items-center">
-      <div
-        class="w-full gap-4 flex flex-wrap px-3 max-w-xl text-lg justify-center"
-      >
-        {KNOWN_TECH.map((x) => <Breadcrumb title={x} />)}
-      </div>
-    </div>
-  </Section> */}
   <!-- About Section -->
   <section id="about" class="py-16 px-8 bg-black relative overflow-hidden">
     <!-- Continuing grid background -->
