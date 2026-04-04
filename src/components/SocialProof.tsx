@@ -22,7 +22,7 @@ const logos: LogoItem[] = [
   { type: "image", name: "AWS", src: "/sponsors/aws.png" },
 ];
 
-const LOOP_DURATION_SECONDS = 17;
+const LOOP_DURATION_SECONDS = 42.5;
 
 export default function SocialProof() {
   const trackRef = useRef<HTMLDivElement>(null);
