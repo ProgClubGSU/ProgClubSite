@@ -1,342 +1,296 @@
 ---
-/**
- * =============================================================================
- * MEMBERS PAGE - BRUTALIST REDESIGN
- * =============================================================================
- */
-
-// Layout and UI Components
 import Layout from "@/layouts/Layout.astro";
-import MemberCard from "@/components/MemberCard.astro";
-import LiteMemberCard from "@/components/LiteMemberCard.astro";
-
-// Data and Business Logic
 import { membersByYear } from "@/data/members";
-import { sortMembersByRole, separateMembersByDisplayType } from "@/utils/memberUtils";
+import { sortMembersByRole, separateMembersByDisplayType, isPresidentRole, isFoundingPresident } from "@/utils/memberUtils";
 import { DISCORD_LINK, GOOGLE_FORM_URL } from "@/consts";
 
-// Sort all members by their role priority within each academic year
 const sortedMembers = sortMembersByRole(membersByYear);
+const yearKeys = Object.keys(sortedMembers);
 ---
 
-<Layout
-  title="Members - progsu"
-  description="Meet the amazing members of progsu across the years. From founding members to current leadership, discover the people building GSU's programming community."
->
-  <!-- Members Page with Brutalist Theme -->
-  <div class="min-h-screen bg-black relative overflow-hidden">
-    <!-- Global Grid Background -->
-    <div class="fixed inset-0 pointer-events-none">
-      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
-    </div>
-    
-    <!-- Header Section -->
-    <section class="pt-32 pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <!-- Brutalist Section Header -->
-        <div class="mb-16 flex items-end justify-between">
-          <div>
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-              members
-            </h1>
-            <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-              // the people building the future
-            </div>
-          </div>
-          
-          <!-- Member Counter -->
-          <div class="text-right">
-            <div class="text-2xl font-bold text-white font-mono">
-              [{Object.values(sortedMembers).flat().length.toString().padStart(2, '0')}]
-            </div>
-            <div class="text-xs text-white/40 uppercase tracking-widest">
-              total
-            </div>
-          </div>
-        </div>
-        
-        <!-- Terminal-style Description -->
-        <div class="border border-white/10 bg-white/[0.02] p-6 mb-12">
-          <div class="font-mono text-white/60 space-y-2 mb-4">
-            <div class="text-green-400 text-sm">$ ls members/ --recursive</div>
-            <div class="text-white/70 text-sm">scanning directory structure...</div>
-            <div class="text-white/50 text-sm">found {Object.keys(sortedMembers).length} academic years with {Object.values(sortedMembers).flat().length} total members</div>
-          </div>
-          <p class="text-lg text-white/80 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
-            Meet the incredible people who make progsu possible! From our founding members who started this journey
-            to our current leadership team, each person contributes to building GSU's vibrant programming community in Atlanta.
-          </p>
-        </div>
+<Layout title="Members - progsu">
+  <div class="min-h-screen bg-black">
+
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-8">
+      <div class="max-w-4xl mx-auto text-center float-in">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight italic" style="font-family: 'Noto Serif', Georgia, serif !important;">
+          the people
+        </h1>
+        <p class="text-base md:text-lg text-white/50 leading-relaxed font-light max-w-2xl mx-auto" style="font-family: 'Helvetica Neue', sans-serif;">
+          every era of progsu, shaped by the people who showed up and built something.
+        </p>
       </div>
     </section>
 
     <!-- Year Navigation -->
-    <section class="pb-8 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <!-- Terminal-style Year Tabs -->
-        <div class="border border-white/10 bg-white/[0.02] p-6">
-          <div class="font-mono text-white/60 text-sm mb-4">
-            <span class="text-green-400">$</span> select academic_year from members
-          </div>
-          
-          <div class="flex flex-wrap gap-2">
-            {Object.keys(sortedMembers).map((year, index) => (
-              <button 
-                class={`tab-btn px-4 py-2 border font-mono text-sm transition-all duration-200 ${
-                  index === 0 
-                    ? 'border-white bg-white/[0.08] text-white' 
-                    : 'border-white/20 bg-white/[0.02] text-white/70 hover:border-white/40 hover:bg-white/[0.05] hover:text-white'
-                }`}
-                data-tab={year}
-                id={`tab-${year}`}
-              >
-                {year}
-              </button>
-            ))}
-          </div>
+    <section class="px-8 pb-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex justify-center gap-6 flex-wrap">
+          {yearKeys.map((year, i) => (
+            <button
+              data-year={year}
+              class:list={[
+                "year-tab text-sm tracking-widest transition-all duration-300 pb-1",
+                i === 0
+                  ? "text-white border-b border-white/40"
+                  : "text-white/30 hover:text-white/60 border-b border-transparent",
+              ]}
+              style="font-family: 'Helvetica Neue', sans-serif;"
+            >
+              {year}
+            </button>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- Members Content -->
-    <section class="pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        {Object.entries(sortedMembers).map(([year, members], yearIndex) => {
-          const { fullCardMembers, liteCardMembers, listMembers } = separateMembersByDisplayType(members);
-          return (
-            <div 
-              class={`tab-content ${yearIndex === 0 ? 'block' : 'hidden'}`}
-              data-tab-content={year}
-            >
-              <!-- Year Header -->
-              <div class="mb-12 flex items-end justify-between">
-                <div>
-                  <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-                    {year}
-                  </h2>
-                  <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-                    // academic year roster
-                  </div>
-                </div>
-                
-                <div class="text-right">
-                  <div class="text-xl font-bold text-white font-mono">
-                    [{members.length.toString().padStart(2, '0')}]
-                  </div>
-                  <div class="text-xs text-white/40 uppercase tracking-widest">
-                    members
-                  </div>
+    <!-- Members by Year -->
+    {yearKeys.map((year, yearIndex) => {
+      const members = sortedMembers[year];
+      const { fullCardMembers, liteCardMembers, listMembers } = separateMembersByDisplayType(members);
+      const allDisplayMembers = [...fullCardMembers, ...liteCardMembers];
+
+      return (
+        <section
+          data-year-content={year}
+          class:list={["year-content px-8 pb-24", yearIndex === 0 ? "" : "hidden"]}
+        >
+          <div class="max-w-5xl mx-auto float-in">
+
+            {/* Leadership + Core */}
+            {allDisplayMembers.length > 0 && (
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 mb-20">
+                {allDisplayMembers.map((member) => {
+                  const isPresident = isPresidentRole(member.role);
+                  const isFounding = isFoundingPresident(member.role);
+                  return (
+                    <div class="text-center space-y-3">
+                      {/* Initials circle */}
+                      <div class:list={[
+                        "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-lg font-bold",
+                        isFounding
+                          ? "bg-purple-500/20 text-purple-300"
+                          : isPresident
+                            ? "bg-amber-500/20 text-amber-300"
+                            : "bg-white/5 text-white/60",
+                      ]}>
+                        {member.name.split(" ").map((n: string) => n[0]).join("")}
+                      </div>
+
+                      <div>
+                        <h3 class="text-white font-medium text-base italic" style="font-family: 'Noto Serif', Georgia, serif !important;">
+                          {member.name}
+                        </h3>
+                        <p class:list={[
+                          "text-xs tracking-widest mt-1",
+                          isFounding
+                            ? "text-purple-400/70"
+                            : isPresident
+                              ? "text-amber-400/70"
+                              : "text-white/30",
+                        ]} style="font-family: 'Helvetica Neue', sans-serif;">
+                          {member.role.toLowerCase()}{member.team ? ` · ${member.team.toLowerCase()}` : ""}
+                        </p>
+                      </div>
+
+                      {member.specialties && member.specialties.length > 0 && (
+                        <div class="flex flex-wrap justify-center gap-2">
+                          {member.specialties.slice(0, 3).map((s: string) => (
+                            <span class="text-white/20 text-xs" style="font-family: 'Helvetica Neue', sans-serif;">
+                              {s.toLowerCase()}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Social links */}
+                      <div class="flex justify-center gap-4 pt-1">
+                        {member.github && (
+                          <a
+                            href={`https://github.com/${member.github}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-white/20 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                            style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+                            onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+                            onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+                          >
+                            github
+                          </a>
+                        )}
+                        {member.linkedin && (
+                          <a
+                            href={member.linkedin.startsWith("http") ? member.linkedin : `https://linkedin.com/in/${member.linkedin}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-white/20 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                            style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+                            onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+                            onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+                          >
+                            linkedin
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* General Members */}
+            {listMembers.length > 0 && (
+              <div>
+                <p class="text-white/20 text-xs tracking-[0.3em] uppercase text-center mb-8" style="font-family: 'Helvetica Neue', sans-serif;">
+                  members
+                </p>
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 max-w-3xl mx-auto">
+                  {listMembers.map((member) => (
+                    <span class="text-white/25 text-sm" style="font-family: 'Helvetica Neue', sans-serif;">
+                      {member.name.toLowerCase()}
+                    </span>
+                  ))}
                 </div>
               </div>
-              
-              <!-- Leadership Cards (Full Cards) -->
-              {fullCardMembers.length > 0 && (
-                <div class="mb-12">
-                  <div class="border border-white/10 bg-white/[0.02] p-8">
-                    <div class="flex items-center justify-between mb-8">
-                      <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
-                        leadership
-                      </div>
-                      <div class="text-white/30 font-mono text-xs">
-                        [{fullCardMembers.length.toString().padStart(2, '0')}]
-                      </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {fullCardMembers.map((member) => (
-                        <MemberCard member={member} year={year} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-              
-              <!-- Core Team Cards (Lite Cards) -->
-              {liteCardMembers.length > 0 && (
-                <div class="mb-12">
-                  <div class="border border-white/10 bg-white/[0.02] p-8">
-                    <div class="flex items-center justify-between mb-8">
-                      <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
-                        core team
-                      </div>
-                      <div class="text-white/30 font-mono text-xs">
-                        [{liteCardMembers.length.toString().padStart(2, '0')}]
-                      </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {liteCardMembers.map((member) => (
-                        <LiteMemberCard member={member} year={year} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-              
-              <!-- General Members List -->
-              {listMembers.length > 0 && (
-                <div class="mb-12">
-                  <div class="border border-white/10 bg-white/[0.02] p-8">
-                    <div class="flex items-center justify-between mb-8">
-                      <div class="text-white/40 font-mono text-xs uppercase tracking-widest">
-                        general members
-                      </div>
-                      <div class="text-white/30 font-mono text-xs">
-                        [{listMembers.length.toString().padStart(2, '0')}]
-                      </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
-                      {listMembers.map((member, index) => (
-                        <div class="border border-white/10 bg-white/[0.02] p-4 hover:bg-white/[0.05] transition-all duration-200">
-                          <div class="flex items-center gap-3">
-                            <div class="text-white/40 font-mono text-xs min-w-[2rem]">
-                              {(index + 1).toString().padStart(2, '0')}.
-                            </div>
-                            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white font-bold text-xs">
-                              {member.name.charAt(0)}
-                            </div>
-                            <div class="flex-1 min-w-0">
-                              <h4 class="text-white font-medium text-sm truncate" style="font-family: 'Helvetica Neue', sans-serif;">
-                                {member.name}
-                              </h4>
-                              <p class="text-white/50 text-xs font-mono truncate">
-                                {member.role}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </section>
+            )}
+          </div>
+        </section>
+      );
+    })}
 
-    <!-- Call to Action -->
-    <section class="pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <div class="border border-white/10 bg-white/[0.02] p-8">
-          <!-- Terminal Header -->
-          <div class="font-mono text-white/60 space-y-2 mb-8">
-            <div class="text-green-400 text-sm">$ echo "join the community"</div>
-            <div class="text-white/70 text-sm">initiating recruitment protocol...</div>
-          </div>
-          
-          <!-- CTA Content -->
-          <div class="text-center space-y-6">
-            <h3 class="text-3xl font-bold text-white" style="font-family: 'Helvetica Neue', sans-serif;">
-              Ready to Build the Future?
-            </h3>
-            <p class="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
-              Join 500+ creators, innovators, and builders at Georgia State University in Atlanta
-            </p>
-            
-            <!-- Terminal-style Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <a 
-                href={GOOGLE_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center px-8 py-4 bg-green-600 hover:bg-green-500 text-white font-medium transition-all duration-300 group border border-green-500 hover:border-green-400"
-                style="font-family: 'Helvetica Neue', sans-serif;"
-              >
-                <span class="mr-3 text-green-100 group-hover:text-white transition-colors duration-300 font-mono">></span>
-                <span class="group-hover:text-green-50 transition-colors duration-300">join progsu</span>
-              </a>
-              
-              <a 
-                href={DISCORD_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center px-8 py-4 border border-white/30 text-white hover:bg-white/[0.08] hover:border-white/50 font-medium transition-all duration-300 group"
-                style="font-family: 'Helvetica Neue', sans-serif;"
-              >
-                <span class="mr-3 text-white/50 group-hover:text-white transition-colors duration-300 font-mono">></span>
-                <span class="group-hover:text-white transition-colors duration-300">join discord</span>
-              </a>
-            </div>
-          </div>
+    <!-- Join CTA -->
+    <section class="py-16 px-8">
+      <div class="max-w-2xl mx-auto text-center float-in">
+        <p class="text-white/40 text-sm tracking-widest mb-6" style="font-family: 'Helvetica Neue', sans-serif;">
+          want to be on this page?
+        </p>
+        <div class="flex justify-center gap-8">
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300"
+            style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+            onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+            onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+          >
+            join progsu
+          </a>
+          <a
+            href={DISCORD_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300"
+            style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+            onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+            onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+          >
+            discord
+          </a>
         </div>
       </div>
     </section>
+
+    <!-- Back + Footer -->
+    <div class="py-8 text-center">
+      <a
+        href="/"
+        class="text-white/30 hover:text-white text-sm tracking-widest transition-all duration-300"
+        style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+        onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+        onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+      >
+        &larr; back to home
+      </a>
+      <p class="text-white/20 text-xs mt-6 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
+        &copy; 2025 progsu
+      </p>
+    </div>
   </div>
 </Layout>
 
 <style>
-  /* Tab functionality */
-  .tab-btn.active {
-    border-color: white;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
+  .float-in {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(10px);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out, filter 0.9s ease-out;
   }
-  
-  /* Smooth transitions */
-  .tab-content {
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  @keyframes fadeIn {
-    from { 
-      opacity: 0; 
-      transform: translateY(10px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
+
+  .float-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 </style>
 
 <script>
-  function initTabs() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    // Set first tab as active
-    if (tabBtns.length > 0) {
-      tabBtns[0].classList.add('active');
-    }
-    
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetYear = btn.getAttribute('data-tab');
-        const targetContent = document.querySelector(`[data-tab-content="${targetYear}"]`);
-        
-        if (!targetContent) return;
-        
-        // Update button states
-        tabBtns.forEach(b => {
-          b.classList.remove('active');
-          b.classList.remove('border-white', 'bg-white/[0.08]', 'text-white');
-          b.classList.add('border-white/20', 'bg-white/[0.02]', 'text-white/70');
+  function initMembers() {
+    // Float-in animation
+    const floatEls = document.querySelectorAll('.float-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    floatEls.forEach((el) => observer.observe(el));
+
+    // Year tab switching
+    const tabs = document.querySelectorAll('.year-tab');
+    const contents = document.querySelectorAll('.year-content');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const year = (tab as HTMLElement).dataset.year;
+
+        // Update tab styles
+        tabs.forEach((t) => {
+          t.classList.remove('text-white', 'border-white/40');
+          t.classList.add('text-white/30', 'border-transparent');
         });
-        
-        // Activate clicked tab
-        btn.classList.add('active');
-        btn.classList.add('border-white', 'bg-white/[0.08]', 'text-white');
-        btn.classList.remove('border-white/20', 'bg-white/[0.02]', 'text-white/70');
-        
-        // Update content visibility
-        tabContents.forEach(content => {
-          content.classList.add('hidden');
+        tab.classList.remove('text-white/30', 'border-transparent');
+        tab.classList.add('text-white', 'border-white/40');
+
+        // Show/hide content
+        contents.forEach((c) => {
+          const el = c as HTMLElement;
+          if (el.dataset.yearContent === year) {
+            el.classList.remove('hidden');
+            // Re-trigger float-in
+            const floatIn = el.querySelector('.float-in');
+            if (floatIn) {
+              floatIn.classList.remove('visible');
+              requestAnimationFrame(() => {
+                floatIn.classList.add('visible');
+              });
+            }
+          } else {
+            el.classList.add('hidden');
+          }
         });
-        targetContent.classList.remove('hidden');
+      });
+    });
+
+    // Purple glow on year tabs hover
+    tabs.forEach((tab) => {
+      const el = tab as HTMLElement;
+      el.addEventListener('mouseover', () => {
+        el.style.textShadow = '0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)';
+      });
+      el.addEventListener('mouseout', () => {
+        el.style.textShadow = '0 0 8px rgba(147,51,234,0)';
       });
     });
   }
-  
-  // Initialize when DOM is ready
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTabs);
+    document.addEventListener('DOMContentLoaded', initMembers);
   } else {
-    initTabs();
+    initMembers();
   }
-  
-  // Handle Astro page transitions
-  document.addEventListener('astro:page-load', initTabs);
+  document.addEventListener('astro:page-load', initMembers);
 </script>

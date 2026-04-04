@@ -10,14 +10,14 @@ export default function Accordion({ title, children, defaultOpen = false }: Acco
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="my-4 border border-gray-200 rounded-lg overflow-hidden">
+    <div className="my-4 border border-white/10 rounded-lg overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 flex items-center justify-between transition-colors"
+        className="w-full px-4 py-3 bg-white/[0.02] hover:bg-white/[0.03] flex items-center justify-between transition-colors"
       >
-        <span className="font-semibold text-gray-900">{title}</span>
+        <span className="font-semibold text-white">{title}</span>
         <svg
-          className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${
+          className={`w-5 h-5 text-white/50 transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}
           fill="none"
@@ -28,7 +28,7 @@ export default function Accordion({ title, children, defaultOpen = false }: Acco
         </svg>
       </button>
       {isOpen && (
-        <div className="px-4 py-3 bg-white border-t border-gray-200">
+        <div className="px-4 py-3 bg-white/[0.03] border-t border-white/10">
           {children}
         </div>
       )}

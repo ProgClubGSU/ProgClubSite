@@ -11,7 +11,7 @@ export const QUOTE = "everyone is welcome";
 // Centralized social links for easy editing
 export const DISCORD_LINK = "https://discord.gg/BgKg9gskM2";
 export const EMAIL_LINK = "mailto:official@progsu.com";
-export const INSTAGRAM_LINK = "https://www.instagram.com/progclubgsu/";
+export const INSTAGRAM_LINK = "https://www.instagram.com/progsuhq/";
 export const LINKEDIN_LINK = "https://www.linkedin.com/company/progsu";
 export const SOCIAL_LINKS = {
   discord: DISCORD_LINK,

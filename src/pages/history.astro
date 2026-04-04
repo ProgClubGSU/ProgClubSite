@@ -1,475 +1,203 @@
 ---
-/**
- * =============================================================================
- * HISTORY PAGE - BRUTALIST GIT LOG REDESIGN
- * =============================================================================
- */
-
 import Layout from "@/layouts/Layout.astro";
 import { clubTimeline, clubStats, keyAchievements, didYouKnowFacts } from "@/data/clubHistory";
 
-// Transform clubTimeline data into git-style commits (chronological order)
-const gitCommits = [
-  // Founding Era Events (oldest first)
-  ...clubTimeline.founding.map((event, index) => ({
-    ...event,
-    hash: `${(Math.random() * 16777215 | 0).toString(16).padStart(6, '0')}${index.toString().padStart(2, '0')}`,
-    author: event.title.includes("Founded") ? "jenny-founder" : "progsu-team",
-    branch: "main",
-    era: "founding"
-  })),
-
-  // Early Development Events
-  ...clubTimeline.earlyDevelopment.map((event, index) => ({
-    ...event,
-    hash: `${(Math.random() * 16777215 | 0).toString(16).padStart(6, '0')}${index.toString().padStart(2, '0')}`,
-    author: event.title.includes("Charter") ? "progsu-admin" : 
-            event.title.includes("Programming") ? "beethoven-pres" : "progsu-team",
-    branch: "main",
-    era: "early"
-  })),
-
-  // Growth Era Events (2021-2025, including Beethoven, Ethan, and Prahbir eras)
-  ...clubTimeline.growth.map((event, index) => ({
-    ...event,
-    hash: `${(Math.random() * 16777215 | 0).toString(16).padStart(6, '0')}${index.toString().padStart(2, '0')}`,
-    author: event.title.includes("Recognition") ? "progsu-admin" : 
-            event.title.includes("400+") ? "community-mgmt" : "progsu-team",
-    branch: "main",
-    era: "growth"
-  })),
-
-  // Growth Era Presidents (Beethoven, Ethan, Prahbir - 2021-2025)
-  ...clubTimeline.currentEra.filter(event => 
-    event.title.includes("Beethoven") || 
-    event.title.includes("Ethan") || 
-    event.title.includes("Prahbir")
-  ).map((event, index) => ({
-    ...event,
-    hash: `${(Math.random() * 16777215 | 0).toString(16).padStart(6, '0')}${index.toString().padStart(2, '0')}`,
-    author: event.title.includes("Beethoven") ? "beethoven-pres" : 
-            event.title.includes("Ethan") ? "ethan-pres" : 
-            event.title.includes("Prahbir") ? "prahbir-pres" : "progsu-team",
-    branch: "main",
-    era: "growth"
-  })),
-
-  // Current Era Events (2025+ - Only Joey's era)
-  ...clubTimeline.currentEra.filter(event => 
-    event.title.includes("Joey") || 
-    event.title.includes("Rebirth") || 
-    event.title.includes("Five-President")
-  ).map((event, index) => ({
-    ...event,
-    hash: `${(Math.random() * 16777215 | 0).toString(16).padStart(6, '0')}${index.toString().padStart(2, '0')}`,
-    author: event.title.includes("Joey") ? "joey-pres" : "progsu-team",
-    branch: "main",
-    era: "current"
-  }))
+// Flatten all timeline events in chronological order
+const allEvents = [
+  ...clubTimeline.founding,
+  ...clubTimeline.earlyDevelopment,
+  ...clubTimeline.growth,
+  ...clubTimeline.currentEra,
 ];
 ---
 
-<Layout
-  title="History - progsu"
-  description="Discover the journey of progsu from its founding to today. Explore our milestones, achievements, and the growth of GSU's programming community."
->
-  <!-- History Page with Brutalist Git Log Theme -->
-  <div class="min-h-screen bg-black relative overflow-hidden">
-    <!-- Global Grid Background -->
-    <div class="fixed inset-0 pointer-events-none">
-      <div class="w-full h-full opacity-3" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
-    </div>
-    
-    <!-- Header Section -->
-    <section class="pt-32 pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <!-- Brutalist Section Header -->
-        <div class="mb-16 flex items-end justify-between">
-          <div>
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-              history
-            </h1>
-            <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-              // git log --oneline --all
-            </div>
-          </div>
-          
-          <!-- History Counter -->
-          <div class="text-right">
-            <div class="text-2xl font-bold text-white font-mono">
-              [{gitCommits.length.toString().padStart(2, '0')}]
-            </div>
-            <div class="text-xs text-white/40 uppercase tracking-widest">
-              commits
-            </div>
-          </div>
-        </div>
-        
-        <!-- Terminal-style Description -->
-        <div class="border border-white/10 bg-white/[0.02] p-6 mb-12">
-          <div class="font-mono text-white/60 space-y-2 mb-4">
-            <div class="text-green-400 text-sm">$ git log --oneline --graph --all</div>
-            <div class="text-white/70 text-sm">showing {gitCommits.length} commits from march 2020 to present</div>
-            <div class="text-white/50 text-sm">repository: official@progsu.com</div>
-          </div>
-          <p class="text-lg text-white/80 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
-            From a visionary idea during the COVID-19 pandemic to a thriving community with proven programs, 
-            discover how progsu has evolved since March 2020 to become Georgia State University's premier programming organization in Atlanta.
-          </p>
-        </div>
+<Layout title="History - progsu">
+  <div class="min-h-screen bg-black">
+
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-8">
+      <div class="max-w-3xl mx-auto text-center float-in">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight italic" style="font-family: 'Noto Serif', Georgia, serif !important;">
+          the story
+        </h1>
+        <p class="text-base md:text-lg text-white/50 leading-relaxed font-light max-w-2xl mx-auto" style="font-family: 'Helvetica Neue', sans-serif;">
+          born in a pandemic. shaped by five presidents. built by hundreds of people who believed code could be culture.
+        </p>
       </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <!-- Repository Stats -->
-        <div class="mb-16 flex items-end justify-between">
-          <div>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-              repository stats
-            </h2>
-            <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-              // git stats --summary
-            </div>
+    <!-- Stats -->
+    <section class="py-12 px-8">
+      <div class="max-w-3xl mx-auto float-in">
+        <div class="flex justify-center items-center gap-12 md:gap-20">
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">{clubStats.yearsStrong}</div>
+            <div class="text-xs text-white/30 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">years</div>
           </div>
-          
-          <div class="text-right">
-            <div class="text-xl font-bold text-white font-mono">
-              [01]
-            </div>
-            <div class="text-xs text-white/40 uppercase tracking-widest">
-              overview
-            </div>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">{clubStats.studentsHelped}</div>
+            <div class="text-xs text-white/30 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">builders</div>
           </div>
-        </div>
-        
-        <div class="border border-white/10 bg-white/[0.02] p-8">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-1">
-            <div class="border border-white/10 bg-white/[0.02] p-6 text-center">
-              <div class="text-2xl font-bold text-white mb-2 font-mono">{clubStats.yearsStrong}</div>
-              <div class="text-xs text-white/40 uppercase tracking-widest font-mono">years active</div>
-            </div>
-            <div class="border border-white/10 bg-white/[0.02] p-6 text-center">
-              <div class="text-2xl font-bold text-white mb-2 font-mono">{clubStats.studentsHelped}</div>
-              <div class="text-xs text-white/40 uppercase tracking-widest font-mono">contributors</div>
-            </div>
-            <div class="border border-white/10 bg-white/[0.02] p-6 text-center">
-              <div class="text-2xl font-bold text-white mb-2 font-mono">{clubStats.corePrograms}</div>
-              <div class="text-xs text-white/40 uppercase tracking-widest font-mono">core modules</div>
-            </div>
-            <div class="border border-white/10 bg-white/[0.02] p-6 text-center">
-              <div class="text-2xl font-bold text-white mb-2 font-mono">{clubStats.majorMilestones}</div>
-              <div class="text-xs text-white/40 uppercase tracking-widest font-mono">milestones</div>
-            </div>
+          <div class="text-center">
+            <div class="text-2xl md:text-3xl font-light text-white mb-1" style="font-family: 'Helvetica Neue', sans-serif;">5</div>
+            <div class="text-xs text-white/30 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">presidents</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Achievements & Facts Section -->
-    <section class="pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
-          <!-- Key Achievements -->
-          <div>
-            <div class="mb-8 flex items-end justify-between">
-              <div>
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-                  achievements
-                </h2>
-                <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-                  // major milestones
+    <!-- Timeline -->
+    <section class="py-16 px-8">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 tracking-widest text-center" style="font-family: 'Helvetica Neue', sans-serif;">
+          timeline
+        </h2>
+
+        <div class="relative">
+          <!-- Vertical line -->
+          <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-px"></div>
+
+          {allEvents.map((event, i) => {
+            const isLeft = i % 2 === 0;
+            return (
+              <div class="relative mb-16 float-in">
+                <!-- Dot -->
+                <div class:list={[
+                  "absolute w-2 h-2 rounded-full top-2 z-10",
+                  event.type === "milestone" ? "bg-purple-400" : "bg-white/30",
+                  "left-0 md:left-1/2 transform -translate-x-1/2"
+                ]} />
+
+                <!-- Content -->
+                <div class:list={[
+                  "pl-8 md:pl-0 md:w-1/2",
+                  isLeft ? "md:pr-12 md:text-right" : "md:pl-12 md:ml-auto",
+                ]}>
+                  <p class="text-white/25 text-xs tracking-widest mb-2" style="font-family: 'Helvetica Neue', sans-serif;">
+                    {event.date.toLowerCase()}
+                  </p>
+                  <h3 class="text-white font-medium text-base italic mb-2" style="font-family: 'Noto Serif', Georgia, serif !important;">
+                    {event.title}
+                  </h3>
+                  <p class="text-white/40 text-sm leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+                    {event.description}
+                  </p>
                 </div>
               </div>
-              
-              <div class="text-right">
-                <div class="text-lg font-bold text-white font-mono">
-                  [{keyAchievements.length.toString().padStart(2, '0')}]
-                </div>
-                <div class="text-xs text-white/40 uppercase tracking-widest">
-                  items
-                </div>
-              </div>
-            </div>
-            
-            <div class="border border-white/10 bg-white/[0.02] p-8">
-              <div class="space-y-1">
-                {keyAchievements.map((achievement, index) => (
-                  <div class="border border-white/10 bg-white/[0.02] p-4 hover:bg-white/[0.05] transition-all duration-200">
-                    <div class="flex items-start gap-4">
-                      <div class="text-white/40 font-mono text-xs min-w-[2rem] mt-1">
-                        {(index + 1).toString().padStart(2, '0')}.
-                      </div>
-                      <div class="flex-1">
-                        <h3 class="text-white font-medium text-sm mb-1" style="font-family: 'Helvetica Neue', sans-serif;">
-                          {achievement.title}
-                        </h3>
-                        <p class="text-white/60 text-xs font-mono leading-relaxed">
-                          {achievement.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          <!-- Did You Know Facts -->
-          <div>
-            <div class="mb-8 flex items-end justify-between">
-              <div>
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-                  fun facts
-                </h2>
-                <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-                  // easter eggs
-                </div>
-              </div>
-              
-              <div class="text-right">
-                <div class="text-lg font-bold text-white font-mono">
-                  [{didYouKnowFacts.length.toString().padStart(2, '0')}]
-                </div>
-                <div class="text-xs text-white/40 uppercase tracking-widest">
-                  facts
-                </div>
-              </div>
-            </div>
-            
-            <div class="border border-white/10 bg-white/[0.02] p-8">
-              <div class="space-y-1">
-                {didYouKnowFacts.map((fact, index) => (
-                  <div class="border border-white/10 bg-white/[0.02] p-4 hover:bg-white/[0.05] transition-all duration-200">
-                    <div class="flex items-start gap-4">
-                      <div class="text-white/40 font-mono text-xs min-w-[2rem]">
-                        {(index + 1).toString().padStart(2, '0')}.
-                      </div>
-                      <div class="flex-1">
-                        <p class="text-white/70 text-xs font-mono leading-relaxed">
-                          {fact}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
 
-    <!-- Git Timeline Section -->
-    <section class="pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <!-- Timeline Header -->
-        <div class="mb-16 flex items-end justify-between">
-          <div>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight" style="font-family: 'Helvetica Neue', sans-serif;">
-              commit timeline
-            </h2>
-            <div class="text-xs text-white/40 uppercase tracking-widest font-mono">
-              // git log --graph --reverse
+    <!-- Achievements -->
+    <section class="py-16 px-8">
+      <div class="max-w-3xl mx-auto float-in">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest text-center" style="font-family: 'Helvetica Neue', sans-serif;">
+          milestones
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 max-w-2xl mx-auto">
+          {keyAchievements.map((a) => (
+            <div class="text-center md:text-left">
+              <h3 class="text-white font-medium text-sm italic" style="font-family: 'Noto Serif', Georgia, serif !important;">
+                {a.title.toLowerCase()}
+              </h3>
+              <p class="text-white/30 text-xs mt-1" style="font-family: 'Helvetica Neue', sans-serif;">
+                {a.description.toLowerCase()}
+              </p>
             </div>
-          </div>
-          
-          <div class="text-right">
-            <div class="text-xl font-bold text-white font-mono">
-              [02]
-            </div>
-            <div class="text-xs text-white/40 uppercase tracking-widest">
-              timeline
-            </div>
-          </div>
-        </div>
-        
-        <!-- Git Timeline Container -->
-        <div class="border border-white/10 bg-white/[0.02] p-8">
-          <div class="font-mono text-white/60 space-y-2 mb-8">
-            <div class="text-green-400 text-sm">$ git log --graph --reverse --oneline</div>
-            <div class="text-white/50 text-sm">showing chronological development from march 2020 to present</div>
-          </div>
-          
-          <!-- Vertical Git Timeline -->
-          <div class="relative">
-            <!-- Central Git Branch Line -->
-            <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-400 via-yellow-400 via-blue-400 to-green-400 opacity-60"></div>
-            
-            <!-- Timeline Commits (chronological order - oldest first) -->
-            <div class="space-y-8">
-              {gitCommits.map((commit, index) => {
-                // Determine era colors
-                const eraColors = {
-                  founding: 'border-purple-400 text-purple-400',
-                  early: 'border-yellow-400 text-yellow-400', 
-                  growth: 'border-blue-400 text-blue-400',
-                  current: 'border-green-400 text-green-400'
-                };
-                const commitColor = eraColors[commit.era] || 'border-white/60 text-white/60';
-                
-                return (
-                  <div class="relative flex items-start">
-                    <!-- Git Commit Dot -->
-                    <div class={`absolute left-8 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 bg-black ${commitColor} z-10 transition-all duration-300 hover:scale-125`}>
-                      <div class={`absolute inset-1 rounded-full ${commit.type === 'milestone' ? 'bg-current' : 'bg-current opacity-50'}`}></div>
-                    </div>
-                    
-                    <!-- Commit Card -->
-                    <div class="pl-20 w-full">
-                      <div class="border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 hover:border-white/20 group">
-                        
-                        <!-- Commit Header -->
-                        <div class="px-6 py-4 border-b border-white/10 bg-white/[0.02]">
-                          <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                              <!-- Git Graph Symbol -->
-                              <div class="text-white/40 font-mono text-sm">
-                                *
-                              </div>
-                              
-                              <!-- Commit Hash -->
-                              <div class={`font-mono text-sm ${commitColor} group-hover:text-white transition-colors`}>
-                                {commit.hash.substring(0, 7)}
-                              </div>
-                              
-                              <!-- Branch Info -->
-                              <div class="text-white/40 font-mono text-xs">
-                                ({commit.branch})
-                              </div>
-                            </div>
-                            
-                            <!-- Era Badge -->
-                            <div class={`px-2 py-1 text-xs font-mono border ${commitColor} bg-black/50`}>
-                              {commit.era.toUpperCase()}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <!-- Commit Content -->
-                        <div class="px-6 py-4">
-                          <div class="flex items-center gap-2 mb-3">
-                            <h3 class="text-white font-medium text-lg" style="font-family: 'Helvetica Neue', sans-serif;">
-                              {commit.title}
-                            </h3>
-                            {commit.type === 'milestone' && (
-                              <span class="px-2 py-1 text-xs bg-white/10 border border-white/20 text-white/70 font-mono">
-                                MILESTONE
-                              </span>
-                            )}
-                          </div>
-                          
-                          <p class="text-white/70 text-sm mb-4 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-                            {commit.description}
-                          </p>
-                          
-                          <!-- Commit Metadata -->
-                          <div class="flex items-center gap-6 text-xs text-white/40 font-mono">
-                            <div class="flex items-center gap-2">
-                              <span class="text-white/60">Author:</span>
-                              <span class={commitColor}>{commit.author}</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                              <span class="text-white/60">Date:</span>
-                              <span>{commit.date}</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <!-- Connection Line to Timeline -->
-                        <div class={`absolute left-0 top-8 w-12 h-px bg-gradient-to-r from-transparent to-current ${commitColor} opacity-30`}></div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            
-            <!-- Timeline End Marker -->
-            <div class="relative flex items-start mt-8">
-              <div class="absolute left-8 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 border-green-400 bg-green-400 z-10">
-                <div class="absolute inset-1 rounded-full bg-green-400"></div>
-              </div>
-              <div class="pl-20 w-full">
-                <div class="border border-white/10 bg-white/[0.02] px-6 py-4">
-                  <div class="font-mono text-white/60 text-sm">
-                    <div class="text-green-400 mb-1">* HEAD (main)</div>
-                    <div class="text-white/50">Present day - Repository active and accepting contributions</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- Future Vision CTA -->
-    <section class="pb-16 px-8 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <div class="border border-white/10 bg-white/[0.02] p-8">
-          <!-- Terminal Header -->
-          <div class="font-mono text-white/60 space-y-2 mb-8">
-            <div class="text-green-400 text-sm">$ git status</div>
-            <div class="text-white/70 text-sm">On branch main</div>
-            <div class="text-white/50 text-sm">Your branch is up to date with 'origin/main'</div>
-            <div class="text-white/50 text-sm">Ready for new contributions...</div>
-          </div>
-          
-          <!-- CTA Content -->
-          <div class="text-center space-y-6">
-            <h3 class="text-3xl font-bold text-white" style="font-family: 'Helvetica Neue', sans-serif;">
-              Ready to Contribute?
-            </h3>
-            <p class="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
-              Join us as we write the next chapter of progsu's story at Georgia State University in Atlanta
+    <!-- Fun Facts -->
+    <section class="py-16 px-8">
+      <div class="max-w-2xl mx-auto float-in">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest text-center" style="font-family: 'Helvetica Neue', sans-serif;">
+          lore
+        </h2>
+        <div class="space-y-6">
+          {didYouKnowFacts.map((fact) => (
+            <p class="text-white/35 text-sm leading-relaxed text-center" style="font-family: 'Helvetica Neue', sans-serif;">
+              {fact.toLowerCase()}
             </p>
-            
-            <!-- Terminal-style Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <a 
-                href="/members"
-                class="inline-flex items-center px-8 py-4 border border-white/30 text-white hover:bg-white/[0.08] hover:border-white/50 font-medium transition-all duration-300 group"
-                style="font-family: 'Helvetica Neue', sans-serif;"
-              >
-                <span class="mr-3 text-white/50 group-hover:text-white transition-colors duration-300 font-mono">></span>
-                <span class="group-hover:text-white transition-colors duration-300">meet the team</span>
-              </a>
-              
-              <a 
-                href="/events"
-                class="inline-flex items-center px-8 py-4 border border-white/30 text-white hover:bg-white/[0.08] hover:border-white/50 font-medium transition-all duration-300 group"
-                style="font-family: 'Helvetica Neue', sans-serif;"
-              >
-                <span class="mr-3 text-white/50 group-hover:text-white transition-colors duration-300 font-mono">></span>
-                <span class="group-hover:text-white transition-colors duration-300">upcoming events</span>
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-8">
+      <div class="max-w-2xl mx-auto text-center float-in">
+        <p class="text-white/40 text-sm tracking-widest mb-6" style="font-family: 'Helvetica Neue', sans-serif;">
+          the story isn't finished.
+        </p>
+        <div class="flex justify-center gap-8">
+          <a
+            href="/members"
+            class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300"
+            style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+            onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+            onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+          >
+            meet the people
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back + Footer -->
+    <div class="py-8 text-center">
+      <a
+        href="/"
+        class="text-white/30 hover:text-white text-sm tracking-widest transition-all duration-300"
+        style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+        onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+        onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+      >
+        &larr; back to home
+      </a>
+      <p class="text-white/20 text-xs mt-6 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
+        &copy; 2025 progsu
+      </p>
+    </div>
   </div>
 </Layout>
 
 <style>
-  /* Custom scrollbar for git log */
-  .max-h-\[600px\]::-webkit-scrollbar {
-    width: 6px;
+  .float-in {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(10px);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out, filter 0.9s ease-out;
   }
-  
-  .max-h-\[600px\]::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-  }
-  
-  .max-h-\[600px\]::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-  
-  .max-h-\[600px\]::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+
+  .float-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 </style>
+
+<script>
+  function initHistory() {
+    const elements = document.querySelectorAll('.float-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHistory);
+  } else {
+    initHistory();
+  }
+  document.addEventListener('astro:page-load', initHistory);
+</script>

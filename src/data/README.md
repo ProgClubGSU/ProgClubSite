@@ -1,6 +1,6 @@
-# PROGgsu Member Management System 🚀
+# progsu Member Management System 🚀
 
-Welcome to the PROGgsu member management system! This documentation will help you understand and work with our modular, maintainable codebase.
+Welcome to the progsu member management system! This documentation will help you understand and work with our modular, maintainable codebase.
 
 ## 📁 File Structure Overview
 

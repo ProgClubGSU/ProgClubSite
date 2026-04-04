@@ -107,6 +107,11 @@ export function getRolePriority(role: string): number {
     "Founding Academic Advisor": 2,
     "Academic Advisor": 3,
 
+    // === C-SUITE ROLES ===
+    "CMO": 3,
+    "CTO": 3,
+    "COO": 3,
+
     // === CORE LEADERSHIP ROLES (Vice Presidents) ===
     "Vice President": 4,
     "Founding VP": 4,
@@ -127,6 +132,14 @@ export function getRolePriority(role: string): number {
     "Director": 8,
     "Outreach Director": 8,
     "Event Lead": 8,
+    "Outreach": 8,
+    "Design": 8,
+    "Content": 8,
+    "Community": 8,
+    "Program": 8,
+    "Finance": 8,
+    "Event Management": 8,
+    "Logistics": 8,
 
     // === EXECUTIVE & GENERAL ROLES ===
     "Exec": 9,
@@ -239,27 +252,27 @@ export function separateMembersByDisplayType(members: Member[]): {
  * 
  * @example
  * getPlaceholderDescription("Founding President")
- * // → "Founding President of PROGgsu. More details about their incredible journey coming soon..."
+ * // → "Founding President of progsu. More details about their incredible journey coming soon..."
  * 
  * getPlaceholderDescription("Vice President")  
- * // → "Valued member of PROGgsu. More information coming soon..."
+ * // → "Valued member of progsu. More information coming soon..."
  * 
  * getPlaceholderDescription("Exec")
- * // → "Executive member who contributed to PROGgsu's leadership and growth. More information coming soon..."
+ * // → "Executive member who contributed to progsu's leadership and growth. More information coming soon..."
  */
 export function getPlaceholderDescription(role: string): string {
   if (isFoundingPresident(role)) {
-    return "Founding President of PROGgsu. More details about their incredible journey coming soon...";
+    return "Founding President of progsu. More details about their incredible journey coming soon...";
   } else if (isPresidentRole(role)) {
-    return "President of PROGgsu leading the club to new heights. More information coming soon...";
+    return "President of progsu leading the club to new heights. More information coming soon...";
   } else if (role.toLowerCase().includes('founding')) {
-    return "Founding member of PROGgsu who helped establish our amazing community. More details coming soon...";
+    return "Founding member of progsu who helped establish our amazing community. More details coming soon...";
   } else if (role.toLowerCase().includes('advisor')) {
-    return "Academic advisor who provided invaluable guidance to PROGgsu. More information coming soon...";
+    return "Academic advisor who provided invaluable guidance to progsu. More information coming soon...";
   } else if (role.toLowerCase().includes('exec')) {
-    return "Executive member who contributed to PROGgsu's leadership and growth. More information coming soon...";
+    return "Executive member who contributed to progsu's leadership and growth. More information coming soon...";
   } else {
-    return "Valued member of PROGgsu. More information coming soon...";
+    return "Valued member of progsu. More information coming soon...";
   }
 } 
 
@@ -288,6 +301,9 @@ export function shouldGetFullAnimatedCard(role: string): boolean {
     "Ops VP",
     "Marketing VP",
     "Startup VP",
+    "CMO",
+    "CTO",
+    "COO",
     "Academic Advisor",
     "Founding Academic Advisor"
   ];
