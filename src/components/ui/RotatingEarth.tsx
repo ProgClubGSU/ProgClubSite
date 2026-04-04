@@ -11,7 +11,7 @@ interface RotatingEarthProps {
 
 export default function RotatingEarth({ width = 800, height = 600, className = "" }: RotatingEarthProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -136,6 +136,30 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
             context.fill()
           }
         })
+
+        // Atlanta marker — glowing purple dot
+        const atlanta: [number, number] = [-84.388, 33.749]
+        const atlantaProjected = projection(atlanta)
+        if (atlantaProjected && atlantaProjected[0] >= 0 && atlantaProjected[0] <= containerWidth && atlantaProjected[1] >= 0 && atlantaProjected[1] <= containerHeight) {
+          // Outer glow
+          const gradient = context.createRadialGradient(
+            atlantaProjected[0], atlantaProjected[1], 0,
+            atlantaProjected[0], atlantaProjected[1], 12 * scaleFactor
+          )
+          gradient.addColorStop(0, "rgba(147, 51, 234, 0.8)")
+          gradient.addColorStop(0.4, "rgba(147, 51, 234, 0.3)")
+          gradient.addColorStop(1, "rgba(147, 51, 234, 0)")
+          context.beginPath()
+          context.arc(atlantaProjected[0], atlantaProjected[1], 12 * scaleFactor, 0, 2 * Math.PI)
+          context.fillStyle = gradient
+          context.fill()
+
+          // Inner dot
+          context.beginPath()
+          context.arc(atlantaProjected[0], atlantaProjected[1], 3 * scaleFactor, 0, 2 * Math.PI)
+          context.fillStyle = "#a855f7"
+          context.fill()
+        }
       }
     }
 
