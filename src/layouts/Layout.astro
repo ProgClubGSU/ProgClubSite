@@ -1,7 +1,5 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
-import Navbar from "@/components/Navbar.astro";
-
 import DeferredStyles from "@/components/DeferredStyles.astro";
 import SpeedInsights from '@vercel/speed-insights/astro';
 import Analytics from '@vercel/analytics/astro';
@@ -17,7 +15,6 @@ const isHome = Astro.url.pathname === "/";
   </head>
 
   <body class="bg-black text-white tracking-wide !overflow-x-hidden">
-    {!staticHeader && <header class="fixed top-0 w-screen z-[9999]"><Navbar /></header>}
     <main class="pt-0">
       {/* Breadcrumb slot for subpages */}
       <div class="max-w-7xl mx-auto px-4">
