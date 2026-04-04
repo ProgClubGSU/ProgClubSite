@@ -53,7 +53,7 @@ export default function SocialProof() {
                   />
                 ) : (
                   <span
-                    className="text-white/30 text-lg font-bold tracking-widest uppercase hover:text-white/60 transition-opacity duration-300"
+                    className="text-white/30 text-2xl font-bold tracking-widest uppercase hover:text-white/60 transition-opacity duration-300"
                     style={{ fontFamily: "'Helvetica Neue', sans-serif" }}
                   >
                     {logo.name}
