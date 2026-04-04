@@ -224,7 +224,7 @@ export const membersByYear: MembersByYear = {
       role: "President",
       major: "Math + CS",
       team: "Executive",
-      description: "Current 5th President leading PROGgsu into the future! Passionate about building community and helping fellow programmers grow. Math + CS @ GSU, building InfiniteMonke.",
+      description: "Current 5th President leading progsu into the future! Passionate about building community and helping fellow programmers grow. Math + CS @ GSU, building InfiniteMonke.",
       github: "joeyzhang-dev",
       linkedin: "joeyzhangdev",
       specialties: ["Leadership", "Bench Press", "Monkeytype", "Eating food", "Height: 6'5\""]
@@ -285,7 +285,7 @@ export const membersByYear: MembersByYear = {
       role: "Tech",
       major: "Math + CS",
       team: "Technology",
-      description: "Building and maintaining PROGgsu's github and projects, mentoring devs, and making sure things break less than my sleep schedule.",
+      description: "Building and maintaining progsu's github and projects, mentoring devs, and making sure things break less than my sleep schedule.",
       github: "ibeeeees",
       linkedin: "ibrahim-m-80947622a/",
       specialties: ["Coding", "Sports", "Trading", "Cooking", "Playing the Game"]
@@ -417,7 +417,7 @@ export const membersByYear: MembersByYear = {
     {
       name: "Beethoven",
       role: "2nd President",
-      description: "2nd President who transformed PROGgsu from basic HackJams to comprehensive technical interview preparation. Led the club's evolution into a powerhouse for competitive programming and career development.",
+      description: "2nd President who transformed progsu from basic HackJams to comprehensive technical interview preparation. Led the club's evolution into a powerhouse for competitive programming and career development.",
       specialties: ["Technical Interviews", "Competitive Programming", "Leadership", "Mentorship"],
       github: "beesmalley"
     },
@@ -437,7 +437,7 @@ export const membersByYear: MembersByYear = {
     {
       name: "Cierra",
       role: "Vice President",
-      description: "Vice President during the second executive board era, helping to expand PROGgsu's reach and member engagement.",
+      description: "Vice President during the second executive board era, helping to expand progsu's reach and member engagement.",
       specialties: ["Leadership", "Member Engagement", "Strategic Planning"]
     },
     {
@@ -465,7 +465,7 @@ export const membersByYear: MembersByYear = {
     {
       name: "Nyima",
       role: "Director of Events",
-      description: "Director of Events who contributed to PROGgsu's programming and community building efforts.",
+      description: "Director of Events who contributed to progsu's programming and community building efforts.",
       specialties: ["Event Coordination", "Program Development", "Team Leadership"]
     },
     {
@@ -482,7 +482,7 @@ export const membersByYear: MembersByYear = {
     {
       name: "Jenny Liu",
       role: "Founding President", 
-      description: "Our fearless founder! Started PROGgsu from an idea in March 2020 during the COVID-19 pandemic and built it into the thriving community it is today. True visionary and leader.",
+      description: "Our fearless founder! Started progsu from an idea in March 2020 during the COVID-19 pandemic and built it into the thriving community it is today. True visionary and leader.",
       github: "ShantingLiu",
       linkedin: "jsliu",
       specialties: ["Club Founding", "Visionary Leadership", "Community Building"]
@@ -490,14 +490,14 @@ export const membersByYear: MembersByYear = {
     {
       name: "Andrew Huang",
       role: "Founding Academic Advisor",
-      description: "Facebook Engineer In Residence (EIR) and founding academic advisor who provided crucial guidance and industry expertise during PROGgsu's creation in 2020.",
+      description: "Facebook Engineer In Residence (EIR) and founding academic advisor who provided crucial guidance and industry expertise during progsu's creation in 2020.",
       linkedin: "shidihuang",
       specialties: ["Industry Mentorship", "Academic Guidance", "Software Engineering"]
     },
     {
       name: "Shardul",
       role: "Founding VP",
-      description: "Founding member and Vice President who worked closely with Jenny to establish PROGgsu from its very beginning in March 2020. Now Developer Experience Solutions Architect @ Amazon Web Services.",
+      description: "Founding member and Vice President who worked closely with Jenny to establish progsu from its very beginning in March 2020. Now Developer Experience Solutions Architect @ Amazon Web Services.",
       github: "5herlocked",
       linkedin: "shardul-vaidya",
       specialties: ["Event Planning", "Logistics", "Team Coordination", "Cloud Architecture"]
@@ -511,7 +511,7 @@ export const membersByYear: MembersByYear = {
     {
       name: "Adithya",
       role: "Director of Events",
-      description: "Founding member and Director of Events who co-organized the very first PROGgsu events and helped establish event programming traditions.",
+      description: "Founding member and Director of Events who co-organized the very first progsu events and helped establish event programming traditions.",
       specialties: ["Event Planning", "Workshop Organization", "Community Engagement"]
     },
     {
@@ -524,7 +524,7 @@ export const membersByYear: MembersByYear = {
     {
       name: "Gyan",
       role: "Director of Technology",
-      description: "Founding member and Director of Technology (formerly called Tech Chair) who managed technical infrastructure from PROGgsu's founding.",
+      description: "Founding member and Director of Technology (formerly called Tech Chair) who managed technical infrastructure from progsu's founding.",
       specialties: ["Technical Infrastructure", "Web Development", "System Administration"]
     },
     {
@@ -536,13 +536,13 @@ export const membersByYear: MembersByYear = {
     {
       name: "Shain Dholakiya",
       role: "Founding Member",
-      description: "Founding member who served from the founding period through 2023, contributing to PROGgsu's growth and development.",
+      description: "Founding member who served from the founding period through 2023, contributing to progsu's growth and development.",
       specialties: ["Executive Leadership", "Strategic Planning", "Community Growth"]
     },
     {
       name: "Japnit",
       role: "Founding Member",
-      description: "Founding member who served from the founding era through 2023, helping to build PROGgsu's foundations.",
+      description: "Founding member who served from the founding era through 2023, helping to build progsu's foundations.",
       specialties: ["Executive Leadership", "Community Building", "Program Development"]
     },
     {
@@ -564,7 +564,7 @@ export const membersByYear: MembersByYear = {
     {
       name: "Dagm",
       role: "Server Owner",
-      description: "Server owner who managed PROGgsu's Discord and online infrastructure, keeping the community connected.",
+      description: "Server owner who managed progsu's Discord and online infrastructure, keeping the community connected.",
       specialties: ["Server Administration", "Community Management", "Discord Moderation"]
     }
   ]

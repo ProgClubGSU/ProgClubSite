@@ -79,7 +79,7 @@ export interface ClubHistory {
  */
 export const clubStats = {
   yearsStrong: "5+",
-  studentsHelped: "800+", 
+  studentsHelped: "1500+", 
   corePrograms: "4",
   majorMilestones: "25+"
 };
@@ -142,7 +142,7 @@ export const keyAchievements: KeyAchievement[] = [
  * =============================================================================
  */
 export const didYouKnowFacts: string[] = [
-  "PROGgsu was founded during the COVID-19 pandemic, proving that great communities can emerge from challenging times!",
+  "progsu was founded during the COVID-19 pandemic, proving that great communities can emerge from challenging times!",
   "We had a unique co-presidency period where Prahbir and Ethan shared leadership duties - a first in club history!",
   "Our \"Holy Trinity\" programs (DSA, Mocks, Competitive Programming) have helped dozens of students land internships at top tech companies.",
   "Andrew Huang, a Facebook Engineer in Residence, was our founding academic advisor who helped establish our foundation.",
@@ -164,13 +164,13 @@ export const didYouKnowFacts: string[] = [
 export const clubTimeline: ClubHistory = {
   // =============================================================================
   // FOUNDING ERA (March 2020 - Spring 2021)
-  // Jenny Liu's visionary leadership establishes PROGgsu during the pandemic
+  // Jenny Liu's visionary leadership establishes progsu during the pandemic
   // =============================================================================
   founding: [
     {
       date: "March 2020",
       title: "Plot Twist: Pandemic Sparks Programming Paradise",
-      description: "Jenny Liu founded PROGgsu during the global pandemic, creating GSU's premier programming community from the ground up.",
+      description: "Jenny Liu founded progsu during the global pandemic, creating GSU's premier programming community from the ground up.",
       type: "milestone"
     },
     {
@@ -220,7 +220,7 @@ export const clubTimeline: ClubHistory = {
     {
       date: "Fall 2022",
       title: "The Holy Trinity: DSA, Mocks & Competitive Chaos",
-      description: "Launched the three core programs that would define PROGgsu: Data Structures & Algorithms prep, mock interviews, and competitive programming.",
+      description: "Launched the three core programs that would define progsu: Data Structures & Algorithms prep, mock interviews, and competitive programming.",
       type: "achievement"
     },
     {
@@ -232,7 +232,7 @@ export const clubTimeline: ClubHistory = {
     {
       date: "2022-2023",
       title: "The 400+ Club: Discord Community Explosion",
-      description: "Discord community exploded to over 400 active members, establishing PROGgsu as the go-to programming community at GSU.",
+      description: "Discord community exploded to over 400 active members, establishing progsu as the go-to programming community at GSU.",
       type: "milestone"
     }
   ],
@@ -245,7 +245,7 @@ export const clubTimeline: ClubHistory = {
     {
       date: "2021-2023",
       title: "Beethoven's Revolution: From HackJams to Interview Mastery",
-      description: "Beethoven (2nd President) transformed PROGgsu from basic HackJams to comprehensive technical interview preparation, revolutionizing the club's impact.",
+      description: "Beethoven (2nd President) transformed progsu from basic HackJams to comprehensive technical interview preparation, revolutionizing the club's impact.",
       type: "milestone"
     },
     {
@@ -263,13 +263,13 @@ export const clubTimeline: ClubHistory = {
     {
       date: "2025-Present",
       title: "Joey's Era: The Fifth Element of Leadership",
-      description: "Joey Zhang doesn't just lead—he rebrands, reboots, and re-energizes! As the 5th President, Joey launches a full-on club renaissance: new look, new vibe, and a tidal wave of student activity. If there's a spark of energy on campus, it's probably Joey lighting the fire. The most proactive president yet—PROGgsu's future is now running on pure caffeine and Joey's vision.",
+      description: "Joey Zhang doesn't just lead—he rebrands, reboots, and re-energizes! As the 5th President, Joey launches a full-on club renaissance: new look, new vibe, and a tidal wave of student activity. If there's a spark of energy on campus, it's probably Joey lighting the fire. The most proactive president yet—progsu's future is now running on pure caffeine and Joey's vision.",
       type: "milestone"
     },
     {
       date: "2025",
       title: "The Rebirth: Ctrl+Alt+Refresh",
-      description: "PROGgsu gets a glow-up! New website, fresh branding, and a total event overhaul. It's not just a rebrand—it's a full system reboot. Members are still trying to figure out if they joined a club or accidentally walked into a tech startup. Welcome to the new era, where even the logo has more energy!",
+      description: "progsu gets a glow-up! New website, fresh branding, and a total event overhaul. It's not just a rebrand—it's a full system reboot. Members are still trying to figure out if they joined a club or accidentally walked into a tech startup. Welcome to the new era, where even the logo has more energy!",
       type: "achievement"
     },
     {
