@@ -98,6 +98,8 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     const allDots: DotData[] = []
     let landFeatures: any
 
+    let elapsed = 0
+
     const render = () => {
       context.clearRect(0, 0, containerWidth, containerHeight)
       const currentScale = projection.scale()
@@ -137,27 +139,43 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
           }
         })
 
-        // Atlanta marker — glowing purple dot
+        // Atlanta marker — vaporwave flicker
         const atlanta: [number, number] = [-84.388, 33.749]
         const atlantaProjected = projection(atlanta)
         if (atlantaProjected && atlantaProjected[0] >= 0 && atlantaProjected[0] <= containerWidth && atlantaProjected[1] >= 0 && atlantaProjected[1] <= containerHeight) {
-          // Outer glow
+          const t = elapsed
+
+          // Irregular flicker — layered sine waves at different frequencies
+          const flicker = 0.5
+            + 0.2 * Math.sin(t * 2.5)
+            + 0.15 * Math.sin(t * 4.1)
+            + 0.1 * Math.sin(t * 7.3)
+            + 0.05 * (Math.random() - 0.5) // noise jitter
+
+          // Occasional hard blink (goes nearly dark)
+          const blink = Math.sin(t * 0.7) > 0.92 ? 0.1 : 1
+          const alpha = Math.max(0.08, Math.min(1, flicker * blink))
+
+          // Glow radius pulses subtly
+          const glowRadius = (10 + 1.5 * Math.sin(t * 5.5)) * scaleFactor
+
+          // Outer glow — stays purple
           const gradient = context.createRadialGradient(
             atlantaProjected[0], atlantaProjected[1], 0,
-            atlantaProjected[0], atlantaProjected[1], 12 * scaleFactor
+            atlantaProjected[0], atlantaProjected[1], glowRadius
           )
-          gradient.addColorStop(0, "rgba(147, 51, 234, 0.8)")
-          gradient.addColorStop(0.4, "rgba(147, 51, 234, 0.3)")
-          gradient.addColorStop(1, "rgba(147, 51, 234, 0)")
+          gradient.addColorStop(0, `rgba(147, 51, 234, ${0.9 * alpha})`)
+          gradient.addColorStop(0.4, `rgba(147, 51, 234, ${0.35 * alpha})`)
+          gradient.addColorStop(1, `rgba(147, 51, 234, 0)`)
           context.beginPath()
-          context.arc(atlantaProjected[0], atlantaProjected[1], 12 * scaleFactor, 0, 2 * Math.PI)
+          context.arc(atlantaProjected[0], atlantaProjected[1], glowRadius, 0, 2 * Math.PI)
           context.fillStyle = gradient
           context.fill()
 
           // Inner dot
           context.beginPath()
           context.arc(atlantaProjected[0], atlantaProjected[1], 3 * scaleFactor, 0, 2 * Math.PI)
-          context.fillStyle = "#a855f7"
+          context.fillStyle = `rgba(168, 85, 247, ${alpha})`
           context.fill()
         }
       }
@@ -191,12 +209,13 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     let autoRotate = true
     const rotationSpeed = 0.5
 
-    const rotate = () => {
+    const rotate = (e: number) => {
+      elapsed = e / 1000
       if (autoRotate) {
         rotation[0] += rotationSpeed
         projection.rotate(rotation as [number, number])
-        render()
       }
+      render()
     }
 
     const rotationTimer = d3.timer(rotate)
@@ -228,22 +247,12 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       document.addEventListener("mouseup", handleMouseUp)
     }
 
-    const handleWheel = (event: WheelEvent) => {
-      event.preventDefault()
-      const sf = event.deltaY > 0 ? 0.9 : 1.1
-      const newRadius = Math.max(radius * 0.5, Math.min(radius * 3, projection.scale() * sf))
-      projection.scale(newRadius)
-      render()
-    }
-
     canvas.addEventListener("mousedown", handleMouseDown)
-    canvas.addEventListener("wheel", handleWheel)
     loadWorldData()
 
     return () => {
       rotationTimer.stop()
       canvas.removeEventListener("mousedown", handleMouseDown)
-      canvas.removeEventListener("wheel", handleWheel)
     }
   }, [width, height])
 
