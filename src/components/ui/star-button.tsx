@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import type { ReactNode, CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
@@ -62,6 +62,11 @@ export function StarButton({
   ...props
 }: StarButtonProps) {
   const pathRef = useRef<HTMLAnchorElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [fillProgress, setFillProgress] = useState(0);
+  const [isFilled, setIsFilled] = useState(false);
+  const animRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (pathRef.current) {
@@ -73,6 +78,32 @@ export function StarButton({
     }
   }, []);
 
+  useEffect(() => {
+    if (isHovered) {
+      startTimeRef.current = performance.now();
+      const fillDuration = 600;
+      const animate = (now: number) => {
+        const elapsed = now - (startTimeRef.current || now);
+        const progress = Math.min(1, elapsed / fillDuration);
+        setFillProgress(progress);
+        if (progress >= 1) {
+          setIsFilled(true);
+        } else {
+          animRef.current = requestAnimationFrame(animate);
+        }
+      };
+      animRef.current = requestAnimationFrame(animate);
+    } else {
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+      setFillProgress(0);
+      setIsFilled(false);
+      startTimeRef.current = null;
+    }
+    return () => {
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+    };
+  }, [isHovered]);
+
   return (
     <a
       href={href}
@@ -83,6 +114,10 @@ export function StarButton({
           "--light-color": lightColor,
           "--border-width": `${borderWidth}px`,
           isolation: "isolate",
+          boxShadow: isFilled
+            ? "0 0 15px rgba(147,51,234,0.6), 0 0 40px rgba(147,51,234,0.25)"
+            : "none",
+          transition: "box-shadow 0.3s ease",
         } as CSSProperties
       }
       ref={pathRef}
@@ -90,6 +125,8 @@ export function StarButton({
         "relative z-[3] overflow-hidden h-10 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-3xl text-sm font-medium transition-colors group/star-button",
         className,
       )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
       <div
@@ -101,6 +138,21 @@ export function StarButton({
             width: "var(--light-width)",
           } as CSSProperties
         }
+      />
+      {/* Purple border fill on hover */}
+      <div
+        className="absolute inset-0 rounded-[inherit] z-[5] pointer-events-none"
+        style={{
+          background: fillProgress > 0
+            ? `conic-gradient(from 0deg, rgba(147,51,234,0.9) ${fillProgress * 360}deg, transparent ${fillProgress * 360}deg)`
+            : "none",
+          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+          padding: "2px",
+          transition: isFilled ? "none" : undefined,
+        }}
+        aria-hidden="true"
       />
       <div
         className="absolute inset-0 border-white/15 z-[4] overflow-hidden rounded-[inherit] text-black"
