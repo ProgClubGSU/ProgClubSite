@@ -72,7 +72,7 @@ export interface Member {
 
 /**
  * Organization structure: members grouped by academic year
- * Key format: "YYYY-YYYY" (e.g., "2025-2027")
+ * Key format: "YYYY-YYYY" (e.g., "Fall 2025")
  */
 export interface MembersByYear {
   [academicYear: string]: Member[];
@@ -93,9 +93,129 @@ export interface MembersByYear {
  */
 export const membersByYear: MembersByYear = {
   // =============================================================================
-  // CURRENT LEADERSHIP (2025-2027)
+  // SPRING 2026
   // =============================================================================
-  "2025-2027": [
+  "Spring 2026": [
+    // EXECUTIVE
+    {
+      name: "Joey Zhang",
+      role: "President",
+      major: "Math + CS",
+      team: "Executive",
+      description: "Leading progsu into its next chapter.",
+      github: "joeyzhang-dev",
+      linkedin: "joeyzhangdev",
+      specialties: ["Leadership", "Growth", "Outreach"]
+    },
+    {
+      name: "Natasha Narine",
+      role: "CMO",
+      team: "Growth",
+      description: "Responsible for awareness, engagement, and brand consistency across campus and online.",
+      linkedin: "natasha-narine",
+      specialties: ["Brand", "Design", "Marketing"]
+    },
+    {
+      name: "Liam Ellison",
+      role: "CTO",
+      major: "Math + CS",
+      team: "Development",
+      description: "Owns technical and programmatic direction. Building learning experiences, technical events, and skill development pipelines.",
+      github: "liamellison02",
+      linkedin: "liam-ellison/",
+      specialties: ["Engineering", "Workshops", "Programs"]
+    },
+    {
+      name: "Jared Beresford",
+      role: "COO",
+      team: "Operations",
+      description: "Keeps progsu running smoothly behind the scenes. Owns execution, finances, logistics, and systems.",
+      specialties: ["Operations", "Logistics", "Finance"]
+    },
+
+    // GROWTH — OUTREACH TEAM
+    {
+      name: "Carter",
+      role: "Outreach",
+      team: "Growth · Outreach",
+      description: "Drives student, org, and external outreach to grow attendance, partnerships, and visibility.",
+      specialties: ["Outreach", "Networking", "Partnerships"]
+    },
+
+    // GROWTH — CONTENT TEAM
+    {
+      name: "Charan",
+      role: "Design",
+      team: "Growth · Content",
+      description: "Owns progsu's visual identity and design quality. Ensures everything looks intentional, clean, and on-brand.",
+      specialties: ["Visual Design", "Branding", "Graphics"]
+    },
+    {
+      name: "Fred",
+      role: "Content",
+      team: "Growth · Content",
+      description: "Creates & distributes content that captures progsu's energy, events, and wins.",
+      specialties: ["Social Media", "Content", "Storytelling"]
+    },
+    {
+      name: "Jamal",
+      role: "Community",
+      team: "Growth · Content",
+      description: "Maintains internal health of the community. Ensures members feel welcomed, heard, and retained.",
+      specialties: ["Community", "Discord", "Engagement"]
+    },
+
+    // DEVELOPMENT
+    {
+      name: "Taizo",
+      role: "Program",
+      team: "Development",
+      description: "Designs and runs technical programs, workshops, and build-focused events.",
+      specialties: ["Events", "Workshops", "Planning"]
+    },
+
+    // OPERATIONS
+    {
+      name: "Dev",
+      role: "Finance",
+      team: "Operations",
+      description: "Manages all money-related operations and financial integrity.",
+      specialties: ["Budgeting", "Finance", "Records"]
+    },
+    {
+      name: "Ishan",
+      role: "Finance",
+      team: "Operations",
+      description: "Manages all money-related operations and financial integrity.",
+      specialties: ["Budgeting", "Finance", "Records"]
+    },
+    {
+      name: "Temi",
+      role: "Event Management",
+      team: "Operations",
+      description: "Handles logistics and execution of events. Makes sure rooms, check-ins, and systems are planned.",
+      specialties: ["Events", "Logistics", "Planning"]
+    },
+    {
+      name: "Eda",
+      role: "Logistics",
+      team: "Operations",
+      description: "Supports physical and operational needs for events and programs.",
+      specialties: ["Setup", "Supplies", "Execution"]
+    },
+    {
+      name: "Phillip",
+      role: "Logistics",
+      team: "Operations",
+      description: "Supports physical and operational needs for events and programs.",
+      specialties: ["Setup", "Supplies", "Execution"]
+    },
+  ],
+
+  // =============================================================================
+  // FALL 2025
+  // =============================================================================
+  "Fall 2025": [
     // =============================================================================
     // LEADERSHIP - President & Vice Presidents
     // =============================================================================

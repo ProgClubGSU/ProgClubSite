@@ -107,6 +107,11 @@ export function getRolePriority(role: string): number {
     "Founding Academic Advisor": 2,
     "Academic Advisor": 3,
 
+    // === C-SUITE ROLES ===
+    "CMO": 3,
+    "CTO": 3,
+    "COO": 3,
+
     // === CORE LEADERSHIP ROLES (Vice Presidents) ===
     "Vice President": 4,
     "Founding VP": 4,
@@ -127,6 +132,14 @@ export function getRolePriority(role: string): number {
     "Director": 8,
     "Outreach Director": 8,
     "Event Lead": 8,
+    "Outreach": 8,
+    "Design": 8,
+    "Content": 8,
+    "Community": 8,
+    "Program": 8,
+    "Finance": 8,
+    "Event Management": 8,
+    "Logistics": 8,
 
     // === EXECUTIVE & GENERAL ROLES ===
     "Exec": 9,
@@ -288,6 +301,9 @@ export function shouldGetFullAnimatedCard(role: string): boolean {
     "Ops VP",
     "Marketing VP",
     "Startup VP",
+    "CMO",
+    "CTO",
+    "COO",
     "Academic Advisor",
     "Founding Academic Advisor"
   ];
