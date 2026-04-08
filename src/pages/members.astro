@@ -67,33 +67,33 @@ const yearKeys = Object.keys(sortedMembers);
                   const memberData = JSON.stringify(member).replace(/'/g, "&#39;");
                   return (
                     <button
-                      class="text-center space-y-3 cursor-pointer group/member focus:outline-none"
+                      class="text-center space-y-3 cursor-pointer group/member focus:outline-none focus-visible:outline-none outline-none transition-all duration-300 hover:-translate-y-1 active:scale-95"
                       data-member={memberData}
                       onclick="openMemberModal(this)"
                     >
                       {/* Initials circle */}
                       <div class:list={[
-                        "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-lg font-bold transition-all duration-300 group-hover/member:scale-110",
+                        "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-lg font-bold transition-all duration-300 group-hover/member:scale-110 group-hover/member:shadow-lg",
                         isFounding
-                          ? "bg-purple-500/20 text-purple-300 group-hover/member:bg-purple-500/40"
+                          ? "bg-purple-500/20 text-purple-300 group-hover/member:bg-purple-500/40 group-hover/member:shadow-purple-500/30"
                           : isPresident
-                            ? "bg-amber-500/20 text-amber-300 group-hover/member:bg-amber-500/40"
-                            : "bg-white/5 text-white/60 group-hover/member:bg-white/15",
+                            ? "bg-amber-500/20 text-amber-300 group-hover/member:bg-amber-500/40 group-hover/member:shadow-amber-500/30"
+                            : "bg-white/5 text-white/60 group-hover/member:bg-white/15 group-hover/member:shadow-white/10",
                       ]}>
                         {member.name.split(" ").map((n: string) => n[0]).join("")}
                       </div>
 
                       <div>
-                        <h3 class="text-white font-medium text-base italic group-hover/member:text-white/80 transition-colors duration-300" style="font-family: 'Noto Serif', Georgia, serif !important;">
+                        <h3 class="text-white font-medium text-base italic transition-colors duration-300" style="font-family: 'Noto Serif', Georgia, serif !important;">
                           {member.name}
                         </h3>
                         <p class:list={[
-                          "text-xs tracking-widest mt-1",
+                          "text-xs tracking-widest mt-1 transition-all duration-300",
                           isFounding
-                            ? "text-purple-400/70"
+                            ? "text-purple-400/70 group-hover/member:text-purple-400"
                             : isPresident
-                              ? "text-amber-400/70"
-                              : "text-white/30",
+                              ? "text-amber-400/70 group-hover/member:text-amber-400"
+                              : "text-white/30 group-hover/member:text-white/50",
                         ]} style="font-family: 'Helvetica Neue', sans-serif;">
                           {member.role.toLowerCase()}{member.team ? ` · ${member.team.toLowerCase()}` : ""}
                         </p>
@@ -137,13 +137,13 @@ const yearKeys = Object.keys(sortedMembers);
     <!-- Member Modal -->
     <div
       id="member-modal"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-300"
       onclick="if(event.target===this)closeMemberModal()"
     >
       <!-- Backdrop -->
       <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
       <!-- Card -->
-      <div class="relative z-10 w-full max-w-sm bg-black border border-white/10 rounded-2xl p-8 shadow-2xl">
+      <div id="member-modal-card" class="relative z-10 w-full max-w-sm bg-black border border-white/10 rounded-2xl p-8 shadow-2xl transition-all duration-300 scale-95 opacity-0 translate-y-2">
         <button
           onclick="closeMemberModal()"
           class="absolute top-4 right-4 text-white/30 hover:text-white transition-colors duration-200 text-lg leading-none"
@@ -312,6 +312,7 @@ const yearKeys = Object.keys(sortedMembers);
     const member = JSON.parse(raw);
 
     const modal = document.getElementById('member-modal')!;
+    const card = document.getElementById('member-modal-card')!;
 
     // Initials
     const initials = member.name.split(' ').map((n: string) => n[0]).join('');
@@ -370,12 +371,28 @@ const yearKeys = Object.keys(sortedMembers);
       socials.appendChild(a);
     }
 
-    modal.classList.remove('hidden');
+    modal.classList.remove('pointer-events-none');
+    modal.classList.add('pointer-events-auto');
+    requestAnimationFrame(() => {
+      modal.classList.remove('opacity-0');
+      modal.classList.add('opacity-100');
+      card.classList.remove('scale-95', 'opacity-0', 'translate-y-2');
+      card.classList.add('scale-100', 'opacity-100', 'translate-y-0');
+    });
     document.body.style.overflow = 'hidden';
   }
 
   function closeMemberModal() {
-    document.getElementById('member-modal')!.classList.add('hidden');
+    const modal = document.getElementById('member-modal')!;
+    const card = document.getElementById('member-modal-card')!;
+    modal.classList.remove('opacity-100');
+    modal.classList.add('opacity-0');
+    card.classList.remove('scale-100', 'opacity-100', 'translate-y-0');
+    card.classList.add('scale-95', 'opacity-0', 'translate-y-2');
+    setTimeout(() => {
+      modal.classList.remove('pointer-events-auto');
+      modal.classList.add('pointer-events-none');
+    }, 300);
     document.body.style.overflow = '';
   }
 
