@@ -110,7 +110,7 @@ export default function SocialProof() {
 
       <div className="relative z-10">
         <p
-          className="text-center text-white/30 text-xs tracking-[0.3em] uppercase mb-10"
+          className="text-center text-white/45 text-xs tracking-[0.3em] uppercase mb-10"
           style={{ fontFamily: "'Helvetica Neue', sans-serif" }}
         >
           trusted by builders backed by
@@ -143,7 +143,7 @@ export default function SocialProof() {
                       />
                     ) : (
                       <span
-                        className="text-white/30 text-2xl font-bold tracking-widest uppercase hover:text-white/60 transition-opacity duration-300"
+                        className="text-white/45 text-2xl font-bold tracking-widest uppercase hover:text-white/60 transition-opacity duration-300"
                         style={{ fontFamily: "'Helvetica Neue', sans-serif" }}
                       >
                         {logo.name}

@@ -34,7 +34,7 @@ const yearKeys = Object.keys(sortedMembers);
                 "year-tab text-sm tracking-widest transition-all duration-300 pb-1",
                 i === 0
                   ? "text-white border-b border-white/40"
-                  : "text-white/30 hover:text-white/60 border-b border-transparent",
+                  : "text-white/45 hover:text-white/60 border-b border-transparent",
               ]}
               style="font-family: 'Helvetica Neue', sans-serif;"
             >
@@ -93,7 +93,7 @@ const yearKeys = Object.keys(sortedMembers);
                             ? "text-purple-400/70 group-hover/member:text-purple-400"
                             : isPresident
                               ? "text-amber-400/70 group-hover/member:text-amber-400"
-                              : "text-white/30 group-hover/member:text-white/50",
+                              : "text-white/45 group-hover/member:text-white/50",
                         ]} style="font-family: 'Helvetica Neue', sans-serif;">
                           {member.role.toLowerCase()}{member.team ? ` · ${member.team.toLowerCase()}` : ""}
                         </p>
@@ -102,7 +102,7 @@ const yearKeys = Object.keys(sortedMembers);
                       {member.specialties && member.specialties.length > 0 && (
                         <div class="flex flex-wrap justify-center gap-2">
                           {member.specialties.slice(0, 3).map((s: string) => (
-                            <span class="text-white/20 text-xs" style="font-family: 'Helvetica Neue', sans-serif;">
+                            <span class="text-white/50 text-xs" style="font-family: 'Helvetica Neue', sans-serif;">
                               {s.toLowerCase()}
                             </span>
                           ))}
@@ -116,7 +116,7 @@ const yearKeys = Object.keys(sortedMembers);
                               href={`https://github.com/${member.github}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              class="text-white/20 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                              class="text-white/50 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
                               style="font-family: 'Helvetica Neue', sans-serif;"
                             >
                               github
@@ -127,7 +127,7 @@ const yearKeys = Object.keys(sortedMembers);
                               href={member.linkedin.startsWith("http") ? member.linkedin : `https://linkedin.com/in/${member.linkedin}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              class="text-white/20 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                              class="text-white/50 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
                               style="font-family: 'Helvetica Neue', sans-serif;"
                             >
                               linkedin
@@ -144,12 +144,12 @@ const yearKeys = Object.keys(sortedMembers);
             {/* General Members */}
             {listMembers.length > 0 && (
               <div>
-                <p class="text-white/20 text-xs tracking-[0.3em] uppercase text-center mb-8" style="font-family: 'Helvetica Neue', sans-serif;">
+                <p class="text-white/50 text-xs tracking-[0.3em] uppercase text-center mb-8" style="font-family: 'Helvetica Neue', sans-serif;">
                   members
                 </p>
                 <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 max-w-3xl mx-auto">
                   {listMembers.map((member) => (
-                    <span class="text-white/25 text-sm" style="font-family: 'Helvetica Neue', sans-serif;">
+                    <span class="text-white/40 text-sm" style="font-family: 'Helvetica Neue', sans-serif;">
                       {member.name.toLowerCase()}
                     </span>
                   ))}
@@ -173,7 +173,7 @@ const yearKeys = Object.keys(sortedMembers);
       <div id="member-modal-card" class="relative z-10 w-full max-w-sm bg-black border border-white/10 rounded-2xl p-8 shadow-2xl transition-all duration-300 scale-95 opacity-0 translate-y-2">
         <button
           onclick="closeMemberModal()"
-          class="absolute top-4 right-4 text-white/30 hover:text-white transition-colors duration-200 text-lg leading-none"
+          class="absolute top-4 right-4 text-white/45 hover:text-white transition-colors duration-200 text-lg leading-none"
         >✕</button>
 
         <!-- Initials -->
@@ -181,15 +181,15 @@ const yearKeys = Object.keys(sortedMembers);
 
         <!-- Name + Role -->
         <h2 id="modal-name" class="text-xl font-bold text-white italic mb-1" style="font-family: 'Noto Serif', Georgia, serif !important;"></h2>
-        <p id="modal-role" class="text-xs tracking-widest text-white/30 mb-1" style="font-family: 'Helvetica Neue', sans-serif;"></p>
-        <p id="modal-major" class="text-xs text-white/20 mb-5" style="font-family: 'Helvetica Neue', sans-serif;"></p>
+        <p id="modal-role" class="text-xs tracking-widest text-white/45 mb-1" style="font-family: 'Helvetica Neue', sans-serif;"></p>
+        <p id="modal-major" class="text-xs text-white/50 mb-5" style="font-family: 'Helvetica Neue', sans-serif;"></p>
 
         <!-- Description -->
         <p id="modal-description" class="text-sm text-white/50 leading-relaxed mb-6" style="font-family: 'Helvetica Neue', sans-serif;"></p>
 
         <!-- Specialties -->
         <div id="modal-specialties-wrap" class="mb-6 hidden">
-          <p class="text-[10px] uppercase tracking-widest text-white/20 mb-3" style="font-family: 'Helvetica Neue', sans-serif;">specialties</p>
+          <p class="text-[10px] uppercase tracking-widest text-white/50 mb-3" style="font-family: 'Helvetica Neue', sans-serif;">specialties</p>
           <div id="modal-specialties" class="flex flex-wrap gap-2"></div>
         </div>
 
@@ -235,14 +235,14 @@ const yearKeys = Object.keys(sortedMembers);
     <div class="py-8 text-center">
       <a
         href="/"
-        class="text-white/30 hover:text-white text-sm tracking-widest transition-all duration-300"
+        class="text-white/45 hover:text-white text-sm tracking-widest transition-all duration-300"
         style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
         onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
         onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
       >
         &larr; back to home
       </a>
-      <p class="text-white/20 text-xs mt-6 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
+      <p class="text-white/50 text-xs mt-6 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
         &copy; 2025 progsu
       </p>
     </div>
@@ -289,9 +289,9 @@ const yearKeys = Object.keys(sortedMembers);
         // Update tab styles
         tabs.forEach((t) => {
           t.classList.remove('text-white', 'border-white/40');
-          t.classList.add('text-white/30', 'border-transparent');
+          t.classList.add('text-white/45', 'border-transparent');
         });
-        tab.classList.remove('text-white/30', 'border-transparent');
+        tab.classList.remove('text-white/45', 'border-transparent');
         tab.classList.add('text-white', 'border-white/40');
 
         // Show/hide content
@@ -382,7 +382,7 @@ const yearKeys = Object.keys(sortedMembers);
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
       a.textContent = 'github';
-      a.className = 'text-white/30 hover:text-white text-xs tracking-widest transition-all duration-300';
+      a.className = 'text-white/45 hover:text-white text-xs tracking-widest transition-all duration-300';
       a.style.fontFamily = "'Helvetica Neue', sans-serif";
       socials.appendChild(a);
     }
@@ -393,7 +393,7 @@ const yearKeys = Object.keys(sortedMembers);
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
       a.textContent = 'linkedin';
-      a.className = 'text-white/30 hover:text-white text-xs tracking-widest transition-all duration-300';
+      a.className = 'text-white/45 hover:text-white text-xs tracking-widest transition-all duration-300';
       a.style.fontFamily = "'Helvetica Neue', sans-serif";
       socials.appendChild(a);
     }

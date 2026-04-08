@@ -24,9 +24,9 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
       <div class="max-w-3xl mx-auto float-in">
         <!-- Breadcrumb -->
         <div class="flex items-center gap-2 mb-8 text-xs tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
-          <a href="/" class="text-white/30 hover:text-white/60 transition-colors">progsu</a>
+          <a href="/" class="text-white/45 hover:text-white/60 transition-colors">progsu</a>
           <span class="text-white/15">/</span>
-          <a href="/gitpaid" class="text-white/30 hover:text-white/60 transition-colors">gitpaid</a>
+          <a href="/gitpaid" class="text-white/45 hover:text-white/60 transition-colors">gitpaid</a>
           <span class="text-white/15">/</span>
           <span class="text-white/50">{guide.data.title.toLowerCase()}</span>
         </div>
@@ -52,7 +52,7 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
           <div class="mb-12 md:hidden">
             <button
               id="toc-toggle"
-              class="text-white/30 text-xs tracking-widest mb-4"
+              class="text-white/45 text-xs tracking-widest mb-4"
               style="font-family: 'Helvetica Neue', sans-serif;"
             >
               table of contents +
@@ -62,7 +62,7 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
                 <a
                   href={`#${h.slug}`}
                   class:list={[
-                    "block text-white/30 hover:text-white/60 text-xs tracking-widest transition-colors",
+                    "block text-white/45 hover:text-white/60 text-xs tracking-widest transition-colors",
                     h.depth === 3 ? "pl-4" : "",
                   ]}
                   style="font-family: 'Helvetica Neue', sans-serif;"
@@ -83,7 +83,7 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
         <div class="mt-16 pt-8 border-t border-white/5">
           <a
             href="/gitpaid"
-            class="text-white/30 hover:text-white text-sm tracking-widest transition-all duration-300"
+            class="text-white/45 hover:text-white text-sm tracking-widest transition-all duration-300"
             style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
             onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
             onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
