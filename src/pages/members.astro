@@ -64,7 +64,7 @@ const yearKeys = Object.keys(sortedMembers);
                 {allDisplayMembers.map((member) => {
                   const isPresident = isPresidentRole(member.role);
                   const isFounding = isFoundingPresident(member.role);
-                  const memberData = JSON.stringify(member).replace(/'/g, "&#39;");
+                  const memberData = encodeURIComponent(JSON.stringify(member));
                   return (
                     <button
                       class="text-center space-y-3 cursor-pointer group/member focus:outline-none focus-visible:outline-none outline-none transition-all duration-300 hover:-translate-y-1 active:scale-95"
@@ -106,6 +106,33 @@ const yearKeys = Object.keys(sortedMembers);
                               {s.toLowerCase()}
                             </span>
                           ))}
+                        </div>
+                      )}
+
+                      {(member.github || member.linkedin) && (
+                        <div class="flex justify-center gap-4 pt-1" onclick="event.stopPropagation()">
+                          {member.github && (
+                            <a
+                              href={`https://github.com/${member.github}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-white/20 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                              style="font-family: 'Helvetica Neue', sans-serif;"
+                            >
+                              github
+                            </a>
+                          )}
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin.startsWith("http") ? member.linkedin : `https://linkedin.com/in/${member.linkedin}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-white/20 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                              style="font-family: 'Helvetica Neue', sans-serif;"
+                            >
+                              linkedin
+                            </a>
+                          )}
                         </div>
                       )}
                     </button>
@@ -309,7 +336,7 @@ const yearKeys = Object.keys(sortedMembers);
   function openMemberModal(btn: HTMLElement) {
     const raw = btn.getAttribute('data-member');
     if (!raw) return;
-    const member = JSON.parse(raw);
+    const member = JSON.parse(decodeURIComponent(raw));
 
     const modal = document.getElementById('member-modal')!;
     const card = document.getElementById('member-modal-card')!;
