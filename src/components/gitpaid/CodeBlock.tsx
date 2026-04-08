@@ -27,7 +27,7 @@ export default function CodeBlock({
     <div className="my-4 rounded-lg overflow-hidden border border-gray-700">
       {title && (
         <div className="bg-white/[0.05] px-4 py-2 flex items-center justify-between">
-          <span className="text-white/20 text-sm font-medium">{title}</span>
+          <span className="text-white/50 text-sm font-medium">{title}</span>
           <span className="text-white/40 text-xs">{language}</span>
         </div>
       )}
