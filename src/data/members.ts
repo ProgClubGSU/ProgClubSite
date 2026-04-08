@@ -320,16 +320,6 @@ export const membersByYear: MembersByYear = {
       specialties: ["Hiking", "Biking", "Badminton", "Cricket", "QuantF"]
     },
     {
-      name: "John Sang",
-      role: "Tech",
-      major: "CS",
-      team: "Development",
-      description: "Developer on the progsu tech team. Quietly building things that work — maybe one day someone will notice.",
-      github: "JohnSang16",
-      linkedin: "johnsang-/",
-      specialties: ["Web Dev", "UI/UX", "Coffee", "Debugging at 2am"]
-    },
-    {
       name: "Jared Beresford",
       role: "Startup",
       major: "CS",
