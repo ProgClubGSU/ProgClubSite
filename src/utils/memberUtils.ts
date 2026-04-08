@@ -97,6 +97,7 @@ export function getRolePriority(role: string): number {
   const priorities: Record<string, number> = {
     // === PRESIDENTIAL ROLES (Highest Priority) ===
     "President": 1,
+    "Co-President": 1,
     "Founding President": 1,
     "2nd President": 1,
     "3rd President": 1,
@@ -136,6 +137,8 @@ export function getRolePriority(role: string): number {
     "Design": 8,
     "Content": 8,
     "Community": 8,
+    "VP": 4,
+    "Tech": 8,
     "Program": 8,
     "Finance": 8,
     "Event Management": 8,
@@ -249,7 +252,7 @@ export function separateMembersByDisplayType(members: Member[]): {
  * 
  * @param role - The member's role string
  * @returns Appropriate placeholder description text
- * 
+ * c
  * @example
  * getPlaceholderDescription("Founding President")
  * // → "Founding President of progsu. More details about their incredible journey coming soon..."
@@ -290,6 +293,7 @@ export function shouldGetFullAnimatedCard(role: string): boolean {
   // Full animated cards for important leadership roles only
   const importantRoles = [
     "President",
+    "Co-President",
     "Founding President",
     "2nd President",
     "3rd President",
