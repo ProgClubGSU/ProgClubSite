@@ -109,8 +109,8 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Natasha Narine",
-      role: "CMO",
-      team: "Growth",
+      role: "Co-President",
+      team: "Executive",
       description: "Responsible for awareness, engagement, and brand consistency across campus and online.",
       linkedin: "natasha-narine",
       specialties: ["Brand", "Design", "Marketing"]
@@ -132,6 +132,13 @@ export const membersByYear: MembersByYear = {
       description: "Keeps progsu running smoothly behind the scenes. Owns execution, finances, logistics, and systems.",
       specialties: ["Operations", "Logistics", "Finance"]
     },
+    {
+      name: "Charan",
+      role: "CMO",
+      team: "Growth · Content",
+      description: "Owns progsu's visual identity and design quality. Ensures everything looks intentional, clean, and on-brand.",
+      specialties: ["Visual Design", "Branding", "Graphics"]
+    },
 
     // GROWTH — OUTREACH TEAM
     {
@@ -143,13 +150,6 @@ export const membersByYear: MembersByYear = {
     },
 
     // GROWTH — CONTENT TEAM
-    {
-      name: "Charan",
-      role: "Design",
-      team: "Growth · Content",
-      description: "Owns progsu's visual identity and design quality. Ensures everything looks intentional, clean, and on-brand.",
-      specialties: ["Visual Design", "Branding", "Graphics"]
-    },
     {
       name: "Fred",
       role: "Content",
@@ -167,13 +167,22 @@ export const membersByYear: MembersByYear = {
 
     // DEVELOPMENT
     {
+      name: "John Sang",
+      role: "Tech",
+      major: "CS",
+      team: "Development",
+      description: "Leads web development and maintains progsu's technical infrastructure. Supports MLH operations and contributes across development, operations, and growth.",
+      github: "JohnSang16",
+      linkedin: "johnsang-/",
+      specialties: ["Web Dev", "Operations", "Full Stack"]
+    },
+    {
       name: "Taizo",
       role: "Program",
       team: "Development",
       description: "Designs and runs technical programs, workshops, and build-focused events.",
       specialties: ["Events", "Workshops", "Planning"]
     },
-
     // OPERATIONS
     {
       name: "Dev",
@@ -309,6 +318,16 @@ export const membersByYear: MembersByYear = {
       github: "shahh-darshit",
       linkedin: "shahh-darshit",
       specialties: ["Hiking", "Biking", "Badminton", "Cricket", "QuantF"]
+    },
+    {
+      name: "John Sang",
+      role: "Tech",
+      major: "CS",
+      team: "Development",
+      description: "Developer on the progsu tech team. Quietly building things that work — maybe one day someone will notice.",
+      github: "JohnSang16",
+      linkedin: "johnsang-/",
+      specialties: ["Web Dev", "UI/UX", "Coffee", "Debugging at 2am"]
     },
     {
       name: "Jared Beresford",
