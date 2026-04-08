@@ -126,7 +126,7 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
   .gitpaid-prose :global(h3) { font-size: 1.25rem; }
 
   .gitpaid-prose :global(p) {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.72);
     font-family: 'Helvetica Neue', sans-serif;
     line-height: 1.8;
     margin-bottom: 1.25rem;
@@ -147,16 +147,62 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
 
   .gitpaid-prose :global(ul),
   .gitpaid-prose :global(ol) {
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.68);
     font-family: 'Helvetica Neue', sans-serif;
     padding-left: 1.5rem;
     margin-bottom: 1.25rem;
     font-size: 0.95rem;
+    list-style: revert;
+  }
+
+  .gitpaid-prose :global(ul) {
+    list-style: none;
+    padding-left: 1.25rem;
+  }
+
+  .gitpaid-prose :global(ol) {
+    list-style-type: decimal;
+  }
+
+  .gitpaid-prose :global(ul > li) {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .gitpaid-prose :global(ul > li::before) {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: rgba(255, 255, 255, 0.55);
   }
 
   .gitpaid-prose :global(li) {
     margin-bottom: 0.5rem;
     line-height: 1.7;
+  }
+
+  /* Task list (self-check) — hide custom bullet */
+  .gitpaid-prose :global(li:has(input[type="checkbox"])::before) {
+    display: none;
+  }
+  .gitpaid-prose :global(li:has(input[type="checkbox"])) {
+    padding-left: 0;
+    color: rgba(255, 255, 255, 0.68);
+  }
+  .gitpaid-prose :global(ul:has(li > input[type="checkbox"])) {
+    padding-left: 0;
+  }
+  .gitpaid-prose :global(input[type="checkbox"]) {
+    appearance: none;
+    width: 0.85rem;
+    height: 0.85rem;
+    border: 1px solid rgba(147, 51, 234, 0.4);
+    border-radius: 0.2rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    background: rgba(147, 51, 234, 0.05);
+    flex-shrink: 0;
+    display: inline-block;
   }
 
   .gitpaid-prose :global(strong) {
@@ -173,8 +219,9 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
   }
 
   .gitpaid-prose :global(pre) {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(147, 51, 234, 0.06) !important;
+    border: 1px solid rgba(147, 51, 234, 0.25);
+    box-shadow: 0 0 12px rgba(147, 51, 234, 0.08);
     border-radius: 0.5rem;
     padding: 1.25rem;
     margin-bottom: 1.5rem;
@@ -184,19 +231,21 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
   .gitpaid-prose :global(pre code) {
     background: none;
     padding: 0;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .gitpaid-prose :global(blockquote) {
     border-left: 2px solid rgba(147, 51, 234, 0.4);
     padding-left: 1rem;
     margin: 1.5rem 0;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     font-style: italic;
   }
 
   .gitpaid-prose :global(hr) {
-    border-color: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
     margin: 2rem 0;
   }
 
@@ -216,7 +265,7 @@ const tocHeadings = headings.filter(h => h.depth <= 3);
   }
 
   .gitpaid-prose :global(td) {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.62);
     padding: 0.75rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
