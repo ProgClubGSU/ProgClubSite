@@ -132,6 +132,13 @@ export const membersByYear: MembersByYear = {
       description: "Keeps progsu running smoothly behind the scenes. Owns execution, finances, logistics, and systems.",
       specialties: ["Operations", "Logistics", "Finance"]
     },
+    {
+      name: "Charan",
+      role: "CMO",
+      team: "Growth · Content",
+      description: "Owns the visual identity and design quality for progsu. Ensures everything looks intentional, clean, and on-brand.",
+      specialties: ["Visual Design", "Branding", "Graphics"]
+    },
 
     // GROWTH — OUTREACH TEAM
     {
@@ -143,13 +150,6 @@ export const membersByYear: MembersByYear = {
     },
 
     // GROWTH — CONTENT TEAM
-    {
-      name: "Charan",
-      role: "Design",
-      team: "Growth · Content",
-      description: "Owns the visual identity and design quality for progsu. Ensures everything looks intentional, clean, and on-brand.",
-      specialties: ["Visual Design", "Branding", "Graphics"]
-    },
     {
       name: "Fred",
       role: "Content",
