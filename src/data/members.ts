@@ -109,8 +109,8 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Natasha Narine",
-      role: "CMO",
-      team: "Growth",
+      role: "Co-President",
+      team: "Executive",
       description: "Responsible for awareness, engagement, and brand consistency across campus and online.",
       linkedin: "natasha-narine",
       specialties: ["Brand", "Design", "Marketing"]
@@ -132,6 +132,13 @@ export const membersByYear: MembersByYear = {
       description: "Keeps progsu running smoothly behind the scenes. Owns execution, finances, logistics, and systems.",
       specialties: ["Operations", "Logistics", "Finance"]
     },
+    {
+      name: "Charan",
+      role: "CMO",
+      team: "Growth · Content",
+      description: "Owns the visual identity and design quality for progsu. Ensures everything looks intentional, clean, and on-brand.",
+      specialties: ["Visual Design", "Branding", "Graphics"]
+    },
 
     // GROWTH — OUTREACH TEAM
     {
@@ -143,13 +150,6 @@ export const membersByYear: MembersByYear = {
     },
 
     // GROWTH — CONTENT TEAM
-    {
-      name: "Charan",
-      role: "Design",
-      team: "Growth · Content",
-      description: "Owns progsu's visual identity and design quality. Ensures everything looks intentional, clean, and on-brand.",
-      specialties: ["Visual Design", "Branding", "Graphics"]
-    },
     {
       name: "Fred",
       role: "Content",
@@ -166,6 +166,16 @@ export const membersByYear: MembersByYear = {
     },
 
     // DEVELOPMENT
+    {
+      name: "John Sang",
+      role: "Tech",
+      major: "CS",
+      team: "Development",
+      description: "Leads web development and maintains the technical infrastructure for progsu. Supports MLH operations and contributes across development, operations, and growth.",
+      github: "JohnSang16",
+      linkedin: "johnsang-/",
+      specialties: ["Web Dev", "Operations", "Full Stack"]
+    },
     {
       name: "Taizo",
       role: "Program",
