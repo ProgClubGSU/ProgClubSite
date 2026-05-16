@@ -142,16 +142,17 @@ export const membersByYear: MembersByYear = {
 
     // GROWTH — OUTREACH TEAM
     {
-      name: "Carter",
+      name: "Carter Tierney",
       role: "Outreach",
       team: "Growth · Outreach",
       description: "Drives student, org, and external outreach to grow attendance, partnerships, and visibility.",
+      linkedin: "carter-tierney",
       specialties: ["Outreach", "Networking", "Partnerships"]
     },
 
     // GROWTH — CONTENT TEAM
     {
-      name: "Fred",
+      name: "Fred Dai",
       role: "Content",
       team: "Growth · Content",
       description: "Creates & distributes content that captures progsu's energy, events, and wins.",
@@ -177,7 +178,7 @@ export const membersByYear: MembersByYear = {
       specialties: ["Web Dev", "Operations", "Full Stack"]
     },
     {
-      name: "Taizo",
+      name: "Taizo Rashid",
       role: "Program",
       team: "Development",
       description: "Designs and runs technical programs, workshops, and build-focused events.",
@@ -185,35 +186,35 @@ export const membersByYear: MembersByYear = {
     },
     // OPERATIONS
     {
-      name: "Dev",
+      name: "Dev Gajjar",
       role: "Finance",
       team: "Operations",
       description: "Manages all money-related operations and financial integrity.",
       specialties: ["Budgeting", "Finance", "Records"]
     },
     {
-      name: "Ishan",
+      name: "Ishan Patel",
       role: "Finance",
       team: "Operations",
       description: "Manages all money-related operations and financial integrity.",
       specialties: ["Budgeting", "Finance", "Records"]
     },
     {
-      name: "Temi",
+      name: "Temi Alajogun",
       role: "Event Management",
       team: "Operations",
       description: "Handles logistics and execution of events. Makes sure rooms, check-ins, and systems are planned.",
       specialties: ["Events", "Logistics", "Planning"]
     },
     {
-      name: "Eda",
+      name: "Eda Mai",
       role: "Logistics",
       team: "Operations",
       description: "Supports physical and operational needs for events and programs.",
       specialties: ["Setup", "Supplies", "Execution"]
     },
     {
-      name: "Phillip",
+      name: "Phillip Sanchez-Parra",
       role: "Logistics",
       team: "Operations",
       description: "Supports physical and operational needs for events and programs.",
