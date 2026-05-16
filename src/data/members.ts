@@ -145,7 +145,7 @@ export const membersByYear: MembersByYear = {
     // GROWTH — OUTREACH TEAM
     {
       name: "Carter Tierney",
-      role: "Outreach",
+      role: "Director of Outreach",
       team: "Growth · Outreach",
       description: "Drives student, org, and external outreach to grow attendance, partnerships, and visibility.",
       linkedin: "carter-tierney",
@@ -162,7 +162,7 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Jamal Ford",
-      role: "Community",
+      role: "Director of Community",
       team: "Growth · Content",
       description: "Maintains internal health of the community. Ensures members feel welcomed, heard, and retained.",
       specialties: ["Community", "Discord", "Engagement"]
@@ -199,13 +199,17 @@ export const membersByYear: MembersByYear = {
     // GROWTH — GENERAL
     {
       name: "Abrar Sarwar",
-      role: "Growth",
+      role: "Director of Analytics",
       team: "Growth",
+      description: "Manages growth metrics and tracks performance across progsu's channels and initiatives.",
+      specialties: ["Analytics", "Content", "Strategy"]
     },
     {
       name: "Nkano Bisong",
-      role: "Growth",
+      role: "Director of Content",
       team: "Growth",
+      description: "Leads content creation and runs progsu's podcast.",
+      specialties: ["Content", "Podcast", "Film"]
     },
 
     // GENERAL
@@ -256,7 +260,7 @@ export const membersByYear: MembersByYear = {
     },
     {
       name: "Eda Mai",
-      role: "Logistics",
+      role: "Director of Logistics",
       team: "Operations",
       description: "Supports physical and operational needs for events and programs.",
       specialties: ["Setup", "Supplies", "Execution"]
