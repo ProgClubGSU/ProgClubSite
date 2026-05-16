@@ -133,7 +133,7 @@ export const membersByYear: MembersByYear = {
       specialties: ["Operations", "Logistics", "Finance"]
     },
     {
-      name: "Charan",
+      name: "Charan Peeriga",
       role: "CMO",
       team: "Growth · Content",
       description: "Owns progsu's visual identity and design quality. Ensures everything looks intentional, clean, and on-brand.",
@@ -158,7 +158,7 @@ export const membersByYear: MembersByYear = {
       specialties: ["Social Media", "Content", "Storytelling"]
     },
     {
-      name: "Jamal",
+      name: "Jamal Ford",
       role: "Community",
       team: "Growth · Content",
       description: "Maintains internal health of the community. Ensures members feel welcomed, heard, and retained.",
@@ -168,7 +168,7 @@ export const membersByYear: MembersByYear = {
     // DEVELOPMENT
     {
       name: "John Sang",
-      role: "Tech",
+      role: "VP of Tech",
       major: "CS",
       team: "Development",
       description: "Leads technical team operations for progsu. Builds learning experiences, skill development pipelines, and maintains the club's infrastructure.",
