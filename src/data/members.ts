@@ -130,6 +130,7 @@ export const membersByYear: MembersByYear = {
       role: "COO",
       team: "Operations",
       description: "Keeps progsu running smoothly behind the scenes. Owns execution, finances, logistics, and systems.",
+      linkedin: "jaredberesford",
       specialties: ["Operations", "Logistics", "Finance"]
     },
     {
@@ -137,6 +138,7 @@ export const membersByYear: MembersByYear = {
       role: "CMO",
       team: "Growth · Content",
       description: "Owns progsu's visual identity and design quality. Ensures everything looks intentional, clean, and on-brand.",
+      linkedin: "cpeeriga",
       specialties: ["Visual Design", "Branding", "Graphics"]
     },
 
@@ -172,10 +174,20 @@ export const membersByYear: MembersByYear = {
       role: "VP of Tech",
       major: "CS",
       team: "Development",
-      description: "Leads technical team operations for progsu. Builds learning experiences, skill development pipelines, and maintains the club's infrastructure.",
+      description: "Leads technical team operations for progsu.",
       github: "JohnSang16",
       linkedin: "johnsang-/",
       specialties: ["Web Dev", "Operations", "Full Stack"]
+    },
+    {
+      name: "Ibe Mohammed Ali",
+      role: "Tech",
+      major: "Math + CS",
+      team: "Development",
+      description: "Building and maintaining progsu's github and projects, mentoring devs, and making sure things break less than my sleep schedule.",
+      github: "ibeeeees",
+      linkedin: "ibrahim-m-80947622a/",
+      specialties: ["Coding", "Sports", "Trading", "Cooking", "Playing the Game"]
     },
     {
       name: "Taizo Rashid",
@@ -184,6 +196,42 @@ export const membersByYear: MembersByYear = {
       description: "Designs and runs technical programs, workshops, and build-focused events.",
       specialties: ["Events", "Workshops", "Planning"]
     },
+    // GROWTH — GENERAL
+    {
+      name: "Abrar Sarwar",
+      role: "Growth",
+      team: "Growth",
+    },
+    {
+      name: "Nkano Bisong",
+      role: "Growth",
+      team: "Growth",
+    },
+
+    // GENERAL
+    {
+      name: "Brian Johnson",
+      role: "Member",
+      major: "CS (M.S.)",
+      github: "brianjohnson360",
+      linkedin: "brianjohnson360",
+      specialties: ["Making music", "Cooking", "Learning spanish", "Mobile development and AI/ML"]
+    },
+    {
+      name: "Nina Kilidzhiyska",
+      role: "Member",
+      major: "CS",
+      specialties: ["Web dev", "Music", "Dancing", "Reading"]
+    },
+    {
+      name: "Poorav Rawat",
+      role: "Member",
+      major: "CS",
+      github: "pooravrawat1",
+      linkedin: "pooravrawat",
+      specialties: ["Basketball", "Soccer", "Music", "Thrifting"]
+    },
+
     // OPERATIONS
     {
       name: "Dev Gajjar",
@@ -578,4 +626,36 @@ export const membersByYear: MembersByYear = {
       specialties: ["Server Administration", "Community Management", "Discord Moderation"]
     }
   ]
-}; 
+};
+
+/**
+ * =============================================================================
+ * PENDING / UNRELEASED MEMBERS
+ * =============================================================================
+ *
+ * Members added here are NOT shown on the website yet.
+ * To make a semester public, move it into membersByYear above.
+ *
+ * ⏳ Fall 2026 — goes live when the semester starts
+ * =============================================================================
+ */
+export const pendingMembersByYear: MembersByYear = {
+  "Fall 2026": [
+    // DEVELOPMENT
+    {
+      name: "Luigi Fernandez",
+      role: "Tech",
+      team: "Development",
+      linkedin: "luigi-fernandez-502647333",
+      specialties: ["Education", "Web Dev"]
+    },
+    {
+      name: "Colby Threlkeld",
+      role: "Tech",
+      team: "Development",
+      linkedin: "colby-threlkeld",
+      specialties: ["Frontend"]
+    },
+
+  ]
+};
