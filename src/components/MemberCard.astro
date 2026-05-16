@@ -44,7 +44,7 @@
  */
 
 import type { Member } from '@/data/members';
-import { isPresidentRole, isFoundingPresident, getPlaceholderDescription } from '@/utils/memberUtils';
+import { isPresidentRole, isFoundingPresident, isCsuiteRole, getPlaceholderDescription } from '@/utils/memberUtils';
 
 interface Props {
   /** The member data object containing all information to display */
@@ -60,9 +60,11 @@ const { member, year } = Astro.props;
 <div class={`group relative overflow-hidden rounded-2xl liquid-glass shadow-xl transition-all duration-700 ease-out hover:scale-[1.025] hover:translate-y-[-6px] ${
     isFoundingPresident(member.role)
       ? 'bg-gradient-to-br from-violet-500/[0.18] via-purple-400/[0.12] to-pink-400/[0.10] border-2 border-violet-400/50 hover:border-violet-300/70 hover:shadow-violet-400/40 founding-president-glow'
-      : isPresidentRole(member.role) 
-        ? 'bg-gradient-to-br from-amber-500/[0.15] via-yellow-400/[0.10] to-amber-400/[0.08] border-2 border-amber-400/40 hover:border-amber-300/60 hover:shadow-amber-400/30 president-glow' 
-        : 'bg-gradient-to-br from-white/[0.12] via-white/[0.08] to-white/[0.04] border border-white/20 hover:border-white/40 hover:shadow-purple-500/20'
+      : isPresidentRole(member.role)
+        ? 'bg-gradient-to-br from-amber-500/[0.15] via-yellow-400/[0.10] to-amber-400/[0.08] border-2 border-amber-400/40 hover:border-amber-300/60 hover:shadow-amber-400/30 president-glow'
+        : isCsuiteRole(member.role)
+          ? 'bg-gradient-to-br from-indigo-500/[0.14] via-blue-400/[0.09] to-indigo-400/[0.07] border border-indigo-400/40 hover:border-indigo-300/60 hover:shadow-indigo-400/25 csuite-glow'
+          : 'bg-gradient-to-br from-white/[0.12] via-white/[0.08] to-white/[0.04] border border-white/20 hover:border-white/40 hover:shadow-purple-500/20'
   }`}>
   
     <!-- Liquid Glass Background Effects -->
@@ -71,7 +73,9 @@ const { member, year } = Astro.props;
         ? 'bg-gradient-to-br from-violet-400/18 via-purple-400/10 to-pink-400/15'
         : isPresidentRole(member.role)
           ? 'bg-gradient-to-br from-amber-400/15 via-yellow-400/8 to-amber-300/12'
-          : 'bg-gradient-to-br from-purple-400/10 via-blue-500/5 to-cyan-400/10'
+          : isCsuiteRole(member.role)
+            ? 'bg-gradient-to-br from-indigo-400/12 via-blue-400/7 to-indigo-300/10'
+            : 'bg-gradient-to-br from-purple-400/10 via-blue-500/5 to-cyan-400/10'
     }`}></div>
     
     <!-- Floating Liquid Bubbles -->
@@ -80,14 +84,18 @@ const { member, year } = Astro.props;
         ? 'bg-gradient-to-br from-violet-400/30 to-pink-500/30'
         : isPresidentRole(member.role)
           ? 'bg-gradient-to-br from-amber-400/25 to-yellow-500/25'
-          : 'bg-gradient-to-br from-purple-400/20 to-blue-500/20'
+          : isCsuiteRole(member.role)
+            ? 'bg-gradient-to-br from-indigo-400/20 to-blue-500/20'
+            : 'bg-gradient-to-br from-purple-400/20 to-blue-500/20'
     }`}></div>
     <div class={`absolute bottom-8 left-6 w-14 h-14 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-700 liquid-float ${
       isFoundingPresident(member.role)
         ? 'bg-gradient-to-br from-violet-400/25 to-purple-400/25'
         : isPresidentRole(member.role)
           ? 'bg-gradient-to-br from-amber-400/20 to-yellow-400/20'
-          : 'bg-gradient-to-br from-cyan-400/15 to-purple-500/15'
+          : isCsuiteRole(member.role)
+            ? 'bg-gradient-to-br from-indigo-400/15 to-blue-400/15'
+            : 'bg-gradient-to-br from-cyan-400/15 to-purple-500/15'
     }`} style="animation-delay: 2s;"></div>
 
   {/* Ultra Special Sparkle Glares for Founding President - Jenny Liu gets EXTRA sparkles! */}
@@ -169,7 +177,9 @@ const { member, year } = Astro.props;
         ? 'bg-gradient-to-r from-violet-500/50 to-pink-500/50 border border-violet-400/60 hover:shadow-violet-500/50'
         : isPresidentRole(member.role)
           ? 'bg-gradient-to-r from-amber-500/40 to-yellow-500/40 border border-amber-400/50 hover:shadow-amber-500/40'
-          : 'bg-gradient-to-r from-purple-500/30 to-blue-500/30 border border-purple-400/40 hover:shadow-purple-500/30'
+          : isCsuiteRole(member.role)
+            ? 'bg-gradient-to-r from-indigo-500/40 to-blue-500/35 border border-indigo-400/50 hover:shadow-indigo-500/35'
+            : 'bg-gradient-to-r from-purple-500/30 to-blue-500/30 border border-purple-400/40 hover:shadow-purple-500/30'
     }`}>
       <div class="flex items-center gap-1.5">
         {isFoundingPresident(member.role) ? (
@@ -182,11 +192,13 @@ const { member, year } = Astro.props;
           </svg>
         ) : null)}
         <span class={`text-xs font-medium uppercase tracking-wide ${
-          isFoundingPresident(member.role) 
-            ? 'text-violet-200' 
-            : isPresidentRole(member.role) 
-              ? 'text-amber-200' 
-              : 'text-white/90'
+          isFoundingPresident(member.role)
+            ? 'text-violet-200'
+            : isPresidentRole(member.role)
+              ? 'text-amber-200'
+              : isCsuiteRole(member.role)
+                ? 'text-indigo-200'
+                : 'text-white/90'
         }`}>
           {member.role}
         </span>
@@ -208,7 +220,9 @@ const { member, year } = Astro.props;
       ? 'bg-gradient-to-bl from-violet-300/[0.22] to-transparent'
       : isPresidentRole(member.role)
         ? 'bg-gradient-to-bl from-amber-300/[0.18] to-transparent'
-        : 'bg-gradient-to-br from-white/[0.15] to-transparent'
+        : isCsuiteRole(member.role)
+          ? 'bg-gradient-to-bl from-indigo-300/[0.16] to-transparent'
+          : 'bg-gradient-to-br from-white/[0.15] to-transparent'
   }`}></div>
 
   <!-- Member Info -->
@@ -220,7 +234,9 @@ const { member, year } = Astro.props;
           ? 'text-violet-100 group-hover:text-violet-50'
           : isPresidentRole(member.role)
             ? 'text-amber-100 group-hover:text-amber-50'
-            : 'text-white group-hover:text-cyan-300'
+            : isCsuiteRole(member.role)
+              ? 'text-indigo-100 group-hover:text-indigo-50'
+              : 'text-white group-hover:text-cyan-300'
       }`}>
         {member.name}
       </h3>
@@ -252,11 +268,13 @@ const { member, year } = Astro.props;
     {member.specialties && member.specialties.length > 0 ? (
       <div class="mb-4">
         <p class={`text-[10px] uppercase tracking-wide mb-2 font-medium ${
-          isFoundingPresident(member.role) 
-            ? 'text-violet-300' 
-            : isPresidentRole(member.role) 
-              ? 'text-amber-300' 
-              : 'text-cyan-300'
+          isFoundingPresident(member.role)
+            ? 'text-violet-300'
+            : isPresidentRole(member.role)
+              ? 'text-amber-300'
+              : isCsuiteRole(member.role)
+                ? 'text-indigo-300'
+                : 'text-cyan-300'
         }`}>Specialties</p>
         <div class="flex flex-wrap gap-1.5">
           {member.specialties.map((specialty) => (
@@ -265,7 +283,9 @@ const { member, year } = Astro.props;
                 ? 'bg-gradient-to-r from-violet-400/20 to-pink-400/20 hover:from-violet-400/30 hover:to-pink-400/30'
                 : isPresidentRole(member.role)
                   ? 'bg-gradient-to-r from-amber-400/20 to-yellow-400/20 hover:from-amber-400/30 hover:to-yellow-400/30'
-                  : 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 hover:from-purple-500/30 hover:to-blue-500/30'
+                  : isCsuiteRole(member.role)
+                    ? 'bg-gradient-to-r from-indigo-400/20 to-blue-400/20 hover:from-indigo-400/30 hover:to-blue-400/30'
+                    : 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 hover:from-purple-500/30 hover:to-blue-500/30'
             }`}>
               {specialty}
             </span>
@@ -275,11 +295,13 @@ const { member, year } = Astro.props;
     ) : (
       <div class="mb-4">
         <p class={`text-[10px] uppercase tracking-wide mb-2 font-medium ${
-          isFoundingPresident(member.role) 
-            ? 'text-violet-300/60' 
-            : isPresidentRole(member.role) 
-              ? 'text-amber-300/60' 
-              : 'text-cyan-300/60'
+          isFoundingPresident(member.role)
+            ? 'text-violet-300/60'
+            : isPresidentRole(member.role)
+              ? 'text-amber-300/60'
+              : isCsuiteRole(member.role)
+                ? 'text-indigo-300/60'
+                : 'text-cyan-300/60'
         }`}>Specialties</p>
         <div class="flex flex-wrap gap-1.5">
           <span class={`px-2 py-1 text-[10px] rounded-full border border-white/10 text-white/40 backdrop-blur-sm transition-all duration-300 shadow italic ${
@@ -287,7 +309,9 @@ const { member, year } = Astro.props;
               ? 'bg-gradient-to-r from-violet-400/10 to-pink-400/10'
               : isPresidentRole(member.role)
                 ? 'bg-gradient-to-r from-amber-400/10 to-yellow-400/10'
-                : 'bg-gradient-to-r from-purple-500/10 to-blue-500/10'
+                : isCsuiteRole(member.role)
+                  ? 'bg-gradient-to-r from-indigo-400/10 to-blue-400/10'
+                  : 'bg-gradient-to-r from-purple-500/10 to-blue-500/10'
           }`}>
             Information coming soon
           </span>
@@ -349,16 +373,20 @@ const { member, year } = Astro.props;
       ? 'bg-gradient-to-t from-violet-400/18 via-purple-400/10 to-transparent'
       : isPresidentRole(member.role)
         ? 'bg-gradient-to-t from-amber-400/15 via-yellow-400/8 to-transparent'
-        : 'bg-gradient-to-t from-purple-500/10 via-blue-500/5 to-transparent'
+        : isCsuiteRole(member.role)
+          ? 'bg-gradient-to-t from-indigo-400/12 via-blue-400/6 to-transparent'
+          : 'bg-gradient-to-t from-purple-500/10 via-blue-500/5 to-transparent'
   }`}></div>
-  
+
   <!-- Ambient Light Effect -->
   <div class={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl ${
     isFoundingPresident(member.role)
       ? 'bg-gradient-to-br from-violet-400/10 via-transparent to-pink-300/10'
       : isPresidentRole(member.role)
         ? 'bg-gradient-to-br from-amber-400/8 via-transparent to-amber-300/8'
-        : 'bg-gradient-to-br from-cyan-400/5 via-transparent to-purple-500/5'
+        : isCsuiteRole(member.role)
+          ? 'bg-gradient-to-br from-indigo-400/6 via-transparent to-blue-300/6'
+          : 'bg-gradient-to-br from-cyan-400/5 via-transparent to-purple-500/5'
   }`}></div>
 </div>
 
@@ -466,6 +494,34 @@ const { member, year } = Astro.props;
       opacity: 0.16;
       transform: scale(1.005);
     }
+  }
+
+  /* C-Suite Indigo Glow */
+  .csuite-glow {
+    position: relative;
+    transform: translateZ(0);
+    contain: layout style paint;
+  }
+
+  .csuite-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(45deg, #6366f1, #818cf8, #60a5fa, #6366f1);
+    border-radius: inherit;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.7s ease;
+    animation: csuitePulse 5s infinite ease-in-out;
+  }
+
+  .csuite-glow:hover::before {
+    opacity: 0.25;
+  }
+
+  @keyframes csuitePulse {
+    0%, 100% { opacity: 0.05; transform: scale(1); }
+    50% { opacity: 0.10; transform: scale(1.003); }
   }
 
   /* Founding President Ultra Special Effects - Performance Optimized */

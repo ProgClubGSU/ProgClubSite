@@ -69,6 +69,15 @@ export function isFoundingPresident(role: string): boolean {
 }
 
 /**
+ * Determines if a member's role is a C-suite executive (CTO, CMO, COO)
+ * Gets a distinct indigo/blue color treatment — less dramatic than presidents.
+ */
+export function isCsuiteRole(role: string): boolean {
+  const csuite = ['cto', 'cmo', 'coo'];
+  return csuite.includes(role.toLowerCase());
+}
+
+/**
  * Determines the priority order for sorting members within each academic year
  * 
  * 📊 SORTING RULES:
@@ -117,6 +126,7 @@ export function getRolePriority(role: string): number {
     "Vice President": 4,
     "Founding VP": 4,
     "Tech VP": 4,
+    "VP of Tech": 4,
     "Ops VP": 4,
     "Marketing VP": 4,
     "Startup VP": 4,
@@ -308,6 +318,7 @@ export function shouldGetFullAnimatedCard(role: string): boolean {
     "CMO",
     "CTO",
     "COO",
+    "VP of Tech",
     "Academic Advisor",
     "Founding Academic Advisor"
   ];
