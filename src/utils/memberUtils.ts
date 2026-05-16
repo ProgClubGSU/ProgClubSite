@@ -139,28 +139,28 @@ export function getRolePriority(role: string): number {
     "Treasurer": 7,
 
     // === DIRECTOR/LEAD ROLES ===
-    "Director of Events": 8,
-    "Director": 8,
-    "Outreach Director": 8,
-    "Director of Analytics": 8,
-    "Director of Content": 8,
-    "Director of Logistics": 8,
-    "Director of Outreach": 8,
-    "Director of Community": 8,
-    "Event Lead": 8,
+    "Director of Events": 7,
+    "Director": 7,
+    "Outreach Director": 7,
+    "Director of Analytics": 7,
+    "Director of Content": 7,
+    "Director of Logistics": 7,
+    "Director of Outreach": 7,
+    "Director of Community": 7,
+    "Event Lead": 7,
     "VP": 4,
 
     // === REGULAR TEAM MEMBERS ===
-    "Outreach": 9,
-    "Design": 9,
-    "Content": 9,
-    "Community": 9,
-    "Growth": 9,
-    "Tech": 9,
-    "Program": 9,
-    "Finance": 9,
-    "Event Management": 9,
-    "Logistics": 9,
+    "Outreach": 8,
+    "Design": 8,
+    "Content": 8,
+    "Community": 8,
+    "Growth": 8,
+    "Tech": 8,
+    "Program": 8,
+    "Finance": 8,
+    "Event Management": 8,
+    "Logistics": 8,
 
     // === EXECUTIVE & GENERAL ROLES ===
     "Exec": 9,
@@ -196,11 +196,7 @@ export function sortMembersByRole(membersByYear: MembersByYear): MembersByYear {
     sorted[year] = [...members].sort((a, b) => {
       const priorityA = getRolePriority(a.role);
       const priorityB = getRolePriority(b.role);
-      if (priorityA !== priorityB) return priorityA - priorityB;
-      // Secondary sort: group by team so same-priority roles stay together
-      const teamA = a.team || '';
-      const teamB = b.team || '';
-      return teamA.localeCompare(teamB);
+      return priorityA - priorityB;
     });
   }
   
