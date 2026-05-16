@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { membersByYear } from "@/data/members";
-import { sortMembersByRole, separateMembersByDisplayType, isPresidentRole, isFoundingPresident } from "@/utils/memberUtils";
+import { sortMembersByRole, separateMembersByDisplayType, isPresidentRole, isFoundingPresident, isCsuiteRole } from "@/utils/memberUtils";
 import { DISCORD_LINK, GOOGLE_FORM_URL } from "@/consts";
 
 const sortedMembers = sortMembersByRole(membersByYear);
@@ -58,12 +58,13 @@ const yearKeys = Object.keys(sortedMembers);
         >
           <div class="max-w-5xl mx-auto float-in">
 
-            {/* Leadership + Core */}
+            {/* Members grid */}
             {allDisplayMembers.length > 0 && (
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 mb-20">
                 {allDisplayMembers.map((member) => {
                   const isPresident = isPresidentRole(member.role);
                   const isFounding = isFoundingPresident(member.role);
+                  const isCsuite = isCsuiteRole(member.role);
                   const memberData = encodeURIComponent(JSON.stringify(member));
                   return (
                     <button
@@ -71,14 +72,15 @@ const yearKeys = Object.keys(sortedMembers);
                       data-member={memberData}
                       onclick="openMemberModal(this)"
                     >
-                      {/* Initials circle */}
                       <div class:list={[
                         "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-lg font-bold transition-all duration-300 group-hover/member:scale-110 group-hover/member:shadow-lg",
                         isFounding
                           ? "bg-purple-500/20 text-purple-300 group-hover/member:bg-purple-500/40 group-hover/member:shadow-purple-500/30"
                           : isPresident
                             ? "bg-amber-500/20 text-amber-300 group-hover/member:bg-amber-500/40 group-hover/member:shadow-amber-500/30"
-                            : "bg-white/5 text-white/60 group-hover/member:bg-white/15 group-hover/member:shadow-white/10",
+                            : isCsuite
+                              ? "bg-indigo-500/20 text-indigo-300 group-hover/member:bg-indigo-500/35 group-hover/member:shadow-indigo-500/25"
+                              : "bg-white/5 text-white/60 group-hover/member:bg-white/15 group-hover/member:shadow-white/10",
                       ]}>
                         {member.name.split(" ").map((n: string) => n[0]).join("")}
                       </div>
@@ -93,7 +95,9 @@ const yearKeys = Object.keys(sortedMembers);
                             ? "text-purple-400/70 group-hover/member:text-purple-400"
                             : isPresident
                               ? "text-amber-400/70 group-hover/member:text-amber-400"
-                              : "text-white/45 group-hover/member:text-white/50",
+                              : isCsuite
+                                ? "text-indigo-400/70 group-hover/member:text-indigo-400"
+                                : "text-white/45 group-hover/member:text-white/50",
                         ]} style="font-family: 'Helvetica Neue', sans-serif;">
                           {member.role.toLowerCase()}{member.team ? ` · ${member.team.toLowerCase()}` : ""}
                         </p>
