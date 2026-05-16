@@ -96,7 +96,7 @@ export const membersByYear: MembersByYear = {
   // SPRING 2026
   // =============================================================================
   "Spring 2026": [
-    // EXECUTIVE
+    // EXECUTIVE (priority 1 & C-suite)
     {
       name: "Joey Zhang",
       role: "President",
@@ -136,39 +136,13 @@ export const membersByYear: MembersByYear = {
     {
       name: "Charan Peeriga",
       role: "CMO",
-      team: "Growth · Content",
+      team: "Growth",
       description: "Owns progsu's visual identity and design quality. Ensures everything looks intentional, clean, and on-brand.",
       linkedin: "cpeeriga",
       specialties: ["Visual Design", "Branding", "Graphics"]
     },
 
-    // GROWTH — OUTREACH TEAM
-    {
-      name: "Carter Tierney",
-      role: "Director of Outreach",
-      team: "Growth · Outreach",
-      description: "Drives student, org, and external outreach to grow attendance, partnerships, and visibility.",
-      linkedin: "carter-tierney",
-      specialties: ["Outreach", "Networking", "Partnerships"]
-    },
-
-    // GROWTH — CONTENT TEAM
-    {
-      name: "Fred Dai",
-      role: "Content",
-      team: "Growth · Content",
-      description: "Creates & distributes content that captures progsu's energy, events, and wins.",
-      specialties: ["Social Media", "Content", "Storytelling"]
-    },
-    {
-      name: "Jamal Ford",
-      role: "Director of Community",
-      team: "Growth · Content",
-      description: "Maintains internal health of the community. Ensures members feel welcomed, heard, and retained.",
-      specialties: ["Community", "Discord", "Engagement"]
-    },
-
-    // DEVELOPMENT
+    // VP
     {
       name: "John Sang",
       role: "VP of Tech",
@@ -178,6 +152,53 @@ export const membersByYear: MembersByYear = {
       github: "JohnSang16",
       linkedin: "johnsang-/",
       specialties: ["Web Dev", "Operations", "Full Stack"]
+    },
+
+    // DIRECTORS (priority 7)
+    {
+      name: "Carter Tierney",
+      role: "Director of Outreach",
+      team: "Growth",
+      description: "Drives student, org, and external outreach to grow attendance, partnerships, and visibility.",
+      linkedin: "carter-tierney",
+      specialties: ["Outreach", "Networking", "Partnerships"]
+    },
+    {
+      name: "Jamal Ford",
+      role: "Director of Community",
+      team: "Growth",
+      description: "Maintains internal health of the community. Ensures members feel welcomed, heard, and retained.",
+      specialties: ["Community", "Discord", "Engagement"]
+    },
+    {
+      name: "Abrar Sarwar",
+      role: "Director of Analytics",
+      team: "Growth",
+      description: "Manages growth metrics and tracks performance across progsu's channels and initiatives.",
+      specialties: ["Analytics", "Content", "Strategy"]
+    },
+    {
+      name: "Nkano Bisong",
+      role: "Director of Content",
+      team: "Growth",
+      description: "Leads content creation and runs progsu's podcast.",
+      specialties: ["Content", "Podcast", "Film"]
+    },
+    {
+      name: "Eda Mai",
+      role: "Director of Logistics",
+      team: "Operations",
+      description: "Supports physical and operational needs for events and programs.",
+      specialties: ["Setup", "Supplies", "Execution"]
+    },
+
+    // TEAM MEMBERS (priority 8)
+    {
+      name: "Fred Dai",
+      role: "Content",
+      team: "Growth",
+      description: "Creates & distributes content that captures progsu's energy, events, and wins.",
+      specialties: ["Social Media", "Content", "Storytelling"]
     },
     {
       name: "Ibe Mohammed Ali",
@@ -196,23 +217,37 @@ export const membersByYear: MembersByYear = {
       description: "Designs and runs technical programs, workshops, and build-focused events.",
       specialties: ["Events", "Workshops", "Planning"]
     },
-    // GROWTH — GENERAL
     {
-      name: "Abrar Sarwar",
-      role: "Director of Analytics",
-      team: "Growth",
-      description: "Manages growth metrics and tracks performance across progsu's channels and initiatives.",
-      specialties: ["Analytics", "Content", "Strategy"]
+      name: "Dev Gajjar",
+      role: "Finance",
+      team: "Operations",
+      description: "Manages all money-related operations and financial integrity.",
+      specialties: ["Budgeting", "Finance", "Records"]
     },
     {
-      name: "Nkano Bisong",
-      role: "Director of Content",
-      team: "Growth",
-      description: "Leads content creation and runs progsu's podcast.",
-      specialties: ["Content", "Podcast", "Film"]
+      name: "Ishan Patel",
+      role: "Finance",
+      team: "Operations",
+      description: "Manages all money-related operations and financial integrity.",
+      specialties: ["Budgeting", "Finance", "Records"]
+    },
+    {
+      name: "Temi Alajogun",
+      role: "Event Management",
+      team: "Operations",
+      description: "Handles logistics and execution of events. Makes sure rooms, check-ins, and systems are planned.",
+      linkedin: "temialajogun",
+      specialties: ["Events", "Logistics", "Planning"]
+    },
+    {
+      name: "Phillip Sanchez-Parra",
+      role: "Logistics",
+      team: "Operations",
+      description: "Supports physical and operational needs for events and programs.",
+      specialties: ["Setup", "Supplies", "Execution"]
     },
 
-    // GENERAL
+    // GENERAL MEMBERS (priority 11)
     {
       name: "Brian Johnson",
       role: "Member",
@@ -234,43 +269,6 @@ export const membersByYear: MembersByYear = {
       github: "pooravrawat1",
       linkedin: "pooravrawat",
       specialties: ["Basketball", "Soccer", "Music", "Thrifting"]
-    },
-
-    // OPERATIONS
-    {
-      name: "Dev Gajjar",
-      role: "Finance",
-      team: "Operations",
-      description: "Manages all money-related operations and financial integrity.",
-      specialties: ["Budgeting", "Finance", "Records"]
-    },
-    {
-      name: "Ishan Patel",
-      role: "Finance",
-      team: "Operations",
-      description: "Manages all money-related operations and financial integrity.",
-      specialties: ["Budgeting", "Finance", "Records"]
-    },
-    {
-      name: "Temi Alajogun",
-      role: "Event Management",
-      team: "Operations",
-      description: "Handles logistics and execution of events. Makes sure rooms, check-ins, and systems are planned.",
-      specialties: ["Events", "Logistics", "Planning"]
-    },
-    {
-      name: "Eda Mai",
-      role: "Director of Logistics",
-      team: "Operations",
-      description: "Supports physical and operational needs for events and programs.",
-      specialties: ["Setup", "Supplies", "Execution"]
-    },
-    {
-      name: "Phillip Sanchez-Parra",
-      role: "Logistics",
-      team: "Operations",
-      description: "Supports physical and operational needs for events and programs.",
-      specialties: ["Setup", "Supplies", "Execution"]
     },
   ],
 
