@@ -151,13 +151,6 @@ export const membersByYear: MembersByYear = {
 
     // GROWTH — CONTENT TEAM
     {
-      name: "Charan",
-      role: "CMO",
-      team: "Growth · Content",
-      description: "Owns the visual identity and design quality for progsu. Ensures everything looks intentional, clean, and on-brand.",
-      specialties: ["Visual Design", "Branding", "Graphics"]
-    },
-    {
       name: "Fred",
       role: "Content",
       team: "Growth · Content",
