@@ -399,7 +399,7 @@ export const membersByYear: MembersByYear = {
       specialties: ["Jump-roping", "Video games", "Anime","Python","Cybersecurity"]
     },
     {
-      name: "Arturo",
+      name: "Arturo Quiroz",
       role: "Marketing - Media",
       major: "CS",
       team: "Marketing",

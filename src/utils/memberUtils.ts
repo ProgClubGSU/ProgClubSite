@@ -127,6 +127,7 @@ export function getRolePriority(role: string): number {
     "Founding VP": 4,
     "Tech VP": 4,
     "VP of Tech": 4,
+    "VP": 4,
     "Ops VP": 4,
     "Marketing VP": 4,
     "Startup VP": 4,
@@ -136,7 +137,7 @@ export function getRolePriority(role: string): number {
     "Secretary": 6,
     "Secretary/Librarian": 6,
     "Librarian": 6,
-    "Treasurer": 7,
+    "Treasurer": 6,
 
     // === DIRECTOR/LEAD ROLES ===
     "Director of Events": 7,
@@ -148,7 +149,6 @@ export function getRolePriority(role: string): number {
     "Director of Outreach": 7,
     "Director of Community": 7,
     "Event Lead": 7,
-    "VP": 4,
 
     // === REGULAR TEAM MEMBERS ===
     "Outreach": 8,
@@ -270,7 +270,6 @@ export function separateMembersByDisplayType(members: Member[]): {
  * 
  * @param role - The member's role string
  * @returns Appropriate placeholder description text
- * c
  * @example
  * getPlaceholderDescription("Founding President")
  * // → "Founding President of progsu. More details about their incredible journey coming soon..."
