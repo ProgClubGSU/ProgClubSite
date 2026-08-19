@@ -1,189 +1,202 @@
 ---
-import { QUOTE, SITE_TITLE } from "@/consts";
-
-const KEYS = [
-  { letter: "p", dur: "4.2s", delay: "-0s",   depth: 0.6 },
-  { letter: "r", dur: "5.1s", delay: "-1.3s", depth: 1 },
-  { letter: "o", dur: "3.7s", delay: "-2.1s", depth: 0.75 },
-  { letter: "g", dur: "5.6s", delay: "-0.7s", depth: 1.2 },
-  { letter: "s", dur: "4.6s", delay: "-2.8s", depth: 0.65 },
-  { letter: "u", dur: "4.0s", delay: "-1.8s", depth: 0.9 },
+// Background marquee — full approved pool of wide event/crowd photos.
+// Every "progsu" word cycles to the next image, so no two adjacent words match.
+// Each row starts at a different offset into the pool (and alternates scroll
+// direction) so rows don't visually line up with each other either.
+const POOL = [
+  "/hero/1.png",
+  "/hero/2.png",
+  "/hero/3.png",
+  "/hero/4.png",
+  "/hero/5.png",
+  "/hero/6.png",
+  "/hero/7.png",
+  "/hero/8.png",
+  "/hero/9.png",
+  "/hero/10.png",
+  "/hero/11.png",
+  "/images/landing%20page/hacklanta.jpg",
+  "/images/landing%20page/progirls.jpg",
+  "/images/landing%20page/meet%20the%20team.jpg",
+  "/images/landing%20page/our%20mission.jpg",
+  "/images/progirls/8V4A9282.jpg",
+  "/images/progirls/8V4A9332.jpg",
+  "/images/progirls/8V4A9339.jpg",
+  "/images/progirls/8V4A9396%20(1).jpg",
 ];
+
+const ROWS = [
+  { direction: "left" },
+  { direction: "right" },
+  { direction: "left" },
+  { direction: "right" },
+];
+
+const REPEATS = 8; // "progsu" repeated per copy, doubled in markup for the seamless loop
+const ROW_OFFSET_STEP = 3; // stagger each row's starting point in the pool
 ---
 
 <section
-  class="min-h-screen !z-[20] relative w-full flex items-center justify-center overflow-hidden bg-black"
   id="hero"
+  class="relative w-full min-h-screen bg-black overflow-hidden flex items-center justify-center"
 >
-  <!-- Overlay content -->
-  <div class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-10 text-white gap-8">
-    <div class="text-center px-4 max-w-4xl">
-      <h1 class="sr-only">progsu</h1>
-
-      <div class="keys-row" id="hero-keys" aria-hidden="true">
-        {KEYS.map((key) => (
-          <div class="key" style={`--depth:${key.depth}`}>
-            <div class="key-float" style={`--dur:${key.dur};--delay:${key.delay}`}>
-              <img class="keycap" src={`/images/landing%20page/${key.letter}.png`} alt="" loading="eager" decoding="async" />
-            </div>
-          </div>
-        ))}
+  <!-- Background: rows of image-filled "progsu" text, scrolling on an infinite loop -->
+  <div class="absolute inset-0 flex flex-col justify-center overflow-hidden select-none pointer-events-none" aria-hidden="true">
+    {ROWS.map((row, rowIndex) => (
+      <div class:list={["marquee-row", row.direction === "left" ? "marquee-left" : "marquee-right"]}>
+        <div class="marquee-track">
+          {[0, 1].map(() => (
+            Array.from({ length: REPEATS }).map((_, w) => {
+              const img = POOL[(w + rowIndex * ROW_OFFSET_STEP) % POOL.length];
+              return <span class="marquee-word" style={`background-image: url('${img}');`}>progsu</span>;
+            })
+          ))}
+        </div>
       </div>
+    ))}
+  </div>
 
-      <div class="mt-5 text-xs md:text-sm tracking-widest uppercase opacity-70" style="font-family: 'Helvetica Neue', sans-serif;">
-        /prāg ˌes ˈyü/ &nbsp; <span class="italic">noun</span>
-      </div>
-      <p class="mt-3 text-sm md:text-base font-light opacity-60 leading-relaxed" style="font-family: 'Georgia', 'Times New Roman', serif;">
-        builders &amp; dreamers of atl. a new generation of talent.
-      </p>
-    </div>
-
-    <!-- CTA (kept off the blend layer so its colors render solid) -->
-    <div class="pointer-events-auto">
+  <!-- Foreground: real wordmark, tagline, CTA -->
+  <div class="relative z-10 flex flex-col items-center text-center px-4 pointer-events-none">
+    <h1 class="hero-wordmark text-white">progsu</h1>
+    <p class="hero-tagline text-white/70 mt-3 md:mt-4">
+      builders &amp; dreamers of atl. a new generation of talent.
+    </p>
+    <div class="mt-8 md:mt-10 pointer-events-auto">
       <a
         href="https://progsu-platform.vercel.app/"
         target="_blank"
         rel="noopener noreferrer"
-        class="spacebar-cta inline-block"
+        class="hero-cta"
       >
-        <img
-          src="/images/landing%20page/join-our-community-button.png"
-          alt="join our community"
-          class="spacebar-cta-img w-[clamp(10.5rem,23vw,16.5rem)]"
-          loading="eager"
-          decoding="async"
-        />
+        join our community
       </a>
     </div>
   </div>
-
 </section>
 
 <style>
-  :root {
-    --bob-height: 8px;
-    --speed: 1;
-    --rotate: 3.5deg;
-    --parallax: 22px;
+  .hero-wordmark {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(3rem, 15vw, 8rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
-  .keys-row {
+  .hero-tagline {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: clamp(0.85rem, 2.2vw, 1.15rem);
+    max-width: 32rem;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: #000;
+    background: #fff;
+    padding: 0.85em 2em;
+    border-radius: 999px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: transform 200ms ease, background-color 200ms ease, color 200ms ease;
+  }
+
+  .hero-cta:hover {
+    background: #571294;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .hero-cta:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
+
+  .hero-cta:active {
+    background: #571294;
+    color: #fff;
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+
+  /* ---------- background marquee ---------- */
+  .marquee-row {
+    --marquee-duration: 60s;
+    width: 100%;
+    overflow: hidden;
+    line-height: 1.2;
+    padding-bottom: 0.1em;
+  }
+
+  .marquee-track {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(0.35rem, 1.3vw, 0.75rem);
+    width: max-content;
   }
 
-  .key {
-    --depth: 1;
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
+  .marquee-word {
+    display: inline-block;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(3.75rem, 18.75vw, 10rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-right: 0.2em;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.22;
   }
 
-  .key-float {
-    animation:
-      bob calc(var(--dur) / var(--speed)) ease-in-out infinite,
-      wobble calc(var(--dur) * 1.35 / var(--speed)) ease-in-out infinite;
-    animation-delay: var(--delay), calc(var(--delay) * 0.6);
-    will-change: transform;
+  .marquee-left .marquee-track {
+    animation: marquee-scroll-left var(--marquee-duration) linear infinite;
   }
 
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(calc(var(--bob-height) * -1)); }
-  }
-  @keyframes wobble {
-    0%, 100% { transform: rotate(calc(var(--rotate) * -1)); }
-    50% { transform: rotate(var(--rotate)); }
+  .marquee-right .marquee-track {
+    animation: marquee-scroll-right var(--marquee-duration) linear infinite;
   }
 
-  .keycap {
-    width: clamp(2.35rem, 12vw, 7.5rem);
-    height: auto;
-    display: block;
-    pointer-events: none;
-    user-select: none;
+  @keyframes marquee-scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .key-float { animation: none !important; }
-    .key { transform: none !important; }
+  @keyframes marquee-scroll-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
   }
 
-  /* ---------- spacebar CTA press ---------- */
-  .spacebar-cta-img {
-    height: auto;
-    display: block;
-    user-select: none;
-    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.55));
-    transform: translateY(0) scaleY(1);
-    transform-origin: center bottom;
-    transition: transform 90ms ease-out, filter 90ms ease-out;
+  /* Fewer rows on small screens so it doesn't overwhelm the wordmark */
+  .marquee-row:nth-child(3),
+  .marquee-row:nth-child(4) {
+    display: none;
   }
-
-  .spacebar-cta:hover .spacebar-cta-img {
-    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.6));
+  @media (min-width: 640px) {
+    .marquee-row:nth-child(3) {
+      display: block;
+    }
   }
-
-  .spacebar-cta:active .spacebar-cta-img {
-    transform: translateY(5px) scaleY(0.94);
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
-    transition: transform 60ms ease-in, filter 60ms ease-in;
+  @media (min-width: 1024px) {
+    .marquee-row:nth-child(4) {
+      display: block;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .spacebar-cta-img { transition: none; }
+    .marquee-left .marquee-track,
+    .marquee-right .marquee-track {
+      animation-play-state: paused;
+    }
   }
 </style>
-
-<script>
-  let cleanupKeyParallax: (() => void) | null = null;
-
-  function initKeyParallax() {
-    if (cleanupKeyParallax) {
-      cleanupKeyParallax();
-      cleanupKeyParallax = null;
-    }
-
-    const keysEl = document.getElementById('hero-keys');
-    if (!keysEl) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const keys = Array.from(keysEl.querySelectorAll<HTMLElement>('.key'));
-    const root = document.documentElement;
-    let tx = 0, ty = 0, cx = 0, cy = 0, raf: number | null = null;
-
-    function onPointerMove(e: PointerEvent) {
-      tx = (e.clientX / window.innerWidth - 0.5) * 2;
-      ty = (e.clientY / window.innerHeight - 0.5) * 2;
-      if (!raf) raf = requestAnimationFrame(tick);
-    }
-
-    function tick() {
-      cx += (tx - cx) * 0.08;
-      cy += (ty - cy) * 0.08;
-      const max = parseFloat(getComputedStyle(root).getPropertyValue('--parallax')) || 22;
-      for (const k of keys) {
-        const depth = parseFloat(getComputedStyle(k).getPropertyValue('--depth')) || 1;
-        const x = -cx * max * depth;
-        const y = -cy * max * depth * 0.4;
-        k.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
-      }
-      raf = (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) ? requestAnimationFrame(tick) : null;
-    }
-
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-    cleanupKeyParallax = () => {
-      window.removeEventListener('pointermove', onPointerMove);
-      if (raf) cancelAnimationFrame(raf);
-      for (const k of keys) k.style.transform = '';
-    };
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initKeyParallax);
-  } else {
-    initKeyParallax();
-  }
-  document.addEventListener('astro:page-load', initKeyParallax);
-</script>
