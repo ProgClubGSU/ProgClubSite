@@ -1,23 +1,35 @@
 ---
 import { QUOTE, SITE_TITLE } from "@/consts";
-import HeroGallery from "@/components/HeroGallery";
+
+const KEYS = [
+  { letter: "p", dur: "4.2s", delay: "-0s",   depth: 0.6 },
+  { letter: "r", dur: "5.1s", delay: "-1.3s", depth: 1 },
+  { letter: "o", dur: "3.7s", delay: "-2.1s", depth: 0.75 },
+  { letter: "g", dur: "5.6s", delay: "-0.7s", depth: 1.2 },
+  { letter: "s", dur: "4.6s", delay: "-2.8s", depth: 0.65 },
+  { letter: "u", dur: "4.0s", delay: "-1.8s", depth: 0.9 },
+];
 ---
 
 <section
-  class="min-h-screen !z-[20] relative w-full flex items-center justify-center overflow-hidden"
+  class="min-h-screen !z-[20] relative w-full flex items-center justify-center overflow-hidden bg-black"
   id="hero"
 >
-  <!-- 3D Gallery Background -->
-  <div class="absolute inset-0 z-0">
-    <HeroGallery client:load />
-  </div>
+  <!-- Overlay content -->
+  <div class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-10 text-white gap-8">
+    <div class="text-center px-4 max-w-4xl">
+      <h1 class="sr-only">progsu</h1>
 
-  <!-- Overlay content with mix-blend-exclusion -->
-  <div class="absolute inset-0 pointer-events-none flex items-center justify-center z-10 mix-blend-exclusion text-white">
-    <div class="text-center px-4 max-w-lg">
-      <h1 class="font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight italic" style="font-family: 'Georgia', 'Times New Roman', serif;">
-        progsu
-      </h1>
+      <div class="keys-row" id="hero-keys" aria-hidden="true">
+        {KEYS.map((key) => (
+          <div class="key" style={`--depth:${key.depth}`}>
+            <div class="key-float" style={`--dur:${key.dur};--delay:${key.delay}`}>
+              <img class="keycap" src={`/images/landing%20page/${key.letter}.png`} alt="" loading="eager" decoding="async" />
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div class="mt-5 text-xs md:text-sm tracking-widest uppercase opacity-70" style="font-family: 'Helvetica Neue', sans-serif;">
         /prāg ˌes ˈyü/ &nbsp; <span class="italic">noun</span>
       </div>
@@ -25,6 +37,153 @@ import HeroGallery from "@/components/HeroGallery";
         builders &amp; dreamers of atl. a new generation of talent.
       </p>
     </div>
+
+    <!-- CTA (kept off the blend layer so its colors render solid) -->
+    <div class="pointer-events-auto">
+      <a
+        href="https://progsu-platform.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="spacebar-cta inline-block"
+      >
+        <img
+          src="/images/landing%20page/join-our-community-button.png"
+          alt="join our community"
+          class="spacebar-cta-img w-[clamp(10.5rem,23vw,16.5rem)]"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+    </div>
   </div>
 
 </section>
+
+<style>
+  :root {
+    --bob-height: 8px;
+    --speed: 1;
+    --rotate: 3.5deg;
+    --parallax: 22px;
+  }
+
+  .keys-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.35rem, 1.3vw, 0.75rem);
+  }
+
+  .key {
+    --depth: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+
+  .key-float {
+    animation:
+      bob calc(var(--dur) / var(--speed)) ease-in-out infinite,
+      wobble calc(var(--dur) * 1.35 / var(--speed)) ease-in-out infinite;
+    animation-delay: var(--delay), calc(var(--delay) * 0.6);
+    will-change: transform;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(calc(var(--bob-height) * -1)); }
+  }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(calc(var(--rotate) * -1)); }
+    50% { transform: rotate(var(--rotate)); }
+  }
+
+  .keycap {
+    width: clamp(2.35rem, 12vw, 7.5rem);
+    height: auto;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .key-float { animation: none !important; }
+    .key { transform: none !important; }
+  }
+
+  /* ---------- spacebar CTA press ---------- */
+  .spacebar-cta-img {
+    height: auto;
+    display: block;
+    user-select: none;
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.55));
+    transform: translateY(0) scaleY(1);
+    transform-origin: center bottom;
+    transition: transform 90ms ease-out, filter 90ms ease-out;
+  }
+
+  .spacebar-cta:hover .spacebar-cta-img {
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.6));
+  }
+
+  .spacebar-cta:active .spacebar-cta-img {
+    transform: translateY(5px) scaleY(0.94);
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+    transition: transform 60ms ease-in, filter 60ms ease-in;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spacebar-cta-img { transition: none; }
+  }
+</style>
+
+<script>
+  let cleanupKeyParallax: (() => void) | null = null;
+
+  function initKeyParallax() {
+    if (cleanupKeyParallax) {
+      cleanupKeyParallax();
+      cleanupKeyParallax = null;
+    }
+
+    const keysEl = document.getElementById('hero-keys');
+    if (!keysEl) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const keys = Array.from(keysEl.querySelectorAll<HTMLElement>('.key'));
+    const root = document.documentElement;
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf: number | null = null;
+
+    function onPointerMove(e: PointerEvent) {
+      tx = (e.clientX / window.innerWidth - 0.5) * 2;
+      ty = (e.clientY / window.innerHeight - 0.5) * 2;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    function tick() {
+      cx += (tx - cx) * 0.08;
+      cy += (ty - cy) * 0.08;
+      const max = parseFloat(getComputedStyle(root).getPropertyValue('--parallax')) || 22;
+      for (const k of keys) {
+        const depth = parseFloat(getComputedStyle(k).getPropertyValue('--depth')) || 1;
+        const x = -cx * max * depth;
+        const y = -cy * max * depth * 0.4;
+        k.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+      }
+      raf = (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) ? requestAnimationFrame(tick) : null;
+    }
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    cleanupKeyParallax = () => {
+      window.removeEventListener('pointermove', onPointerMove);
+      if (raf) cancelAnimationFrame(raf);
+      for (const k of keys) k.style.transform = '';
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initKeyParallax);
+  } else {
+    initKeyParallax();
+  }
+  document.addEventListener('astro:page-load', initKeyParallax);
+</script>

@@ -68,6 +68,9 @@ export interface Member {
   
   /** Array of skills, interests, or specialties (optional) */
   specialties?: string[];
+
+  /** Path to a headshot photo under /public (optional - falls back to initials avatar) */
+  photo?: string;
 }
 
 /**
@@ -92,6 +95,291 @@ export interface MembersByYear {
  * =============================================================================
  */
 export const membersByYear: MembersByYear = {
+  // =============================================================================
+  // FALL 2026
+  // =============================================================================
+  "Fall 2026": [
+    // PRESIDENTS
+    {
+      name: "Joey Zhang",
+      photo: "/images/exec%20headshots/joey.jpg",
+      role: "co-president",
+      team: "president",
+      linkedin: "https://linkedin.com/in/joeyzhangdev",
+      github: "joeyzhang-dev",
+      specialties: ["leadership", "tech", "outreach"]
+    },
+    {
+      name: "Natasha Narine",
+      photo: "/images/exec%20headshots/natasha.jpeg",
+      role: "co-president",
+      team: "president",
+      linkedin: "https://www.linkedin.com/in/natasha-narine",
+      github: "natashanarine",
+      specialties: ["leadership", "growth", "ops"]
+    },
+
+    // C-SUITE
+    {
+      name: "Jared Beresford",
+      photo: "/images/exec%20headshots/jared.png",
+      role: "coo",
+      team: "operations",
+      linkedin: "https://www.linkedin.com/in/jaredberesford",
+      github: "jsberesford",
+      specialties: ["operations", "logistics", "finance"]
+    },
+    {
+      name: "Liam Ellison",
+      photo: "/images/exec%20headshots/liam.png",
+      role: "cto",
+      team: "development",
+      linkedin: "liam-ellison",
+      github: "liamellison02",
+      specialties: ["engineering", "workshops", "programs"]
+    },
+    {
+      name: "John Sang",
+      photo: "/images/exec%20headshots/john.jpeg",
+      role: "cto",
+      team: "development",
+      linkedin: "https://linkedin.com/in/johnsang-/",
+      github: "JohnSang16",
+      specialties: ["web dev", "operations", "full stack"]
+    },
+    {
+      name: "Charan Peeriga",
+      photo: "/images/exec%20headshots/charan.jpeg",
+      role: "cmo",
+      team: "growth",
+      linkedin: "https://www.linkedin.com/in/cpeeriga",
+      github: "CharanPeeriga",
+      specialties: ["visual design", "branding", "graphics"]
+    },
+    {
+      name: "Ishan Patel",
+      photo: "/images/exec%20headshots/ishan.png",
+      role: "cfo",
+      team: "finance",
+      linkedin: "https://www.linkedin.com/in/ishanpatel09/",
+      specialties: ["budgeting", "finance", "records"]
+    },
+    {
+      name: "Carter Tierney",
+      photo: "/images/exec%20headshots/carter.jpeg",
+      role: "cro",
+      team: "outreach",
+      linkedin: "https://linkedin.com/in/carter-tierney",
+      specialties: ["outreach", "networking", "partnerships"]
+    },
+
+    // DEVELOPMENT
+    {
+      name: "Arhaan Keshwani",
+      photo: "/images/exec%20headshots/arhaan.jpeg",
+      role: "tech",
+      team: "development",
+      specialties: ["coding", "web dev", "engineering"]
+    },
+    {
+      name: "Colby Threlkeld",
+      photo: "/images/exec%20headshots/colby.jpeg",
+      role: "tech",
+      team: "development",
+      specialties: ["coding", "web dev", "engineering"]
+    },
+    {
+      name: "Luigi Fernandez",
+      photo: "/images/exec%20headshots/luigi.jpeg",
+      role: "tech",
+      team: "development",
+      specialties: ["coding", "web dev", "engineering"]
+    },
+    {
+      name: "Manjunath Ande",
+      photo: "/images/exec%20headshots/manjunauth.jpeg",
+      role: "tech",
+      team: "development",
+      specialties: ["coding", "web dev", "engineering"]
+    },
+    {
+      name: "Poorav Rawat",
+      photo: "/images/exec%20headshots/poorav.jpeg",
+      role: "tech",
+      team: "development",
+      linkedin: "https://www.linkedin.com/in/pooravrawat",
+      github: "pooravrawat1",
+      specialties: ["basketball", "soccer", "music"]
+    },
+    {
+      name: "Uyiosa Nehikhuere",
+      photo: "/images/exec%20headshots/uyiosa.jpeg",
+      role: "tech",
+      team: "development",
+      specialties: ["coding", "web dev", "engineering"]
+    },
+
+    // FINANCE
+    {
+      name: "Camryn Odom",
+      role: "finance",
+      linkedin: "https://www.linkedin.com/in/camrynodom/",
+      specialties: ["budgeting", "finance", "records"]
+    },
+    {
+      name: "Dev Gajjar",
+      photo: "/images/exec%20headshots/dev.jpeg",
+      role: "finance",
+      linkedin: "https://www.linkedin.com/in/gajjardev/",
+      specialties: ["budgeting", "finance", "records"]
+    },
+    {
+      name: "L’oreal Ray",
+      photo: "/images/exec%20headshots/ori.jpg",
+      role: "finance",
+      linkedin: "http://linkedin.com/in/loreal-ray",
+      github: "LorealRay",
+      specialties: ["budgeting", "finance", "records"]
+    },
+    {
+      name: "Sierra Mendelssohn",
+      photo: "/images/exec%20headshots/sierra.jpeg",
+      role: "finance",
+      linkedin: "https://www.linkedin.com/in/sierra-mendelssohn-b38a26296/",
+      github: "sierralm",
+      specialties: ["budgeting", "finance", "records"]
+    },
+    {
+      name: "Varshitha Karthik",
+      photo: "/images/exec%20headshots/varshitha.png",
+      role: "finance",
+      linkedin: "https://www.linkedin.com/in/varshithakarthik/",
+      github: "varshithakarthik",
+      specialties: ["budgeting", "finance", "records"]
+    },
+    {
+      name: "Viviana Gonzalez",
+      photo: "/images/exec%20headshots/viviana.png",
+      role: "finance",
+      linkedin: "https://www.linkedin.com/in/viviana-gonzalez-a97552275/",
+      github: "Vivianavvg",
+      specialties: ["budgeting", "finance", "records"]
+    },
+
+    // GROWTH
+    {
+      name: "Abrar Sarwar",
+      photo: "/images/exec%20headshots/abrar.png",
+      role: "growth",
+      specialties: ["analytics", "content", "strategy"]
+    },
+    {
+      name: "Hanna Ibre",
+      photo: "/images/exec%20headshots/hanna.jpeg",
+      role: "social media",
+      team: "growth",
+      specialties: ["growth", "outreach", "engagement"]
+    },
+    {
+      name: "Jamal Ford",
+      photo: "/images/exec%20headshots/jamal.jpeg",
+      role: "community",
+      team: "growth",
+      linkedin: "https://www.linkedin.com/in/jamalford/",
+      github: "JamalFord",
+      specialties: ["community", "discord", "engagement"]
+    },
+    {
+      name: "Levi Purkey",
+      photo: "/images/exec%20headshots/Levi.jpg",
+      role: "content",
+      team: "growth",
+      linkedin: "https://www.linkedin.com/in/levipurkey/",
+      specialties: ["content", "social", "storytelling"]
+    },
+    {
+      name: "Michael Tewabe",
+      photo: "/images/exec%20headshots/michael.jpeg",
+      role: "growth",
+      linkedin: "https://www.linkedin.com/in/michael-tewabe-7a3603293",
+      github: "meeko0",
+      specialties: ["growth", "outreach", "engagement"]
+    },
+    {
+      name: "Raphael Omorose",
+      photo: "/images/exec%20headshots/raphael.png",
+      role: "content",
+      team: "growth",
+      linkedin: "https://linkedin.com/in/raphaelomorose",
+      github: "OfficialEseosa",
+      specialties: ["content", "social", "storytelling"]
+    },
+    {
+      name: "Sankofa Melton",
+      photo: "/images/exec%20headshots/sankofa.jpeg",
+      role: "growth",
+      linkedin: "https://www.linkedin.com/in/sankofa-m-093042262",
+      specialties: ["growth", "content", "strategy"]
+    },
+    {
+      name: "Victoria Agyare",
+      photo: "/images/exec%20headshots/victoria.png",
+      role: "growth",
+      specialties: ["growth", "outreach", "engagement"]
+    },
+
+    // OPERATIONS
+    {
+      name: "Cor’layshia Cooper",
+      photo: "/images/exec%20headshots/corlayshia.jpeg",
+      role: "operations",
+      linkedin: "https://www.linkedin.com/in/corlayshiac/",
+      specialties: ["operations", "logistics", "planning"]
+    },
+    {
+      name: "Eda Mai",
+      photo: "/images/exec%20headshots/eda.png",
+      role: "operations",
+      linkedin: "https://www.linkedin.com/in/edamai/",
+      specialties: ["setup", "supplies", "execution"]
+    },
+    {
+      name: "Leslie Cruz Hernandez",
+      photo: "/images/exec%20headshots/leslie.png",
+      role: "operations",
+      linkedin: "https://www.linkedin.com/in/lcruzh/",
+      specialties: ["operations", "logistics", "planning"]
+    },
+    {
+      name: "Neha Venkatesh",
+      photo: "/images/exec%20headshots/neha.jpeg",
+      role: "operations",
+      linkedin: "https://www.linkedin.com/in/neha-venkatesh-146a322b5/",
+      specialties: ["operations", "logistics", "planning"]
+    },
+    {
+      name: "Phillip Sanchez",
+      photo: "/images/exec%20headshots/phillip.jpeg",
+      role: "operations",
+      linkedin: "https://www.linkedin.com/in/phillip-sanchez-parra-2b4a652a8/",
+      specialties: ["setup", "supplies", "execution"]
+    },
+    {
+      name: "Sanaa Miller",
+      role: "operations",
+      linkedin: "https://www.linkedin.com/in/sanaa-miller-589158373/",
+      github: "Smiller2424",
+      specialties: ["setup", "supplies", "execution"]
+    },
+    {
+      name: "Temi Alajogun",
+      photo: "/images/exec%20headshots/temi.jpeg",
+      role: "operations",
+      linkedin: "https://www.linkedin.com/in/temialajogun/",
+      specialties: ["events", "logistics", "planning"]
+    },
+  ],
+
   // =============================================================================
   // SPRING 2026
   // =============================================================================

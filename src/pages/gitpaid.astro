@@ -114,7 +114,7 @@ import { gettingInterviewGuides, passingInterviewGuides } from "@/data/gitpaid";
     const els = document.querySelectorAll('.float-in');
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.01 });
     els.forEach((el) => obs.observe(el));
   }
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }

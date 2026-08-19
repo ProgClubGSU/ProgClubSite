@@ -3,10 +3,10 @@ import { getEvents, renderPortableText } from "@/lib/sanity.js";
 import Hero from "@/components/Hero.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import Section from "@/components/Section.astro";
+import ImageCard from "@/components/ImageCard.astro";
 import BlogPostCard from "@/components/BlogPostCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { KNOWN_TECH, ABOUT_ME, SITE_TITLE, GOOGLE_FORM_URL, DISCORD_LINK, SOCIAL_LINKS, INSTAGRAM_LINK, LINKEDIN_LINK, EMAIL_LINK } from "@/consts";
-import RotatingEarth from "@/components/ui/RotatingEarth";
+import { KNOWN_TECH, ABOUT_ME, SITE_TITLE, DISCORD_LINK, SOCIAL_LINKS, INSTAGRAM_LINK, LINKEDIN_LINK, EMAIL_LINK } from "@/consts";
 import { separateEventsByDisplayType, sortEventsByPriority, type Event } from "@/utils/eventUtils";
 
 const rawEvents = await getEvents();
@@ -68,68 +68,97 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
   <!-- Movements Section -->
   <section id="movements" class="py-16 px-8 bg-black relative overflow-hidden">
     <div class="max-w-5xl mx-auto relative z-10 float-in">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest text-center" style="font-family: 'Helvetica Neue', sans-serif;">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest text-center italic" style="font-family: 'Helvetica Neue', sans-serif;">
         movements
       </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Buildnight -->
-        <div class="space-y-4 text-center">
-          <h3 class="text-2xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">buildnight</h3>
-          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-            weekly sessions where we come together to build. no agenda, no lectures: just makers in a room shipping real projects side by side.
-          </p>
-        </div>
+        <ImageCard
+          title="hacklanta"
+          description="our flagship hackathon. where builders come to break things, chase ideas, and create something from nothing. atlanta's proving ground for what's next."
+          ctaText="learn more"
+          ctaHref="https://hacklanta.dev"
+          external={true}
+          imageSrc="/images/landing%20page/hacklanta.jpg"
+          imageAlt="students collaborating at the hacklanta hackathon"
+        />
 
-        <!-- Hacklanta -->
-        <div class="space-y-4 text-center">
-          <h3 class="text-2xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">hacklanta</h3>
-          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-            our flagship hackathon. 24 hours of building, breaking, and creating something from nothing. atlanta's proving ground for new ideas.
-          </p>
-        </div>
+        <ImageCard
+          title="gitpaid"
+          description="everything we know about landing the job, from resume to offer letter. built by the people who've done it."
+          ctaText="learn more"
+          ctaHref="/gitpaid"
+          imageSrc="/images/landing%20page/gitpaid.jpg"
+          imageAlt="a resume and laptop on a desk, representing the gitpaid job-hunting guide"
+        />
 
-        <!-- Mentorship -->
-        <div class="space-y-4 text-center">
-          <h3 class="text-2xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">mentorship</h3>
-          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-            pairing students with industry professionals. career guidance, technical growth, and a direct line to the people already doing the work.
-          </p>
-        </div>
+        <ImageCard
+          title="progirls"
+          description="our initiative supporting women in tech. open to everyone, at every stage of the journey. building a more inclusive community in the tech space."
+          ctaText="learn more"
+          ctaHref="/progirls"
+          imageSrc="/images/landing%20page/progirls.jpg"
+          imageAlt="participants at a progirls program event"
+        />
       </div>
     </div>
   </section>
-  <!-- About Section -->
-  <section id="about" class="py-24 px-8 bg-black">
-    <div class="max-w-5xl mx-auto float-in">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <!-- Globe -->
-        <div class="flex justify-center">
-          <RotatingEarth client:visible width={400} height={400} />
-        </div>
 
-        <!-- Text -->
-        <div class="text-center md:text-left">
-          <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
-            about
-          </h2>
-          <p class="text-lg md:text-xl text-white/60 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
-            <span class="text-white" style="text-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1);">a builder collective</span> born in atlanta. for people drawn to code, creation, and culture. a place to turn curiosity into craft, and ideas into things that live in the world.
-          </p>
-          <div class="flex justify-center md:justify-start gap-12 mt-12">
-            <a href="/members" class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300" style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);" onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'" onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'">members</a>
-            <a href="/history" class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300" style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);" onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'" onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'">history</a>
-            <a href="/gitpaid" class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300" style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);" onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'" onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'">gitpaid</a>
-          </div>
-        </div>
+  <!-- About Section (intro + mission/team cards) -->
+  <section id="our-mission" class="pt-16 pb-8 px-8 bg-transparent relative overflow-hidden">
+    <div class="max-w-5xl mx-auto relative z-10 float-in">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 tracking-widest italic" style="font-family: 'Helvetica Neue', sans-serif;">
+          about
+        </h2>
+        <p class="text-lg md:text-xl text-white/60 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
+          <span class="text-white" style="text-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1);">a builder collective</span> born in atlanta. for people drawn to code, creation, and culture. a place to turn curiosity into craft, and ideas into things that live in the world.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <ImageCard
+          title="our mission"
+          description="we exist so no builder in atlanta has to figure it out alone. real projects, real mentorship, and a community that ships together."
+          ctaText="read our story"
+          ctaHref="/history"
+          imageSrc="/images/landing%20page/our%20mission.jpg"
+          imageAlt="progsu members building together"
+          imageAspect="aspect-[3/2]"
+        />
+
+        <ImageCard
+          title="meet the team"
+          description="the students and organizers behind progsu's events, movements, and community."
+          ctaText="meet the team"
+          ctaHref="/members"
+          imageSrc="/images/landing%20page/meet%20the%20team.jpg"
+          imageAlt="the progsu team"
+          imageAspect="aspect-[3/2]"
+        />
       </div>
     </div>
   </section>
+
+  <!-- Divider -->
+  <div class="bg-black py-2 overflow-hidden" aria-hidden="true">
+    <div class="divider-shift">
+      <div class="divider-float">
+        <img
+          src="/images/landing%20page/hands-divider.png"
+          alt=""
+          class="w-full opacity-80"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
 
   <!-- Get Involved Section -->
-  <section id="get-involved" class="py-24 px-8 bg-black">
+  <section id="get-involved" class="pt-10 pb-24 px-8 bg-black">
     <div class="max-w-4xl mx-auto text-center float-in">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest italic" style="font-family: 'Helvetica Neue', sans-serif;">
         get involved
       </h2>
 
@@ -141,7 +170,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
             join 1500+ creators, innovators, and builders shaping the future from atlanta.
           </p>
           <a
-            href={GOOGLE_FORM_URL}
+            href="https://progsu-platform.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-block text-white border-b border-white/30 hover:border-white pb-1 text-sm tracking-widest transition-colors duration-300"
@@ -197,6 +226,30 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
     transform: translateY(0);
     filter: blur(0);
   }
+
+  .divider-shift {
+    transform: translateX(-6%);
+  }
+
+  .divider-float {
+    animation:
+      divider-bob 4.6s ease-in-out infinite,
+      divider-wobble 6.2s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes divider-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes divider-wobble {
+    0%, 100% { transform: rotate(-3.5deg); }
+    50% { transform: rotate(3.5deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .divider-float { animation: none; }
+  }
 </style>
 
 <script>
@@ -209,7 +262,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.01 });
 
     elements.forEach((el) => observer.observe(el));
   }
