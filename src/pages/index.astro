@@ -72,34 +72,40 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
         movements
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <ImageCard
-          title="hacklanta"
-          description="our flagship hackathon. where builders come to break things, chase ideas, and create something from nothing. atlanta's proving ground for what's next."
-          ctaText="learn more"
-          ctaHref="https://hacklanta.dev"
-          external={true}
-          imageSrc="/images/landing%20page/hacklanta.jpg"
-          imageAlt="students collaborating at the hacklanta hackathon"
-        />
+      <div class="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory md:overflow-visible md:snap-none pb-4 md:pb-0 -mx-8 px-8 md:mx-0 md:px-0">
+        <div class="w-[82%] sm:w-[60%] md:w-auto flex-shrink-0 md:flex-shrink snap-center md:snap-align-none">
+          <ImageCard
+            title="hacklanta"
+            description="our flagship hackathon. where builders come to break things, chase ideas, and create something from nothing. atlanta's proving ground for what's next."
+            ctaText="learn more"
+            ctaHref="https://hacklanta.dev"
+            external={true}
+            imageSrc="/images/landing%20page/hacklanta.jpg"
+            imageAlt="students collaborating at the hacklanta hackathon"
+          />
+        </div>
 
-        <ImageCard
-          title="gitpaid"
-          description="everything we know about landing the job, from resume to offer letter. built by the people who've done it."
-          ctaText="learn more"
-          ctaHref="/gitpaid"
-          imageSrc="/images/landing%20page/gitpaid.jpg"
-          imageAlt="a resume and laptop on a desk, representing the gitpaid job-hunting guide"
-        />
+        <div class="w-[82%] sm:w-[60%] md:w-auto flex-shrink-0 md:flex-shrink snap-center md:snap-align-none">
+          <ImageCard
+            title="gitpaid"
+            description="everything we know about landing the job, from resume to offer letter. built by the people who've done it."
+            ctaText="learn more"
+            ctaHref="/gitpaid"
+            imageSrc="/images/landing%20page/gitpaid.jpg"
+            imageAlt="a resume and laptop on a desk, representing the gitpaid job-hunting guide"
+          />
+        </div>
 
-        <ImageCard
-          title="progirls"
-          description="our initiative supporting women in tech. open to everyone, at every stage of the journey. building a more inclusive community in the tech space."
-          ctaText="learn more"
-          ctaHref="/progirls"
-          imageSrc="/images/landing%20page/progirls.jpg"
-          imageAlt="participants at a progirls program event"
-        />
+        <div class="w-[82%] sm:w-[60%] md:w-auto flex-shrink-0 md:flex-shrink snap-center md:snap-align-none">
+          <ImageCard
+            title="progirls"
+            description="our initiative supporting women in tech. open to everyone, at every stage of the journey. building a more inclusive community in the tech space."
+            ctaText="learn more"
+            ctaHref="/progirls"
+            imageSrc="/images/landing%20page/progirls.jpg"
+            imageAlt="participants at a progirls program event"
+          />
+        </div>
       </div>
     </div>
   </section>
