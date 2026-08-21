@@ -22,3 +22,13 @@
 * {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
 }
+
+/* Text selection highlight */
+::selection {
+  background-color: #571294;
+  color: #fff;
+}
+::-moz-selection {
+  background-color: #571294;
+  color: #fff;
+}

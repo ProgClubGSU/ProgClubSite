@@ -31,16 +31,12 @@ export const NAV_LINKS: Array<{ title: string; href?: string; children?: Array<{
     href: "/#top",
   },
   {
-    title: "Mission",
-    href: "/#our-mission",
-  },
-  {
-    title: "Events", 
-    href: "/#events",
+    title: "Movements",
+    href: "/#movements",
   },
   {
     title: "About",
-    href: "/#about",
+    href: "/#our-mission",
   },
   {
     title: "Get Involved",

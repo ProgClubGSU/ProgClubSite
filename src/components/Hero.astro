@@ -1,30 +1,114 @@
 ---
-import { QUOTE, SITE_TITLE } from "@/consts";
-import HeroGallery from "@/components/HeroGallery";
+import { BrutalButton } from "@/components/ui/brutal-button";
 ---
 
 <section
-  class="min-h-screen !z-[20] relative w-full flex items-center justify-center overflow-hidden"
   id="hero"
+  class="relative w-full min-h-screen bg-black overflow-hidden flex items-center justify-center"
 >
-  <!-- 3D Gallery Background -->
-  <div class="absolute inset-0 z-0">
-    <HeroGallery client:load />
-  </div>
-
-  <!-- Overlay content with mix-blend-exclusion -->
-  <div class="absolute inset-0 pointer-events-none flex items-center justify-center z-10 mix-blend-exclusion text-white">
-    <div class="text-center px-4 max-w-lg">
-      <h1 class="font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight italic" style="font-family: 'Georgia', 'Times New Roman', serif;">
-        progsu
-      </h1>
-      <div class="mt-5 text-xs md:text-sm tracking-widest uppercase opacity-70" style="font-family: 'Helvetica Neue', sans-serif;">
-        /prāg ˌes ˈyü/ &nbsp; <span class="italic">noun</span>
+  <!-- Background: hands illustration, same treatment as the divider elsewhere on the page -->
+  <div class="hero-hands-wrap" aria-hidden="true">
+    <div class="divider-shift">
+      <div class="divider-float">
+        <img
+          src="/images/landing%20page/hero%20hands.png"
+          alt=""
+          class="w-full opacity-80"
+          loading="eager"
+          decoding="async"
+        />
       </div>
-      <p class="mt-3 text-sm md:text-base font-light opacity-60 leading-relaxed" style="font-family: 'Georgia', 'Times New Roman', serif;">
-        builders &amp; dreamers of atl. a new generation of talent.
-      </p>
     </div>
   </div>
 
+  <!-- Foreground: real wordmark, tagline, CTA -->
+  <div class="relative z-10 flex flex-col items-center text-center px-4 pointer-events-none">
+    <h1 class="hero-wordmark text-white">progsu</h1>
+    <p class="hero-tagline text-white/70 mt-3 md:mt-4">
+      builders &amp; dreamers of atl. a new generation of talent.
+    </p>
+    <div class="mt-8 md:mt-10 pointer-events-auto">
+      <BrutalButton
+        href="https://members.progsu.com/"
+        external
+        color="#000"
+        textColor="#fff"
+        hasBorder={false}
+        shadowColor="#000"
+        className="hero-cta"
+      >
+        join our community
+      </BrutalButton>
+    </div>
+  </div>
 </section>
+
+<style>
+  .hero-wordmark {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 12vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-tagline {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: clamp(0.75rem, 1.9vw, 1rem);
+    max-width: 32rem;
+  }
+
+  /* :global() needed — .hero-cta is rendered by the React BrutalButton island,
+     so Astro can't attach its usual scope attribute to that element. */
+  :global(.hero-cta) {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: clamp(0.75rem, 1.7vw, 0.875rem);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+  }
+
+  :global(.hero-cta:focus-visible) {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
+
+  /* ---------- background hands illustration (same as the page divider) ---------- */
+  .hero-hands-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .divider-shift {
+    width: 100%;
+  }
+
+  .divider-float {
+    animation:
+      divider-bob 4.6s ease-in-out infinite,
+      divider-wobble 6.2s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes divider-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes divider-wobble {
+    0%, 100% { transform: rotate(-3.5deg); }
+    50% { transform: rotate(3.5deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .divider-float { animation: none; }
+  }
+</style>

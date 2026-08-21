@@ -3,13 +3,31 @@ import { getEvents, renderPortableText } from "@/lib/sanity.js";
 import Hero from "@/components/Hero.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import Section from "@/components/Section.astro";
+import ImageCard from "@/components/ImageCard.astro";
 import BlogPostCard from "@/components/BlogPostCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { KNOWN_TECH, ABOUT_ME, SITE_TITLE, GOOGLE_FORM_URL, DISCORD_LINK, SOCIAL_LINKS, INSTAGRAM_LINK, LINKEDIN_LINK, EMAIL_LINK } from "@/consts";
-import RotatingEarth from "@/components/ui/RotatingEarth";
+import { KNOWN_TECH, ABOUT_ME, SITE_TITLE, DISCORD_LINK, SOCIAL_LINKS, INSTAGRAM_LINK, LINKEDIN_LINK, EMAIL_LINK } from "@/consts";
 import { separateEventsByDisplayType, sortEventsByPriority, type Event } from "@/utils/eventUtils";
 
 const rawEvents = await getEvents();
+
+// "get involved" keycap header — letters spell the words, spaced by word.
+const GET_INVOLVED_RAW = [
+  { word: "get", letters: ["g", "e", "t"] },
+  { word: "involved", letters: ["i", "n", "v", "o", "l", "v", "e", "d"] },
+];
+let giIndex = 0;
+const GET_INVOLVED_WORDS = GET_INVOLVED_RAW.map((w) => ({
+  word: w.word,
+  letters: w.letters.map((letter) => {
+    const i = giIndex++;
+    return {
+      letter,
+      dur: (3.4 + (i % 4) * 0.4).toFixed(1),
+      delay: (-(i * 0.35)).toFixed(2),
+    };
+  }),
+}));
 
 // aHelper function to extract plain text from description
 function getPlainTextExcerpt(description) {
@@ -68,70 +86,104 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
   <!-- Movements Section -->
   <section id="movements" class="py-16 px-8 bg-black relative overflow-hidden">
     <div class="max-w-5xl mx-auto relative z-10 float-in">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest text-center" style="font-family: 'Helvetica Neue', sans-serif;">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest text-center italic" style="font-family: 'Helvetica Neue', sans-serif;">
         movements
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Buildnight -->
-        <div class="space-y-4 text-center">
-          <h3 class="text-2xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">buildnight</h3>
-          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-            weekly sessions where we come together to build. no agenda, no lectures: just makers in a room shipping real projects side by side.
-          </p>
+      <div class="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory md:overflow-visible md:snap-none pb-4 md:pb-0 -mx-8 px-8 md:mx-0 md:px-0">
+        <div class="w-[82%] sm:w-[60%] md:w-auto flex-shrink-0 md:flex-shrink snap-center md:snap-align-none">
+          <ImageCard
+            title="hacklanta"
+            description="our flagship hackathon. where builders come to break things, chase ideas, and create something from nothing. atlanta's proving ground for what's next."
+            ctaText="learn more"
+            ctaHref="https://hacklanta.dev"
+            external={true}
+            imageSrc="/images/landing%20page/hacklanta.jpg"
+            imageAlt="students collaborating at the hacklanta hackathon"
+          />
         </div>
 
-        <!-- Hacklanta -->
-        <div class="space-y-4 text-center">
-          <h3 class="text-2xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">hacklanta</h3>
-          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-            our flagship hackathon. 24 hours of building, breaking, and creating something from nothing. atlanta's proving ground for new ideas.
-          </p>
+        <div class="w-[82%] sm:w-[60%] md:w-auto flex-shrink-0 md:flex-shrink snap-center md:snap-align-none">
+          <ImageCard
+            title="gitpaid"
+            description="everything we know about landing the job, from resume to offer letter. built by the people who've done it."
+            ctaText="learn more"
+            ctaHref="/gitpaid"
+            imageSrc="/images/landing%20page/gitpaid.jpg"
+            imageAlt="a resume and laptop on a desk, representing the gitpaid job-hunting guide"
+          />
         </div>
 
-        <!-- Mentorship -->
-        <div class="space-y-4 text-center">
-          <h3 class="text-2xl font-bold text-white italic" style="font-family: 'Noto Serif', Georgia, serif !important;">mentorship</h3>
-          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
-            pairing students with industry professionals. career guidance, technical growth, and a direct line to the people already doing the work.
-          </p>
+        <div class="w-[82%] sm:w-[60%] md:w-auto flex-shrink-0 md:flex-shrink snap-center md:snap-align-none">
+          <ImageCard
+            title="progirls"
+            description="our initiative supporting women in tech. open to everyone, at every stage of the journey. building a more inclusive community in the tech space."
+            ctaText="learn more"
+            ctaHref="/progirls"
+            imageSrc="/images/landing%20page/progirls.jpg"
+            imageAlt="participants at a progirls program event"
+          />
         </div>
       </div>
     </div>
   </section>
-  <!-- About Section -->
-  <section id="about" class="py-24 px-8 bg-black">
-    <div class="max-w-5xl mx-auto float-in">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <!-- Globe -->
-        <div class="flex justify-center">
-          <RotatingEarth client:visible width={400} height={400} />
-        </div>
 
-        <!-- Text -->
-        <div class="text-center md:text-left">
-          <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
-            about
-          </h2>
-          <p class="text-lg md:text-xl text-white/60 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
-            <span class="text-white" style="text-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1);">a builder collective</span> born in atlanta. for people drawn to code, creation, and culture. a place to turn curiosity into craft, and ideas into things that live in the world.
-          </p>
-          <div class="flex justify-center md:justify-start gap-12 mt-12">
-            <a href="/members" class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300" style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);" onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'" onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'">members</a>
-            <a href="/history" class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300" style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);" onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'" onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'">history</a>
-            <a href="/gitpaid" class="text-white/40 hover:text-white text-sm tracking-widest transition-all duration-300" style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);" onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'" onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'">gitpaid</a>
-          </div>
-        </div>
+  <!-- About Section (intro + mission/team cards) -->
+  <section id="our-mission" class="pt-16 pb-8 px-8 bg-transparent relative overflow-hidden">
+    <div class="max-w-5xl mx-auto relative z-10 float-in">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 tracking-widest italic" style="font-family: 'Helvetica Neue', sans-serif;">
+          about
+        </h2>
+        <p class="text-lg md:text-xl text-white/60 leading-relaxed font-light" style="font-family: 'Helvetica Neue', sans-serif;">
+          <span class="text-white" style="text-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1);">a builder collective</span> born in atlanta. for people drawn to code, creation, and culture. a place to turn curiosity into craft, and ideas into things that live in the world.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <ImageCard
+          title="our mission"
+          description="we exist so no builder in atlanta has to figure it out alone. real projects, real mentorship, and a community that ships together."
+          ctaText="read our story"
+          ctaHref="/history"
+          imageSrc="/images/landing%20page/our%20mission.jpg"
+          imageAlt="progsu members building together"
+          imageAspect="aspect-[3/2]"
+        />
+
+        <ImageCard
+          title="meet the team"
+          description="the students and organizers behind progsu's events, movements, and community."
+          ctaText="meet the team"
+          ctaHref="/members"
+          imageSrc="/images/landing%20page/meet%20the%20team.jpg"
+          imageAlt="the progsu team"
+          imageAspect="aspect-[3/2]"
+        />
       </div>
     </div>
   </section>
 
   <!-- Get Involved Section -->
-  <section id="get-involved" class="py-24 px-8 bg-black">
+  <section id="get-involved" class="pt-10 pb-24 px-8 bg-black">
     <div class="max-w-4xl mx-auto text-center float-in">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
-        get involved
-      </h2>
+      <h2 class="sr-only">get involved</h2>
+      <div class="keycap-row" aria-hidden="true">
+        {GET_INVOLVED_WORDS.map((w) => (
+          <div class="keycap-word">
+            {w.letters.map((k) => (
+              <button
+                type="button"
+                class="keycap-btn"
+                style={`--dur:${k.dur}s;--delay:${k.delay}s;`}
+                tabindex="-1"
+              >
+                <img class="keycap-img" src={`/images/landing%20page/${k.letter}.png`} alt="" loading="lazy" decoding="async" draggable="false" />
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-2xl mx-auto">
         <!-- Students -->
@@ -141,7 +193,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
             join 1500+ creators, innovators, and builders shaping the future from atlanta.
           </p>
           <a
-            href={GOOGLE_FORM_URL}
+            href="https://progsu-platform.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-block text-white border-b border-white/30 hover:border-white pb-1 text-sm tracking-widest transition-colors duration-300"
@@ -170,7 +222,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
   </section>
 
   <!-- Connect Section -->
-  <section id="contact" class="py-24 px-8 bg-black">
+  <section id="contact" class="pt-10 pb-24 px-8 bg-black">
     <div class="max-w-3xl mx-auto text-center float-in">
       <div class="flex justify-center items-center gap-10 md:gap-16">
         <a href={DISCORD_LINK} target="_blank" rel="noopener noreferrer" class="text-white/45 hover:text-white text-sm tracking-widest transition-all duration-300" style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);" onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'" onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'">discord</a>
@@ -197,6 +249,69 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
     transform: translateY(0);
     filter: blur(0);
   }
+
+  /* ---------- get-involved keycap header ---------- */
+  .keycap-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.5rem, 1.8vw, 1.25rem);
+    margin-top: 2.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .keycap-word {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.3rem, 1.2vw, 0.6rem);
+  }
+
+  .keycap-btn {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    line-height: 0;
+    transform: translateY(0);
+    animation: keycap-bob var(--dur) ease-in-out infinite;
+    animation-delay: var(--delay);
+    will-change: transform;
+  }
+
+  .keycap-btn.is-pressed {
+    animation-play-state: paused;
+  }
+
+  .keycap-img {
+    width: clamp(3.25rem, 10vw, 6rem);
+    height: auto;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    transform: translateY(0) scale(1);
+    transition: transform 150ms ease-out;
+  }
+
+  .keycap-btn.is-pressed .keycap-img {
+    transition: transform 60ms ease-out;
+    transform: translateY(4px) scale(0.93);
+  }
+
+  @keyframes keycap-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .keycap-btn {
+      animation: none;
+    }
+  }
+
 </style>
 
 <script>
@@ -209,7 +324,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.01 });
 
     elements.forEach((el) => observer.observe(el));
   }
@@ -220,6 +335,115 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
     initFloatIn();
   }
   document.addEventListener('astro:page-load', initFloatIn);
+</script>
+
+<script>
+  // "get involved" keycaps — press feedback + a synthesized click (no audio file needed).
+  let cleanupKeycaps: (() => void) | null = null;
+  let keycapAudioCtx: AudioContext | null = null;
+
+  function playKeycapClick() {
+    try {
+      if (!keycapAudioCtx) {
+        const Ctx = window.AudioContext || (window as any).webkitAudioContext;
+        keycapAudioCtx = new Ctx();
+      }
+      const ctx = keycapAudioCtx;
+      if (ctx.state === 'suspended') ctx.resume();
+
+      const now = ctx.currentTime;
+
+      // Noise burst = the physical thock of the switch housing bottoming out.
+      const bufferSize = Math.floor(ctx.sampleRate * 0.09);
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const noiseFilter = ctx.createBiquadFilter();
+      noiseFilter.type = 'lowpass';
+      noiseFilter.frequency.setValueAtTime(3200, now);
+      noiseFilter.frequency.exponentialRampToValueAtTime(900, now + 0.07);
+      noiseFilter.Q.value = 0.7;
+
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.0001, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.35, now + 0.004);
+      noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
+
+      noise.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(ctx.destination);
+      noise.start(now);
+      noise.stop(now + 0.1);
+
+      // Low sine thump underneath for weight and body.
+      const osc = ctx.createOscillator();
+      const oscGain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(260, now);
+      osc.frequency.exponentialRampToValueAtTime(110, now + 0.05);
+
+      oscGain.gain.setValueAtTime(0.0001, now);
+      oscGain.gain.exponentialRampToValueAtTime(0.3, now + 0.006);
+      oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.1);
+
+      osc.connect(oscGain);
+      oscGain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.11);
+    } catch (e) {
+      // Web Audio unavailable — fail silently, the visual press still works.
+    }
+  }
+
+  function initKeycaps() {
+    if (cleanupKeycaps) {
+      cleanupKeycaps();
+      cleanupKeycaps = null;
+    }
+
+    const keys = Array.from(document.querySelectorAll<HTMLElement>('.keycap-btn'));
+    if (!keys.length) return;
+
+    const press = (el: HTMLElement) => {
+      el.classList.add('is-pressed');
+      playKeycapClick();
+    };
+    const release = (el: HTMLElement) => {
+      el.classList.remove('is-pressed');
+    };
+
+    const onDown = (e: PointerEvent) => press(e.currentTarget as HTMLElement);
+    const onUp = (e: PointerEvent) => release(e.currentTarget as HTMLElement);
+    const onLeave = (e: PointerEvent) => release(e.currentTarget as HTMLElement);
+
+    keys.forEach((key) => {
+      key.addEventListener('pointerdown', onDown);
+      key.addEventListener('pointerup', onUp);
+      key.addEventListener('pointerleave', onLeave);
+      key.addEventListener('pointercancel', onUp);
+    });
+
+    cleanupKeycaps = () => {
+      keys.forEach((key) => {
+        key.removeEventListener('pointerdown', onDown);
+        key.removeEventListener('pointerup', onUp);
+        key.removeEventListener('pointerleave', onLeave);
+        key.removeEventListener('pointercancel', onUp);
+      });
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initKeycaps);
+  } else {
+    initKeycaps();
+  }
+  document.addEventListener('astro:page-load', initKeycaps);
 </script>
 
 </Layout>

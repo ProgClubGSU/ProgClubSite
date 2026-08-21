@@ -60,7 +60,7 @@ const yearKeys = Object.keys(sortedMembers);
 
             {/* Members grid */}
             {allDisplayMembers.length > 0 && (
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 mb-20">
+              <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-12 gap-y-12 md:gap-y-16 mb-20">
                 {allDisplayMembers.map((member) => {
                   const isPresident = isPresidentRole(member.role);
                   const isFounding = isFoundingPresident(member.role);
@@ -72,18 +72,35 @@ const yearKeys = Object.keys(sortedMembers);
                       data-member={memberData}
                       onclick="openMemberModal(this)"
                     >
-                      <div class:list={[
-                        "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-lg font-bold transition-all duration-300 group-hover/member:scale-110 group-hover/member:shadow-lg",
-                        isFounding
-                          ? "bg-purple-500/20 text-purple-300 group-hover/member:bg-purple-500/40 group-hover/member:shadow-purple-500/30"
-                          : isPresident
-                            ? "bg-amber-500/20 text-amber-300 group-hover/member:bg-amber-500/40 group-hover/member:shadow-amber-500/30"
-                            : isCsuite
-                              ? "bg-indigo-500/20 text-indigo-300 group-hover/member:bg-indigo-500/35 group-hover/member:shadow-indigo-500/25"
-                              : "bg-white/5 text-white/60 group-hover/member:bg-white/15 group-hover/member:shadow-white/10",
-                      ]}>
-                        {member.name.split(" ").map((n: string) => n[0]).join("")}
-                      </div>
+                      {member.photo ? (
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          class:list={[
+                            "w-16 h-16 rounded-full mx-auto object-cover transition-all duration-300 group-hover/member:scale-110 group-hover/member:shadow-lg border-2",
+                            isFounding
+                              ? "border-purple-500/40 group-hover/member:border-purple-500/70 group-hover/member:shadow-purple-500/30"
+                              : isPresident
+                                ? "border-amber-500/40 group-hover/member:border-amber-500/70 group-hover/member:shadow-amber-500/30"
+                                : isCsuite
+                                  ? "border-indigo-500/40 group-hover/member:border-indigo-500/60 group-hover/member:shadow-indigo-500/25"
+                                  : "border-white/10 group-hover/member:border-white/25 group-hover/member:shadow-white/10",
+                          ]}
+                        />
+                      ) : (
+                        <div class:list={[
+                          "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-lg font-bold transition-all duration-300 group-hover/member:scale-110 group-hover/member:shadow-lg",
+                          isFounding
+                            ? "bg-purple-500/20 text-purple-300 group-hover/member:bg-purple-500/40 group-hover/member:shadow-purple-500/30"
+                            : isPresident
+                              ? "bg-amber-500/20 text-amber-300 group-hover/member:bg-amber-500/40 group-hover/member:shadow-amber-500/30"
+                              : isCsuite
+                                ? "bg-indigo-500/20 text-indigo-300 group-hover/member:bg-indigo-500/35 group-hover/member:shadow-indigo-500/25"
+                                : "bg-white/5 text-white/60 group-hover/member:bg-white/15 group-hover/member:shadow-white/10",
+                        ]}>
+                          {member.name.split(" ").map((n: string) => n[0]).join("")}
+                        </div>
+                      )}
 
                       <div>
                         <h3 class="text-white font-medium text-base italic transition-colors duration-300" style="font-family: 'Noto Serif', Georgia, serif !important;">
@@ -180,7 +197,8 @@ const yearKeys = Object.keys(sortedMembers);
           class="absolute top-4 right-4 text-white/45 hover:text-white transition-colors duration-200 text-lg leading-none"
         >✕</button>
 
-        <!-- Initials -->
+        <!-- Photo / Initials -->
+        <img id="modal-photo" class="w-16 h-16 rounded-full object-cover mb-5 hidden" alt="" />
         <div id="modal-initials" class="w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mb-5 bg-white/5 text-white/60"></div>
 
         <!-- Name + Role -->
@@ -279,7 +297,7 @@ const yearKeys = Object.keys(sortedMembers);
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.01 });
     floatEls.forEach((el) => observer.observe(el));
 
     // Year tab switching
@@ -345,9 +363,20 @@ const yearKeys = Object.keys(sortedMembers);
     const modal = document.getElementById('member-modal')!;
     const card = document.getElementById('member-modal-card')!;
 
-    // Initials
+    // Photo / Initials
     const initials = member.name.split(' ').map((n: string) => n[0]).join('');
-    document.getElementById('modal-initials')!.textContent = initials;
+    const photoEl = document.getElementById('modal-photo') as HTMLImageElement;
+    const initialsEl = document.getElementById('modal-initials')!;
+    if (member.photo) {
+      photoEl.src = member.photo;
+      photoEl.alt = member.name;
+      photoEl.classList.remove('hidden');
+      initialsEl.classList.add('hidden');
+    } else {
+      photoEl.classList.add('hidden');
+      initialsEl.classList.remove('hidden');
+      initialsEl.textContent = initials;
+    }
 
     // Name / role / major
     document.getElementById('modal-name')!.textContent = member.name;

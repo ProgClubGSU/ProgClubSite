@@ -73,7 +73,7 @@ export function isFoundingPresident(role: string): boolean {
  * Gets a distinct indigo/blue color treatment — less dramatic than presidents.
  */
 export function isCsuiteRole(role: string): boolean {
-  const csuite = ['cto', 'cmo', 'coo'];
+  const csuite = ['cto', 'cmo', 'coo', 'cfo', 'cro'];
   return csuite.includes(role.toLowerCase());
 }
 

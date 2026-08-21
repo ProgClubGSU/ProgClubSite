@@ -1,0 +1,500 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { progirlsTeam } from "@/data/progirlsTeam";
+import { isPresidentRole, isFoundingPresident, isCsuiteRole } from "@/utils/memberUtils";
+
+// TODO: set to the progirls Grace Hopper application form (or the official GHC registration URL)
+const GHC_APPLY_URL = "#";
+
+const galleryImages = [
+  { src: "/images/progirls/8V4A9282.jpg", alt: "progirls members collaborating around a table with laptops and craft supplies at a buildnight" },
+  { src: "/images/progirls/8V4A9310.jpg", alt: "a progirls member looking out over the atlanta skyline" },
+  { src: "/images/progirls/8V4A9322%20(1).jpg", alt: "progirls members listening to a presentation at an event" },
+  { src: "/images/progirls/8V4A9332.jpg", alt: "progirls members mingling and getting drinks at a mixer" },
+  { src: "/images/progirls/8V4A9339.jpg", alt: "a group of progirls members smiling together at an event" },
+  { src: "/images/progirls/8V4A9396%20(1).jpg", alt: "a group of progirls members posing together indoors" },
+];
+
+// Hand-tuned per-card variety for the clothesline gallery: rotation angle and
+// how far each card "hangs" below the line, mimicking a sagging clothesline
+// that dips lower in the middle. Drop values are derived from the SVG curve
+// in the <style> block below (sampled at t = i / 5 along the quadratic path)
+// so the pins visually land on the line instead of floating above/below it.
+const clotheslineRotations = [-7, 5, -3, 6, -5, 4];
+const clotheslineDrops = [6, 28, 39, 39, 28, 6];
+---
+
+<Layout title="progirls - progsu">
+  <div class="min-h-screen bg-black">
+
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-8">
+      <div class="max-w-3xl mx-auto text-center float-in">
+        <h1 class="text-6xl md:text-7xl font-bold text-white mb-4 tracking-tight italic" style="font-family: 'Helvetica Neue', sans-serif;">
+          progirls
+        </h1>
+        <p class="text-base md:text-lg text-white/50 leading-relaxed font-light max-w-2xl mx-auto" style="font-family: 'Helvetica Neue', sans-serif;">
+          women building the future of tech in atlanta.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="py-16 px-8">
+      <div class="max-w-2xl mx-auto text-center float-in">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-widest italic" style="font-family: 'Helvetica Neue', sans-serif;">
+          mission
+        </h2>
+        <div class="space-y-6 text-left sm:text-center">
+          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+            progirls is progsu's community for women in tech. we're building a space in atlanta where girls who code, design, and create can find their people, sharpen their craft, and walk into rooms they've earned.
+          </p>
+          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+            mentorship from women already doing the work. real projects, not busywork. a community that shows up for each other.
+          </p>
+          <p class="text-white/60 leading-relaxed" style="font-family: 'Helvetica Neue', sans-serif;">
+            this year we’re helping our members get to the grace hopper celebration, the largest gathering of women technologists in the world.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grace Hopper CTA -->
+    <section class="py-16 px-8">
+      <div class="max-w-2xl mx-auto text-center float-in">
+        <p class="text-white/40 text-sm tracking-widest mb-6" style="font-family: 'Helvetica Neue', sans-serif;">
+          come to grace hopper with us.
+        </p>
+        <a
+          href={GHC_APPLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block text-white border-b border-white/30 hover:border-white pb-1 text-base tracking-widest transition-colors duration-300"
+          style="font-family: 'Helvetica Neue', sans-serif;"
+        >
+          apply to grace hopper &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-16 px-8">
+      <div class="max-w-5xl mx-auto float-in">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 tracking-widest text-center italic" style="font-family: 'Helvetica Neue', sans-serif;">
+          gallery
+        </h2>
+        <div class="clothesline">
+          <svg class="clothesline-svg" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,41 Q600,109 1200,41" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" />
+          </svg>
+          <div class="clothesline-row">
+            {galleryImages.map((img, i) => (
+              <div class="clothes-card" style={`--rot:${clotheslineRotations[i]}deg; --drop:${clotheslineDrops[i]}px;`}>
+                <span class="clothes-pin" aria-hidden="true"></span>
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clothesline gallery lightbox -->
+    <div class="lightbox" id="clothesline-lightbox" aria-hidden="true">
+      <button type="button" class="lightbox-close" aria-label="close image">&times;</button>
+      <img class="lightbox-img" src="" alt="" />
+    </div>
+
+    <!-- Meet the progirls team -->
+    <section class="py-16 px-8">
+      <div class="max-w-5xl mx-auto float-in">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 tracking-widest text-center italic" style="font-family: 'Helvetica Neue', sans-serif;">
+          meet the progirls team
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+          {progirlsTeam.map((member) => {
+            const isPresident = isPresidentRole(member.role);
+            const isFounding = isFoundingPresident(member.role);
+            const isCsuite = isCsuiteRole(member.role);
+            const isOperations = member.role === "operations";
+            const isFinance = member.role === "finance";
+            const isGrowth = member.role === "growth";
+            return (
+              <div class="text-center space-y-3">
+                {member.photo ? (
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    class:list={[
+                      "w-16 h-16 rounded-full mx-auto object-cover border-2",
+                      isFounding
+                        ? "border-purple-500/40"
+                        : isPresident
+                          ? "border-amber-500/40"
+                          : isCsuite
+                            ? "border-indigo-500/40"
+                            : isOperations
+                              ? "border-sky-500/40"
+                              : isFinance
+                                ? "border-emerald-500/40"
+                                : isGrowth
+                                  ? "border-pink-500/40"
+                                  : "border-white/10",
+                    ]}
+                  />
+                ) : (
+                  <div class:list={[
+                    "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-lg font-bold",
+                    isFounding
+                      ? "bg-purple-500/20 text-purple-300"
+                      : isPresident
+                        ? "bg-amber-500/20 text-amber-300"
+                        : isCsuite
+                          ? "bg-indigo-500/20 text-indigo-300"
+                          : isOperations
+                            ? "bg-sky-500/20 text-sky-300"
+                            : isFinance
+                              ? "bg-emerald-500/20 text-emerald-300"
+                              : isGrowth
+                                ? "bg-pink-500/20 text-pink-300"
+                                : "bg-white/5 text-white/60",
+                  ]}>
+                    {member.name.split(" ").map((n: string) => n[0]).join("")}
+                  </div>
+                )}
+
+                <div>
+                  <h3 class="text-white font-medium text-base italic" style="font-family: 'Noto Serif', Georgia, serif !important;">
+                    {member.name}
+                  </h3>
+                  {member.role && (
+                    <p class:list={[
+                      "text-xs tracking-widest mt-1",
+                      isFounding
+                        ? "text-purple-400/70"
+                        : isPresident
+                          ? "text-amber-400/70"
+                          : isCsuite
+                            ? "text-indigo-400/70"
+                            : isOperations
+                              ? "text-sky-400/70"
+                              : isFinance
+                                ? "text-emerald-400/70"
+                                : isGrowth
+                                  ? "text-pink-400/70"
+                                  : "text-white/45",
+                    ]} style="font-family: 'Helvetica Neue', sans-serif;">
+                      {member.role.toLowerCase()}
+                    </p>
+                  )}
+                </div>
+
+                {member.tags && member.tags.length > 0 && (
+                  <div class="flex flex-wrap justify-center gap-2">
+                    {member.tags.slice(0, 3).map((t: string) => (
+                      <span class="text-white/50 text-xs" style="font-family: 'Helvetica Neue', sans-serif;">
+                        {t.toLowerCase()}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {(member.github || member.linkedin) && (
+                  <div class="flex justify-center gap-4 pt-1">
+                    {member.github && (
+                      <a
+                        href={member.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-white/50 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                        style="font-family: 'Helvetica Neue', sans-serif;"
+                      >
+                        github
+                      </a>
+                    )}
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-white/50 hover:text-white/60 text-xs tracking-widest transition-all duration-300"
+                        style="font-family: 'Helvetica Neue', sans-serif;"
+                      >
+                        linkedin
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Back + Footer -->
+    <div class="py-8 text-center">
+      <a
+        href="/"
+        class="text-white/45 hover:text-white text-sm tracking-widest transition-all duration-300"
+        style="font-family: 'Helvetica Neue', sans-serif; text-shadow: 0 0 8px rgba(147, 51, 234, 0);"
+        onmouseover="this.style.textShadow='0 0 12px rgba(147,51,234,1), 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.25)'"
+        onmouseout="this.style.textShadow='0 0 8px rgba(147,51,234,0)'"
+      >
+        &larr; back to home
+      </a>
+      <p class="text-white/50 text-xs mt-6 tracking-widest" style="font-family: 'Helvetica Neue', sans-serif;">
+        &copy; 2026 progsu
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .float-in {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(10px);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out, filter 0.9s ease-out;
+  }
+
+  .float-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* Clothesline photo gallery */
+  .clothesline {
+    position: relative;
+    padding-top: 2rem;
+  }
+
+  .clothesline-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    pointer-events: none;
+  }
+
+  .clothesline-row {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    padding-top: 0.5rem;
+  }
+
+  .clothes-card {
+    position: relative;
+    margin-top: var(--drop);
+    transform: rotate(var(--rot));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    background: #fff;
+    padding: 0.4rem 0.4rem 1.1rem;
+    border-radius: 2px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    width: clamp(5.5rem, 11vw, 8rem);
+    flex-shrink: 0;
+  }
+
+  .clothes-card:hover,
+  .clothes-card:focus-within {
+    transform: rotate(0deg) scale(1.12) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+    z-index: 5;
+  }
+
+  .clothes-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  /* Clothesline gallery lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .lightbox-img {
+    max-width: min(90vw, 720px);
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .clothes-pin {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 20px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #f2d9b3, #c9a06a);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .clothes-pin::after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 640px) {
+    .clothesline-svg {
+      display: none;
+    }
+
+    .clothesline-row {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding: 1rem 0.5rem 1.5rem;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+    }
+
+    .clothes-card {
+      margin-top: 0.75rem !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clothes-card {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function initProgirls() {
+    const elements = document.querySelectorAll('.float-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.01 });
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProgirls);
+  } else {
+    initProgirls();
+  }
+  document.addEventListener('astro:page-load', initProgirls);
+
+  let cleanupLightbox: (() => void) | null = null;
+
+  function initLightbox() {
+    if (cleanupLightbox) {
+      cleanupLightbox();
+      cleanupLightbox = null;
+    }
+
+    const lightbox = document.getElementById('clothesline-lightbox');
+    const img = lightbox?.querySelector<HTMLImageElement>('.lightbox-img');
+    const closeBtn = lightbox?.querySelector<HTMLButtonElement>('.lightbox-close');
+    const thumbs = Array.from(document.querySelectorAll<HTMLImageElement>('.clothes-card img'));
+    if (!lightbox || !img || !closeBtn || !thumbs.length) return;
+
+    const open = (src: string, alt: string) => {
+      img.src = src;
+      img.alt = alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    const onThumbClick = (e: Event) => {
+      const target = e.currentTarget as HTMLImageElement;
+      open(target.src, target.alt);
+    };
+    const onCloseClick = () => close();
+    const onBackdropClick = (e: MouseEvent) => {
+      if (e.target === lightbox) close();
+    };
+    const onKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+    };
+
+    thumbs.forEach((t) => t.addEventListener('click', onThumbClick));
+    closeBtn.addEventListener('click', onCloseClick);
+    lightbox.addEventListener('click', onBackdropClick);
+    document.addEventListener('keydown', onKeydown);
+
+    cleanupLightbox = () => {
+      thumbs.forEach((t) => t.removeEventListener('click', onThumbClick));
+      closeBtn.removeEventListener('click', onCloseClick);
+      lightbox.removeEventListener('click', onBackdropClick);
+      document.removeEventListener('keydown', onKeydown);
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLightbox);
+  } else {
+    initLightbox();
+  }
+  document.addEventListener('astro:page-load', initLightbox);
+</script>
