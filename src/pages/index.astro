@@ -29,9 +29,6 @@ const GET_INVOLVED_WORDS = GET_INVOLVED_RAW.map((w) => ({
   }),
 }));
 
-// "stay up to date" conveyor — phone screenshots, in order.
-const phoneImages = Array.from({ length: 9 }, (_, i) => `/images/landing%20page/phone%20${i + 1}.png`);
-
 // aHelper function to extract plain text from description
 function getPlainTextExcerpt(description) {
   if (typeof description === 'string') return description;
@@ -224,29 +221,6 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
     </div>
   </section>
 
-  <!-- Stay Up To Date Section -->
-  <section id="stay-up-to-date" class="py-16 bg-black overflow-hidden">
-    <div class="max-w-5xl mx-auto text-center px-8 float-in">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 tracking-widest italic" style="font-family: 'Helvetica Neue', sans-serif;">
-        stay up to date
-      </h2>
-      <p class="text-white/50 mb-12 max-w-xl mx-auto" style="font-family: 'Helvetica Neue', sans-serif;">
-        want to keep up with progsu? be sure to connect with us on socials.
-      </p>
-    </div>
-    <div class="phone-conveyor-wrap float-in">
-      <div class="phone-conveyor-track">
-        {phoneImages.map((src) => (
-          <img src={src} alt="" loading="lazy" decoding="async" />
-        ))}
-        {/* Duplicate set powers the seamless loop — hidden from screen readers so images aren't announced twice */}
-        {phoneImages.map((src) => (
-          <img src={src} alt="" aria-hidden="true" loading="lazy" decoding="async" class="phone-conveyor-duplicate" />
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Connect Section -->
   <section id="contact" class="pt-10 pb-24 px-8 bg-black">
     <div class="max-w-3xl mx-auto text-center float-in">
@@ -338,45 +312,6 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
     }
   }
 
-  /* ---------- stay up to date phone conveyor ---------- */
-  .phone-conveyor-wrap {
-    width: 100%;
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-  }
-
-  .phone-conveyor-track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    animation: phone-conveyor-scroll 24s linear infinite;
-  }
-
-  .phone-conveyor-track img {
-    height: clamp(120px, 19vw, 220px);
-    width: auto;
-    flex-shrink: 0;
-    object-fit: contain;
-  }
-
-  @keyframes phone-conveyor-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .phone-conveyor-track {
-      animation: none;
-    }
-    .phone-conveyor-wrap {
-      overflow-x: auto;
-    }
-    .phone-conveyor-track .phone-conveyor-duplicate {
-      display: none;
-    }
-  }
 </style>
 
 <script>
