@@ -1,59 +1,24 @@
 ---
-// Background marquee — full approved pool of wide event/crowd photos.
-// Every "progsu" word cycles to the next image, so no two adjacent words match.
-// Each row starts at a different offset into the pool (and alternates scroll
-// direction) so rows don't visually line up with each other either.
-const POOL = [
-  "/hero/1.png",
-  "/hero/2.png",
-  "/hero/3.png",
-  "/hero/4.png",
-  "/hero/5.png",
-  "/hero/6.png",
-  "/hero/7.png",
-  "/hero/8.png",
-  "/hero/9.png",
-  "/hero/10.png",
-  "/hero/11.png",
-  "/images/landing%20page/hacklanta.jpg",
-  "/images/landing%20page/progirls.jpg",
-  "/images/landing%20page/meet%20the%20team.jpg",
-  "/images/landing%20page/our%20mission.jpg",
-  "/images/progirls/8V4A9282.jpg",
-  "/images/progirls/8V4A9332.jpg",
-  "/images/progirls/8V4A9339.jpg",
-  "/images/progirls/8V4A9396%20(1).jpg",
-];
-
-const ROWS = [
-  { direction: "left" },
-  { direction: "right" },
-  { direction: "left" },
-  { direction: "right" },
-];
-
-const REPEATS = 8; // "progsu" repeated per copy, doubled in markup for the seamless loop
-const ROW_OFFSET_STEP = 3; // stagger each row's starting point in the pool
+import { BrutalButton } from "@/components/ui/brutal-button";
 ---
 
 <section
   id="hero"
   class="relative w-full min-h-screen bg-black overflow-hidden flex items-center justify-center"
 >
-  <!-- Background: rows of image-filled "progsu" text, scrolling on an infinite loop -->
-  <div class="absolute inset-0 flex flex-col justify-center overflow-hidden select-none pointer-events-none" aria-hidden="true">
-    {ROWS.map((row, rowIndex) => (
-      <div class:list={["marquee-row", row.direction === "left" ? "marquee-left" : "marquee-right"]}>
-        <div class="marquee-track">
-          {[0, 1].map(() => (
-            Array.from({ length: REPEATS }).map((_, w) => {
-              const img = POOL[(w + rowIndex * ROW_OFFSET_STEP) % POOL.length];
-              return <span class="marquee-word" style={`background-image: url('${img}');`}>progsu</span>;
-            })
-          ))}
-        </div>
+  <!-- Background: hands illustration, same treatment as the divider elsewhere on the page -->
+  <div class="hero-hands-wrap" aria-hidden="true">
+    <div class="divider-shift">
+      <div class="divider-float">
+        <img
+          src="/images/landing%20page/hero%20hands.png"
+          alt=""
+          class="w-full opacity-80"
+          loading="eager"
+          decoding="async"
+        />
       </div>
-    ))}
+    </div>
   </div>
 
   <!-- Foreground: real wordmark, tagline, CTA -->
@@ -63,14 +28,17 @@ const ROW_OFFSET_STEP = 3; // stagger each row's starting point in the pool
       builders &amp; dreamers of atl. a new generation of talent.
     </p>
     <div class="mt-8 md:mt-10 pointer-events-auto">
-      <a
+      <BrutalButton
         href="https://members.progsu.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hero-cta"
+        external
+        color="#000"
+        textColor="#fff"
+        hasBorder={false}
+        shadowColor="#000"
+        className="hero-cta"
       >
         join our community
-      </a>
+      </BrutalButton>
     </div>
   </div>
 </section>
@@ -80,7 +48,7 @@ const ROW_OFFSET_STEP = 3; // stagger each row's starting point in the pool
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
     font-weight: 700;
-    font-size: clamp(3rem, 15vw, 8rem);
+    font-size: clamp(2.5rem, 12vw, 6.5rem);
     line-height: 1;
     letter-spacing: -0.02em;
   }
@@ -88,115 +56,59 @@ const ROW_OFFSET_STEP = 3; // stagger each row's starting point in the pool
   .hero-tagline {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
-    font-size: clamp(0.85rem, 2.2vw, 1.15rem);
+    font-size: clamp(0.75rem, 1.9vw, 1rem);
     max-width: 32rem;
   }
 
-  .hero-cta {
-    display: inline-block;
+  /* :global() needed — .hero-cta is rendered by the React BrutalButton island,
+     so Astro can't attach its usual scope attribute to that element. */
+  :global(.hero-cta) {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
-    font-weight: 700;
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    color: #000;
-    background: #fff;
-    padding: 0.85em 2em;
-    border-radius: 999px;
+    font-size: clamp(0.75rem, 1.7vw, 0.875rem);
     text-decoration: none;
     letter-spacing: 0.02em;
-    transition: transform 200ms ease, background-color 200ms ease, color 200ms ease;
+    text-transform: lowercase;
   }
 
-  .hero-cta:hover {
-    background: #571294;
-    color: #fff;
-    transform: translateY(-2px);
-  }
-
-  .hero-cta:focus-visible {
+  :global(.hero-cta:focus-visible) {
     outline: 2px solid #fff;
     outline-offset: 4px;
   }
 
-  .hero-cta:active {
-    background: #571294;
-    color: #fff;
-    transform: translateY(0);
-    opacity: 0.85;
-  }
-
-  /* ---------- background marquee ---------- */
-  .marquee-row {
-    --marquee-duration: 60s;
-    width: 100%;
-    overflow: hidden;
-    line-height: 1.2;
-    padding-bottom: 0.1em;
-  }
-
-  .marquee-track {
+  /* ---------- background hands illustration (same as the page divider) ---------- */
+  .hero-hands-wrap {
+    position: absolute;
+    inset: 0;
     display: flex;
-    width: max-content;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
   }
 
-  .marquee-word {
-    display: inline-block;
-    white-space: nowrap;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: italic;
-    font-weight: 700;
-    font-size: clamp(3.75rem, 18.75vw, 10rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin-right: 0.2em;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    opacity: 0.22;
+  .divider-shift {
+    width: 100%;
   }
 
-  .marquee-left .marquee-track {
-    animation: marquee-scroll-left var(--marquee-duration) linear infinite;
+  .divider-float {
+    animation:
+      divider-bob 4.6s ease-in-out infinite,
+      divider-wobble 6.2s ease-in-out infinite;
+    will-change: transform;
   }
 
-  .marquee-right .marquee-track {
-    animation: marquee-scroll-right var(--marquee-duration) linear infinite;
+  @keyframes divider-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
-
-  @keyframes marquee-scroll-left {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  @keyframes marquee-scroll-right {
-    from { transform: translateX(-50%); }
-    to { transform: translateX(0); }
-  }
-
-  /* Fewer rows on small screens so it doesn't overwhelm the wordmark */
-  .marquee-row:nth-child(3),
-  .marquee-row:nth-child(4) {
-    display: none;
-  }
-  @media (min-width: 640px) {
-    .marquee-row:nth-child(3) {
-      display: block;
-    }
-  }
-  @media (min-width: 1024px) {
-    .marquee-row:nth-child(4) {
-      display: block;
-    }
+  @keyframes divider-wobble {
+    0%, 100% { transform: rotate(-3.5deg); }
+    50% { transform: rotate(3.5deg); }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .marquee-left .marquee-track,
-    .marquee-right .marquee-track {
-      animation-play-state: paused;
-    }
+    .divider-float { animation: none; }
   }
 </style>

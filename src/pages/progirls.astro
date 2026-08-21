@@ -14,6 +14,14 @@ const galleryImages = [
   { src: "/images/progirls/8V4A9339.jpg", alt: "a group of progirls members smiling together at an event" },
   { src: "/images/progirls/8V4A9396%20(1).jpg", alt: "a group of progirls members posing together indoors" },
 ];
+
+// Hand-tuned per-card variety for the clothesline gallery: rotation angle and
+// how far each card "hangs" below the line, mimicking a sagging clothesline
+// that dips lower in the middle. Drop values are derived from the SVG curve
+// in the <style> block below (sampled at t = i / 5 along the quadratic path)
+// so the pins visually land on the line instead of floating above/below it.
+const clotheslineRotations = [-7, 5, -3, 6, -5, 4];
+const clotheslineDrops = [6, 28, 39, 39, 28, 6];
 ---
 
 <Layout title="progirls - progsu">
@@ -22,7 +30,7 @@ const galleryImages = [
     <!-- Hero -->
     <section class="pt-32 pb-16 px-8">
       <div class="max-w-3xl mx-auto text-center float-in">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight italic" style="font-family: 'Noto Serif', Georgia, serif !important;">
+        <h1 class="text-6xl md:text-7xl font-bold text-white mb-4 tracking-tight italic" style="font-family: 'Helvetica Neue', sans-serif;">
           progirls
         </h1>
         <p class="text-base md:text-lg text-white/50 leading-relaxed font-light max-w-2xl mx-auto" style="font-family: 'Helvetica Neue', sans-serif;">
@@ -75,19 +83,27 @@ const galleryImages = [
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 tracking-widest text-center italic" style="font-family: 'Helvetica Neue', sans-serif;">
           gallery
         </h2>
-        <div class="marquee-wrap">
-          <div class="marquee-track">
-            {galleryImages.map((img) => (
-              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-            ))}
-            {/* Duplicate set powers the seamless loop — hidden from screen readers so images aren't announced twice */}
-            {galleryImages.map((img) => (
-              <img src={img.src} alt="" aria-hidden="true" loading="lazy" decoding="async" class="marquee-duplicate" />
+        <div class="clothesline">
+          <svg class="clothesline-svg" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,41 Q600,109 1200,41" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" />
+          </svg>
+          <div class="clothesline-row">
+            {galleryImages.map((img, i) => (
+              <div class="clothes-card" style={`--rot:${clotheslineRotations[i]}deg; --drop:${clotheslineDrops[i]}px;`}>
+                <span class="clothes-pin" aria-hidden="true"></span>
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+              </div>
             ))}
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Clothesline gallery lightbox -->
+    <div class="lightbox" id="clothesline-lightbox" aria-hidden="true">
+      <button type="button" class="lightbox-close" aria-label="close image">&times;</button>
+      <img class="lightbox-img" src="" alt="" />
+    </div>
 
     <!-- Meet the progirls team -->
     <section class="py-16 px-8">
@@ -248,59 +264,155 @@ const galleryImages = [
     filter: blur(0);
   }
 
-  /* Horizontal auto-scrolling gallery marquee */
-  .marquee-wrap {
-    --marquee-duration: 40s;
+  /* Clothesline photo gallery */
+  .clothesline {
+    position: relative;
+    padding-top: 2rem;
+  }
+
+  .clothesline-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+    height: 90px;
+    pointer-events: none;
   }
 
-  .marquee-track {
+  .clothesline-row {
+    position: relative;
     display: flex;
-    width: max-content;
-    gap: 1.5rem;
-    animation: marquee-scroll var(--marquee-duration) linear infinite;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    padding-top: 0.5rem;
   }
 
-  .marquee-wrap:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-  .marquee-track img {
-    height: 180px;
-    width: auto;
+  .clothes-card {
+    position: relative;
+    margin-top: var(--drop);
+    transform: rotate(var(--rot));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    background: #fff;
+    padding: 0.4rem 0.4rem 1.1rem;
+    border-radius: 2px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    width: clamp(5.5rem, 11vw, 8rem);
     flex-shrink: 0;
+  }
+
+  .clothes-card:hover,
+  .clothes-card:focus-within {
+    transform: rotate(0deg) scale(1.12) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+    z-index: 5;
+  }
+
+  .clothes-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
   }
 
-  @media (min-width: 768px) {
-    .marquee-track img {
-      height: 260px;
-    }
+  /* Clothesline gallery lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
   }
 
-  @keyframes marquee-scroll {
-    from {
-      transform: translateX(0);
+  .lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .lightbox-img {
+    max-width: min(90vw, 720px);
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .clothes-pin {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 20px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #f2d9b3, #c9a06a);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .clothes-pin::after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 640px) {
+    .clothesline-svg {
+      display: none;
     }
-    to {
-      transform: translateX(-50%);
+
+    .clothesline-row {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding: 1rem 0.5rem 1.5rem;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+    }
+
+    .clothes-card {
+      margin-top: 0.75rem !important;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-    }
-    .marquee-wrap {
-      overflow-x: auto;
-    }
-    .marquee-track .marquee-duplicate {
-      display: none;
+    .clothes-card {
+      transition: none;
     }
   }
 </style>
@@ -325,4 +437,64 @@ const galleryImages = [
     initProgirls();
   }
   document.addEventListener('astro:page-load', initProgirls);
+
+  let cleanupLightbox: (() => void) | null = null;
+
+  function initLightbox() {
+    if (cleanupLightbox) {
+      cleanupLightbox();
+      cleanupLightbox = null;
+    }
+
+    const lightbox = document.getElementById('clothesline-lightbox');
+    const img = lightbox?.querySelector<HTMLImageElement>('.lightbox-img');
+    const closeBtn = lightbox?.querySelector<HTMLButtonElement>('.lightbox-close');
+    const thumbs = Array.from(document.querySelectorAll<HTMLImageElement>('.clothes-card img'));
+    if (!lightbox || !img || !closeBtn || !thumbs.length) return;
+
+    const open = (src: string, alt: string) => {
+      img.src = src;
+      img.alt = alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    const onThumbClick = (e: Event) => {
+      const target = e.currentTarget as HTMLImageElement;
+      open(target.src, target.alt);
+    };
+    const onCloseClick = () => close();
+    const onBackdropClick = (e: MouseEvent) => {
+      if (e.target === lightbox) close();
+    };
+    const onKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+    };
+
+    thumbs.forEach((t) => t.addEventListener('click', onThumbClick));
+    closeBtn.addEventListener('click', onCloseClick);
+    lightbox.addEventListener('click', onBackdropClick);
+    document.addEventListener('keydown', onKeydown);
+
+    cleanupLightbox = () => {
+      thumbs.forEach((t) => t.removeEventListener('click', onThumbClick));
+      closeBtn.removeEventListener('click', onCloseClick);
+      lightbox.removeEventListener('click', onBackdropClick);
+      document.removeEventListener('keydown', onKeydown);
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLightbox);
+  } else {
+    initLightbox();
+  }
+  document.addEventListener('astro:page-load', initLightbox);
 </script>
