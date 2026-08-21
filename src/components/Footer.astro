@@ -1,19 +1,103 @@
 ---
-import { SITE_TITLE } from "@/consts";
-
-const today = new Date();
+import "@/styles/footer.css";
 ---
 
-<div class="h-28 overflow-hidden">
-  <div class="hero-bg">
-    1000001100000000101001011011110000000101000011000100111110110100101101101101011000111110111010010000010010101100011001111110010110011010000011001110001100111010010010010011000001001100001111100010100101001010101000000011101000010000000000011101101001010100110111110100001100010100001100010100010110001110001011000001011110010100101011101100001010011100100010000001010000100011111011010110000001010010100000110011000010100001110111101010110010111100111100011001000011011001110000000000101110110001101111101110011011100010111011010001000100101101101100110111010011010110010000101010010000100100110101101110101011011001000111100111001011101000101101001001001011011000011111001001100101110100000111000100010010100001111101100001001110011011111001111101001110000000010000100101101101011011111000011100000010110111001110000110110100110100110011101100000101011101001010111001000000101000010111110101100110000110110001101000101100001110000110110011001010001011011000110100000101111101000011110110100010011110
-  </div>
-</div>
-<section
-  id="footer"
-  class="w-full grid relative place-items-center text-center py-4 bg-white/[0.001]"
->
-  <div class="px-6 py-2 rounded-lg bg-white/5 text-white/60 text-sm font-normal">
-    &copy; {today.getFullYear()} {SITE_TITLE}. All rights reserved.
-  </div>
-</section>
+<footer class="footer" id="site-footer">
+  <p class="footer-copyright" id="footer-copyright">&copy; 2026</p>
+  <p class="footer-wordmark" id="footer-wordmark">progsu</p>
+</footer>
+
+<script>
+  let cleanupFooterReveal: (() => void) | null = null;
+
+  function initFooterReveal() {
+    if (cleanupFooterReveal) {
+      cleanupFooterReveal();
+      cleanupFooterReveal = null;
+    }
+
+    const footer = document.getElementById('site-footer');
+    const content = document.querySelector<HTMLElement>('.content');
+    const copyright = document.getElementById('footer-copyright');
+    const wordmark = document.getElementById('footer-wordmark');
+    if (!footer || !content || !copyright || !wordmark) return;
+
+    // The CSS font-size (25vw) is just a starting point. Reset to it, measure
+    // the rendered width against the footer's actual width, then scale the
+    // font-size by that exact ratio — font metrics scale linearly with
+    // font-size, so one measure-and-correct pass lands on an exact
+    // edge-to-edge fit regardless of which Helvetica Neue fallback the OS
+    // renders. Note: .footer-wordmark must NOT have a CSS width set, or
+    // getBoundingClientRect() would report the container's width instead of
+    // the text's actual rendered width, making this measurement a no-op.
+    const fitWordmark = () => {
+      wordmark.style.fontSize = '25vw';
+      const targetWidth = footer.clientWidth;
+      const referenceWidth = wordmark.getBoundingClientRect().width;
+      const referenceFontSizePx = parseFloat(getComputedStyle(wordmark).fontSize);
+      if (referenceWidth > 0 && referenceFontSizePx > 0) {
+        wordmark.style.fontSize = `${referenceFontSizePx * (targetWidth / referenceWidth)}px`;
+      }
+    };
+
+    fitWordmark();
+    window.addEventListener('resize', fitWordmark);
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let ticking = false;
+    let onScroll: (() => void) | null = null;
+
+    if (!prefersReducedMotion) {
+      const update = () => {
+        ticking = false;
+        const footerHeight = footer.getBoundingClientRect().height || 1;
+        const vh = window.innerHeight || 1;
+        // The footer is position:fixed, so its own rect never moves — track
+        // .content's bottom edge instead. It starts at/below the viewport
+        // bottom (footer fully hidden). If the footer is shorter than the
+        // viewport, the page can't scroll .content's bottom all the way to
+        // 0 — it bottoms out at (vh - footerHeight) once nothing is left to
+        // scroll, and that's what "fully revealed" actually looks like.
+        const minContentBottom = Math.max(0, vh - footerHeight);
+        const contentBottom = content.getBoundingClientRect().bottom;
+        const progress = Math.min(1, Math.max(0, 1 - (contentBottom - minContentBottom) / footerHeight));
+
+        const opacity = (0.4 + 0.6 * progress).toFixed(3);
+        const translateY = (24 * (1 - progress)).toFixed(2);
+        const transform = `translateY(${translateY}px)`;
+
+        copyright.style.opacity = opacity;
+        copyright.style.transform = transform;
+        wordmark.style.opacity = opacity;
+        wordmark.style.transform = transform;
+      };
+
+      onScroll = () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    }
+
+    cleanupFooterReveal = () => {
+      window.removeEventListener('resize', fitWordmark);
+      if (onScroll) {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFooterReveal);
+  } else {
+    initFooterReveal();
+  }
+  document.addEventListener('astro:page-load', initFooterReveal);
+</script>

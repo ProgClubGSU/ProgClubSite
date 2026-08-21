@@ -1,0 +1,71 @@
+/* Peel-away reveal footer.
+ * .content sits above the fixed footer with a solid background, hiding it
+ * until the page is scrolled all the way down and the content "peels away".
+ * The footer is a fixed 285px box; the wordmark is sized edge-to-edge by
+ * width alone (Footer.astro's script) and anchored to the bottom, so on
+ * wide viewports it's taller than 285px and crops into the box rather than
+ * shrinking. The copyright line is pinned to the top of the box
+ * independently so it's never pushed out of view by that overflow.
+ */
+
+.content {
+  position: relative;
+  z-index: 2;
+  background-color: #000;
+  margin-bottom: 285px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 285px;
+  z-index: 1;
+  overflow: hidden;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.footer-copyright {
+  position: absolute;
+  top: 0.1rem;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.8vw, 1.25rem);
+  letter-spacing: 0.05em;
+  color: #000000;
+  opacity: 0.4;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+.footer-wordmark {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 25vw;
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: #000000;
+  opacity: 0.4;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-copyright,
+  .footer-wordmark {
+    opacity: 1;
+    transform: none;
+  }
+}
