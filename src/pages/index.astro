@@ -457,7 +457,7 @@ const homePageEvents = [...fullCardEvents, ...liteCardEvents].slice(0, 3);
     // "get involved" keycaps — press feedback + a synthesized click (no audio file needed).
     let cleanupKeycaps: (() => void) | null = null;
     const keycapPool: HTMLAudioElement[] = Array.from({ length: 6 }, () => {
-      const a = new Audio("/audio/creamy-keyboard-v7.mp3");
+      const a = new Audio("/audio/freesound_community-keyboard-spacebar-hit-101812.mp3");
       a.preload = "auto";
       return a;
     });
