@@ -6,14 +6,17 @@ import { BrutalButton } from "@/components/ui/brutal-button";
   id="hero"
   class="relative w-full min-h-screen bg-black overflow-hidden flex items-center justify-center"
 >
-  <!-- Background: hands illustration, same treatment as the divider elsewhere on the page -->
+  <!-- Background: hands illustration, same treatment as the divider elsewhere on the page.
+       md and up only — below that the copy stays the same size while the illustration
+       shrinks with the viewport, so the hands stop framing the CTA. The mobile layer
+       below is anchored to the button instead. -->
   <div class="hero-hands-wrap" aria-hidden="true">
     <div class="divider-shift">
       <div class="divider-float">
         <img
           src="/images/landing%20page/hero%20hands.png"
           alt=""
-          class="w-full opacity-80"
+          class="hero-hands-img w-full opacity-80"
           loading="eager"
           decoding="async"
         />
@@ -27,7 +30,20 @@ import { BrutalButton } from "@/components/ui/brutal-button";
     <p class="hero-tagline text-white/70 mt-3 md:mt-4">
       builders &amp; dreamers of atl. a new generation of talent.
     </p>
-    <div class="mt-8 md:mt-10 pointer-events-auto">
+    <div class="hero-cta-anchor mt-8 md:mt-10 pointer-events-auto">
+      <!-- Mobile: same illustration, sized and placed off the button so the two
+           fingertips land just outside its left and right edges. -->
+      <div class="hero-hands-cta" aria-hidden="true">
+        <div class="divider-float">
+          <img
+            src="/images/landing%20page/hero%20hands.png"
+            alt=""
+            class="hero-hands-img w-full opacity-80"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
       <BrutalButton
         href="https://members.progsu.com/"
         external
@@ -84,11 +100,23 @@ import { BrutalButton } from "@/components/ui/brutal-button";
     box-shadow: 8px 8px 0px #333 !important;
   }
 
-  /* ---------- background hands illustration (same as the page divider) ---------- */
+  /* ---------- background hands illustration (same as the page divider) ----------
+
+     The reaching edges, measured off hero hands.png (1366x768):
+       painted hand, fingertip   524,449  ->  38.36% / 58.46%
+       pixel hand, nearest edge  837,480  ->  61.27% / 62.50%
+     The gap the two hands reach across is therefore only 22.91% of the image
+     width. The button is ~39% of a phone's width, so the illustration has to be
+     roughly 1.9x the viewport for the hands to land either side of it — which is
+     why scaling it to the viewport (the md+ rule) leaves them adrift on mobile. */
+  .hero-hands-img {
+    display: block;
+  }
+
   .hero-hands-wrap {
     position: absolute;
     inset: 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -98,6 +126,38 @@ import { BrutalButton } from "@/components/ui/brutal-button";
 
   .divider-shift {
     width: 100%;
+  }
+
+  .hero-cta-anchor {
+    position: relative;
+  }
+
+  /* Mobile only: size the illustration off the button instead of the viewport,
+     then park the gap between the hands on top of it. Width solves
+     (button width + 2 * 8px clearance) = 22.91% of the image, so both hands stop
+     just short of the button's edges however wide the button renders; the
+     translate puts the midpoint of the gap (49.8% / 69% of the image) at the
+     button's centre. Those are the proportions the md+ rule produces at 768px,
+     so nothing jumps when the breakpoint flips. */
+  .hero-hands-cta {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(436.5% + 70px);
+    transform: translate(-49.8%, -69%);
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero-hands-wrap {
+      display: flex;
+    }
+
+    .hero-hands-cta {
+      display: none;
+    }
   }
 
   .divider-float {
