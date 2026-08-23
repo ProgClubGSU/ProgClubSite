@@ -31,11 +31,12 @@ import { BrutalButton } from "@/components/ui/brutal-button";
       <BrutalButton
         href="https://members.progsu.com/"
         external
-        color="#000"
-        textColor="#fff"
-        hasBorder={false}
-        shadowColor="#000"
-        className="hero-cta"
+        color="#050505"
+        textColor="#f5f5f5"
+        hasBorder={true}
+        borderColor="#f5f5f5"
+        shadowColor="#f5f5f5"
+        className="hero-cta hero-cta-invert !px-4 !py-2"
       >
         join our community
       </BrutalButton>
@@ -74,6 +75,13 @@ import { BrutalButton } from "@/components/ui/brutal-button";
   :global(.hero-cta:focus-visible) {
     outline: 2px solid #fff;
     outline-offset: 4px;
+  }
+
+  /* Block Invert: black bg flips to white on hover */
+  :global(.hero-cta-invert:hover) {
+    background-color: #f5f5f5 !important;
+    color: #050505 !important;
+    box-shadow: 8px 8px 0px #333 !important;
   }
 
   /* ---------- background hands illustration (same as the page divider) ---------- */
