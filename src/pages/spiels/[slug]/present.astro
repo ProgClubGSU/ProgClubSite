@@ -15,7 +15,7 @@ type Props = { spiel: Spiel };
 const { spiel } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="spiel-present">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -148,8 +148,9 @@ const { spiel } = Astro.props;
     </script>
 
     <style is:global>
-      html,
-      body {
+      /* Scoped to this page by class: CSS is bundled site-wide (cssCodeSplit is off) */
+      html.spiel-present,
+      html.spiel-present body {
         margin: 0;
         padding: 0;
         height: 100%;
