@@ -12,7 +12,10 @@ export default defineConfig({
   integrations: [
     react(),
     mdx(),
-    sitemap(),
+    sitemap({
+      // The present view is noindex, keep it out of the sitemap too
+      filter: (page) => !page.endsWith("/present/"),
+    }),
     tailwind({
       // Re-enable base styles since we've optimized critical CSS
       applyBaseStyles: true,

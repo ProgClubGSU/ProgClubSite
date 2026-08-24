@@ -1,0 +1,141 @@
+---
+import { toEmbedUrl } from "@/spiels";
+
+type Props = {
+  title: string;
+  canvaUrl: string;
+  startSlide?: number;
+  /** "framed" sits in the page flow at 16:9. "fill" letterboxes inside its parent. */
+  variant?: "framed" | "fill";
+  class?: string;
+};
+
+const {
+  title,
+  canvaUrl,
+  startSlide,
+  variant = "framed",
+  class: className = "",
+} = Astro.props;
+
+const embedUrl = toEmbedUrl(canvaUrl, startSlide);
+---
+
+<div class={`canva-embed canva-embed--${variant} ${className}`}>
+  <div class="canva-embed__frame">
+    <div class="canva-embed__skeleton" data-canva-skeleton aria-hidden="true">
+      <span class="canva-embed__pulse"></span>
+    </div>
+    <iframe
+      class="canva-embed__iframe"
+      data-canva-frame
+      src={embedUrl}
+      title={title}
+      loading="lazy"
+      allow="fullscreen"
+      allowfullscreen></iframe>
+  </div>
+</div>
+
+<style>
+  .canva-embed__frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* 16:9 in normal page flow, styled like the site's cards. */
+  .canva-embed--framed .canva-embed__frame {
+    padding-top: 56.25%;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: 0.75rem;
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.5),
+      0 4px 6px -4px rgb(0 0 0 / 0.5);
+  }
+
+  /* Letterboxed inside the parent, never stretched. */
+  .canva-embed--fill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .canva-embed--fill .canva-embed__frame {
+    width: min(100%, calc(var(--spiel-viewport-height, 100dvh) * 16 / 9));
+    padding-top: min(56.25%, calc(var(--spiel-viewport-height, 100dvh)));
+    border-radius: 0;
+  }
+
+  .canva-embed__iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    z-index: 10;
+  }
+
+  .canva-embed__skeleton {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.08),
+      rgb(255 255 255 / 0.02)
+    );
+  }
+
+  .canva-embed__pulse {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    border: 2px solid rgb(255 255 255 / 0.2);
+    border-top-color: rgb(147 197 253 / 0.9);
+    animation: canva-embed-spin 0.9s linear infinite;
+  }
+
+  @keyframes canva-embed-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .canva-embed__pulse {
+      animation: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function bindFrames() {
+      var frames = document.querySelectorAll("[data-canva-frame]");
+      for (var i = 0; i < frames.length; i++) {
+        var frame = frames[i];
+        if (frame.dataset.canvaBound) continue;
+        frame.dataset.canvaBound = "1";
+        frame.addEventListener(
+          "load",
+          function (event) {
+            var parent = event.currentTarget.parentElement;
+            if (!parent) return;
+            var skeleton = parent.querySelector("[data-canva-skeleton]");
+            if (skeleton) skeleton.remove();
+          },
+          { once: true },
+        );
+      }
+    }
+    bindFrames();
+    document.addEventListener("astro:page-load", bindFrames);
+  })();
+</script>

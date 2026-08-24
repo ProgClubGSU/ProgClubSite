@@ -1,0 +1,273 @@
+---
+import CanvaEmbed from "@/components/spiels/CanvaEmbed.astro";
+import { SPIELS, type Spiel } from "@/spiels";
+import "@/styles/global.css";
+
+export function getStaticPaths() {
+  return SPIELS.map((spiel) => ({
+    params: { slug: spiel.slug },
+    props: { spiel },
+  }));
+}
+
+type Props = { spiel: Spiel };
+
+const { spiel } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" type="image/png" href="/lighthouse.png" />
+    <title>{spiel.title}</title>
+  </head>
+  <body>
+    <div class="stage" id="stage">
+      <CanvaEmbed
+        title={spiel.title}
+        canvaUrl={spiel.canvaUrl}
+        variant="fill"
+      />
+
+      <a class="exit-link" href={`/spiels/${spiel.slug}`} data-astro-reload>
+        <span aria-hidden="true">&#8592;</span> Exit
+      </a>
+
+      <button type="button" class="fs-button" id="fs-button">
+        Enter full screen
+      </button>
+
+      <div class="rotate-hint" id="rotate-hint" hidden>
+        <p>Turn your phone sideways for a bigger view.</p>
+        <button type="button" id="rotate-dismiss">Got it</button>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var stage = document.getElementById("stage");
+        var button = document.getElementById("fs-button");
+        var hint = document.getElementById("rotate-hint");
+        var dismiss = document.getElementById("rotate-dismiss");
+        if (!stage || !button) return;
+
+        function fullscreenElement() {
+          return (
+            document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.msFullscreenElement ||
+            null
+          );
+        }
+
+        function requestFullscreen(el) {
+          var fn =
+            el.requestFullscreen ||
+            el.webkitRequestFullscreen ||
+            el.webkitRequestFullScreen ||
+            el.msRequestFullscreen;
+          if (fn) fn.call(el);
+        }
+
+        var idleTimer = null;
+
+        function hideChrome() {
+          stage.classList.add("is-idle");
+        }
+
+        function showChrome() {
+          stage.classList.remove("is-idle");
+          if (idleTimer) clearTimeout(idleTimer);
+          idleTimer = setTimeout(hideChrome, 3000);
+        }
+
+        function exitFullscreen() {
+          var fn =
+            document.exitFullscreen ||
+            document.webkitExitFullscreen ||
+            document.msExitFullscreen;
+          if (fn) fn.call(document);
+        }
+
+        function syncButton() {
+          button.textContent = fullscreenElement()
+            ? "Exit full screen"
+            : "Enter full screen";
+        }
+
+        button.addEventListener("click", function () {
+          if (fullscreenElement()) {
+            exitFullscreen();
+          } else {
+            requestFullscreen(stage);
+            hideChrome();
+          }
+        });
+
+        ["mousemove", "touchstart", "keydown"].forEach(function (type) {
+          document.addEventListener(type, showChrome, { passive: true });
+        });
+
+        [
+          "fullscreenchange",
+          "webkitfullscreenchange",
+          "MSFullscreenChange",
+        ].forEach(function (type) {
+          document.addEventListener(type, showChrome);
+        });
+
+        showChrome();
+
+        if (hint && dismiss) {
+          var STORAGE_KEY = "spiel-rotate-hint-dismissed";
+          var dismissed = false;
+          try {
+            dismissed = sessionStorage.getItem(STORAGE_KEY) === "1";
+          } catch (error) {
+            dismissed = false;
+          }
+          if (!dismissed) hint.hidden = false;
+
+          dismiss.addEventListener("click", function () {
+            hint.hidden = true;
+            try {
+              sessionStorage.setItem(STORAGE_KEY, "1");
+            } catch (error) {
+              /* sessionStorage unavailable, hint returns next load */
+            }
+          });
+        }
+      })();
+    </script>
+
+    <style is:global>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000;
+        color: #fff;
+        overflow: hidden;
+        font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+    </style>
+
+    <style>
+      .stage {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        --spiel-viewport-height: 100dvh;
+      }
+
+      .stage:fullscreen {
+        --spiel-viewport-height: 100vh;
+      }
+
+      .fs-button {
+        position: absolute;
+        right: max(1rem, env(safe-area-inset-right));
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        z-index: 20;
+        padding: 0.625rem 1.25rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgb(255 255 255 / 0.2);
+        background: rgb(255 255 255 / 0.1);
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+        transition:
+          opacity 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .fs-button:hover {
+        background: rgb(255 255 255 / 0.2);
+      }
+
+      .exit-link {
+        position: absolute;
+        left: max(1rem, env(safe-area-inset-left));
+        top: max(1rem, env(safe-area-inset-top));
+        z-index: 20;
+        padding: 0.625rem 1.25rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgb(255 255 255 / 0.2);
+        background: rgb(255 255 255 / 0.1);
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        backdrop-filter: blur(4px);
+        transition:
+          opacity 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .exit-link:hover {
+        background: rgb(255 255 255 / 0.2);
+      }
+
+      .stage.is-idle .fs-button,
+      .stage.is-idle .exit-link {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .rotate-hint {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        z-index: 20;
+        display: none;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.625rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgb(255 255 255 / 0.1);
+        background: rgb(255 255 255 / 0.05);
+        backdrop-filter: blur(4px);
+      }
+
+      .rotate-hint p {
+        margin: 0;
+        font-size: 0.8125rem;
+        color: rgb(255 255 255 / 0.8);
+      }
+
+      .rotate-hint button {
+        border: 1px solid rgb(255 255 255 / 0.2);
+        background: transparent;
+        color: #fff;
+        border-radius: 0.375rem;
+        padding: 0.25rem 0.625rem;
+        font-size: 0.75rem;
+        cursor: pointer;
+      }
+
+      .rotate-hint[hidden] {
+        display: none;
+      }
+
+      @media (max-width: 767px) and (orientation: portrait) {
+        .rotate-hint:not([hidden]) {
+          display: flex;
+        }
+      }
+    </style>
+  </body>
+</html>

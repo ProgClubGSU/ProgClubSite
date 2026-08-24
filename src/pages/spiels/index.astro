@@ -1,0 +1,80 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/components/Section.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { SPIELS, formatSpielDate } from "@/spiels";
+
+const spiels = [...SPIELS].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<Layout
+  title="Spiels"
+  description="Presentation decks from progsu meetings, workshops, and talks."
+>
+  <Fragment slot="breadcrumb">
+    <div class="mb-6 mt-2">
+      <nav
+        class="flex items-center gap-2 text-white/80 text-sm"
+        aria-label="Breadcrumb"
+      >
+        <a href="/" class="hover:underline">Home</a>
+        <span>/</span>
+        <Breadcrumb title="Spiels" />
+      </nav>
+    </div>
+  </Fragment>
+
+  <Section title="Spiels" className="pt-16">
+    <div class="max-w-4xl mx-auto mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        Presentation Decks
+      </h1>
+      <p class="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
+        Slides from our meetings, workshops, and talks. Watch them here, or open
+        the present view when you are running the room.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        spiels.map((spiel) => (
+          <article class="group bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 hover:shadow-lg">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h2 class="text-xl font-medium text-white transition-colors duration-300 group-hover:text-blue-300">
+                <span class="text-white/70 mr-2 transition-colors duration-300 group-hover:text-blue-400">
+                  ❯
+                </span>
+                {spiel.title}
+              </h2>
+              <span class="shrink-0 bg-white/10 border border-white/20 px-2 py-0.5 rounded text-xs text-white/70">
+                {formatSpielDate(spiel.date)}
+              </span>
+            </div>
+
+            {spiel.description && (
+              <p class="text-white/70 text-sm leading-relaxed mb-6">
+                {spiel.description}
+              </p>
+            )}
+
+            <div class="flex flex-wrap gap-3">
+              <a
+                href={`/spiels/${spiel.slug}`}
+                class="px-5 py-2.5 rounded-lg font-medium transition-colors duration-300 border bg-white/10 hover:bg-white/20 border-white/20 text-white"
+              >
+                Watch
+              </a>
+              <a
+                href={`/spiels/${spiel.slug}/present`}
+                data-astro-reload
+                class="px-5 py-2.5 rounded-lg font-medium transition-colors duration-300 border bg-blue-600/30 hover:bg-blue-600/40 border-blue-400/40 text-white"
+              >
+                Present
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+</Layout>

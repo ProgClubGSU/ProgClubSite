@@ -1,0 +1,61 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import CanvaEmbed from "@/components/spiels/CanvaEmbed.astro";
+import { SPIELS, formatSpielDate, type Spiel } from "@/spiels";
+
+export function getStaticPaths() {
+  return SPIELS.map((spiel) => ({
+    params: { slug: spiel.slug },
+    props: { spiel },
+  }));
+}
+
+type Props = { spiel: Spiel };
+
+const { spiel } = Astro.props;
+const formattedDate = formatSpielDate(spiel.date);
+---
+
+<Layout title={spiel.title} description={spiel.description}>
+  <div class="max-w-5xl mx-auto px-4 pt-24 pb-16">
+    <nav
+      class="flex items-center gap-2 text-white/80 text-sm mb-8"
+      aria-label="Breadcrumb"
+    >
+      <a href="/" class="hover:underline">Home</a>
+      <span>/</span>
+      <a href="/spiels" class="hover:underline">Spiels</a>
+      <span>/</span>
+      <span class="text-white">{spiel.title}</span>
+    </nav>
+
+    <div class="mb-8">
+      <h1
+        class="text-3xl md:text-5xl font-bold text-white mb-3 leading-tight break-words"
+      >
+        {spiel.title}
+      </h1>
+      <p class="text-white/60 text-sm">{formattedDate}</p>
+      {
+        spiel.description && (
+          <p class="text-white/80 text-lg leading-relaxed mt-4 max-w-3xl">
+            {spiel.description}
+          </p>
+        )
+      }
+    </div>
+
+    <CanvaEmbed title={spiel.title} canvaUrl={spiel.canvaUrl} />
+
+    <p class="text-white/60 text-sm mt-4">
+      Running this in front of a room?{" "}
+      <a
+        href={`/spiels/${spiel.slug}/present`}
+        data-astro-reload
+        class="text-blue-300 hover:text-blue-200 underline underline-offset-4"
+      >
+        Present full screen
+      </a>
+    </p>
+  </div>
+</Layout>
