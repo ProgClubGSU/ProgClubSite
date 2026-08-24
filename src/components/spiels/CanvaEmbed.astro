@@ -55,6 +55,24 @@ const embedUrl = toEmbedUrl(canvaUrl, startSlide);
       0 4px 6px -4px rgb(0 0 0 / 0.5);
   }
 
+  /* Native fullscreen on the framed variant keeps 16:9 and letterboxes. */
+  .canva-embed__frame:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    padding-top: 0;
+    border: 0;
+    border-radius: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  .canva-embed__frame:fullscreen .canva-embed__iframe {
+    position: relative;
+    inset: auto;
+    width: min(100vw, calc(100vh * 16 / 9));
+    height: min(56.25vw, 100vh);
+  }
+
   /* Letterboxed inside the parent, never stretched. */
   .canva-embed--fill {
     display: flex;

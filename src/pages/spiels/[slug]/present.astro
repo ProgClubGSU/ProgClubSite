@@ -40,8 +40,19 @@ const { spiel } = Astro.props;
         <span aria-hidden="true">&#8592;</span> Exit
       </a>
 
+      <button type="button" class="restart-button" id="restart-button">
+        Restart
+      </button>
+
       <button type="button" class="fs-button" id="fs-button">
         Enter full screen
+      </button>
+
+      <!-- Sits above the iframe, which swallows pointer events, so the
+           controls stay reachable no matter what slide Canva is on. -->
+      <button type="button" class="chrome-handle" id="chrome-handle">
+        <span aria-hidden="true">&#8942;</span>
+        <span class="sr-only-text">Show controls</span>
       </button>
 
       <div class="rotate-hint" id="rotate-hint" hidden>
@@ -55,6 +66,9 @@ const { spiel } = Astro.props;
         var stage = document.getElementById("stage");
         var button = document.getElementById("fs-button");
         var hint = document.getElementById("rotate-hint");
+        var restartButton = document.getElementById("restart-button");
+        var handle = document.getElementById("chrome-handle");
+        var iframe = document.querySelector("[data-canva-frame]");
         var dismiss = document.getElementById("rotate-dismiss");
         if (!stage || !button) return;
 
@@ -114,6 +128,21 @@ const { spiel } = Astro.props;
         ["mousemove", "touchstart", "keydown"].forEach(function (type) {
           document.addEventListener(type, showChrome, { passive: true });
         });
+
+        if (handle) {
+          ["mouseenter", "click", "touchstart", "focus"].forEach(
+            function (type) {
+              handle.addEventListener(type, showChrome, { passive: true });
+            },
+          );
+        }
+
+        if (restartButton && iframe) {
+          restartButton.addEventListener("click", function () {
+            iframe.src = iframe.src;
+            showChrome();
+          });
+        }
 
         [
           "fullscreenchange",
@@ -222,8 +251,72 @@ const { spiel } = Astro.props;
         background: rgb(255 255 255 / 0.2);
       }
 
+      .restart-button {
+        position: absolute;
+        right: max(1rem, env(safe-area-inset-right));
+        bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 3.25rem);
+        z-index: 20;
+        padding: 0.625rem 1.25rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgb(255 255 255 / 0.2);
+        background: rgb(255 255 255 / 0.1);
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+        transition:
+          opacity 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .restart-button:hover {
+        background: rgb(255 255 255 / 0.2);
+      }
+
+      .chrome-handle {
+        position: absolute;
+        right: max(0.5rem, env(safe-area-inset-right));
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 30;
+        width: 2rem;
+        height: 3.5rem;
+        display: grid;
+        place-items: center;
+        border-radius: 0.5rem;
+        border: 1px solid rgb(255 255 255 / 0.12);
+        background: rgb(255 255 255 / 0.06);
+        color: rgb(255 255 255 / 0.5);
+        font-size: 1rem;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0.25;
+        transition: opacity 0.3s ease;
+      }
+
+      .chrome-handle:hover,
+      .chrome-handle:focus-visible {
+        opacity: 1;
+      }
+
+      .stage:not(.is-idle) .chrome-handle {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .sr-only-text {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+
       .stage.is-idle .fs-button,
-      .stage.is-idle .exit-link {
+      .stage.is-idle .exit-link,
+      .stage.is-idle .restart-button {
         opacity: 0;
         pointer-events: none;
       }
