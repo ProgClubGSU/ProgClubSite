@@ -3,8 +3,13 @@ export type Spiel = {
   title: string;
   /** ISO date, YYYY-MM-DD */
   date: string;
-  canvaUrl: string;
   description?: string;
+  /** The recording. Watched first. */
+  videoUrl: string;
+  /** Mirror of the recording, for when youtube is blocked or dead. */
+  videoBackupUrl?: string;
+  /** The deck. Presented second. */
+  canvaUrl: string;
 };
 
 export const SPIELS: Spiel[] = [
@@ -12,41 +17,35 @@ export const SPIELS: Spiel[] = [
     slug: "fall-2026-intro",
     title: "fall 2026 intro",
     date: "2026-08-23",
+    description:
+      "what progsu is, what we build, and how to get involved this semester.",
+    videoUrl: "https://www.youtube.com/watch?v=OltQSnt5CHc",
+    videoBackupUrl:
+      "https://drive.google.com/file/d/11iR9mNiVXWfvM0o_uMK96honc8hVA0QU/view?usp=drive_link",
     canvaUrl:
       "https://www.canva.com/design/DAHRQr3xU0Q/-ZV_TJ9AjUJY-t0vh9KHhA/view",
-    description:
-      "What progsu is, what we build, and how to get involved this semester.",
   },
 ];
 
-export function getSpiel(slug: string): Spiel | undefined {
-  return SPIELS.find((spiel) => spiel.slug === slug);
+/** Newest first. */
+export function sortedSpiels(): Spiel[] {
+  return [...SPIELS].sort((a, b) => b.date.localeCompare(a.date));
 }
 
-/**
- * Canva view URLs become embeds by adding a valueless `embed` param.
- * Any existing query string or hash on the source URL is preserved.
- */
-export function toEmbedUrl(canvaUrl: string, startSlide?: number): string {
-  const [beforeHash] = canvaUrl.split("#");
-  const [path, query = ""] = beforeHash.split("?");
-  const params = query.split("&").filter((part) => part.length > 0);
-
-  if (!params.some((part) => part === "embed" || part.startsWith("embed="))) {
-    params.push("embed");
-  }
-
-  const base = params.length > 0 ? `${path}?${params.join("&")}` : path;
-  return startSlide && startSlide > 1 ? `${base}#${startSlide}` : base;
+/** The spiel the page leads with. */
+export function latestSpiel(): Spiel | undefined {
+  return sortedSpiels()[0];
 }
 
 /** Parses the ISO date without timezone drift. */
 export function formatSpielDate(date: string): string {
   const [year, month, day] = date.split("-").map(Number);
   if (!year || !month || !day) return date;
-  return new Date(year, month - 1, day).toLocaleDateString("en-us", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  return new Date(year, month - 1, day)
+    .toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+    .toLowerCase();
 }

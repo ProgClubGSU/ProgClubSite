@@ -1,80 +1,593 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/components/Section.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import { SPIELS, formatSpielDate } from "@/spiels";
+import { sortedSpiels, latestSpiel, formatSpielDate } from "@/spiels";
 
-const spiels = [...SPIELS].sort((a, b) => b.date.localeCompare(a.date));
+const spiel = latestSpiel();
+const earlier = sortedSpiels().slice(1);
+
+// The page is a sequence, not a menu: watch, then present.
+const steps = spiel
+  ? [
+      {
+        order: "01",
+        eyebrow: "first",
+        title: "watch the video",
+        meta: "youtube",
+        href: spiel.videoUrl,
+        backupHref: spiel.videoBackupUrl,
+      },
+      {
+        order: "02",
+        eyebrow: "then",
+        title: "open the deck",
+        meta: "canva",
+        href: spiel.canvaUrl,
+        backupHref: undefined,
+      },
+    ]
+  : [];
 ---
 
 <Layout
-  title="Spiels"
-  description="Presentation decks from progsu meetings, workshops, and talks."
+  title="spiels - progsu"
+  description="the progsu spiel. watch the video, then present the deck."
 >
-  <Fragment slot="breadcrumb">
-    <div class="mb-6 mt-2">
-      <nav
-        class="flex items-center gap-2 text-white/80 text-sm"
-        aria-label="Breadcrumb"
-      >
-        <a href="/" class="hover:underline">Home</a>
-        <span>/</span>
-        <Breadcrumb title="Spiels" />
-      </nav>
-    </div>
-  </Fragment>
+  <div class="min-h-screen bg-black spiel-page">
+    <!-- The reveal starts at opacity 0 and is turned on by JS. Without this the
+         page would render blank if the script ever fails to run. -->
+    <noscript>
+      <style is:inline>
+        .float-in {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+      </style>
+    </noscript>
 
-  <Section title="Spiels" className="pt-16">
-    <div class="max-w-4xl mx-auto mb-12 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-        Presentation Decks
-      </h1>
-      <p class="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-        Slides from our meetings, workshops, and talks. Watch them here, or open
-        the present view when you are running the room.
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-8">
+      <div class="max-w-2xl mx-auto text-center float-in">
+        <p
+          class="text-white/50 text-xs tracking-widest mb-6"
+          style="font-family: 'Helvetica Neue', sans-serif;"
+        >
+          the spiel
+        </p>
+        <h1
+          class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight italic"
+          style="font-family: 'Noto Serif', Georgia, serif !important;"
+        >
+          {spiel ? spiel.title : "no spiel yet"}
+        </h1>
+        {
+          spiel && (
+            <p
+              class="text-base md:text-lg text-white/50 leading-relaxed font-light max-w-xl mx-auto"
+              style="font-family: 'Helvetica Neue', sans-serif;"
+            >
+              {spiel.description}
+            </p>
+          )
+        }
+        {
+          spiel && (
+            <p
+              class="text-white/50 text-xs tracking-widest mt-6"
+              style="font-family: 'Helvetica Neue', sans-serif;"
+            >
+              {formatSpielDate(spiel.date)}
+            </p>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- The sequence -->
+    <section class="pb-24 px-8">
+      <div class="max-w-2xl mx-auto">
+        {
+          steps.map((step, i) => (
+            <div
+              class="spiel-step float-in"
+              style={`transition-delay: ${120 + i * 120}ms;`}
+            >
+              <a
+                href={step.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="spiel-step__link group"
+              >
+                <span class="spiel-step__index" aria-hidden="true">
+                  {step.order}
+                </span>
+
+                <span class="spiel-step__body">
+                  <span
+                    class="spiel-step__eyebrow"
+                    style="font-family: 'Helvetica Neue', sans-serif;"
+                  >
+                    {step.eyebrow}
+                  </span>
+                  <span
+                    class="spiel-step__title"
+                    style="font-family: 'Noto Serif', Georgia, serif !important;"
+                  >
+                    {step.title}
+                  </span>
+                  <span
+                    class="spiel-step__meta"
+                    style="font-family: 'Helvetica Neue', sans-serif;"
+                  >
+                    {step.meta}
+                    <span class="sr-only"> — opens in a new tab</span>
+                  </span>
+                </span>
+
+                <span class="spiel-step__arrow" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 12 12 4M5.5 4H12v6.5" />
+                  </svg>
+                </span>
+              </a>
+
+              {step.backupHref && (
+                <a
+                  href={step.backupHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="spiel-step__backup"
+                  style="font-family: 'Helvetica Neue', sans-serif;"
+                >
+                  youtube down? use the google drive mirror
+                  <span class="sr-only"> — opens in a new tab</span>
+                </a>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    {
+      earlier.length > 0 && (
+        <section class="pb-24 px-8">
+          <div class="max-w-2xl mx-auto float-in">
+            <h2
+              class="text-white/50 text-xs tracking-widest mb-8"
+              style="font-family: 'Helvetica Neue', sans-serif;"
+            >
+              earlier spiels
+            </h2>
+            {earlier.map((old) => (
+              <a href={old.canvaUrl} target="_blank" rel="noopener noreferrer" class="spiel-archive group">
+                <span class="spiel-archive__body">
+                  <span
+                    class="spiel-archive__title"
+                    style="font-family: 'Noto Serif', Georgia, serif !important;"
+                  >
+                    {old.title}
+                  </span>
+                  <span
+                    class="spiel-archive__date"
+                    style="font-family: 'Helvetica Neue', sans-serif;"
+                  >
+                    {formatSpielDate(old.date)}
+                  </span>
+                </span>
+                <span class="spiel-archive__arrow" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Back link + inline copyright (subpage pattern) -->
+    <div class="py-8 text-center">
+      <a
+        href="/"
+        class="spiel-back text-white/50 hover:text-white text-sm tracking-widest"
+        style="font-family: 'Helvetica Neue', sans-serif;"
+      >
+        ← back to progsu.com
+      </a>
+      <p
+        class="text-white/50 text-xs mt-6 tracking-widest"
+        style="font-family: 'Helvetica Neue', sans-serif;"
+      >
+        &copy; {new Date().getFullYear()} progsu
       </p>
     </div>
-
-    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-      {
-        spiels.map((spiel) => (
-          <article class="group bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 hover:shadow-lg">
-            <div class="flex items-start justify-between gap-3 mb-3">
-              <h2 class="text-xl font-medium text-white transition-colors duration-300 group-hover:text-blue-300">
-                <span class="text-white/70 mr-2 transition-colors duration-300 group-hover:text-blue-400">
-                  ❯
-                </span>
-                {spiel.title}
-              </h2>
-              <span class="shrink-0 bg-white/10 border border-white/20 px-2 py-0.5 rounded text-xs text-white/70">
-                {formatSpielDate(spiel.date)}
-              </span>
-            </div>
-
-            {spiel.description && (
-              <p class="text-white/70 text-sm leading-relaxed mb-6">
-                {spiel.description}
-              </p>
-            )}
-
-            <div class="flex flex-wrap gap-3">
-              <a
-                href={`/spiels/${spiel.slug}`}
-                class="px-5 py-2.5 rounded-lg font-medium transition-colors duration-300 border bg-white/10 hover:bg-white/20 border-white/20 text-white"
-              >
-                Watch
-              </a>
-              <a
-                href={`/spiels/${spiel.slug}/present`}
-                data-astro-reload
-                class="px-5 py-2.5 rounded-lg font-medium transition-colors duration-300 border bg-purple-600/40 hover:bg-purple-600/60 border-purple-400/50 text-white"
-              >
-                Present
-              </a>
-            </div>
-          </article>
-        ))
-      }
-    </div>
-  </Section>
+  </div>
 </Layout>
+
+<style>
+  /* Slow, heavy, cinematic. Never linear, never ease-in-out. */
+  .spiel-page {
+    --ease-spiel: cubic-bezier(0.32, 0.72, 0, 1);
+    --glow-purple: 0 0 12px rgba(147, 51, 234, 1), 0 0 30px rgba(147, 51, 234, 0.6),
+      0 0 60px rgba(147, 51, 234, 0.25);
+  }
+
+  /* The desktop sidebar nav sits at left:2rem and is ~110px wide.
+     Only the md..lg band is narrow enough for centered content to collide with it. */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .spiel-page {
+      padding-left: calc(160px + 1rem);
+    }
+  }
+
+  .float-in {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(10px);
+    transition:
+      opacity 0.9s ease-out,
+      transform 0.9s var(--ease-spiel),
+      filter 0.9s ease-out;
+  }
+
+  .float-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* ---- step row ---- */
+
+  /* The divider belongs to the whole step, so the drive fallback sits inside
+     step 01 rather than orphaned between the two steps. */
+  .spiel-step {
+    position: relative;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.5s var(--ease-spiel);
+  }
+
+  .spiel-step:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .spiel-step:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .spiel-step__link {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem 1rem 1.25rem 0;
+    text-decoration: none;
+    transition: transform 0.4s var(--ease-spiel);
+  }
+
+  /* Hover wash sweeps in from the left. Composited, never a layout change. */
+  .spiel-step__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0)
+    );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-spiel);
+  }
+
+  .spiel-step__link:hover::before,
+  .spiel-step__link:focus-visible::before {
+    opacity: 1;
+  }
+
+  .spiel-step__link:active {
+    transform: scale(0.995);
+  }
+
+  .spiel-step__link:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.45);
+    outline-offset: 6px;
+  }
+
+  /* Decorative numeral. The order is carried by the eyebrow text. */
+  .spiel-step__index {
+    position: relative;
+    flex-shrink: 0;
+    width: 2.25rem;
+    padding-top: 0.15rem;
+    font-family: "Noto Serif", Georgia, serif !important;
+    font-style: italic;
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.5s var(--ease-spiel);
+  }
+
+  /* Hairline spine connecting 01 to 02 — this page is a sequence, not a menu.
+     Anchored to the step, not the numeral, so it spans the full gap between them. */
+  .spiel-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0.4rem;
+    top: 4rem;
+    bottom: -2.2rem;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+
+  .spiel-step__link:hover .spiel-step__index {
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .spiel-step__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .spiel-step__eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.5s var(--ease-spiel);
+  }
+
+  .spiel-step__link:hover .spiel-step__eyebrow {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .spiel-step__title {
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(147, 51, 234, 0);
+    transition: text-shadow 0.45s var(--ease-spiel);
+  }
+
+  /* The one place purple appears: a glow on hover. Never a fill. */
+  .spiel-step__link:hover .spiel-step__title,
+  .spiel-step__link:focus-visible .spiel-step__title {
+    text-shadow: var(--glow-purple);
+  }
+
+  .spiel-step__meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Button-in-button: the arrow lives in its own enclosure, never naked. */
+  .spiel-step__arrow {
+    flex-shrink: 0;
+    align-self: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.45);
+    transition:
+      transform 0.5s var(--ease-spiel),
+      border-color 0.5s var(--ease-spiel),
+      background-color 0.5s var(--ease-spiel),
+      color 0.5s var(--ease-spiel);
+  }
+
+  .spiel-step__arrow svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .spiel-step__link:hover .spiel-step__arrow,
+  .spiel-step__link:focus-visible .spiel-step__arrow {
+    transform: translate(3px, -3px) scale(1.05);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+  }
+
+  /* The fallback is subordinate to the step it backs up, not a third button. */
+  .spiel-step__backup {
+    /* inline-flex + min-height keeps this a 44px touch target without
+       padding the text box off its baseline. */
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: 0 0 0 3.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    text-shadow: 0 0 8px rgba(147, 51, 234, 0);
+    transition:
+      color 0.4s var(--ease-spiel),
+      text-shadow 0.4s var(--ease-spiel);
+  }
+
+  .spiel-step__backup:hover,
+  .spiel-step__backup:focus-visible {
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: var(--glow-purple);
+  }
+
+  .spiel-step__backup:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.45);
+    outline-offset: 4px;
+  }
+
+  /* ---- archive rows ---- */
+
+  .spiel-archive {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    transition: border-color 0.5s var(--ease-spiel);
+  }
+
+  .spiel-archive:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .spiel-archive__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .spiel-archive__title {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.4s var(--ease-spiel);
+  }
+
+  .spiel-archive:hover .spiel-archive__title {
+    color: #fff;
+  }
+
+  .spiel-archive__date {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .spiel-archive__arrow {
+    flex-shrink: 0;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    transition:
+      transform 0.5s var(--ease-spiel),
+      color 0.5s var(--ease-spiel);
+  }
+
+  .spiel-archive:hover .spiel-archive__arrow {
+    transform: translateX(4px);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* ---- back link ---- */
+
+  .spiel-back {
+    display: inline-block;
+    text-decoration: none;
+    text-shadow: 0 0 8px rgba(147, 51, 234, 0);
+    transition:
+      color 0.4s var(--ease-spiel),
+      text-shadow 0.4s var(--ease-spiel);
+  }
+
+  .spiel-back:hover,
+  .spiel-back:focus-visible {
+    text-shadow: var(--glow-purple);
+  }
+
+  /* ---- mobile ---- */
+
+  @media (max-width: 767px) {
+    .spiel-step__link {
+      gap: 1rem;
+      padding: 1.75rem 0;
+    }
+
+    .spiel-step__index {
+      width: 1.75rem;
+      font-size: 1rem;
+    }
+
+    .spiel-step:not(:last-child)::after {
+      left: 0.3rem;
+      top: 3.4rem;
+      bottom: -1.9rem;
+    }
+
+    .spiel-step__arrow {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .spiel-step__backup {
+      margin-left: 2.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .float-in {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+
+    .spiel-step__link,
+    .spiel-step__arrow,
+    .spiel-step__title,
+    .spiel-archive,
+    .spiel-archive__arrow,
+    .spiel-back {
+      transition-duration: 0.01ms;
+    }
+
+    .spiel-step__link:hover .spiel-step__arrow {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  function initSpielReveal() {
+    const elements = document.querySelectorAll(".float-in");
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  // ClientRouter is enabled, so astro:page-load fires on first load and on every
+  // client-side navigation. The readyState branch is a fallback so the page can
+  // never render stuck at opacity 0 if that ever changes.
+  document.addEventListener("astro:page-load", initSpielReveal);
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSpielReveal);
+  } else {
+    initSpielReveal();
+  }
+</script>
